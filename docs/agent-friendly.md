@@ -65,8 +65,8 @@ CLI calls write:
 
 If you want the root-level agent docs in the repository, start with:
 
-- [`../AGENT_MANIFEST.md`](../AGENT_MANIFEST.md)
-- [`../AGENT_INPUT_CONTRACT.md`](../AGENT_INPUT_CONTRACT.md)
-- [`../ENTRYPOINTS.md`](../ENTRYPOINTS.md)
-- [`../START_HERE.md`](../START_HERE.md)
-- [`../DOCS_INDEX.md`](../DOCS_INDEX.md)
+- [`AGENT_MANIFEST.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/AGENT_MANIFEST.md)
+- [`AGENT_INPUT_CONTRACT.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/AGENT_INPUT_CONTRACT.md)
+- [`ENTRYPOINTS.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/ENTRYPOINTS.md)
+- [`START_HERE.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/START_HERE.md)
+- [`DOCS_INDEX.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/DOCS_INDEX.md)

@@ -1,6 +1,7 @@
 # Examples
 
-The package ships a small set of runnable examples under [`examples/`](../examples/).
+The package ships a small set of runnable examples under
+[`examples/`](https://github.com/systems-mechanobiology/De-Time/tree/main/examples).
 
 ## Included scripts
 

@@ -2,7 +2,8 @@
 
 This page summarizes the software-facing changes that turned the original benchmark-oriented codebase into a more reusable package.
 
-The full version lives in [../JMLR_SOFTWARE_IMPROVEMENTS.md](../JMLR_SOFTWARE_IMPROVEMENTS.md).
+The full version lives in
+[`JMLR_SOFTWARE_IMPROVEMENTS.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/JMLR_SOFTWARE_IMPROVEMENTS.md).
 
 ## Main changes
 
