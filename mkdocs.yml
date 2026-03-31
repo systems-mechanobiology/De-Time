@@ -21,4 +21,3 @@ nav:
       - Multivariate Workflows: tutorials/multivariate.md
       - CLI and Profiling: tutorials/cli-and-profiling.md
       - Profiling Reference: tutorials/profiling.md
-  - JMLR Improvements: jmlr-improvements.md

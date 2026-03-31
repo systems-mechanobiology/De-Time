@@ -144,4 +144,3 @@ Useful next stops:
 - [Examples](examples.md)
 - [Project Status and Release Files](project-status.md)
 - [Agent-Friendly Guide](agent-friendly.md)
-- [JMLR Improvements](jmlr-improvements.md)
