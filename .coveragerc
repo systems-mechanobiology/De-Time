@@ -1,5 +1,7 @@
 [run]
-source = tsdecomp
+source =
+    detime
+    tsdecomp
 omit =
     */tsdecomp/leaderboard.py
 

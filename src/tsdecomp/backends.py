@@ -114,7 +114,10 @@ def result_from_native_payload(payload: Any, *, method: str) -> DecompResult:
 
     if isinstance(payload, Mapping):
         meta = dict(payload.get("meta", {}) or {})
-        meta.setdefault("method", method)
+        payload_method = meta.get("method")
+        if payload_method not in (None, method):
+            meta.setdefault("native_method", str(payload_method))
+        meta["method"] = method
         return DecompResult(
             trend=np.asarray(payload.get("trend", []), dtype=float),
             season=np.asarray(payload.get("season", []), dtype=float),
