@@ -33,6 +33,36 @@ The package ships a small set of runnable examples under
   - compares `MSSA` against channelwise `STD`
   - produces multichannel figures and a single-channel trend overlay
 
+- `visual_leaderboard_walkthrough.py`
+  - runs a small synthetic scenario sweep with real decomposition methods
+  - produces leaderboard-style heatmaps and a scenario summary CSV
+
+## Visual walkthrough previews
+
+Univariate walkthrough:
+
+[Open the visual univariate tutorial](tutorials/visual-univariate.md)
+
+![Univariate walkthrough preview](assets/generated/tutorials/visual-univariate/ssa_components.png)
+
+Method comparison walkthrough:
+
+[Open the visual method-comparison tutorial](tutorials/visual-comparison.md)
+
+![Method comparison preview](assets/generated/tutorials/visual-comparison/method_grid.png)
+
+Multivariate walkthrough:
+
+[Open the visual multivariate tutorial](tutorials/visual-multivariate.md)
+
+![Multivariate walkthrough preview](assets/generated/tutorials/visual-multivariate/mssa_multivariate.png)
+
+Benchmark heatmap walkthrough:
+
+[Open the visual benchmark tutorial](tutorials/visual-benchmark.md)
+
+![Benchmark heatmap preview](assets/generated/tutorials/visual-benchmark/figures/heatmap_T_r2.png)
+
 ## Running them
 
 From the package directory:
@@ -44,4 +74,5 @@ PYTHONPATH=src python3 examples/method_survey.py
 PYTHONPATH=src python3 examples/visual_univariate_walkthrough.py
 PYTHONPATH=src python3 examples/visual_method_comparison.py
 PYTHONPATH=src python3 examples/visual_multivariate_walkthrough.py
+PYTHONPATH=src python3 examples/visual_leaderboard_walkthrough.py
 ```

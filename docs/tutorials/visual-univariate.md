@@ -31,6 +31,12 @@ The script writes:
 - `out/visual_univariate/ssa_components.png`
 - `out/visual_univariate/ssa_residual_error.png`
 
+Published example outputs:
+
+![SSA components](../assets/generated/tutorials/visual-univariate/ssa_components.png)
+
+![SSA residual magnitude](../assets/generated/tutorials/visual-univariate/ssa_residual_error.png)
+
 ## What to look for
 
 In `ssa_components.png`:

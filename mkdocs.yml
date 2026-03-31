@@ -22,5 +22,6 @@ nav:
       - Visual Method Comparison: tutorials/visual-comparison.md
       - Multivariate Workflows: tutorials/multivariate.md
       - Visual Multivariate Walkthrough: tutorials/visual-multivariate.md
+      - Visual Benchmark Heatmaps: tutorials/visual-benchmark.md
       - CLI and Profiling: tutorials/cli-and-profiling.md
       - Profiling Reference: tutorials/profiling.md

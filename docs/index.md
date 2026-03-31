@@ -76,6 +76,22 @@ detime run \
   --out_dir out/std_run
 ```
 
+## Visual preview
+
+Real figures generated from local example runs are now published with the docs.
+
+Univariate decomposition preview:
+
+![SSA decomposition preview](assets/generated/home/ssa_components.png)
+
+Method-comparison preview:
+
+![Method comparison preview](assets/generated/home/method_grid.png)
+
+Multivariate decomposition preview:
+
+![MSSA multivariate preview](assets/generated/home/mssa_multivariate.png)
+
 ## Project snapshot
 
 | Snapshot | Value |

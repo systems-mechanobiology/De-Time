@@ -35,6 +35,14 @@ The script writes:
 - `out/visual_method_comparison/trend_overlay.png`
 - `out/visual_method_comparison/season_overlay.png`
 
+Published example outputs:
+
+![Method grid](../assets/generated/tutorials/visual-comparison/method_grid.png)
+
+![Trend overlay](../assets/generated/tutorials/visual-comparison/trend_overlay.png)
+
+![Season overlay](../assets/generated/tutorials/visual-comparison/season_overlay.png)
+
 ## How to read the figures
 
 `method_grid.png` is the broadest comparison:

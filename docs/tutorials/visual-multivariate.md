@@ -30,6 +30,14 @@ The script writes:
 - `out/visual_multivariate/std_channelwise_multivariate.png`
 - `out/visual_multivariate/channel0_trend_overlay.png`
 
+Published example outputs:
+
+![MSSA multivariate components](../assets/generated/tutorials/visual-multivariate/mssa_multivariate.png)
+
+![Channelwise STD multivariate components](../assets/generated/tutorials/visual-multivariate/std_channelwise_multivariate.png)
+
+![Channel 0 trend overlay](../assets/generated/tutorials/visual-multivariate/channel0_trend_overlay.png)
+
 ## What each figure tells you
 
 `mssa_multivariate.png`:
