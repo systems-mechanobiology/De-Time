@@ -1,0 +1,141 @@
+[build-system]
+requires = [
+  "scikit-build-core>=0.10",
+  "pybind11>=2.12",
+  "wheel>=0.43",
+]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "de-time"
+version = "0.1.0"
+description = "De-Time is a time-series decomposition toolkit with native acceleration and multivariate support."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Zipeng Wu" },
+]
+keywords = [
+  "de-time",
+  "time series",
+  "decomposition",
+  "signal processing",
+  "benchmarking",
+  "multivariate time series",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: BSD License",
+  "Operating System :: Microsoft :: Windows",
+  "Operating System :: MacOS",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: C++",
+  "Topic :: Scientific/Engineering",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+  "numpy>=1.24",
+  "scipy>=1.10",
+  "pandas>=2.0",
+  "statsmodels>=0.14",
+  "scikit-learn>=1.2",
+  "matplotlib>=3.7",
+  "numba>=0.58",
+  "pywavelets>=1.5",
+  "tqdm>=4.66",
+  "pydantic>=2.0",
+  "sympy>=1.10",
+]
+
+[project.optional-dependencies]
+multivar = [
+  "PySDKit>=0.4.23",
+]
+docs = [
+  "mkdocs>=1.6",
+]
+dev = [
+  "pytest>=7.4",
+  "pytest-cov>=5.0",
+  "mkdocs>=1.6",
+]
+
+[project.urls]
+Homepage = "https://github.com/systems-mechanobiology/De-Time"
+Repository = "https://github.com/systems-mechanobiology/De-Time"
+Issues = "https://github.com/systems-mechanobiology/De-Time/issues"
+Documentation = "https://systems-mechanobiology.github.io/De-Time/"
+
+[project.scripts]
+detime = "detime.cli:main"
+tsdecomp = "tsdecomp.cli:main"
+
+[tool.scikit-build]
+cmake.version = ">=3.24"
+
+[tool.scikit-build.wheel]
+packages = []
+
+[tool.scikit-build.sdist]
+include = [
+  "README.md",
+  "CHANGELOG.md",
+  "CITATION.cff",
+  "START_HERE.md",
+  "DOCS_INDEX.md",
+  "ENTRYPOINTS.md",
+  "AGENT_MANIFEST.md",
+  "AGENT_MANIFEST.json",
+  "AGENT_INPUT_CONTRACT.md",
+  "LICENSE",
+  "CONTRIBUTING.md",
+  "CODE_OF_CONDUCT.md",
+  "SECURITY.md",
+  "ROADMAP.md",
+  "CHANGELOG.md",
+  "CITATION.cff",
+  "PUBLISHING.md",
+  "JMLR_SOFTWARE_IMPROVEMENTS.md",
+  "JMLR_MLOSS_CHECKLIST.md",
+  "MANIFEST.in",
+  "CMakeLists.txt",
+  "cibuildwheel.toml",
+  "docs/**/*.md",
+  "docs/**/*.png",
+  "docs/**/*.jpg",
+  "docs/**/*.jpeg",
+  "docs/**/*.gif",
+  "docs/**/*.svg",
+  "docs/**/*.yml",
+  "docs/**/*.yaml",
+  "examples/**/*.py",
+  "examples/**/*.md",
+  "examples/**/*.ipynb",
+  "examples/**/*.csv",
+  "examples/**/*.json",
+  "native/**/*.cpp",
+  "native/**/*.hpp",
+  "native/**/*.h",
+  "src/detime/**/*.py",
+  "src/tsdecomp/**/*.py",
+  "src/synthetic_ts_bench/**/*.py",
+  "tests/**/*.py",
+]
+exclude = [
+  ".DS_Store",
+  "**/.DS_Store",
+  "**/__pycache__",
+  "**/__pycache__/*",
+  "**/*.pyc",
+  "**/*.pyo",
+  ".pytest_cache",
+  "**/.pytest_cache/**",
+  "site",
+]

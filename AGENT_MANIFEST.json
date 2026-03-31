@@ -1,0 +1,43 @@
+{
+  "name": "De-Time",
+  "distribution_name": "de-time",
+  "preferred_runtime_package": "detime",
+  "legacy_runtime_package": "tsdecomp",
+  "type": "time-series decomposition package",
+  "stable_entrypoints": [
+    "decompose(series, config)",
+    "DecompositionConfig",
+    "detime run",
+    "detime batch",
+    "detime profile"
+  ],
+  "best_first_methods": {
+    "known_period_univariate": [
+      "STD",
+      "STDR"
+    ],
+    "general_univariate": [
+      "SSA"
+    ],
+    "multivariate": [
+      "MSSA"
+    ],
+    "adaptive_modes": [
+      "EMD",
+      "CEEMDAN",
+      "VMD",
+      "MVMD",
+      "MEMD"
+    ]
+  },
+  "artifact_contract": [
+    "*_components.csv",
+    "*_meta.json",
+    "*_components_3d.npz"
+  ],
+  "legacy_entrypoints": [
+    "tsdecomp run",
+    "tsdecomp batch",
+    "tsdecomp profile"
+  ]
+}

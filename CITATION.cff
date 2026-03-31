@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use De-Time in research software or publications, please cite the software record below."
+title: "De-Time"
+version: "0.1.0"
+type: software
+abstract: >-
+  De-Time is a time-series decomposition library that provides a unified Python
+  API and CLI across classical, adaptive, and multivariate decomposition
+  workflows, with selective native acceleration and compatibility aliases for
+  the legacy tsdecomp runtime surface.
+authors:
+  - family-names: "Wu"
+    given-names: "Zipeng"
+    affiliation: "The University of Birmingham"
+license: "BSD-3-Clause"
+repository-code: "https://github.com/systems-mechanobiology/De-Time"
+url: "https://github.com/systems-mechanobiology/De-Time"
+repository-artifact: "https://pypi.org/project/de-time/"
+keywords:
+  - "time series"
+  - "decomposition"
+  - "signal processing"
+  - "multivariate time series"
+  - "scientific software"
+  - "Python"
+preferred-citation:
+  type: software
+  title: "De-Time"
+  authors:
+    - family-names: "Wu"
+      given-names: "Zipeng"
+      affiliation: "The University of Birmingham"
+  version: "0.1.0"
+  date-released: "2026-03-31"
+  url: "https://github.com/systems-mechanobiology/De-Time"
+  repository-code: "https://github.com/systems-mechanobiology/De-Time"
+  notes: >-
+    Distributed on PyPI as de-time, imported in Python as detime, with legacy
+    compatibility aliases for tsdecomp.

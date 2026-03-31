@@ -1,0 +1,20 @@
+include README.md
+include LICENSE
+include CONTRIBUTING.md
+include CODE_OF_CONDUCT.md
+include JMLR_SOFTWARE_IMPROVEMENTS.md
+include JMLR_MLOSS_CHECKLIST.md
+include CMakeLists.txt
+include cibuildwheel.toml
+
+recursive-include src *.py
+recursive-include native *.cpp *.hpp *.h
+recursive-include tests *.py
+recursive-include docs *.md *.png *.jpg *.jpeg *.gif *.svg *.yml *.yaml
+recursive-include examples *.py *.md *.ipynb *.csv *.json
+
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .DS_Store
+prune .pytest_cache
+prune site

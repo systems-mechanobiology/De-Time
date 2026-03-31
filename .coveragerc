@@ -1,0 +1,8 @@
+[run]
+source = tsdecomp
+omit =
+    */tsdecomp/leaderboard.py
+
+[report]
+show_missing = True
+skip_covered = False

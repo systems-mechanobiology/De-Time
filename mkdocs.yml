@@ -1,0 +1,23 @@
+site_name: De-Time
+site_description: De-Time is the product brand for tsdecomp, a time-series decomposition library with unified APIs, native acceleration, and multivariate workflows.
+site_author: Zipeng Wu
+site_url: https://systems-mechanobiology.github.io/De-Time/
+repo_name: systems-mechanobiology/De-Time
+repo_url: https://github.com/systems-mechanobiology/De-Time
+docs_dir: docs
+theme:
+  name: mkdocs
+nav:
+  - Home: index.md
+  - Project Status: project-status.md
+  - Agent-Friendly Guide: agent-friendly.md
+  - Install: install.md
+  - Quickstart: quickstart.md
+  - Methods: methods.md
+  - API: api.md
+  - Examples: examples.md
+  - Tutorials:
+      - Univariate Workflows: tutorials/univariate.md
+      - Multivariate Workflows: tutorials/multivariate.md
+      - CLI and Profiling: tutorials/cli-and-profiling.md
+  - JMLR Improvements: jmlr-improvements.md
