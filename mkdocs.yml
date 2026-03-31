@@ -7,8 +7,11 @@ repo_url: https://github.com/systems-mechanobiology/De-Time
 docs_dir: docs
 theme:
   name: mkdocs
+extra_css:
+  - stylesheets/extra.css
 nav:
   - Home: index.md
+  - Decision Guide: tutorials/decision-guide.md
   - Project Status: project-status.md
   - Agent-Friendly Guide: agent-friendly.md
   - Install: install.md

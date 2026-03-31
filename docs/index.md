@@ -8,6 +8,15 @@ trapped behind inconsistent APIs, unclear outputs, or benchmark-only packaging.
 De-Time takes the opposite route. One package. One decomposition contract. One
 surface for Python, CLI, and automated workflows.
 
+<div class="hero-panel">
+  <p><strong>Start here if you want results fast:</strong> De-Time now ships with runnable visual walkthroughs, public example figures, and one compact API for univariate, multivariate, and benchmark-style decomposition experiments.</p>
+  <div class="hero-actions">
+    <a href="quickstart/">Quickstart</a>
+    <a href="tutorials/decision-guide/" class="secondary">Decision guide</a>
+    <a href="examples/" class="secondary">Examples</a>
+  </div>
+</div>
+
 ## What it is
 
 De-Time is a time-series decomposition platform for:
@@ -76,21 +85,46 @@ detime run \
   --out_dir out/std_run
 ```
 
-## Visual preview
+## Choose a visual path
 
-Real figures generated from local example runs are now published with the docs.
+<div class="visual-card-grid">
+  <a class="visual-card" href="tutorials/visual-univariate/">
+    <img src="assets/generated/home/ssa_components.png" alt="SSA decomposition preview">
+    <div class="visual-card-body">
+      <h3>Read One Decomposition</h3>
+      <p>Start from one series, one method, and one clean set of component plots.</p>
+    </div>
+  </a>
+  <a class="visual-card" href="tutorials/visual-comparison/">
+    <img src="assets/generated/home/method_grid.png" alt="Method comparison preview">
+    <div class="visual-card-body">
+      <h3>Compare Methods Visually</h3>
+      <p>See how trend, season, and residual change across several methods on the same signal.</p>
+    </div>
+  </a>
+  <a class="visual-card" href="tutorials/visual-multivariate/">
+    <img src="assets/generated/home/mssa_multivariate.png" alt="Multivariate decomposition preview">
+    <div class="visual-card-body">
+      <h3>Inspect Multivariate Structure</h3>
+      <p>Compare a true joint method against a channelwise baseline on several channels.</p>
+    </div>
+  </a>
+  <a class="visual-card" href="tutorials/visual-benchmark/">
+    <img src="assets/generated/tutorials/visual-benchmark/figures/heatmap_T_r2.png" alt="Benchmark heatmap preview">
+    <div class="visual-card-body">
+      <h3>Read Benchmark Heatmaps</h3>
+      <p>Turn a small local experiment into a leaderboard-style visual summary.</p>
+    </div>
+  </a>
+</div>
 
-Univariate decomposition preview:
+## Decision-first workflow
 
-![SSA decomposition preview](assets/generated/home/ssa_components.png)
+If you are not sure where to start:
 
-Method-comparison preview:
-
-![Method comparison preview](assets/generated/home/method_grid.png)
-
-Multivariate decomposition preview:
-
-![MSSA multivariate preview](assets/generated/home/mssa_multivariate.png)
+- use the [Decision Guide](tutorials/decision-guide.md) to pick a method family,
+- open one visual tutorial before running large sweeps,
+- use heatmaps only after you already know what a believable decomposition looks like.
 
 ## Project snapshot
 
