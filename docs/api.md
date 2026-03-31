@@ -68,3 +68,20 @@ Legacy compatibility:
 
 - `tsdecomp` remains available as a CLI alias
 - `tsdecomp` remains available as a Python import alias
+
+## Visualization helpers
+
+Visualization utilities live in the `detime.viz` module:
+
+```python
+from detime.viz import (
+    plot_components,
+    plot_error,
+    plot_component_overlay,
+    plot_method_comparison,
+    plot_multivariate_components,
+)
+```
+
+These helpers are intended for exploratory analysis, tutorials, and lightweight
+report figures rather than for a full plotting framework.

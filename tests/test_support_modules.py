@@ -117,9 +117,39 @@ def test_viz_plot_helpers(monkeypatch, tmp_path) -> None:
         season=np.zeros(8),
         residual=np.zeros(8),
     )
+    results = {
+        "SSA": result,
+        "STD": DecompResult(
+            trend=np.full(8, 0.5),
+            season=np.full(8, 0.2),
+            residual=np.zeros(8),
+        ),
+    }
+    multi_result = DecompResult(
+        trend=np.ones((8, 2)),
+        season=np.zeros((8, 2)),
+        residual=np.zeros((8, 2)),
+        meta={"channel_names": ["x0", "x1"]},
+    )
 
     viz.plot_components(result, series=np.ones(8), save_path=tmp_path / "components.png")
     viz.plot_error(result, series=np.ones(8), save_path=tmp_path / "error.png")
+    viz.plot_component_overlay(
+        results,
+        component="trend",
+        series=np.ones(8),
+        save_path=tmp_path / "trend_overlay.png",
+    )
+    viz.plot_method_comparison(
+        results,
+        series=np.ones(8),
+        save_path=tmp_path / "comparison.png",
+    )
+    viz.plot_multivariate_components(
+        multi_result,
+        series=np.ones((8, 2)),
+        save_path=tmp_path / "multivariate.png",
+    )
 
     assert saved
 

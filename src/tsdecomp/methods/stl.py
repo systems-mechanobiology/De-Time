@@ -1,5 +1,6 @@
 import numpy as np
 from typing import Dict, Any, Optional
+from ..backends import finalize_result, split_runtime_params
 from ..core import DecompResult
 from ..registry import MethodRegistry
 
@@ -16,8 +17,9 @@ def stl_decompose(
     except ImportError as exc:
         raise ImportError("statsmodels is required for STL decomposition.") from exc
 
-    # Copy params to avoid mutation
-    cfg = params.copy()
+    cfg, runtime = split_runtime_params(params)
+    if runtime.backend in {"native", "gpu"}:
+        raise ValueError("STL only provides a python backend.")
     period = cfg.pop("period", None)
     if period is None:
         raise ValueError("STL requires 'period' in params.")
@@ -30,12 +32,13 @@ def stl_decompose(
     seasonal = np.asarray(res.seasonal)
     residual = np.asarray(res.resid)
     
-    return DecompResult(
+    result = DecompResult(
         trend=trend,
         season=seasonal,
         residual=residual,
         meta={"method": "STL", "params": {"period": period, **cfg}},
     )
+    return finalize_result(result, method="STL", runtime=runtime, backend_used="python")
 
 @MethodRegistry.register("MSTL")
 def mstl_decompose(
@@ -47,7 +50,9 @@ def mstl_decompose(
     except ImportError as exc:
         raise ImportError("statsmodels>=0.14 is required for MSTL decomposition.") from exc
 
-    cfg = params.copy()
+    cfg, runtime = split_runtime_params(params)
+    if runtime.backend in {"native", "gpu"}:
+        raise ValueError("MSTL only provides a python backend.")
     periods = cfg.pop("periods", None)
     if periods is None:
          # Try to infer or require it
@@ -70,12 +75,13 @@ def mstl_decompose(
     trend = res.trend
     residual = res.resid
     
-    return DecompResult(
+    result = DecompResult(
         trend=trend,
         season=season,
         residual=residual,
         meta={"method": "MSTL", "params": {"periods": periods, **cfg}}
     )
+    return finalize_result(result, method="MSTL", runtime=runtime, backend_used="python")
 
 @MethodRegistry.register("ROBUST_STL")
 def robuststl_decompose(
@@ -87,7 +93,9 @@ def robuststl_decompose(
     except ImportError as exc:
         raise ImportError("statsmodels is required for RobustSTL.") from exc
 
-    cfg = params.copy()
+    cfg, runtime = split_runtime_params(params)
+    if runtime.backend in {"native", "gpu"}:
+        raise ValueError("ROBUST_STL only provides a python backend.")
     period = cfg.pop("period", None)
     if period is None:
         raise ValueError("RobustSTL requires 'period' in params.")
@@ -99,9 +107,10 @@ def robuststl_decompose(
     stl = STL(y, period=period, robust=robust, **cfg)
     res = stl.fit()
 
-    return DecompResult(
+    result = DecompResult(
         trend=res.trend,
         season=res.seasonal,
         residual=res.resid,
         meta={"method": "ROBUST_STL", "params": {"period": period, "robust": robust, **cfg}}
     )
+    return finalize_result(result, method="ROBUST_STL", runtime=runtime, backend_used="python")
