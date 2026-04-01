@@ -1,42 +1,41 @@
-# Project Status and Release Files
+# Project Files, Citation, and Release Posture
 
-De-Time is packaged as a standalone repository rather than a benchmark-only
-artifact. That means release metadata, contribution guidance, and security
-policy are part of the public software surface.
+De-Time is packaged as standalone research software rather than as a benchmark-only artifact.
 
 ## Core repository files
 
-- `CITATION.cff`: preferred software citation metadata for the project
-- `CHANGELOG.md`: release-oriented change history
-- `SECURITY.md`: vulnerability reporting expectations and scope
-- `ROADMAP.md`: near-term, medium-term, and non-goal planning notes
-- `PUBLISHING.md`: release checklist, wheel workflow, and PyPI notes
+- `CITATION.cff`: preferred software citation metadata
+- `CHANGELOG.md`: release-oriented history
+- `SECURITY.md`: vulnerability reporting guidance
+- `ROADMAP.md`: current direction and non-goals
+- `PUBLISHING.md`: wheel, docs, and release notes workflow
 - `CONTRIBUTING.md`: developer setup and contribution expectations
-- `CODE_OF_CONDUCT.md`: community standards for collaboration
+- `CODE_OF_CONDUCT.md`: community standards
 
-## Current release posture
+## Current public posture
 
-The current standalone package is positioned as:
+| Area | State |
+|---|---|
+| Brand | `De-Time` |
+| Distribution | `de-time` |
+| Preferred import | `detime` |
+| Compatibility import | `tsdecomp` |
+| Installation model | wheel-first where available |
+| Docs | GitHub Pages |
 
-- brand: `De-Time`
-- distribution: `de-time`
-- preferred import: `detime`
-- legacy compatibility import: `tsdecomp`
-- wheel-first installation for supported platforms
+## What this means for users and reviewers
 
-## What this means for users
+If you are evaluating the software for adoption, review, or citation, the
+repository includes:
 
-If you are evaluating the project for adoption or review, the repository now
-includes:
-
-- package metadata suitable for Python distribution,
+- Python packaging metadata,
 - CI workflows for tests, wheels, and docs,
-- runnable examples and a docs tree,
-- citation and release-history files,
+- runnable examples and visual walkthroughs,
+- citation and release files,
 - contributor and security guidance.
 
-## What still remains manual
+## What remains outside the public docs
 
-Some submission-facing materials, especially the JMLR software manuscript and
-cover letter, may still need final author details, final repository URLs, and
-submission metadata before external submission.
+Submission-facing manuscripts and review material may still live in the
+repository, but they are not part of the public docs site and should not be
+treated as the main user path.

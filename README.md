@@ -1,68 +1,81 @@
 # De-Time
 
-**De-Time** is the product brand for `de-time`: a time-series decomposition
-library that turns a fragmented method landscape into one operational surface.
-You bring a series and a method name. De-Time gives you a consistent Python API,
-CLI, output schema, and method-level handoff metadata across classical,
-adaptive, and multivariate decomposition workflows.
+> Research software for reproducible time-series decomposition across classical, subspace, adaptive, and multivariate workflows.
 
-`pip install` stays simple:
+[![License: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-0f172a.svg)](LICENSE)
+![Status: Beta](https://img.shields.io/badge/status-beta-1d4ed8.svg)
+[![Docs: GitHub Pages](https://img.shields.io/badge/docs-GitHub_Pages-0b5fff.svg)](https://systems-mechanobiology.github.io/De-Time/)
+![Python: 3.10+](https://img.shields.io/badge/python-3.10%2B-0f766e.svg)
+![Institution: The University of Birmingham](https://img.shields.io/badge/institution-The_University_of_Birmingham-7c3aed.svg)
 
-```bash
-pip install de-time
-```
+[Homepage](https://systems-mechanobiology.github.io/De-Time/) ·
+[Getting Started](https://systems-mechanobiology.github.io/De-Time/quickstart/) ·
+[Tutorials](https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/) ·
+[Methods Atlas](https://systems-mechanobiology.github.io/De-Time/methods/) ·
+[API Reference](https://systems-mechanobiology.github.io/De-Time/api/) ·
+[GitHub](https://github.com/systems-mechanobiology/De-Time)
 
-The preferred import path is `detime`. The legacy import path `tsdecomp` still
-works for compatibility. The brand is **De-Time**.
+![De-Time title card](docs/assets/brand/detime-title-card.svg)
+
+De-Time turns a fragmented decomposition landscape into one research-facing
+software surface. You bring a series, a table, or a multichannel array.
+De-Time gives you a consistent decomposition contract, reproducible outputs,
+visual walkthroughs, and method-level metadata that can survive handoff to
+other people or other agents.
+
+De-Time is the public brand. The distribution name is `de-time`, the preferred
+import is `detime`, and the legacy `tsdecomp` import and CLI aliases still work
+for compatibility.
+
+| Maintainer | Affiliation | Install |
+|---|---|---|
+| Zipeng Wu | The University of Birmingham | `pip install de-time` |
 
 ## What it is
 
-De-Time is a decomposition workbench for people and agents who need to move
-from "I have a signal" to "I have trend, seasonality, residual, and method
-metadata I can actually use."
+De-Time is designed for research and engineering workflows that need:
 
-It provides:
-
-- one `decompose()` entrypoint across many methods,
+- one `decompose()` entrypoint across many decomposition families,
 - one `DecompositionConfig` surface for Python and CLI usage,
-- one `DecompResult` contract for trend / season / residual outputs,
-- optional native C++ acceleration for selected high-cost paths,
-- multivariate workflows for methods that genuinely operate on multiple
-  channels,
-- profiling, batch execution, and CSV/parquet-friendly pipelines.
+- one `DecompResult` contract for `trend`, `season`, `residual`, `components`,
+  and `meta`,
+- native acceleration where it materially changes throughput,
+- multivariate workflows where joint structure matters,
+- public docs with runnable examples and visual reports.
 
 ## What it is not
 
 De-Time is not trying to be:
 
-- a forecasting library,
-- a general feature engineering toolkit,
+- a forecasting framework,
+- a general feature-engineering toolkit,
 - a dashboard product,
-- a benchmark paper disguised as a package,
-- a claim that every decomposition method has identical maturity.
+- a benchmark artifact pretending to be a library,
+- a claim that every bundled method has identical maturity.
 
-Some methods are deeply integrated and native-backed. Some rely on established
-upstream scientific libraries. That distinction is documented explicitly rather
-than hidden behind a uniform marketing layer.
+## Project snapshot
 
-## Why this package exists
+| Area | Current state |
+|---|---|
+| Package name | `de-time` |
+| Preferred import | `detime` |
+| Legacy compatibility import | `tsdecomp` |
+| Strongest current methods | `SSA`, `STD`, `STDR`, `DR_TS_REG`, `MSSA` |
+| Native-backed methods | `SSA`, `STD`, `STDR`, `DR_TS_REG` |
+| Multivariate methods | `STD`, `STDR`, `MSSA`, `MVMD`, `MEMD` |
+| Primary outputs | `trend`, `season`, `residual`, `components`, `meta` |
+| First-class commands | `detime run`, `detime batch`, `detime profile` |
+| Homepage and docs | <https://systems-mechanobiology.github.io/De-Time/> |
 
-Time-series decomposition tooling is scattered. A strong method in one paper may
-come with an ad hoc interface, unclear output semantics, or limited support for
-reproducible pipelines. A good production method may be easy to run in one
-environment and painful to compare against alternatives.
+## 60-second quickstart
 
-De-Time exists to close that gap:
+Install:
 
-- comparable method invocation,
-- reproducible result structure,
-- clean transition from notebook exploration to scripted evaluation,
-- agent-friendly metadata for downstream automation,
-- a standalone software package rather than a monolithic research artifact.
+```bash
+pip install de-time
+```
 
-## Quickstart
-
-### Python
+Python API:
 
 ```python
 import numpy as np
@@ -70,7 +83,7 @@ import numpy as np
 from detime import DecompositionConfig, decompose
 
 t = np.arange(120, dtype=float)
-series = 0.02 * t + np.sin(2.0 * np.pi * t / 12.0)
+series = 0.03 * t + np.sin(2.0 * np.pi * t / 12.0)
 
 result = decompose(
     series,
@@ -80,11 +93,10 @@ result = decompose(
     ),
 )
 
-print(result.trend.shape, result.season.shape, result.residual.shape)
-print(result.meta["backend_used"])
+print(result.trend.shape, result.meta["backend_used"])
 ```
 
-### CLI
+CLI:
 
 ```bash
 detime run \
@@ -95,7 +107,7 @@ detime run \
   --out_dir out/std_run
 ```
 
-### Multivariate
+Multivariate:
 
 ```python
 import numpy as np
@@ -103,7 +115,7 @@ import numpy as np
 from detime import DecompositionConfig, decompose
 
 t = np.arange(96, dtype=float)
-series = np.column_stack(
+panel = np.column_stack(
     [
         0.03 * t + np.sin(2.0 * np.pi * t / 12.0),
         -0.01 * t + 0.6 * np.sin(2.0 * np.pi * t / 12.0 + 0.4),
@@ -111,7 +123,7 @@ series = np.column_stack(
 )
 
 result = decompose(
-    series,
+    panel,
     DecompositionConfig(
         method="MSSA",
         params={"window": 24, "rank": 8, "primary_period": 12},
@@ -119,147 +131,60 @@ result = decompose(
     ),
 )
 
-print(result.trend.shape)
 print(result.components["modes"].shape)
 ```
 
-## Project snapshot
+## Use your own data
 
-| Area | Current state |
-|---|---|
-| Distribution name | `de-time` |
-| Brand | `De-Time` |
-| Preferred import | `detime` |
-| Legacy import | `tsdecomp` |
-| Main entrypoints | `decompose()`, `DecompositionConfig`, `detime run`, `detime batch`, `detime profile` |
-| Strongest production surface | unified API, CLI, `SSA`, `STD`, `STDR`, `DR_TS_REG`, `MSSA` |
-| Native acceleration | `SSA`, `STD`, `STDR`, `DR_TS_REG` |
-| Multivariate methods | `STD`, `STDR`, `MSSA`, `MVMD`, `MEMD` |
-| Output contract | `trend`, `season`, `residual`, `components`, `meta` |
-| Installation model | wheel-first; source build may require local C++ toolchain |
+If you already have a file, start by matching it to one of these shapes:
 
-## Method map
+| Your data | What De-Time expects first | First path |
+|---|---|---|
+| One numeric series | one array or one numeric CSV column | `decompose(series, ...)` or `detime run --col value` |
+| Wide table with multiple measurements | multiple numeric columns in one aligned table | `detime run --method MSSA --cols x0,x1` |
+| Batch of files or repeated experiments | a folder or manifest of repeatable runs | `detime batch ...` |
 
-Current methods include:
+For more detailed walk-throughs, use the docs rather than stretching the README:
 
-- seasonal-trend methods: `STL`, `MSTL`, `ROBUST_STL`, `STD`, `STDR`
-- subspace methods: `SSA`, `MSSA`
-- adaptive mode methods: `EMD`, `CEEMDAN`, `VMD`, `MVMD`, `MEMD`
-- other supported workflows: `WAVELET`, `MA_BASELINE`, `GABOR_CLUSTER`,
-  `DR_TS_REG`, `DR_TS_AE`, `SL_LIB`
+- [Getting Started](https://systems-mechanobiology.github.io/De-Time/quickstart/)
+- [Tutorials](https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/)
+- [Example Gallery](https://systems-mechanobiology.github.io/De-Time/examples/)
 
-The package does not pretend that all of these are equal in maturity. If you
-need the most stable surface today, start with:
+## Why this software exists in research workflows
 
-- `SSA`
-- `STD`
-- `STDR`
-- `DR_TS_REG`
-- `MSSA`
+Time-series decomposition software is fragmented across papers, single-method
+libraries, and benchmark-only artifacts. That creates avoidable friction:
 
-## Installation
+- method interfaces are inconsistent,
+- result objects are hard to compare across methods,
+- reproducible pipelines are harder than they should be,
+- moving from one-off notebooks to repeatable experiments becomes expensive.
 
-Base install:
+De-Time exists to reduce that friction without hiding method differences. It
+keeps one public surface while documenting which methods are native-backed,
+which depend on upstream libraries, and which are best used as wrappers rather
+than as flagship entrypoints.
 
-```bash
-pip install de-time
-```
+## Documentation map
 
-Optional multivariate backends:
+- [Homepage](https://systems-mechanobiology.github.io/De-Time/) for the short product overview
+- [Getting Started](https://systems-mechanobiology.github.io/De-Time/quickstart/) for installation and first successful runs
+- [Tutorials](https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/) for step-by-step workflows
+- [Methods Atlas](https://systems-mechanobiology.github.io/De-Time/methods/) for method families, maturity, and backend story
+- [API Reference](https://systems-mechanobiology.github.io/De-Time/api/) for imports, config fields, and result structure
+- [Research Positioning](https://systems-mechanobiology.github.io/De-Time/research-positioning/) for ecosystem and scope
+- [Agent Tools](https://systems-mechanobiology.github.io/De-Time/agent-friendly/) for handoff-oriented routing and contracts
 
-```bash
-pip install "de-time[multivar]"
-```
+## Project files, citation, and software hygiene
 
-Optional documentation toolchain:
+Key repository files:
 
-```bash
-pip install "de-time[docs]"
-```
+- [`CITATION.cff`](CITATION.cff)
+- [`CHANGELOG.md`](CHANGELOG.md)
+- [`CONTRIBUTING.md`](CONTRIBUTING.md)
+- [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)
+- [`SECURITY.md`](SECURITY.md)
+- [`ROADMAP.md`](ROADMAP.md)
+- [`PUBLISHING.md`](PUBLISHING.md)
 
-For local development:
-
-```bash
-cd /path/to/de-time
-python3 -m pip install -U pip
-python3 -m pip install -e .[multivar,docs]
-python3 -m pytest tests -q
-```
-
-Prebuilt wheels are the primary installation path for Linux, macOS, and
-Windows on supported CPython versions. If a wheel is not available, `pip` may
-fall back to a source build, which requires a local C++ toolchain.
-
-## Repository files
-
-For a standalone GitHub repository, the most important project-level files are:
-
-- [`CITATION.cff`](CITATION.cff) for software citation metadata
-- [`CHANGELOG.md`](CHANGELOG.md) for release history
-- [`SECURITY.md`](SECURITY.md) for vulnerability reporting guidance
-- [`ROADMAP.md`](ROADMAP.md) for project direction and non-goals
-- [`PUBLISHING.md`](PUBLISHING.md) for release and PyPI workflow notes
-- [`CONTRIBUTING.md`](CONTRIBUTING.md) for contribution guidelines
-
-## Agent-friendly handoff
-
-If another engineer or coding agent needs to take over quickly, this is the
-minimum useful context:
-
-- product/brand name: `De-Time`
-- distribution name: `de-time`
-- preferred Python package/import name: `detime`
-- legacy Python package/import name: `tsdecomp`
-- docs homepage: [`docs/index.md`](docs/index.md)
-- shim import surface: `src/detime/`
-- implementation root: `src/tsdecomp/`
-- native backend: `native/`
-- examples: `examples/`
-- tests: `tests/`
-
-Operational assumptions:
-
-- prefer `backend="auto"` unless you are debugging parity or packaging,
-- treat `DecompResult.meta` as part of the public handoff surface,
-- use `MSSA`, `MVMD`, and `MEMD` for joint multivariate workflows,
-- use `STD` and `STDR` in multichannel settings when channelwise decomposition
-  is acceptable,
-- document clearly when a method depends on an optional backend.
-
-Fastest smoke-test commands:
-
-```bash
-python -m pip install -e .[multivar,docs]
-python -m pytest tests -q
-detime profile --method SSA --series examples/data/example_series.csv --col value
-mkdocs serve
-```
-
-## Documentation
-
-The docs tree lives in [`docs/`](docs/) and is organized as:
-
-- `docs/index.md`: brand-level overview and package positioning
-- `docs/install.md`: installation and platform notes
-- `docs/quickstart.md`: API and CLI walkthrough
-- `docs/api.md`: public API reference
-- `docs/methods.md`: method families and support notes
-- `docs/tutorials/`: univariate, multivariate, and profiling workflows
-
-To build the docs locally:
-
-```bash
-mkdocs serve
-```
-
-## Submission-oriented notes
-
-De-Time is being prepared as a standalone open-source software package rather
-than only as a benchmark or paper artifact.
-
-- [`JMLR_SOFTWARE_IMPROVEMENTS.md`](JMLR_SOFTWARE_IMPROVEMENTS.md) summarizes
-  software-facing improvements.
-- [`JMLR_SUBMISSION_CHECKLIST.md`](JMLR_SUBMISSION_CHECKLIST.md) tracks manual
-  submission work that sits outside code changes.
-- [`PUBLISHING.md`](PUBLISHING.md) documents the standalone release process for
-  `de-time`.
+These files are treated as part of the public software surface, not as afterthoughts.

@@ -1,50 +1,70 @@
-# Methods
+# Methods Atlas
 
-This page groups methods by maturity and implementation style so users can choose appropriate starting points.
+This page groups methods by family, maturity, and backend story so users can
+choose a credible starting point before they scale up to batches or papers.
 
-## Stable core methods
+## Stable starting points
 
-These methods represent the clearest current library story:
+These methods represent the clearest current De-Time story.
 
-| Method | Input | Notes |
-|---|---|---|
-| `STD` | `1D` or `2D` channelwise | Native C++ kernel available |
-| `STDR` | `1D` or `2D` channelwise | Native C++ kernel available |
-| `SSA` | `1D` | Native C++ kernel available |
-| `MSSA` | `2D (T, C)` | Self-contained multivariate implementation |
+| Method | Input | Backend story | Notes |
+|---|---|---|---|
+| `STD` | `1D` or `2D` channelwise | native C++ + Python fallback | good seasonal-trend default when period is known |
+| `STDR` | `1D` or `2D` channelwise | native C++ + Python fallback | same core idea with average seasonal shape |
+| `SSA` | `1D` | native C++ + Python fallback | strong univariate baseline |
+| `MSSA` | `2D (T, C)` | self-contained Python implementation | first multivariate method to try |
+| `DR_TS_REG` | `1D` | native C++ + Python fallback | useful when the benchmark-derived regression path fits your setting |
 
-## Classical and external-wrapper methods
+## Seasonal-trend methods
 
-These methods are exposed through the same interface but rely more heavily on upstream scientific Python implementations:
+| Method | Input mode | Backend story | Maturity |
+|---|---|---|---|
+| `STL` | univariate | `statsmodels` | stable wrapper |
+| `MSTL` | univariate | `statsmodels` | stable wrapper |
+| `ROBUST_STL` | univariate | `statsmodels` | stable wrapper |
+| `STD` | channelwise | native-backed | flagship |
+| `STDR` | channelwise | native-backed | flagship |
 
-| Method | Backend story | Notes |
-|---|---|---|
-| `STL`, `MSTL`, `ROBUST_STL` | `statsmodels` | Good baseline classical decomposition |
-| `WAVELET` | `PyWavelets` | Multi-scale decomposition |
-| `EMD`, `CEEMDAN` | `PyEMD` | Empirical decomposition family |
-| `VMD` | `vmdpy` | Variational mode decomposition |
-| `MVMD`, `MEMD` | optional `multivar` extra | Multivariate wrappers with optional backend |
+## Subspace methods
 
-## Benchmark-oriented methods
+| Method | Input mode | Backend story | Maturity |
+|---|---|---|---|
+| `SSA` | univariate | native-backed | flagship |
+| `MSSA` | multivariate | built-in | flagship |
 
-These methods remain useful but are more benchmark-derived or backend-dependent:
+## Adaptive mode decomposition
 
-| Method | Notes |
+| Method | Input mode | Backend story | Maturity |
+|---|---|---|---|
+| `EMD` | univariate | `PyEMD` wrapper | wrapper |
+| `CEEMDAN` | univariate | `PyEMD` wrapper | wrapper |
+| `VMD` | univariate | `vmdpy` wrapper | wrapper |
+| `MVMD` | multivariate | optional `multivar` extra | experimental wrapper |
+| `MEMD` | multivariate | optional `multivar` extra | experimental wrapper |
+
+## Other workflows
+
+| Method | Input mode | Backend story | Notes |
+|---|---|---|---|
+| `WAVELET` | univariate | `PyWavelets` wrapper | multi-scale baseline |
+| `MA_BASELINE` | univariate | NumPy implementation | simple sanity baseline |
+| `GABOR_CLUSTER` | univariate | FAISS + helper functions | clustering-oriented workflow |
+| `DR_TS_AE` | univariate | benchmark-support wrapper | backend-dependent |
+| `SL_LIB` | univariate | benchmark-support wrapper | backend-dependent |
+
+## How to choose
+
+| Situation | First method |
 |---|---|
-| `DR_TS_REG` | Native path available, Python fallback still depends on benchmark support code |
-| `DR_TS_AE` | Benchmark-support wrapper |
-| `SL_LIB` | Benchmark-support wrapper |
-| `GABOR_CLUSTER` | FAISS-based clustering workflow with partial native helper support |
+| known seasonal period, interpretable decomposition | `STD` or `STDR` |
+| strong univariate baseline | `SSA` |
+| shared multivariate structure across channels | `MSSA` |
+| adaptive or non-stationary oscillatory structure | `EMD`, `CEEMDAN`, or `VMD` |
+| multivariate adaptive mode decomposition | `MVMD` or `MEMD` |
 
-Placeholder-only research paths are intentionally not part of the supported public method surface.
+## Why the atlas calls out backend story
 
-## Recommendation
-
-If you are evaluating the package as a library rather than as a benchmark artifact, start with:
-
-1. `STD`
-2. `STDR`
-3. `SSA`
-4. `MSSA`
-
-Those methods best represent the current package direction.
+De-Time does not flatten every method into the same maturity claim. Some
+methods are deeply integrated and native-backed. Others are intentionally
+unified wrappers over upstream scientific libraries. That distinction matters
+for performance expectations, packaging expectations, and citation honesty.

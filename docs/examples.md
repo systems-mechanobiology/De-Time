@@ -1,69 +1,55 @@
-# Examples
+# Example Gallery and Visual Reports
 
-The package ships a small set of runnable examples under
+The package ships runnable examples under
 [`examples/`](https://github.com/systems-mechanobiology/De-Time/tree/main/examples).
+This page acts as the gallery layer above them: one place to see what the
+scripts do before opening the source.
 
-## Included scripts
+## Start with these scripts
 
-- `univariate_quickstart.py`
-  - demonstrates `STD` and `SSA`
-  - shows metadata inspection and reconstruction checks
+| Script | Best for | Output shape |
+|---|---|---|
+| `univariate_quickstart.py` | first Python decomposition | one clean `DecompResult` |
+| `multivariate_mssa.py` | first multivariate workflow | `MSSA` plus channelwise comparison |
+| `method_survey.py` | safe subset smoke run | compact method-by-method summary |
+| `profile_and_cli.py` | CLI and profiling handoff | generated CSV inputs plus ready-to-run commands |
 
-- `multivariate_mssa.py`
-  - demonstrates `MSSA` on a synthetic two-channel series
-  - contrasts it with channelwise `STD`
+## Visual reports
 
-- `method_survey.py`
-  - exercises a small, safe subset of methods with one uniform reporting format
-  - useful as a lightweight smoke demonstration
+| Script | What it produces |
+|---|---|
+| `visual_univariate_walkthrough.py` | component plot and residual diagnostics for one `SSA` run |
+| `visual_method_comparison.py` | grid view plus trend and seasonal overlays |
+| `visual_multivariate_walkthrough.py` | multichannel component figure and channel overlay |
+| `visual_leaderboard_walkthrough.py` | leaderboard-style heatmaps and a summary CSV |
 
-- `profile_and_cli.py`
-  - materializes tracked example CSV inputs for CLI demos
-  - prints ready-to-run `detime run` and `detime profile` commands
+## Gallery previews
 
-- `visual_univariate_walkthrough.py`
-  - produces component and residual plots for one `SSA` decomposition
-  - best first script for visual inspection
-
-- `visual_method_comparison.py`
-  - compares `STD`, `STDR`, `SSA`, and `STL` on one synthetic series
-  - produces a method grid plus trend and seasonal overlays
-
-- `visual_multivariate_walkthrough.py`
-  - compares `MSSA` against channelwise `STD`
-  - produces multichannel figures and a single-channel trend overlay
-
-- `visual_leaderboard_walkthrough.py`
-  - runs a small synthetic scenario sweep with real decomposition methods
-  - produces leaderboard-style heatmaps and a scenario summary CSV
-
-## Visual walkthrough previews
-
-Univariate walkthrough:
+### Univariate walkthrough
 
 [Open the visual univariate tutorial](tutorials/visual-univariate.md)
 
 ![Univariate walkthrough preview](assets/generated/tutorials/visual-univariate/ssa_components.png)
 
-Method comparison walkthrough:
+### Method comparison
 
 [Open the visual method-comparison tutorial](tutorials/visual-comparison.md)
 
 ![Method comparison preview](assets/generated/tutorials/visual-comparison/method_grid.png)
 
-Multivariate walkthrough:
+### Multivariate walkthrough
 
 [Open the visual multivariate tutorial](tutorials/visual-multivariate.md)
 
 ![Multivariate walkthrough preview](assets/generated/tutorials/visual-multivariate/mssa_multivariate.png)
 
-Benchmark heatmap walkthrough:
+### Benchmark heatmap walkthrough
 
 [Open the visual benchmark tutorial](tutorials/visual-benchmark.md)
 
 ![Benchmark heatmap preview](assets/generated/tutorials/visual-benchmark/figures/heatmap_T_r2.png)
 
-## Running them
+## Run them locally
 
 From the package directory:
 
@@ -76,3 +62,6 @@ PYTHONPATH=src python3 examples/visual_method_comparison.py
 PYTHONPATH=src python3 examples/visual_multivariate_walkthrough.py
 PYTHONPATH=src python3 examples/visual_leaderboard_walkthrough.py
 ```
+
+The point of this page is not to replace the tutorials. It is to show enough
+proof that you know which example to open next.

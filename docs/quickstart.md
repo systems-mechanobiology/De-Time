@@ -1,6 +1,17 @@
-# Quickstart
+# Getting Started
 
-## Python API
+De-Time should feel short on the first interaction and expandable later.
+
+## Install
+
+```bash
+pip install de-time
+```
+
+The preferred import is `detime`. The legacy `tsdecomp` import and CLI aliases
+still work for compatibility.
+
+## First successful Python call
 
 ```python
 import numpy as np
@@ -25,9 +36,7 @@ result = decompose(series, cfg)
 - `components`
 - `meta`
 
-## CLI
-
-Create a CSV with a numeric column called `value`, then run:
+## First successful CLI call
 
 ```bash
 detime run \
@@ -48,6 +57,17 @@ detime profile \
   --param window=24 \
   --param primary_period=12
 ```
+
+## Use your own data
+
+| Your data | What De-Time expects first | First path |
+|---|---|---|
+| One numeric column | one array or one numeric CSV column | `detime run --col value` |
+| Wide table | several numeric columns in one aligned table | `detime run --method MSSA --cols x0,x1` |
+| Repeated files or folders | repeatable batch workflow | `detime batch ...` |
+
+If your columns use different names, rename them before the first run. The
+library does not try to guess arbitrary semantics from non-standard headers.
 
 ## Multivariate workflow
 
@@ -72,9 +92,9 @@ cfg = DecompositionConfig(
 result = decompose(series, cfg)
 ```
 
-For more complete workflows, see the tutorial pages and `examples/`.
+## Next stops
 
-Legacy compatibility note:
-
-- `from tsdecomp import ...` still works
-- `tsdecomp run` and `python -m tsdecomp` still work
+- [Installation](install.md)
+- [Decision Guide](tutorials/decision-guide.md)
+- [Example Gallery](examples.md)
+- [Methods Atlas](methods.md)

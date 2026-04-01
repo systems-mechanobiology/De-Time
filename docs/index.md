@@ -1,62 +1,82 @@
 # De-Time
 
-**De-Time** is the product face of `de-time`: a decomposition library for
-turning raw time series into operational components with a consistent interface.
+**Research software for reproducible time-series decomposition across classical, subspace, adaptive, and multivariate workflows.**
 
-It is built for a common failure mode in scientific software: strong methods
-trapped behind inconsistent APIs, unclear outputs, or benchmark-only packaging.
-De-Time takes the opposite route. One package. One decomposition contract. One
-surface for Python, CLI, and automated workflows.
+[Docs](quickstart.md) [Getting Started](quickstart.md) [Tutorials](tutorials/univariate.md) [API](api.md) [GitHub](https://github.com/systems-mechanobiology/De-Time)
+
+![De-Time title card](assets/brand/detime-title-card.svg)
 
 <div class="hero-panel">
-  <p><strong>Start here if you want results fast:</strong> De-Time now ships with runnable visual walkthroughs, public example figures, and one compact API for univariate, multivariate, and benchmark-style decomposition experiments.</p>
+  <p><strong>De-Time</strong> gives research and engineering teams one public decomposition surface across multiple method families. The homepage stays intentionally short. Tutorials, method notes, and API details live in the docs structure rather than on the landing page.</p>
   <div class="hero-actions">
-    <a href="quickstart/">Quickstart</a>
-    <a href="tutorials/decision-guide/" class="secondary">Decision guide</a>
-    <a href="examples/" class="secondary">Examples</a>
+    <a href="quickstart/">Getting Started</a>
+    <a href="tutorials/univariate/" class="secondary">Tutorials</a>
+    <a href="api/" class="secondary">API Reference</a>
+    <a href="https://github.com/systems-mechanobiology/De-Time" class="secondary">GitHub</a>
   </div>
 </div>
 
-## What it is
+<div class="trust-strip">
+  <span class="trust-pill">BSD-3-Clause</span>
+  <span class="trust-pill">Beta release</span>
+  <span class="trust-pill">GitHub Pages docs</span>
+  <span class="trust-pill">The University of Birmingham</span>
+</div>
 
-De-Time is a time-series decomposition platform for:
+<div class="maintainer-card">
+  <h3>Maintainer</h3>
+  <p><strong>Zipeng Wu</strong><br>The University of Birmingham<br><a href="https://systems-mechanobiology.github.io/De-Time/">systems-mechanobiology.github.io/De-Time</a></p>
+</div>
 
-- classical seasonal-trend decomposition,
-- subspace decomposition,
-- adaptive mode decomposition,
-- selected multivariate workflows,
-- reproducible batch and profiling pipelines.
+## Product overview
 
-Core package promises:
+De-Time exists for a common failure mode in scientific software: strong methods
+trapped behind inconsistent APIs, unclear outputs, or benchmark-only packaging.
+It keeps one decomposition contract while still being honest about method
+maturity, backend differences, and optional dependencies.
 
-- one `decompose()` entrypoint,
-- one `DecompositionConfig` setup surface,
-- one `DecompResult` result contract,
-- optional native acceleration where it changes throughput in practice,
-- explicit metadata for downstream agent or pipeline handoff.
+## One homepage, separate documentation, and a clearer information hierarchy
 
-## What it is not
+<div class="info-grid">
+  <a class="info-card" href="quickstart/">
+    <h3>Getting Started</h3>
+    <p>Install the package, run the first decomposition, and understand the public contract fast.</p>
+  </a>
+  <a class="info-card" href="tutorials/univariate/">
+    <h3>Tutorials</h3>
+    <p>Move from one series to visual walkthroughs, multivariate workflows, and profiling runs.</p>
+  </a>
+  <a class="info-card" href="methods/">
+    <h3>Methods Atlas</h3>
+    <p>See method families, backend story, and current maturity before you commit to a workflow.</p>
+  </a>
+  <a class="info-card" href="api/">
+    <h3>API Reference</h3>
+    <p>Keep the public imports, config fields, and result shape contract in one place.</p>
+  </a>
+  <a class="info-card" href="examples/">
+    <h3>Example Gallery</h3>
+    <p>Browse runnable scripts and the visual reports already generated from them.</p>
+  </a>
+  <a class="info-card" href="research-positioning/">
+    <h3>Research Positioning</h3>
+    <p>Understand how De-Time complements statsmodels, PyWavelets, PyEMD, and vmdpy.</p>
+  </a>
+  <a class="info-card" href="agent-friendly/">
+    <h3>Agent Tools</h3>
+    <p>Use the handoff-oriented guidance when another engineer or agent takes over.</p>
+  </a>
+  <a class="info-card" href="project-status/">
+    <h3>Project Files</h3>
+    <p>Find citation, release, contributing, roadmap, and security material.</p>
+  </a>
+</div>
 
-De-Time is not:
-
-- a forecasting framework,
-- a universal time-series toolkit,
-- a hidden benchmark artifact,
-- a claim that all bundled methods have equal production maturity.
-
-Some methods are native-backed and deeply integrated. Others intentionally wrap
-well-known upstream implementations. The docs call that out instead of flattening
-everything into one vague maturity level.
-
-## Quickstart
-
-Install the package:
+## 60-second quickstart
 
 ```bash
 pip install de-time
 ```
-
-Run a first decomposition:
 
 ```python
 import numpy as np
@@ -74,18 +94,28 @@ result = decompose(
 )
 ```
 
-Or from the CLI:
+## One strong example, then deeper material in docs
 
-```bash
-detime run \
-  --method STD \
-  --series examples/data/example_series.csv \
-  --col value \
-  --param period=12 \
-  --out_dir out/std_run
-```
+<div class="showcase-grid">
+  <div class="showcase-card">
+    <img src="assets/generated/home/ssa_components.png" alt="Single-series decomposition example">
+    <div class="showcase-card-body">
+      <h3>Single-series decomposition</h3>
+      <p>Use a stable baseline such as <code>SSA</code> or <code>STD</code> to separate long-range structure from seasonal motion and residual variation.</p>
+      <p>The point of the first plot is not just aesthetics. It is to decide whether the decomposition is interpretable before you scale to batches or comparisons.</p>
+    </div>
+  </div>
+  <div class="showcase-card">
+    <img src="assets/generated/home/mssa_multivariate.png" alt="Multivariate decomposition example">
+    <div class="showcase-card-body">
+      <h3>Shared multivariate structure</h3>
+      <p><code>MSSA</code> is the right starting point when cross-channel structure matters and a channelwise baseline is too weak.</p>
+      <p>That is the difference between using decomposition as an isolated preprocessing trick and using it as a research workflow primitive.</p>
+    </div>
+  </div>
+</div>
 
-## Choose a visual path
+## Visual paths
 
 <div class="visual-card-grid">
   <a class="visual-card" href="tutorials/visual-univariate/">
@@ -118,79 +148,11 @@ detime run \
   </a>
 </div>
 
-## Decision-first workflow
+## Next step
 
-If you are not sure where to start:
+Use the docs like a docs site, not like a landing-page appendix.
 
-- use the [Decision Guide](tutorials/decision-guide.md) to pick a method family,
-- open one visual tutorial before running large sweeps,
-- use heatmaps only after you already know what a believable decomposition looks like.
-
-## Project snapshot
-
-| Snapshot | Value |
-|---|---|
-| Brand | `De-Time` |
-| Distribution name | `de-time` |
-| Preferred import | `detime` |
-| Legacy import | `tsdecomp` |
-| Best current starting points | `SSA`, `STD`, `STDR`, `DR_TS_REG`, `MSSA` |
-| Native-backed methods | `SSA`, `STD`, `STDR`, `DR_TS_REG` |
-| Multivariate methods | `STD`, `STDR`, `MSSA`, `MVMD`, `MEMD` |
-| Core commands | `run`, `batch`, `profile` |
-| Primary outputs | `trend`, `season`, `residual`, `components`, `meta` |
-
-## Method landscape
-
-### Seasonal-trend
-
-- `STL`
-- `MSTL`
-- `ROBUST_STL`
-- `STD`
-- `STDR`
-
-### Subspace
-
-- `SSA`
-- `MSSA`
-
-### Adaptive mode decomposition
-
-- `EMD`
-- `CEEMDAN`
-- `VMD`
-- `MVMD`
-- `MEMD`
-
-### Other workflows
-
-- `WAVELET`
-- `MA_BASELINE`
-- `GABOR_CLUSTER`
-- `DR_TS_REG`
-- `DR_TS_AE`
-- `SL_LIB`
-
-## Agent-friendly handoff
-
-If you are onboarding this project into another repo, agent, or automation
-pipeline, preserve these assumptions:
-
-- preferred import path is `detime`,
-- legacy import path `tsdecomp` still works,
-- brand-facing name is `De-Time`,
-- `DecompResult.meta` is part of the public handoff contract,
-- `backend="auto"` is the normal runtime choice,
-- multivariate workflows should prefer true joint methods such as `MSSA`,
-  `MVMD`, and `MEMD` when cross-channel structure matters.
-
-Useful next stops:
-
-- [Install](install.md)
-- [Quickstart](quickstart.md)
-- [Methods](methods.md)
-- [API](api.md)
-- [Examples](examples.md)
-- [Project Status and Release Files](project-status.md)
-- [Agent-Friendly Guide](agent-friendly.md)
+- Open [Getting Started](quickstart.md) if you want the first successful run.
+- Open [Tutorials](tutorials/univariate.md) if you want visual workflows.
+- Open [Methods Atlas](methods.md) if you need to choose a method family carefully.
+- Open [Research Positioning](research-positioning.md) if you are evaluating the software academically.

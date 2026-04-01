@@ -1,7 +1,7 @@
-# Agent-Friendly Guide
+# Agent Tools
 
-De-Time is designed to be usable by a person in a notebook and by an agent in
-an automated workflow without changing the top-level decomposition contract.
+De-Time is designed to survive handoff between notebooks, scripts, and agents
+without changing the top-level decomposition contract.
 
 ## Identity
 
@@ -14,8 +14,6 @@ an automated workflow without changing the top-level decomposition contract.
 
 ## Fastest entrypoints
 
-Use these when you want the shortest path into the package:
-
 - `detime run` for one file
 - `detime batch` for multiple files
 - `detime profile` for runtime checks
@@ -25,8 +23,7 @@ Use these when you want the shortest path into the package:
 
 - `1D` arrays go to univariate methods such as `SSA`, `STD`, and `STDR`
 - `2D (T, C)` arrays go to multivariate methods such as `MSSA`, `MVMD`, and `MEMD`
-- channelwise methods such as `STD` and `STDR` can accept `2D` arrays but
-  decompose each channel independently
+- channelwise methods such as `STD` and `STDR` can accept `2D` arrays but decompose each channel independently
 
 ## First method to try
 
@@ -57,13 +54,12 @@ CLI calls write:
 ## Backend routing
 
 - use `backend="auto"` by default
-- use `backend="native"` only when you want to force native execution or debug
-  parity
+- use `backend="native"` only when you want to force native execution or debug parity
 - use `backend="python"` when you want a strict fallback path
 
-## GitHub-oriented docs
+## Root-level agent docs
 
-If you want the root-level agent docs in the repository, start with:
+If you want the repository-level handoff files, start with:
 
 - [`AGENT_MANIFEST.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/AGENT_MANIFEST.md)
 - [`AGENT_INPUT_CONTRACT.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/AGENT_INPUT_CONTRACT.md)
