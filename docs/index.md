@@ -94,6 +94,35 @@ result = decompose(
 )
 ```
 
+## Research workflow in four steps
+
+<div class="info-grid">
+  <div class="info-card">
+    <h3>1. Start small</h3>
+    <p>Run one stable method such as <code>SSA</code>, <code>STD</code>, or <code>STDR</code> on a single series first.</p>
+  </div>
+  <div class="info-card">
+    <h3>2. Check interpretability</h3>
+    <p>Read the component plots before you trust any larger sweep or downstream metric.</p>
+  </div>
+  <div class="info-card">
+    <h3>3. Compare carefully</h3>
+    <p>Use overlays, channelwise baselines, or joint multivariate methods only after a baseline looks believable.</p>
+  </div>
+  <div class="info-card">
+    <h3>4. Scale reproducibly</h3>
+    <p>Move to <code>batch</code>, <code>profile</code>, and saved metadata only when the manual read already makes sense.</p>
+  </div>
+</div>
+
+## Use your own data
+
+| Your data | What De-Time expects first | First path |
+|---|---|---|
+| One numeric series | one array or one numeric CSV column | `detime run --col value` |
+| Wide table with aligned signals | several numeric columns in one table | `detime run --method MSSA --cols x0,x1` |
+| Repeated files or experiments | repeatable batch workflow | `detime batch ...` |
+
 ## One strong example, then deeper material in docs
 
 <div class="showcase-grid">

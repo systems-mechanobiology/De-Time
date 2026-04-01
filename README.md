@@ -31,6 +31,17 @@ for compatibility.
 |---|---|---|
 | Zipeng Wu | The University of Birmingham | `pip install de-time` |
 
+## Resources
+
+| Resource | Link |
+|---|---|
+| Homepage | <https://systems-mechanobiology.github.io/De-Time/> |
+| Tutorials | <https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/> |
+| Methods Atlas | <https://systems-mechanobiology.github.io/De-Time/methods/> |
+| API Reference | <https://systems-mechanobiology.github.io/De-Time/api/> |
+| Citation metadata | [`CITATION.cff`](CITATION.cff) |
+| License | [`LICENSE`](LICENSE) |
+
 ## What it is
 
 De-Time is designed for research and engineering workflows that need:
@@ -149,6 +160,25 @@ For more detailed walk-throughs, use the docs rather than stretching the README:
 - [Getting Started](https://systems-mechanobiology.github.io/De-Time/quickstart/)
 - [Tutorials](https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/)
 - [Example Gallery](https://systems-mechanobiology.github.io/De-Time/examples/)
+
+## Research workflow in four steps
+
+| Step | What to do |
+|---|---|
+| 1. Start small | Run one stable method such as `SSA`, `STD`, or `STDR` on a single series first. |
+| 2. Check interpretability | Read the component plots before you trust any larger sweep. |
+| 3. Compare carefully | Move to method overlays or multivariate workflows only after a baseline looks credible. |
+| 4. Scale reproducibly | Use `batch`, `profile`, and saved metadata once the workflow is stable. |
+
+## Visual proof
+
+Single-series decomposition:
+
+![Single-series decomposition](docs/assets/generated/home/ssa_components.png)
+
+Multivariate structure:
+
+![Multivariate decomposition](docs/assets/generated/home/mssa_multivariate.png)
 
 ## Why this software exists in research workflows
 
