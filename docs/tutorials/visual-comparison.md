@@ -34,6 +34,20 @@ The script writes:
 - `out/visual_method_comparison/method_grid.png`
 - `out/visual_method_comparison/trend_overlay.png`
 - `out/visual_method_comparison/season_overlay.png`
+- `out/visual_method_comparison/comparison_summary.csv`
+
+Published experiment record:
+
+- [comparison_summary.csv](../assets/generated/tutorials/visual-comparison/comparison_summary.csv)
+
+Published summary from the current docs build:
+
+| Method | Backend | Trend std | Seasonal std | Residual RMS | Reconstruction error |
+|---|---|---:|---:|---:|---:|
+| `STD` | `native` | 1.0123 | 0.6723 | 0.0000 | 0.0000 |
+| `STDR` | `native` | 1.0123 | 0.6723 | 0.0056 | 0.0000 |
+| `SSA` | `native` | 1.0129 | 0.7052 | 0.1766 | 0.0000 |
+| `STL` | `python` | 1.0149 | 0.7289 | 0.0012 | 0.0000 |
 
 Published example outputs:
 
@@ -44,6 +58,10 @@ Published example outputs:
 ![Season overlay](../assets/generated/tutorials/visual-comparison/season_overlay.png)
 
 ## How to read the figures
+
+These values come from one actual local run of the published script. The table
+is useful because it keeps the figure interpretation grounded in recorded
+numbers rather than only visual preference.
 
 `method_grid.png` is the broadest comparison:
 

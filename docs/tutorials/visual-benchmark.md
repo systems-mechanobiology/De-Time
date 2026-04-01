@@ -33,10 +33,24 @@ artifact pipeline. Instead, it:
 ## Output files
 
 - `out/visual_leaderboard/summary/mini_leaderboard_by_scenario.csv`
+- `out/visual_leaderboard/summary/mini_leaderboard_aggregate.csv`
 - `out/visual_leaderboard/figures/heatmap_T_r2.png`
 - `out/visual_leaderboard/figures/heatmap_T_dtw.png`
 - `out/visual_leaderboard/figures/heatmap_S_spectral.png`
 - `out/visual_leaderboard/figures/heatmap_S_maxlag.png`
+
+Published experiment records:
+
+- [mini_leaderboard_by_scenario.csv](../assets/generated/tutorials/visual-benchmark/summary/mini_leaderboard_by_scenario.csv)
+- [mini_leaderboard_aggregate.csv](../assets/generated/tutorials/visual-benchmark/summary/mini_leaderboard_aggregate.csv)
+
+Published aggregate summary from the current docs build:
+
+| Method | Trend R2 | Trend DTW | Seasonal spectral corr. | Seasonal max-lag corr. |
+|---|---:|---:|---:|---:|
+| `STL` | 0.9986 | 0.0752 | 1.0000 | 1.0000 |
+| `SSA` | 0.9816 | 0.3392 | 1.0000 | 0.9980 |
+| `STDR` | 0.9698 | 0.7211 | 0.9999 | 0.9982 |
 
 Published example outputs:
 
@@ -83,4 +97,5 @@ Seasonal max-lag heatmap:
 
 The full benchmark stack is heavier and more research-artifact flavored. This
 mini leaderboard tutorial gives you a public-facing, reproducible visual
-summary that still comes from real local runs.
+summary that still comes from real local runs. The CSV files linked above are
+the exact summaries used to generate the published heatmaps.

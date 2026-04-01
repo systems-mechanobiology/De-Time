@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 from detime import DecompositionConfig, decompose
 from detime.viz import plot_component_overlay, plot_method_comparison
@@ -59,10 +60,27 @@ def main() -> None:
         title="Seasonal overlay across methods",
     )
 
+    records = []
+    for name, result in results.items():
+        reconstruction = np.asarray(result.trend) + np.asarray(result.season) + np.asarray(result.residual)
+        records.append(
+            {
+                "method": name,
+                "backend_used": result.meta.get("backend_used"),
+                "trend_mean": float(np.mean(result.trend)),
+                "trend_std": float(np.std(result.trend)),
+                "season_std": float(np.std(result.season)),
+                "residual_rms": float(np.sqrt(np.mean(np.square(result.residual)))),
+                "reconstruction_max_abs_error": float(np.max(np.abs(series - reconstruction))),
+            }
+        )
+    pd.DataFrame.from_records(records).to_csv(out_dir / "comparison_summary.csv", index=False)
+
     print("Wrote:")
     print(out_dir / "method_grid.png")
     print(out_dir / "trend_overlay.png")
     print(out_dir / "season_overlay.png")
+    print(out_dir / "comparison_summary.csv")
 
 
 if __name__ == "__main__":

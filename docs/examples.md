@@ -18,10 +18,10 @@ scripts do before opening the source.
 
 | Script | What it produces |
 |---|---|
-| `visual_univariate_walkthrough.py` | component plot and residual diagnostics for one `SSA` run |
-| `visual_method_comparison.py` | grid view plus trend and seasonal overlays |
-| `visual_multivariate_walkthrough.py` | multichannel component figure and channel overlay |
-| `visual_leaderboard_walkthrough.py` | leaderboard-style heatmaps and a summary CSV |
+| `visual_univariate_walkthrough.py` | component plot, residual diagnostics, and a real `ssa_summary.csv/json` record |
+| `visual_method_comparison.py` | grid view, trend and seasonal overlays, and a real `comparison_summary.csv` |
+| `visual_multivariate_walkthrough.py` | multichannel figures, channel overlay, and a real `multivariate_summary.csv` |
+| `visual_leaderboard_walkthrough.py` | leaderboard-style heatmaps plus scenario and aggregate summary CSVs |
 
 ## Gallery previews
 

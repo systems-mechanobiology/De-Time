@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 from detime import DecompositionConfig, decompose
 from detime.viz import plot_components, plot_error
@@ -49,9 +51,29 @@ def main() -> None:
         title="SSA residual magnitude",
     )
 
+    summary = {
+        "method": "SSA",
+        "length": int(series.size),
+        "window": 36,
+        "rank": 8,
+        "primary_period": 12,
+        "backend_used": result.meta.get("backend_used"),
+        "trend_mean": float(np.mean(result.trend)),
+        "season_std": float(np.std(result.season)),
+        "residual_rms": float(np.sqrt(np.mean(np.square(result.residual)))),
+        "residual_peak_abs": float(np.max(np.abs(result.residual))),
+        "reconstruction_max_abs_error": float(
+            np.max(np.abs(series - np.asarray(result.trend) - np.asarray(result.season) - np.asarray(result.residual)))
+        ),
+    }
+    pd.DataFrame([summary]).to_csv(out_dir / "ssa_summary.csv", index=False)
+    (out_dir / "ssa_summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+
     print("Wrote:")
     print(out_dir / "ssa_components.png")
     print(out_dir / "ssa_residual_error.png")
+    print(out_dir / "ssa_summary.csv")
+    print(out_dir / "ssa_summary.json")
     print("Backend used:", result.meta.get("backend_used"))
 
 

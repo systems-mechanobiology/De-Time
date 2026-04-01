@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 from detime import DecompResult, DecompositionConfig, decompose
 from detime.viz import plot_component_overlay, plot_multivariate_components
@@ -86,10 +87,28 @@ def main() -> None:
         title=f"Trend overlay for {channel_names[channel_idx]}",
     )
 
+    records = []
+    for channel_idx, channel_name in enumerate(channel_names):
+        mssa_residual = np.asarray(mssa.residual)[:, channel_idx]
+        std_residual = np.asarray(std.residual)[:, channel_idx]
+        trend_gap = np.asarray(mssa.trend)[:, channel_idx] - np.asarray(std.trend)[:, channel_idx]
+        records.append(
+            {
+                "channel": channel_name,
+                "mssa_backend": mssa.meta.get("backend_used"),
+                "std_backend": std.meta.get("backend_used"),
+                "mssa_residual_rms": float(np.sqrt(np.mean(np.square(mssa_residual)))),
+                "std_residual_rms": float(np.sqrt(np.mean(np.square(std_residual)))),
+                "trend_overlay_mean_abs_gap": float(np.mean(np.abs(trend_gap))),
+            }
+        )
+    pd.DataFrame.from_records(records).to_csv(out_dir / "multivariate_summary.csv", index=False)
+
     print("Wrote:")
     print(out_dir / "mssa_multivariate.png")
     print(out_dir / "std_channelwise_multivariate.png")
     print(out_dir / "channel0_trend_overlay.png")
+    print(out_dir / "multivariate_summary.csv")
 
 
 if __name__ == "__main__":

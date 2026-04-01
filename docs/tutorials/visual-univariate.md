@@ -30,6 +30,19 @@ The script writes:
 
 - `out/visual_univariate/ssa_components.png`
 - `out/visual_univariate/ssa_residual_error.png`
+- `out/visual_univariate/ssa_summary.csv`
+- `out/visual_univariate/ssa_summary.json`
+
+Published experiment record:
+
+- [ssa_summary.csv](../assets/generated/tutorials/visual-univariate/ssa_summary.csv)
+- [ssa_summary.json](../assets/generated/tutorials/visual-univariate/ssa_summary.json)
+
+Published summary from the current docs build:
+
+| Method | Backend | Length | Window | Rank | Residual RMS | Peak residual | Reconstruction error |
+|---|---|---:|---:|---:|---:|---:|---:|
+| `SSA` | `native` | 180 | 36 | 8 | 0.1763 | 0.4020 | 0.0000 |
 
 Published example outputs:
 
@@ -38,6 +51,9 @@ Published example outputs:
 ![SSA residual magnitude](../assets/generated/tutorials/visual-univariate/ssa_residual_error.png)
 
 ## What to look for
+
+These figures and summary values come from a real local run of the tutorial
+script on the current repository state.
 
 In `ssa_components.png`:
 

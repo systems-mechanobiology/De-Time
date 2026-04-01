@@ -29,6 +29,19 @@ The script writes:
 - `out/visual_multivariate/mssa_multivariate.png`
 - `out/visual_multivariate/std_channelwise_multivariate.png`
 - `out/visual_multivariate/channel0_trend_overlay.png`
+- `out/visual_multivariate/multivariate_summary.csv`
+
+Published experiment record:
+
+- [multivariate_summary.csv](../assets/generated/tutorials/visual-multivariate/multivariate_summary.csv)
+
+Published summary from the current docs build:
+
+| Channel | MSSA backend | STD backend | MSSA residual RMS | STD residual RMS | Mean abs trend gap |
+|---|---|---|---:|---:|---:|
+| `sensor_a` | `python` | `native` | 0.0047 | 0.0000 | 0.0590 |
+| `sensor_b` | `python` | `native` | 0.0038 | 0.0000 | 0.0260 |
+| `sensor_c` | `python` | `native` | 0.0999 | 0.0000 | 0.0128 |
 
 Published example outputs:
 
@@ -39,6 +52,10 @@ Published example outputs:
 ![Channel 0 trend overlay](../assets/generated/tutorials/visual-multivariate/channel0_trend_overlay.png)
 
 ## What each figure tells you
+
+These summary values come from a real local run of the tutorial script. They
+show that the multivariate and channelwise paths are not identical even when
+the figures look superficially similar.
 
 `mssa_multivariate.png`:
 

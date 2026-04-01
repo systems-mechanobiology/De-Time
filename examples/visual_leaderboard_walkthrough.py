@@ -70,10 +70,24 @@ def main() -> None:
 
     scenario_summary = pd.DataFrame.from_records(records)
     scenario_summary.to_csv(summary_dir / "mini_leaderboard_by_scenario.csv", index=False)
+    aggregate = (
+        scenario_summary.groupby("method", as_index=False)[
+            [
+                "metric_T_r2_mean",
+                "metric_T_dtw_mean",
+                "metric_S_spectral_corr_mean",
+                "metric_S_maxlag_corr_mean",
+            ]
+        ]
+        .mean()
+        .sort_values(["metric_T_r2_mean", "metric_S_spectral_corr_mean"], ascending=[False, False])
+    )
+    aggregate.to_csv(summary_dir / "mini_leaderboard_aggregate.csv", index=False)
     plot_heatmaps(scenario_summary, figures_dir)
 
     print("Wrote:")
     print(summary_dir / "mini_leaderboard_by_scenario.csv")
+    print(summary_dir / "mini_leaderboard_aggregate.csv")
     for path in sorted(figures_dir.glob("*.png")):
         print(path)
 
