@@ -23,9 +23,10 @@ nav:
       - Visual Benchmark Heatmaps: tutorials/visual-benchmark.md
       - CLI and Profiling: tutorials/cli-and-profiling.md
       - Profiling Reference: tutorials/profiling.md
+  - Scenarios: scenarios.md
   - Methods Atlas: methods.md
   - API Reference: api.md
   - Example Gallery: examples.md
-  - Research Positioning: research-positioning.md
+  - Ecosystem and Research Positioning: research-positioning.md
   - Agent Tools: agent-friendly.md
   - Project Files and Citation: project-status.md

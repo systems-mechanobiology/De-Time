@@ -37,10 +37,14 @@ for compatibility.
 |---|---|
 | Homepage | <https://systems-mechanobiology.github.io/De-Time/> |
 | Tutorials | <https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/> |
+| Scenarios | <https://systems-mechanobiology.github.io/De-Time/scenarios/> |
 | Methods Atlas | <https://systems-mechanobiology.github.io/De-Time/methods/> |
 | API Reference | <https://systems-mechanobiology.github.io/De-Time/api/> |
 | Citation metadata | [`CITATION.cff`](CITATION.cff) |
 | License | [`LICENSE`](LICENSE) |
+| Contributing | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
+| Code of conduct | [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) |
+| Security policy | [`SECURITY.md`](SECURITY.md) |
 
 ## What it is
 
@@ -170,6 +174,15 @@ For more detailed walk-throughs, use the docs rather than stretching the README:
 | 3. Compare carefully | Move to method overlays or multivariate workflows only after a baseline looks credible. |
 | 4. Scale reproducibly | Use `batch`, `profile`, and saved metadata once the workflow is stable. |
 
+## Scenario entry points
+
+| Scenario | Best first path |
+|---|---|
+| one seasonal scientific signal | `STD`, `STDR`, or `SSA` |
+| multi-sensor or multichannel lab data | `MSSA` first, then compare with channelwise `STD` |
+| oscillatory adaptive decomposition | `EMD`, `CEEMDAN`, or `VMD` after a stable baseline |
+| benchmark-style comparisons | visual tutorials first, then `batch` and `profile` |
+
 ## Visual proof
 
 Single-series decomposition:
@@ -200,9 +213,10 @@ than as flagship entrypoints.
 - [Homepage](https://systems-mechanobiology.github.io/De-Time/) for the short product overview
 - [Getting Started](https://systems-mechanobiology.github.io/De-Time/quickstart/) for installation and first successful runs
 - [Tutorials](https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/) for step-by-step workflows
+- [Scenarios](https://systems-mechanobiology.github.io/De-Time/scenarios/) for domain-style entry points
 - [Methods Atlas](https://systems-mechanobiology.github.io/De-Time/methods/) for method families, maturity, and backend story
 - [API Reference](https://systems-mechanobiology.github.io/De-Time/api/) for imports, config fields, and result structure
-- [Research Positioning](https://systems-mechanobiology.github.io/De-Time/research-positioning/) for ecosystem and scope
+- [Ecosystem and Research Positioning](https://systems-mechanobiology.github.io/De-Time/research-positioning/) for ecosystem and scope
 - [Agent Tools](https://systems-mechanobiology.github.io/De-Time/agent-friendly/) for handoff-oriented routing and contracts
 
 ## Project files, citation, and software hygiene

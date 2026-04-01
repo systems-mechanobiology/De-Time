@@ -1,4 +1,4 @@
-# Research Positioning
+# Ecosystem and Research Positioning
 
 De-Time is research software, not a claim that one package should replace every
 specialized decomposition implementation.

@@ -25,7 +25,7 @@
 
 <div class="maintainer-card">
   <h3>Maintainer</h3>
-  <p><strong>Zipeng Wu</strong><br>The University of Birmingham<br><a href="https://systems-mechanobiology.github.io/De-Time/">systems-mechanobiology.github.io/De-Time</a></p>
+  <p><strong>Zipeng Wu</strong><br>The University of Birmingham<br>zxw365@student.bham.ac.uk<br><a href="https://systems-mechanobiology.github.io/De-Time/">systems-mechanobiology.github.io/De-Time</a></p>
 </div>
 
 ## Product overview
@@ -59,8 +59,12 @@ maturity, backend differences, and optional dependencies.
     <p>Browse runnable scripts and the visual reports already generated from them.</p>
   </a>
   <a class="info-card" href="research-positioning/">
-    <h3>Research Positioning</h3>
+    <h3>Ecosystem</h3>
     <p>Understand how De-Time complements statsmodels, PyWavelets, PyEMD, and vmdpy.</p>
+  </a>
+  <a class="info-card" href="scenarios/">
+    <h3>Scenarios</h3>
+    <p>Choose a starting point based on the shape of your data and the kind of workflow you need.</p>
   </a>
   <a class="info-card" href="agent-friendly/">
     <h3>Agent Tools</h3>
@@ -123,6 +127,27 @@ result = decompose(
 | Wide table with aligned signals | several numeric columns in one table | `detime run --method MSSA --cols x0,x1` |
 | Repeated files or experiments | repeatable batch workflow | `detime batch ...` |
 
+## Scenario entry points
+
+<div class="info-grid">
+  <a class="info-card" href="scenarios/">
+    <h3>Single seasonal signal</h3>
+    <p>Start with <code>STD</code>, <code>STDR</code>, or <code>SSA</code> when the goal is interpretable component structure.</p>
+  </a>
+  <a class="info-card" href="scenarios/">
+    <h3>Multichannel measurements</h3>
+    <p>Use <code>MSSA</code> first when channels share structure and channelwise decomposition is too weak.</p>
+  </a>
+  <a class="info-card" href="scenarios/">
+    <h3>Adaptive oscillatory data</h3>
+    <p>Move to <code>EMD</code>, <code>CEEMDAN</code>, or <code>VMD</code> only after a stable baseline looks believable.</p>
+  </a>
+  <a class="info-card" href="scenarios/">
+    <h3>Benchmark-style sweeps</h3>
+    <p>Use the visual tutorials first, then scale into reproducible <code>batch</code> and <code>profile</code> workflows.</p>
+  </a>
+</div>
+
 ## One strong example, then deeper material in docs
 
 <div class="showcase-grid">
@@ -183,5 +208,6 @@ Use the docs like a docs site, not like a landing-page appendix.
 
 - Open [Getting Started](quickstart.md) if you want the first successful run.
 - Open [Tutorials](tutorials/univariate.md) if you want visual workflows.
+- Open [Scenarios](scenarios.md) if you want a domain-style starting point.
 - Open [Methods Atlas](methods.md) if you need to choose a method family carefully.
 - Open [Research Positioning](research-positioning.md) if you are evaluating the software academically.
