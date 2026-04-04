@@ -1,44 +1,32 @@
-# API Reference
+# API
 
-## Public imports
-
-The public package surface is intentionally small:
+## Canonical import
 
 ```python
-from detime import (
-    DecompResult,
-    DecompositionConfig,
-    MethodRegistry,
-    decompose,
-    native_capabilities,
-    native_extension_available,
-)
+from detime import DecompositionConfig, DecompResult, MethodRegistry, decompose
 ```
 
-## `DecompositionConfig`
+The preferred import is `detime`. The `tsdecomp` import path remains available
+only as a deprecated alias.
 
-Main fields:
+## Public objects
 
-- `method`: decomposition method name
-- `params`: method-specific parameter dictionary
-- `backend`: `auto`, `native`, `python`, or `gpu`
-- `speed_mode`: `exact` or `fast`
-- `n_jobs`: concurrency hint
-- `profile`: whether to record runtime metadata
-- `device`: execution device hint
-- `channel_names`: optional names for multivariate columns
+### `DecompositionConfig`
 
-## `decompose(series, config)`
+Important fields:
 
-Main entrypoint for programmatic usage.
+- `method`
+- `params`
+- `backend`
+- `speed_mode`
+- `n_jobs`
+- `profile`
+- `device`
+- `channel_names`
 
-- accepts `1D` series for univariate methods,
-- accepts `2D (T, C)` arrays for multivariate methods and channelwise methods,
-- returns a `DecompResult`.
+### `DecompResult`
 
-## `DecompResult`
-
-Return object fields:
+Every result exposes:
 
 - `trend`
 - `season`
@@ -46,42 +34,37 @@ Return object fields:
 - `components`
 - `meta`
 
-For multivariate methods, the main outputs may be `2D (T, C)` arrays. Some
-component payloads may be `3D`, for example mode stacks such as
-`components["modes"]`.
+### `MethodRegistry`
 
-## CLI commands
+Useful entrypoints:
 
-The preferred `detime` executable currently exposes:
+- `MethodRegistry.list_methods()`
+- `MethodRegistry.get(method_name)`
+- `MethodRegistry.register(method_name)`
 
-- `run`
-- `batch`
-- `eval`
-- `validate`
-- `run_leaderboard`
-- `merge_results`
-- `profile`
+## Top-level helpers
 
-The first-class user path today is `run`, `batch`, and `profile`.
+- `decompose(series, config)`
+- `native_extension_available()`
+- `native_capabilities()`
 
-Legacy compatibility:
+## Removed surface
 
-- `tsdecomp` remains available as a CLI alias
-- `tsdecomp` remains available as a Python import alias
+The main package no longer exposes:
 
-## Visualization helpers
+- `bench_config`
+- `leaderboard`
+- `DR_TS_REG`
+- `DR_TS_AE`
+- `SL_LIB`
 
-Visualization utilities live in the `detime.viz` module:
+Those now belong to the companion benchmark repository `de-time-bench`.
 
-```python
-from detime.viz import (
-    plot_components,
-    plot_error,
-    plot_component_overlay,
-    plot_method_comparison,
-    plot_multivariate_components,
-)
-```
+## CLI
 
-These helpers are intended for exploratory analysis, tutorials, and lightweight
-report figures rather than for a full plotting framework.
+Supported commands:
+
+- `detime run`
+- `detime batch`
+- `detime profile`
+- `detime version`

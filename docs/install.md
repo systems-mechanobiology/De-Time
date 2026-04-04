@@ -1,48 +1,34 @@
-# Installation
+# Install
 
-## Recommended install
+## PyPI
 
 ```bash
 pip install de-time
 ```
 
-This is the preferred path for normal users because the package is designed to
-ship prebuilt wheels where possible.
+## Optional extras
 
-The preferred import path is `detime`. The legacy import path `tsdecomp` still
-works for compatibility.
-
-## Optional multivariate backends
-
-Some multivariate methods use optional third-party backends. Install them with:
+Use the multivariate extra when you want optional backends such as `MVMD` and
+`MEMD`.
 
 ```bash
 pip install "de-time[multivar]"
 ```
 
-## Development install
+## Editable install
 
 ```bash
-cd /path/to/de-time
-python3 -m pip install -U pip
-python3 -m pip install -e .[multivar]
-python3 -m pytest tests -q
+python -m pip install --upgrade pip
+python -m pip install -e .[dev]
 ```
 
-## Source builds
+## Native extension behavior
 
-When a wheel is not available, `pip` may build the package from source. In that
-case you need:
+De-Time ships native kernels for selected flagship methods. If the native
+extension is unavailable, the package keeps working and falls back to the
+Python implementations when a fallback exists.
 
-- a C++ compiler,
-- CMake,
-- Python development headers,
-- a standard scientific Python stack.
+## Compatibility alias
 
-## Platform notes
-
-- Linux, macOS, and Windows are first-class targets in the packaging workflow.
-- Native acceleration is optional at runtime because Python fallbacks remain
-  available for the native-backed methods.
-- Some methods require optional upstream libraries and will fail with explicit
-  installation guidance if those libraries are unavailable.
+The preferred import is `detime`. The `tsdecomp` import and CLI remain
+available only as a deprecated compatibility layer.

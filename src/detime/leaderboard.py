@@ -1,1 +1,4 @@
-from tsdecomp.leaderboard import *  # noqa: F401,F403
+raise ImportError(
+    "Benchmark orchestration moved to the separate 'de-time-bench' repository. "
+    "Install that package and import 'detime_bench.leaderboard' instead."
+)

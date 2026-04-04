@@ -1,70 +1,44 @@
-# Methods Atlas
+# Methods
 
-This page groups methods by family, maturity, and backend story so users can
-choose a credible starting point before they scale up to batches or papers.
+## Flagship methods
 
-## Stable starting points
-
-These methods represent the clearest current De-Time story.
-
-| Method | Input | Backend story | Notes |
+| Method | Input | Backend story | Why start here |
 |---|---|---|---|
-| `STD` | `1D` or `2D` channelwise | native C++ + Python fallback | good seasonal-trend default when period is known |
-| `STDR` | `1D` or `2D` channelwise | native C++ + Python fallback | same core idea with average seasonal shape |
-| `SSA` | `1D` | native C++ + Python fallback | strong univariate baseline |
-| `MSSA` | `2D (T, C)` | self-contained Python implementation | first multivariate method to try |
-| `DR_TS_REG` | `1D` | native C++ + Python fallback | useful when the benchmark-derived regression path fits your setting |
+| `SSA` | `1D` | native C++ plus Python fallback | strong first choice for interpretable single-series decomposition |
+| `STD` | `1D` and channelwise `2D` | native C++ plus Python fallback | simple seasonal-trend separation with stable defaults |
+| `STDR` | `1D` and channelwise `2D` | native C++ plus Python fallback | same interface as `STD` with shared seasonal-shape estimation |
+| `MSSA` | `2D` | Python implementation | joint multichannel decomposition when channels share structure |
 
-## Seasonal-trend methods
+## Retained wrappers and specialist paths
 
-| Method | Input mode | Backend story | Maturity |
+| Method | Input | Type | Notes |
 |---|---|---|---|
-| `STL` | univariate | `statsmodels` | stable wrapper |
-| `MSTL` | univariate | `statsmodels` | stable wrapper |
-| `ROBUST_STL` | univariate | `statsmodels` | stable wrapper |
-| `STD` | channelwise | native-backed | flagship |
-| `STDR` | channelwise | native-backed | flagship |
+| `STL` | univariate | `statsmodels` wrapper | good baseline when the primary period is known |
+| `MSTL` | univariate | `statsmodels` wrapper | multiple seasonal periods |
+| `EMD` | univariate | `PyEMD` wrapper | adaptive decomposition |
+| `CEEMDAN` | univariate | `PyEMD` wrapper | ensemble adaptive decomposition |
+| `VMD` | univariate | optional backend wrapper | variational mode decomposition |
+| `WAVELET` | univariate | `PyWavelets` wrapper | multi-scale decomposition |
+| `MA_BASELINE` | univariate | internal baseline | lightweight sanity check |
+| `MVMD` | multivariate | optional `PySDKit` backend | install with `de-time[multivar]` |
+| `MEMD` | multivariate | optional `PySDKit` backend | install with `de-time[multivar]` |
+| `GABOR_CLUSTER` | univariate | experimental internal method | use after you already trust a baseline |
 
-## Subspace methods
+## Moved out of the main package
 
-| Method | Input mode | Backend story | Maturity |
-|---|---|---|---|
-| `SSA` | univariate | native-backed | flagship |
-| `MSSA` | multivariate | built-in | flagship |
+The following methods are no longer part of `detime`:
 
-## Adaptive mode decomposition
+- `DR_TS_REG`
+- `DR_TS_AE`
+- `SL_LIB`
 
-| Method | Input mode | Backend story | Maturity |
-|---|---|---|---|
-| `EMD` | univariate | `PyEMD` wrapper | wrapper |
-| `CEEMDAN` | univariate | `PyEMD` wrapper | wrapper |
-| `VMD` | univariate | `vmdpy` wrapper | wrapper |
-| `MVMD` | multivariate | optional `multivar` extra | experimental wrapper |
-| `MEMD` | multivariate | optional `multivar` extra | experimental wrapper |
+These benchmark-derived methods moved to the companion repository
+`de-time-bench`.
 
-## Other workflows
+## How to read this surface
 
-| Method | Input mode | Backend story | Notes |
-|---|---|---|---|
-| `WAVELET` | univariate | `PyWavelets` wrapper | multi-scale baseline |
-| `MA_BASELINE` | univariate | NumPy implementation | simple sanity baseline |
-| `GABOR_CLUSTER` | univariate | FAISS + helper functions | clustering-oriented workflow |
-| `DR_TS_AE` | univariate | benchmark-support wrapper | backend-dependent |
-| `SL_LIB` | univariate | benchmark-support wrapper | backend-dependent |
-
-## How to choose
-
-| Situation | First method |
-|---|---|
-| known seasonal period, interpretable decomposition | `STD` or `STDR` |
-| strong univariate baseline | `SSA` |
-| shared multivariate structure across channels | `MSSA` |
-| adaptive or non-stationary oscillatory structure | `EMD`, `CEEMDAN`, or `VMD` |
-| multivariate adaptive mode decomposition | `MVMD` or `MEMD` |
-
-## Why the atlas calls out backend story
-
-De-Time does not flatten every method into the same maturity claim. Some
-methods are deeply integrated and native-backed. Others are intentionally
-unified wrappers over upstream scientific libraries. That distinction matters
-for performance expectations, packaging expectations, and citation honesty.
+- Start with `SSA`, `STD`, `STDR`, or `MSSA` unless a specialist method is
+  clearly required.
+- Treat upstream wrappers as integration convenience, not as evidence that
+  De-Time replaces the upstream package.
+- Treat optional multivariate backends as opt-in extras.

@@ -2,8 +2,6 @@ include README.md
 include LICENSE
 include CONTRIBUTING.md
 include CODE_OF_CONDUCT.md
-include JMLR_SOFTWARE_IMPROVEMENTS.md
-include JMLR_MLOSS_CHECKLIST.md
 include CMakeLists.txt
 include cibuildwheel.toml
 
@@ -18,3 +16,14 @@ global-exclude *.py[cod]
 global-exclude .DS_Store
 prune .pytest_cache
 prune site
+prune submission
+exclude De-Time_Codex_task_list.md
+exclude De-Time_final_checklist.md
+exclude De-Time_JMLR_revision_plan.md
+exclude AGENT_INPUT_CONTRACT.md
+exclude AGENT_MANIFEST.json
+exclude AGENT_MANIFEST.md
+exclude JMLR_MLOSS_CHECKLIST.md
+exclude JMLR_SOFTWARE_IMPROVEMENTS.md
+prune docs/assets/generated/tutorials/visual-benchmark
+exclude docs/tutorials/visual-benchmark.md

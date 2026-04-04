@@ -15,15 +15,6 @@ py::dict ssa_decompose(
     int power_iterations = 12,
     unsigned int seed = 42);
 
-py::dict dr_ts_reg_decompose(
-    const py::array_t<double, py::array::c_style | py::array::forcecast>& y_arr,
-    int period,
-    double lambda_t = 5.0,
-    double lambda_s = 50.0,
-    double lambda_r = 0.1,
-    int max_iter = 500,
-    double tol = 1e-8);
-
 py::dict std_decompose(
     const py::array_t<double, py::array::c_style | py::array::forcecast>& y_arr,
     py::object period = py::none(),
@@ -33,8 +24,8 @@ py::dict std_decompose(
 
 }  // namespace tsdecomp_native
 
-PYBIND11_MODULE(_tsdecomp_native, m) {
-    m.doc() = "Native C++ kernels for tsdecomp.";
+PYBIND11_MODULE(_detime_native, m) {
+    m.doc() = "Native C++ kernels for De-Time.";
 
     m.def(
         "ssa_decompose",
@@ -50,17 +41,6 @@ PYBIND11_MODULE(_tsdecomp_native, m) {
         py::arg("trend_freq_threshold") = py::none(),
         py::arg("power_iterations") = 12,
         py::arg("seed") = 42);
-
-    m.def(
-        "dr_ts_reg_decompose",
-        &tsdecomp_native::dr_ts_reg_decompose,
-        py::arg("y"),
-        py::arg("period"),
-        py::arg("lambda_t") = 5.0,
-        py::arg("lambda_s") = 50.0,
-        py::arg("lambda_r") = 0.1,
-        py::arg("max_iter") = 500,
-        py::arg("tol") = 1e-8);
 
     m.def(
         "std_decompose",

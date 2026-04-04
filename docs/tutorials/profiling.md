@@ -1,9 +1,10 @@
-# Profiling and benchmarking
+# Profiling
 
-## Profiling a single method
+Use profiling only after you trust the decomposition output itself. The
+`profile` command is for runtime characterization of a workflow you already
+understand, not for selecting methods by scoreboard.
 
-`detime` includes a `profile` command so runtime and backend information can
-be recorded in a consistent way.
+## Basic usage
 
 ```bash
 detime profile \
@@ -11,36 +12,28 @@ detime profile \
   --series examples/data/example_series.csv \
   --col value \
   --param window=24 \
-  --param primary_period=12 \
-  --repeat 5 \
-  --warmup 1
+  --param rank=6 \
+  --param primary_period=12
 ```
 
-## Backend selection
+## Save a report
 
-For methods that support native acceleration:
+```bash
+detime profile \
+  --method STD \
+  --series examples/data/example_series.csv \
+  --col value \
+  --param period=12 \
+  --backend native \
+  --repeat 10 \
+  --warmup 2 \
+  --format text \
+  --output out/profile/std_native.txt
+```
 
-- `backend=auto` prefers native when available,
-- `backend=native` requires the native implementation,
-- `backend=python` forces the Python path.
+## Compatibility
 
-## Speed mode
+The legacy aliases still work for one deprecation cycle:
 
-The runtime also carries a `speed_mode`.
-
-- `exact` is the default
-- `fast` is currently most meaningful for methods such as `MSSA`, where the
-  implementation can switch to approximate SVD
-
-## Benchmark-oriented usage
-
-For reproducible sweeps:
-
-- keep method parameters explicit,
-- record `backend_used` from the result metadata,
-- prefer scripts checked into `examples/` over ad hoc notebooks.
-
-Legacy compatibility:
-
-- `tsdecomp profile` still works
-- `python -m tsdecomp profile ...` still works
+- `tsdecomp profile`
+- `python -m tsdecomp profile`

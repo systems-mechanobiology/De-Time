@@ -1,10 +1,10 @@
 [run]
 source =
     detime
-    tsdecomp
 omit =
-    */tsdecomp/leaderboard.py
+    */tsdecomp/*
 
 [report]
+fail_under = 90
 show_missing = True
 skip_covered = False

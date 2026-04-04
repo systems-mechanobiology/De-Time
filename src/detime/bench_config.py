@@ -1,1 +1,4 @@
-from tsdecomp.bench_config import *  # noqa: F401,F403
+raise ImportError(
+    "Benchmark runbooks moved to the separate 'de-time-bench' repository. "
+    "Install that package and import 'detime_bench.bench_config' instead."
+)

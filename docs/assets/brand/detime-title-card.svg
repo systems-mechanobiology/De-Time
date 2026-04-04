@@ -82,7 +82,7 @@
     <rect x="980" y="384" width="292" height="124" rx="18" fill="#f8fbff" stroke="#d7e1ee" />
     <text x="1006" y="414" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#64748b">Flagship methods</text>
     <text x="1006" y="447" font-size="24" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">SSA · STD · STDR</text>
-    <text x="1006" y="478" font-size="24" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">DR_TS_REG · MSSA</text>
+<text x="1006" y="478" font-size="24" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">STDR · MSSA</text>
 
     <rect x="980" y="526" width="292" height="96" rx="18" fill="#f8fbff" stroke="#d7e1ee" />
     <text x="1006" y="556" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#64748b">Outputs</text>
