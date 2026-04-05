@@ -53,14 +53,18 @@ in the main package. They moved to the companion benchmark repository
 ## Install
 
 ```bash
-pip install de-time
+pip install "de-time @ git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
 Optional multivariate backend extras:
 
 ```bash
-pip install "de-time[multivar]"
+pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
+
+The product name is `De-Time`, the distribution name is `de-time`, and the
+canonical import is `detime`. Until the first PyPI release of De-Time exists,
+install from GitHub rather than from the unrelated `detime` package on PyPI.
 
 ## Quickstart
 

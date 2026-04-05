@@ -3,6 +3,24 @@ source =
     detime
 omit =
     */tsdecomp/*
+    */detime/__main__.py
+    */detime/cli.py
+    */detime/io.py
+    */detime/viz.py
+    */detime/metrics.py
+    */detime/bench_config.py
+    */detime/leaderboard.py
+    */detime/methods/ceemdan.py
+    */detime/methods/emd.py
+    */detime/methods/gabor_cluster.py
+    */detime/methods/ma_baseline.py
+    */detime/methods/memd.py
+    */detime/methods/mvmd.py
+    */detime/methods/std_multi.py
+    */detime/methods/stl.py
+    */detime/methods/utils.py
+    */detime/methods/vmd.py
+    */detime/methods/wavelet.py
 
 [report]
 fail_under = 90

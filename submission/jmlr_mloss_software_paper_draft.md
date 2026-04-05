@@ -2,109 +2,158 @@
 
 ## Abstract
 
-De-Time is an open-source software package for reproducible time-series
+De-Time is open-source research software for reproducible time-series
 decomposition. The package does not introduce a new decomposition algorithm.
-Instead, it provides a coherent software surface for applying, comparing, and
-profiling decomposition workflows across univariate, channelwise multivariate,
-and joint multivariate settings. De-Time standardizes configuration,
-result-return conventions, CLI behavior, saved outputs, and native capability
-reporting. The canonical package namespace is `detime`, while the older
-`tsdecomp` namespace is retained only as a deprecated compatibility alias. The
-main package is centered on four flagship workflows, `SSA`, `STD`, `STDR`, and
-`MSSA`, and exposes additional wrapper-based integrations for specialist
-methods. Benchmark orchestration and benchmark-derived methods were separated
-into a companion repository so that the core software package remains a clean,
-installable, and reviewable research software artifact.
+Instead, it provides a coherent software surface for configuring, running,
+profiling, and saving decomposition workflows across several retained method
+families. The canonical package namespace is `detime`, while `tsdecomp`
+remains only as a deprecated compatibility alias. The reviewed software surface
+centers on four flagship workflows, `SSA`, `STD`, `STDR`, and `MSSA`, and
+retains additional wrapper-based integrations with explicit maturity labels.
+Benchmark-oriented artifact code was separated into a companion repository so
+that the main package is a clean software submission rather than a mixed
+library-plus-benchmark artifact. The current review snapshot is installable
+from GitHub, includes strict documentation builds, wheel and source
+distribution checks, a coverage gate on the canonical core-plus-flagship path,
+and selected native-backed acceleration for retained flagship methods.
 
 ## 1. Introduction
 
-Time-series decomposition remains important across scientific computing,
-signal-processing, and data-analysis workflows. In practice, however,
-decomposition software is fragmented. Researchers often combine specialist
-libraries, notebook utilities, and local scripts to obtain a full workflow for
-configuration, decomposition, visualization, and result export. This makes it
-harder to compare methods, preserve metadata, and hand a workflow to another
-researcher in a reproducible form.
+Time-series decomposition workflows are often assembled from method-specific
+libraries, notebook snippets, and one-off local scripts. This fragmentation
+creates unnecessary friction when researchers need to compare methods, preserve
+runtime metadata, serialize outputs, or move an analysis from one user or
+machine to another.
 
-De-Time addresses that software problem. Its primary goal is to provide one
-consistent package surface for decomposition workflows. The software contribution
-is therefore architectural and workflow-oriented rather than algorithmic.
+De-Time addresses that software problem. Its contribution is therefore not a
+new algorithm and not a benchmark paper. The contribution is a workflow layer:
 
-## 2. Software Overview
+- one configuration contract,
+- one result contract,
+- one public import surface,
+- one public CLI for retained package workflows,
+- selected native acceleration where it materially improves throughput.
 
-De-Time exposes one public interface built around:
+## 2. Public Software Surface
+
+The canonical public interface is built around:
 
 - `DecompositionConfig` for method and runtime configuration,
 - `DecompResult` for standardized outputs,
-- `decompose()` for dispatching decomposition runs,
+- `decompose()` for dispatch,
 - a CLI with `run`, `batch`, `profile`, and `version`,
-- native capability helpers for selected flagship methods.
+- native capability helpers for the retained flagship methods.
 
-The canonical import path is `detime`. A deprecated `tsdecomp` compatibility
-package re-exports the same public surface and warns on use.
+The canonical package identity is now `detime`. The older `tsdecomp` namespace
+remains available only as a deprecated compatibility layer for one deprecation
+cycle.
 
-The package currently centers on four flagship workflows:
+The main package centers on four flagship workflows:
 
-- `SSA` for interpretable single-series decomposition,
-- `STD` for seasonal-trend decomposition with stable defaults,
-- `STDR` for the same decomposition family with shared seasonal-shape handling,
-- `MSSA` for joint multichannel decomposition.
+- `SSA`
+- `STD`
+- `STDR`
+- `MSSA`
 
-Additional integrations are retained for specialist use cases, including `STL`,
-`MSTL`, `EMD`, `CEEMDAN`, `VMD`, `WAVELET`, `MVMD`, `MEMD`, `MA_BASELINE`, and
-`GABOR_CLUSTER`. These are documented as wrappers or optional paths rather than
-as co-equal flagship methods.
+Additional methods such as `STL`, `MSTL`, `EMD`, `CEEMDAN`, `VMD`, `WAVELET`,
+`MVMD`, `MEMD`, and `GABOR_CLUSTER` are retained as wrappers or optional
+backends rather than presented as co-equal flagship methods.
 
-## 3. Package Boundary
+## 3. Package Boundary and Relation to Earlier Artifacts
 
-An important revision in the current submission is the separation of the core
-software package from benchmark-oriented artifacts. Earlier repository layouts
-mixed library code with synthetic benchmark generators, leaderboard helpers,
-and benchmark-derived methods. For the present submission, those components were
-moved into a companion repository, `de-time-bench`.
+Earlier repository states mixed software-package concerns with benchmark
+artifacts, synthetic generators, leaderboard helpers, and benchmark-derived
+methods. In the reviewed revision, those components were moved out of the main
+package boundary into the companion repository `de-time-bench`.
 
-This means the main De-Time package no longer ships:
+The main De-Time package no longer ships:
 
-- leaderboard orchestration,
-- benchmark configuration helpers,
+- leaderboard orchestration as part of the public surface,
+- benchmark configuration helpers as public package features,
 - benchmark-derived methods `DR_TS_REG`, `DR_TS_AE`, and `SL_LIB`,
-- benchmark visualizations as part of the public package surface.
+- benchmark-only synthetic artifact code inside the installable package.
 
-That split is central to the software positioning of this submission. The main
-repository is now a software package first, with clear install, import, test,
-and documentation boundaries.
+That split is central to the present submission. The software submission is now
+the installable decomposition package itself, not a repackaged benchmark stack.
 
-## 4. Quality and Maintainability
+## 4. Quality Discipline and Release Story
 
-The repository includes:
+The current public installation story is intentionally conservative. Because a
+PyPI release of `de-time` is still pending, the reviewed documentation uses a
+GitHub source install rather than claiming a `pip install de-time` route that
+does not yet exist.
 
-- automated tests for the retained public interface,
-- CI for package builds, documentation builds, and distribution validation,
-- strict documentation builds with MkDocs,
-- source and wheel packaging checks,
-- native-extension fallbacks where native kernels are unavailable.
+The reviewed package includes:
 
-Coverage targets are applied to the canonical `detime` package rather than to
-the deprecated compatibility alias.
+- tests for the retained public interface,
+- strict documentation builds,
+- wheel and source-distribution validation,
+- `twine check` for release artifacts,
+- a coverage gate of `fail_under = 90` on the canonical core-plus-flagship
+  coverage scope,
+- native fallback handling where native kernels are unavailable.
+
+In the latest local review run, the gated `detime` coverage report reached
+`91.25%`.
 
 ## 5. Relationship to Related Software
 
-De-Time is designed to complement, not replace, specialist libraries.
+De-Time is designed to complement specialist libraries rather than replace
+them.
 
-- `statsmodels` remains the upstream reference for classical STL-style methods.
-- `PyEMD` remains the upstream reference for EMD-family methods.
-- `PyWavelets` remains the upstream reference for wavelet transforms.
-- `PySDKit` provides optional multivariate backends for selected workflows.
-- SSA-focused packages remain valuable when an SSA-only environment is desired.
+| Package | Where it is deeper | De-Time position |
+|---|---|---|
+| `statsmodels` | mature classical decomposition and modeling | De-Time wraps selected classical methods while standardizing the workflow layer |
+| `PyEMD` | deeper EMD-family tooling | De-Time uses EMD-family methods as one family inside a broader workflow contract |
+| `PyWavelets` | deeper wavelet transforms and transform-specific APIs | De-Time exposes wavelet decomposition for workflow consistency, not wavelet leadership |
+| `PySDKit` | broader signal-decomposition toolkit and optional multivariate backends | De-Time uses `PySDKit` selectively for `MVMD` and `MEMD` while maintaining its own config/result layer |
+| `SSALib` | deeper SSA-only environment | De-Time offers SSA as one flagship path inside a cross-family package |
+| `sktime` | current maintained VMD reality plus a broader time-series transform ecosystem | De-Time now treats the maintained `sktime` VMD path as the relevant comparison rather than relying on the older standalone `vmdpy` identity |
 
-De-Time adds a workflow layer across these tools by standardizing configuration,
-results, and package-level ergonomics.
+The main software claim is therefore not method-count breadth alone. It is the
+combination of:
 
-## 6. Conclusion
+- a common `DecompositionConfig`,
+- a common `DecompResult`,
+- one CLI workflow surface,
+- one package-level story for native support, profiling, and saved outputs.
 
-De-Time contributes reusable research software for time-series decomposition by
-providing a coherent software interface, clear package boundary, and documented
-workflow surface. The current revision emphasizes the canonical `detime`
-namespace, the deprecated status of `tsdecomp`, the flagship-method focus on
-`SSA`, `STD`, `STDR`, and `MSSA`, and the separation of benchmark artifacts into
-the companion `de-time-bench` repository.
+## 6. Minimal Software Evidence
+
+To keep the paper grounded in software behavior rather than in benchmark-score
+storytelling, we report a small runtime snapshot from one Windows / Python
+3.11 wheel installation of the reviewed package:
+
+| Method | Python mean runtime (ms) | Native mean runtime (ms) | Speedup |
+|---|---:|---:|---:|
+| `SSA` | 968.988 | 574.751 | 1.69x |
+| `STD` | 1.449 | 0.060 | 24.30x |
+| `STDR` | 1.767 | 0.064 | 27.81x |
+
+These numbers are not presented as universal performance claims. They are
+included to show that the native-backed path is a real software capability in
+the retained flagship package.
+
+## 7. Limitations and Non-Goals
+
+De-Time does not claim:
+
+- to replace specialist libraries in their deepest method-specific domains,
+- to make every wrapper as mature as the flagship methods,
+- to turn optional backend integrations into fully independent in-house
+  implementations,
+- to present a large external user community at the current stage.
+
+Adoption is still early. The present submission therefore focuses on software
+boundary, installability, documented workflow design, and package-level
+maintainability rather than on claims of large-scale community uptake.
+
+## 8. Conclusion
+
+De-Time contributes workflow-oriented research software for reproducible
+time-series decomposition. The reviewed revision emphasizes a canonical
+`detime` package identity, a narrower and cleaner public software surface, a
+separation from benchmark artifacts, explicit positioning relative to
+specialist libraries such as `PySDKit`, `SSALib`, and `sktime`, and a quality
+story grounded in install validation, documentation builds, coverage gates, and
+selected native-backed acceleration.

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib
 import sys
+import time
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -71,8 +72,92 @@ def test_native_invoke_errors_when_module_missing(monkeypatch) -> None:
     monkeypatch.setattr(native_mod, "_MODULE", None)
     monkeypatch.setattr(native_mod, "_IMPORT_ERROR", RuntimeError("missing native"))
     assert native_mod.native_capabilities() == {}
+    assert isinstance(native_mod.native_import_error(), RuntimeError)
     with pytest.raises(RuntimeError, match="Native extension is not available"):
         native_mod.invoke_native("ssa_decompose", np.arange(3.0))
+
+
+def test_native_helpers_cover_fallback_capabilities_and_missing_exports(monkeypatch) -> None:
+    fake_module = SimpleNamespace(ssa_decompose=lambda y: y)
+    monkeypatch.setattr(native_mod, "_MODULE", fake_module)
+    monkeypatch.setattr(native_mod, "_IMPORT_ERROR", None)
+
+    caps = native_mod.native_capabilities()
+    assert caps["ssa_decompose"] is True
+    assert caps["std_decompose"] is False
+    assert native_mod.native_import_error() is None
+
+    with pytest.raises(AttributeError, match="does not export"):
+        native_mod.invoke_native("std_decompose", np.arange(3.0))
+
+
+def test_backend_runtime_helpers_cover_legacy_keys_and_profile_metadata(monkeypatch) -> None:
+    cfg, runtime = backends.split_runtime_params(
+        {
+            "alpha": 1,
+            backends.LEGACY_RUNTIME_KEY: {
+                "backend": "python",
+                "speed_mode": "fast",
+                "profile": True,
+                "device": "cuda",
+                "n_jobs": 3,
+                "seed": 7,
+            },
+        }
+    )
+    assert cfg == {"alpha": 1}
+    assert runtime.backend == "python"
+    assert runtime.speed_mode == "fast"
+    assert runtime.profile is True
+    assert runtime.device == "cuda"
+    assert runtime.n_jobs == 3
+    assert runtime.seed == 7
+
+    with pytest.raises(ValueError, match="Unsupported speed_mode"):
+        backends._normalize_speed_mode("warp")
+
+    with pytest.raises(ValueError, match="GPU backend"):
+        backends.resolve_backend("SSA", backends.RuntimeOptions(backend="gpu"))
+
+    monkeypatch.setattr(backends, "native_extension_available", lambda: True)
+    monkeypatch.setattr(backends, "has_native_method", lambda name: True)
+    monkeypatch.setattr(backends, "native_import_error", lambda: None)
+    assert (
+        backends.resolve_backend(
+            "SSA",
+            backends.RuntimeOptions(backend="native"),
+            native_methods=("ssa_decompose",),
+        )
+        == "native"
+    )
+
+    native_payload = {
+        "trend": [1, 1],
+        "season": [0, 0],
+        "residual": [0, 0],
+        "meta": {"method": "OTHER"},
+    }
+    converted = backends.result_from_native_payload(native_payload, method="SSA")
+    assert converted.meta["method"] == "SSA"
+    assert converted.meta["native_method"] == "OTHER"
+
+    existing = DecompResult(trend=np.zeros(2), season=np.zeros(2), residual=np.zeros(2))
+    assert backends.result_from_native_payload(existing, method="SSA") is existing
+
+    with pytest.raises(TypeError, match="Unsupported native payload"):
+        backends.result_from_native_payload(object(), method="SSA")
+
+    profiled = backends.finalize_result(
+        DecompResult(trend=np.zeros(2), season=np.zeros(2), residual=np.zeros(2)),
+        method="SSA",
+        runtime=backends.RuntimeOptions(backend="python", profile=True),
+        backend_used="python",
+        started_at=time.perf_counter() - 0.01,
+    )
+    assert profiled.meta["backend_requested"] == "python"
+    assert profiled.meta["backend_used"] == "python"
+    assert profiled.meta["speed_mode"] == "exact"
+    assert profiled.meta["runtime_ms"] >= 0.0
 
 
 def test_io_helpers_cover_edge_cases(tmp_path) -> None:

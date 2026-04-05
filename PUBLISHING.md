@@ -13,6 +13,9 @@ compatibility aliases.
 - preferred CLI: `detime`
 - legacy CLI alias: `tsdecomp`
 
+Until `de-time` is actually published on PyPI, reviewer-facing docs should use
+the GitHub installation path rather than claiming `pip install de-time`.
+
 ## Before the first public release
 
 Confirm these repository-level settings match the actual standalone repository:
@@ -96,7 +99,6 @@ The docs workflow builds MkDocs and deploys to GitHub Pages. Before using it:
 
 ## Notes on compatibility
 
-The current repository keeps the implementation under `src/tsdecomp/` and adds
-`src/detime/` as a compatibility-first public shim. That is deliberate: it
-keeps the De-Time rebrand compatible with the legacy Python/runtime surface
-while avoiding a high-risk internal rewrite during the first standalone release.
+The canonical implementation now lives under `src/detime/`. The
+`src/tsdecomp/` tree remains only as a deprecated compatibility alias that
+re-exports the De-Time public surface and warns on import or CLI use.

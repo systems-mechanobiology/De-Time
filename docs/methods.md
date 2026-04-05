@@ -20,8 +20,8 @@
 | `VMD` | univariate | optional backend wrapper | variational mode decomposition |
 | `WAVELET` | univariate | `PyWavelets` wrapper | multi-scale decomposition |
 | `MA_BASELINE` | univariate | internal baseline | lightweight sanity check |
-| `MVMD` | multivariate | optional `PySDKit` backend | install with `de-time[multivar]` |
-| `MEMD` | multivariate | optional `PySDKit` backend | install with `de-time[multivar]` |
+| `MVMD` | multivariate | optional `PySDKit` backend | reinstall De-Time with the `multivar` extra |
+| `MEMD` | multivariate | optional `PySDKit` backend | reinstall De-Time with the `multivar` extra |
 | `GABOR_CLUSTER` | univariate | experimental internal method | use after you already trust a baseline |
 
 ## Moved out of the main package
