@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.24)
 project(detime LANGUAGES CXX)
 
 set(PYBIND11_FINDPYTHON ON)
-find_package(Python COMPONENTS Interpreter Development REQUIRED)
+find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
 find_package(pybind11 CONFIG REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
