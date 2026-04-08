@@ -9,7 +9,9 @@ from detime import DecompositionConfig, decompose
 ```
 
 Legacy code may continue to import `tsdecomp` for one deprecation cycle, but it
-now emits a warning and resolves to the same De-Time implementation.
+now emits a warning and resolves to the same De-Time implementation. Older
+submodule imports outside that package-level surface are no longer part of the
+packaged compatibility contract.
 
 ## CLI
 
@@ -33,3 +35,8 @@ The following are no longer part of the main package:
 - `SL_LIB`
 
 These moved to the companion benchmark repository `de-time-bench`.
+
+Transition-era compatibility submodules such as `tsdecomp.backends`,
+`tsdecomp.leaderboard`, and `tsdecomp.methods.*` are also intentionally absent
+from install artifacts. Migrate those imports to the canonical `detime`
+surface rather than relying on the old namespace layout.

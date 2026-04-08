@@ -8,8 +8,6 @@ omit =
     */detime/io.py
     */detime/viz.py
     */detime/metrics.py
-    */detime/bench_config.py
-    */detime/leaderboard.py
     */detime/methods/ceemdan.py
     */detime/methods/emd.py
     */detime/methods/gabor_cluster.py

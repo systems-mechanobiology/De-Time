@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib
+from importlib.machinery import PathFinder
 import os
 from pathlib import Path
 import subprocess
@@ -31,21 +32,22 @@ def test_tsdecomp_import_warns_and_reexports() -> None:
     assert {"DR_TS_REG", "DR_TS_AE", "SL_LIB"}.isdisjoint(set(legacy.MethodRegistry.list_methods()))
 
 
-def test_tsdecomp_backends_alias_matches_detime() -> None:
-    legacy_backends = importlib.import_module("tsdecomp.backends")
-    detime_backends = importlib.import_module("detime.backends")
-    assert legacy_backends.RuntimeOptions is detime_backends.RuntimeOptions
-    assert legacy_backends.RUNTIME_KEY == detime_backends.RUNTIME_KEY
+def test_removed_legacy_modules_are_not_packaged() -> None:
+    legacy = importlib.import_module("tsdecomp")
 
-
-def test_removed_legacy_methods_raise_importerror() -> None:
     for module_name in (
-        "tsdecomp.methods.dr_ts_reg",
-        "tsdecomp.methods.dr_ts_ae",
-        "tsdecomp.methods.sl_lib",
+        "tsdecomp.backends",
+        "tsdecomp.bench_config",
+        "tsdecomp.core",
+        "tsdecomp.io",
+        "tsdecomp.leaderboard",
+        "tsdecomp.metrics",
+        "tsdecomp.profile",
+        "tsdecomp.registry",
+        "tsdecomp.viz",
+        "tsdecomp.methods",
     ):
-        with pytest.raises(ImportError, match="de-time-bench"):
-            importlib.import_module(module_name)
+        assert PathFinder.find_spec(module_name, legacy.__path__) is None
 
 
 def test_dual_cli_entrypoints_help() -> None:

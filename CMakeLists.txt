@@ -57,10 +57,11 @@ install(
   PATTERN "*.py"
 )
 install(
-  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/tsdecomp/"
+  FILES
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsdecomp/__init__.py"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsdecomp/__main__.py"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsdecomp/_compat.py"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsdecomp/cli.py"
   DESTINATION "tsdecomp"
-  FILES_MATCHING
-  PATTERN "__pycache__" EXCLUDE
-  PATTERN "*.py"
 )
 install(TARGETS _detime_native DESTINATION "detime")

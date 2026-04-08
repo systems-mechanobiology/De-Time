@@ -15,6 +15,7 @@ nav:
   - Install: install.md
   - Quickstart: quickstart.md
   - Choose a Method: choose-a-method.md
+  - ML Workflows: ml-workflows.md
   - Methods: methods.md
   - API: api.md
   - Architecture: architecture.md

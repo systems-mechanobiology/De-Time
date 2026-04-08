@@ -38,6 +38,9 @@ jobs:
           CIBW_CONFIG_FILE: ${{ github.workspace }}/cibuildwheel.toml
         run: python -m cibuildwheel --output-dir wheelhouse
 
+      - name: Check wheel contents
+        run: python scripts/check_dist_contents.py wheelhouse/*.whl
+
       - name: Smoke install built wheel
         run: |
           python -c "import glob, subprocess, sys; wheels = glob.glob('wheelhouse/*.whl'); assert wheels, 'no wheels built'; subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--force-reinstall', wheels[0]])"
@@ -67,6 +70,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip build twine
           python -m build --sdist --outdir dist
+          python scripts/check_dist_contents.py dist/*.tar.gz
           python -m twine check dist/*
           python -c "import glob, subprocess, sys; sdists = glob.glob('dist/*.tar.gz'); assert sdists, 'no sdists built'; subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--force-reinstall', sdists[0]])"
           python -m detime version

@@ -7,15 +7,16 @@ decomposition. The package does not introduce a new decomposition algorithm.
 Instead, it provides a coherent software surface for configuring, running,
 profiling, and saving decomposition workflows across several retained method
 families. The canonical package namespace is `detime`, while `tsdecomp`
-remains only as a deprecated compatibility alias. The reviewed software surface
-centers on four flagship workflows, `SSA`, `STD`, `STDR`, and `MSSA`, and
-retains additional wrapper-based integrations with explicit maturity labels.
-Benchmark-oriented artifact code was separated into a companion repository so
-that the main package is a clean software submission rather than a mixed
-library-plus-benchmark artifact. The current review snapshot is installable
-from GitHub, includes strict documentation builds, wheel and source
-distribution checks, a coverage gate on the canonical core-plus-flagship path,
-and selected native-backed acceleration for retained flagship methods.
+remains only as a deprecated top-level import and CLI alias. The reviewed
+software surface centers on four flagship workflows, `SSA`, `STD`, `STDR`, and
+`MSSA`, and retains additional wrapper-based integrations with explicit
+maturity labels. Benchmark-oriented artifact code was separated into a
+companion repository so that the main package is a clean software submission
+rather than a mixed library-plus-benchmark artifact. The current review
+snapshot is installable from GitHub, includes strict documentation builds,
+wheel and source-distribution checks, artifact-layout validation, a coverage
+gate on the canonical core-plus-flagship path, and selected native-backed
+acceleration for retained flagship methods.
 
 ## 1. Introduction
 
@@ -34,6 +35,12 @@ new algorithm and not a benchmark paper. The contribution is a workflow layer:
 - one public CLI for retained package workflows,
 - selected native acceleration where it materially improves throughput.
 
+This workflow layer is also relevant to machine learning practice. In typical
+ML pipelines, decomposition is used for denoising, feature extraction,
+representation shaping, and preprocessing ahead of downstream estimators.
+De-Time targets that workflow friction directly by standardizing configuration,
+results, profiling, and saved outputs across retained decomposition families.
+
 ## 2. Public Software Surface
 
 The canonical public interface is built around:
@@ -45,8 +52,8 @@ The canonical public interface is built around:
 - native capability helpers for the retained flagship methods.
 
 The canonical package identity is now `detime`. The older `tsdecomp` namespace
-remains available only as a deprecated compatibility layer for one deprecation
-cycle.
+remains available only as a deprecated top-level import and CLI compatibility
+layer for one deprecation cycle.
 
 The main package centers on four flagship workflows:
 
@@ -71,6 +78,8 @@ The main De-Time package no longer ships:
 - leaderboard orchestration as part of the public surface,
 - benchmark configuration helpers as public package features,
 - benchmark-derived methods `DR_TS_REG`, `DR_TS_AE`, and `SL_LIB`,
+- transition-era `tsdecomp` submodules outside the top-level import and CLI
+  compatibility path,
 - benchmark-only synthetic artifact code inside the installable package.
 
 That split is central to the present submission. The software submission is now
@@ -83,18 +92,25 @@ PyPI release of `de-time` is still pending, the reviewed documentation uses a
 GitHub source install rather than claiming a `pip install de-time` route that
 does not yet exist.
 
+The current `0.1.0` version string therefore identifies the reviewed snapshot
+rather than a completed public release. The corresponding Git tag, GitHub
+release, and PyPI publication are intentionally deferred until the final
+release gate.
+
 The reviewed package includes:
 
 - tests for the retained public interface,
 - strict documentation builds,
 - wheel and source-distribution validation,
+- artifact-layout checks that verify removed benchmark stubs and legacy
+  transition modules do not re-enter wheel or sdist payloads,
 - `twine check` for release artifacts,
 - a coverage gate of `fail_under = 90` on the canonical core-plus-flagship
   coverage scope,
 - native fallback handling where native kernels are unavailable.
 
 In the latest local review run, the gated `detime` coverage report reached
-`91.25%`.
+`91.40%`.
 
 ## 5. Relationship to Related Software
 

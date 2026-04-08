@@ -4,6 +4,12 @@ This file describes the standalone release flow for the `de-time`
 distribution, the `detime` import path, and the legacy `tsdecomp`
 compatibility aliases.
 
+## Current status
+
+The repository is currently in a pre-release review state. The version string
+`0.1.0` identifies the reviewed snapshot used for submission preparation, but
+no Git tag, GitHub release, or PyPI publication has been created yet.
+
 ## Release contract
 
 - product brand: `De-Time`
@@ -15,6 +21,11 @@ compatibility aliases.
 
 Until `de-time` is actually published on PyPI, reviewer-facing docs should use
 the GitHub installation path rather than claiming `pip install de-time`.
+
+The packaged compatibility scope is intentionally narrow: only top-level
+`import tsdecomp` and the `tsdecomp` CLI alias remain. Transition-era
+submodules such as `tsdecomp.methods.*`, `tsdecomp.leaderboard`, and
+`tsdecomp.bench_config` are not part of the release payload.
 
 ## Before the first public release
 
@@ -48,6 +59,7 @@ python3 -m pip install -U pip build twine
 python3 -m pip install -e .[dev,multivar,docs]
 python3 -m pytest tests -q
 python3 -m build
+python3 scripts/check_dist_contents.py dist/*.tar.gz dist/*.whl
 python3 -m twine check dist/*
 ```
 
@@ -100,5 +112,6 @@ The docs workflow builds MkDocs and deploys to GitHub Pages. Before using it:
 ## Notes on compatibility
 
 The canonical implementation now lives under `src/detime/`. The
-`src/tsdecomp/` tree remains only as a deprecated compatibility alias that
-re-exports the De-Time public surface and warns on import or CLI use.
+`src/tsdecomp/` tree now retains only the top-level compatibility entrypoints
+needed for `import tsdecomp` and the legacy CLI alias. Transition-era
+submodules are intentionally omitted from the packaged artifacts.

@@ -103,7 +103,7 @@ def test_std_decomposition_exposes_dispersion_component() -> None:
 
     result = decompose(
         y,
-        DecompositionConfig(method="STD", params={"period": 4}),
+        DecompositionConfig(method="STD", params={"period": 4}, backend="python"),
     )
 
     np.testing.assert_allclose(result.trend[:4], np.full(4, 10.0))
@@ -124,7 +124,7 @@ def test_std_auto_period_and_empty_series_helper() -> None:
 
     inferred = decompose(
         y,
-        DecompositionConfig(method="STD", params={}),
+        DecompositionConfig(method="STD", params={}, backend="python"),
     )
     assert inferred.meta["period"] > 1
 
@@ -145,7 +145,7 @@ def test_stdr_keeps_shared_shape_metadata() -> None:
 
     result = decompose(
         y,
-        DecompositionConfig(method="STDR", params={"period": 4}),
+        DecompositionConfig(method="STDR", params={"period": 4}, backend="python"),
     )
 
     assert result.meta["method"] == "STDR"
@@ -196,7 +196,7 @@ def test_std_channelwise_accepts_2d_input() -> None:
 
     result = decompose(
         series,
-        DecompositionConfig(method="STD", params={"period": 12}),
+        DecompositionConfig(method="STD", params={"period": 12}, backend="python"),
     )
 
     assert result.trend.shape == series.shape

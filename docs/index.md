@@ -26,6 +26,8 @@ workflows.
 - [Install](install.md) for package installation and extras.
 - [Quickstart](quickstart.md) for the first successful Python and CLI runs.
 - [Choose a Method](choose-a-method.md) for picking a starting workflow.
+- [ML Workflows](ml-workflows.md) for the package's machine-learning-facing use
+  cases.
 - [Methods](methods.md) for method family details.
 - [Migration from `tsdecomp`](migration.md) if you are upgrading existing code.
 

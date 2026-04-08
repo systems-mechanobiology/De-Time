@@ -12,8 +12,11 @@ Research software for reproducible time-series decomposition.
 De-Time provides one stable software surface for decomposition workflows that
 would otherwise be spread across notebooks, method-specific wrappers, and
 one-off scripts. The canonical package is `detime`. The distribution name is
-`de-time`. The legacy `tsdecomp` import and CLI remain available for one
-deprecation cycle.
+`de-time`. The legacy top-level `tsdecomp` import and CLI remain available for
+one deprecation cycle. Transition-era `tsdecomp` submodules no longer ship in
+install artifacts.
+
+The latest reviewed core-plus-flagship coverage snapshot is `91.40%`.
 
 ## Scope
 
@@ -63,8 +66,10 @@ pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/D
 ```
 
 The product name is `De-Time`, the distribution name is `de-time`, and the
-canonical import is `detime`. Until the first PyPI release of De-Time exists,
-install from GitHub rather than from the unrelated `detime` package on PyPI.
+canonical import is `detime`. The current `0.1.0` version string identifies
+the reviewed GitHub snapshot, not a tagged GitHub release or published PyPI
+artifact. Until the first formal release exists, install from GitHub rather
+than from the unrelated `detime` package on PyPI.
 
 ## Quickstart
 
@@ -114,12 +119,14 @@ deprecation notice.
 This repository now ships only the software package, documentation, tests, and
 examples needed for `detime` itself. Benchmark orchestration, leaderboard
 artifacts, and benchmark-derived methods have been split into the companion
-repository `de-time-bench`.
+repository `de-time-bench`. Only the top-level `tsdecomp` import and CLI alias
+remain packaged for compatibility.
 
 ## Documentation
 
 - Homepage: <https://systems-mechanobiology.github.io/De-Time/>
 - Quickstart: <https://systems-mechanobiology.github.io/De-Time/quickstart/>
+- ML workflows: <https://systems-mechanobiology.github.io/De-Time/ml-workflows/>
 - Methods: <https://systems-mechanobiology.github.io/De-Time/methods/>
 - API: <https://systems-mechanobiology.github.io/De-Time/api/>
 - Migration guide: <https://systems-mechanobiology.github.io/De-Time/migration/>

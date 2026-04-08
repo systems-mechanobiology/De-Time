@@ -45,11 +45,21 @@ Python implementations when a fallback exists.
 
 ## Compatibility alias
 
-The preferred import is `detime`. The `tsdecomp` import and CLI remain
-available only as a deprecated compatibility layer.
+The preferred import is `detime`. The legacy compatibility contract is limited
+to:
+
+- top-level `import tsdecomp`
+- the `tsdecomp` executable
+- `python -m tsdecomp`
+
+Transition-era submodules such as `tsdecomp.backends`,
+`tsdecomp.leaderboard`, and `tsdecomp.methods.*` are intentionally not shipped
+in install artifacts.
 
 ## Future release path
 
 Once a PyPI release of `de-time` exists, the install command can be shortened
 to `pip install de-time`. Until then, the GitHub install path above is the
-public command that should be tested in clean environments.
+public command that should be tested in clean environments. The current `0.1.0`
+version string identifies the reviewed snapshot before formal tag, GitHub
+release, and PyPI publication.

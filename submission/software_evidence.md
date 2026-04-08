@@ -8,17 +8,21 @@ revision.
 - Public install path in docs: GitHub source install
 - Reason: a PyPI release of `de-time` is still pending, so the docs avoid a
   broken `pip install de-time` claim
+- Version string used for the reviewed snapshot: `0.1.0`
+- Formal Git tag, GitHub release, and PyPI publication: not created yet
 - Canonical import: `detime`
-- Deprecated alias: `tsdecomp`
+- Deprecated compatibility scope: top-level `tsdecomp` import and CLI only
 
 ## Package-boundary evidence
 
 - `src/detime/` is the canonical implementation path
-- `src/tsdecomp/` is retained only as a deprecated compatibility alias
+- `src/tsdecomp/` is retained only for the top-level compatibility entrypoints
 - benchmark-derived methods `DR_TS_REG`, `DR_TS_AE`, and `SL_LIB` were removed
   from the main package surface
 - benchmark-oriented artifact code now lives in the companion repository
   `de-time-bench`
+- wheel and sdist payloads exclude transition-era `tsdecomp` submodules and
+  removed benchmark stubs such as `detime.leaderboard`
 
 ## Current quality checks
 
@@ -26,6 +30,7 @@ revision.
 - `pytest tests --cov=detime --cov-config=.coveragerc`
 - `mkdocs build --strict`
 - `python -m build`
+- `python scripts/check_dist_contents.py dist/*.tar.gz dist/*.whl`
 - `python -m twine check dist/*`
 - wheel smoke install
 - sdist smoke install
@@ -36,7 +41,7 @@ revision.
 - Coverage scope: canonical `detime` core-plus-flagship path
 - Optional wrappers, visualization helpers, and CLI/I/O workflows are still
   tested, but they are not counted inside the gated coverage scope
-- Latest gated local coverage result: `91.25%`
+- Latest gated local coverage result: `91.40%`
 
 ## Related software matrix
 

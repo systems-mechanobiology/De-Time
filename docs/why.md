@@ -14,3 +14,9 @@ De-Time responds to that problem as software, not as a new method. It standardiz
 
 The project is deliberately narrow. It aims to be a good decomposition package,
 not a general forecasting framework and not a benchmark leaderboard.
+
+That narrow scope is still relevant to machine learning workflows. In practice,
+decomposition is often used before downstream modeling for denoising, feature
+extraction, representation shaping, and shared-structure analysis across
+channels. De-Time focuses on making those workflow steps reproducible rather
+than on claiming a new decomposition algorithm.

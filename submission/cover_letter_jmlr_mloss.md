@@ -12,9 +12,9 @@ decomposition workflows that would otherwise be spread across notebook code,
 method-specific wrappers, and one-off scripts.
 
 The canonical package namespace is `detime`. The older `tsdecomp` namespace is
-retained only as a deprecated compatibility alias. The public software surface
-is intentionally narrow and centers on four flagship workflows: `SSA`, `STD`,
-`STDR`, and `MSSA`.
+retained only as a deprecated top-level import and CLI alias. The public
+software surface is intentionally narrow and centers on four flagship
+workflows: `SSA`, `STD`, `STDR`, and `MSSA`.
 
 This revision also makes a package-boundary change that we consider essential
 for software review. Benchmark-oriented artifact code, synthetic benchmark
@@ -27,6 +27,11 @@ GitHub installation path in the reviewed documentation because a PyPI release
 of `de-time` is still pending. We prefer this explicit pre-release install
 story over claiming a broken public `pip install de-time` path.
 
+The current version string is `0.1.0`, but it should be read as a reviewed
+snapshot identifier rather than as evidence of a completed public release. We
+have not yet created the corresponding Git tag, GitHub release, or PyPI
+publication.
+
 The repository includes:
 
 - tests for the retained public interface,
@@ -34,11 +39,13 @@ The repository includes:
 - wheel and source-distribution validation,
 - a coverage gate of `fail_under = 90` on the canonical core-plus-flagship
   coverage scope,
+- artifact-layout checks that verify removed benchmark stubs and transition-era
+  compatibility submodules are absent from wheel and sdist payloads,
 - native-backed acceleration for selected flagship methods,
 - migration guidance from the deprecated `tsdecomp` namespace.
 
 In the latest local review run, the gated `detime` coverage report reached
-`91.25%`. We also include a small runtime snapshot showing that the native path
+`91.40%`. We also include a small runtime snapshot showing that the native path
 materially accelerates the retained flagship methods relative to the Python
 fallback on one reviewed wheel installation. Those reviewer-facing details are
 summarized in `submission/software_evidence.md`.

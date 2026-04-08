@@ -54,7 +54,7 @@ different from the Python fallback on retained flagship methods.
   placeholder PyPI command.
 - The canonical coverage gate applies to the `detime` core and flagship path,
   with `fail_under = 90`.
-- The current reviewed snapshot reached `91.25%` on that gated surface in a
+- The current reviewed snapshot reached `91.40%` on that gated surface in a
   local coverage run.
 - Wheel and sdist smoke installs, `mkdocs build --strict`, and `twine check`
   are part of the review-time validation story.

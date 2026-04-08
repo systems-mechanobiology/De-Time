@@ -121,8 +121,12 @@ include = [
   "native/**/*.hpp",
   "native/**/*.h",
   "src/detime/**/*.py",
-  "src/tsdecomp/**/*.py",
+  "src/tsdecomp/__init__.py",
+  "src/tsdecomp/__main__.py",
+  "src/tsdecomp/_compat.py",
+  "src/tsdecomp/cli.py",
   "tests/**/*.py",
+  "scripts/check_dist_contents.py",
 ]
 exclude = [
   ".DS_Store",

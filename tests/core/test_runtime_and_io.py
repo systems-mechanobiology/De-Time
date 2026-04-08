@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-import importlib
+from importlib.machinery import PathFinder
 import sys
 import time
 from pathlib import Path
@@ -330,8 +330,6 @@ def test_viz_plot_helpers(monkeypatch, tmp_path) -> None:
     assert saved
 
 
-def test_benchmark_modules_raise_import_error() -> None:
-    with pytest.raises(ImportError, match="de-time-bench"):
-        importlib.import_module("detime.bench_config")
-    with pytest.raises(ImportError, match="de-time-bench"):
-        importlib.import_module("detime.leaderboard")
+def test_removed_modules_are_not_importable() -> None:
+    assert PathFinder.find_spec("detime.bench_config", detime.__path__) is None
+    assert PathFinder.find_spec("detime.leaderboard", detime.__path__) is None

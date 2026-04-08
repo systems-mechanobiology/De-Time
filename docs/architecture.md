@@ -14,8 +14,10 @@ The canonical implementation lives under `src/detime`.
 
 ## Compatibility layer
 
-`src/tsdecomp` is now a thin compatibility package. It re-exports the public
-De-Time surface and emits deprecation warnings for imports and CLI usage.
+`src/tsdecomp` is now a thin compatibility package. It re-exports the package-
+level De-Time surface and emits deprecation warnings for imports and CLI usage.
+Only the top-level import path and CLI alias remain packaged; transition-era
+submodules are intentionally not shipped in install artifacts.
 
 ## Native boundary
 

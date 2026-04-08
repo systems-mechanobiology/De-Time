@@ -11,7 +11,7 @@ claiming a `pip install de-time` path that is not yet available.
 ## Included here
 
 - canonical `detime` source code,
-- deprecated `tsdecomp` compatibility alias,
+- deprecated `tsdecomp` top-level import and CLI alias,
 - tests for the retained public surface,
 - examples and tutorials for package workflows,
 - documentation for installation, APIs, methods, and migration.
@@ -25,6 +25,10 @@ and benchmark-derived methods now belong to the companion repository
 That split keeps the main package installable and reviewable as software rather
 than as a mixed library-plus-benchmark artifact.
 
+The reviewed install artifacts also exclude transition-era compatibility
+submodules such as `tsdecomp.methods.*`, `tsdecomp.leaderboard`, and
+`tsdecomp.bench_config`.
+
 ## Current validation snapshot
 
 The current reviewed snapshot has been checked with:
@@ -37,4 +41,6 @@ The current reviewed snapshot has been checked with:
 - `twine check dist/*`.
 
 In the latest local review run, the gated `detime` coverage report reached
-`91.25%`.
+`91.40%`. The current `0.1.0` version string identifies this reviewed snapshot;
+formal Git tag, GitHub release, and PyPI publication are intentionally still
+pending.
