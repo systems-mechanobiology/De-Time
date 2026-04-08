@@ -42,7 +42,7 @@ jobs:
 
       - name: Smoke install built wheel
         run: |
-          python -c "import glob, subprocess, sys; tag = f'cp{sys.version_info[0]}{sys.version_info[1]}'; wheels = sorted(w for w in glob.glob('wheelhouse/*.whl') if tag in w); assert wheels, f'no wheel built for {tag}'; subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--force-reinstall', wheels[0]])"
+          python -c "import glob, os, subprocess, sys; from packaging.tags import sys_tags; from packaging.utils import parse_wheel_filename; supported = set(sys_tags()); wheels = []; [wheels.append(path) for path in glob.glob('wheelhouse/*.whl') if parse_wheel_filename(os.path.basename(path))[3] & supported]; assert wheels, 'no supported wheel built for current interpreter'; subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--force-reinstall', sorted(wheels)[0]])"
           python scripts/release_smoke_matrix.py
 
       - name: Upload wheels

@@ -1,5 +1,7 @@
+[tool.cibuildwheel]
 build = "cp310-* cp311-* cp312-*"
 skip = "pp* *musllinux*"
+archs = ["auto64"]
 test-command = """
 python -c "import numpy as np; import detime; from detime import DecompositionConfig, decompose; print(detime.native_capabilities()); x = np.sin(np.linspace(0, 6.28, 64)) + np.linspace(0, 1, 64); backend = 'native' if detime.native_extension_available() and detime.native_capabilities().get('ssa_decompose') else 'python'; res = decompose(x, DecompositionConfig(method='SSA', params={'window': 16, 'rank': 4}, backend=backend, profile=True)); assert res.trend.shape == x.shape; assert res.meta['backend_used'] in {'native', 'python'}"
 python -c "import tsdecomp; from tsdecomp import DecompositionConfig, decompose; x = [0.0, 1.0, 0.5, 1.5]; res = decompose(x, DecompositionConfig(method='MA_BASELINE', params={'window': 2})); assert len(res.trend) == len(x)"
@@ -10,7 +12,7 @@ python -m detime recommend --length 128 --channels 2
 """
 test-requires = []
 
-[environment]
+[tool.cibuildwheel.environment]
 PYTHONFAULTHANDLER = "1"
 OMP_NUM_THREADS = "1"
 MKL_NUM_THREADS = "1"
