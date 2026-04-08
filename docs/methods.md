@@ -2,38 +2,33 @@
 
 ## Flagship methods
 
-| Method | Input | Backend story | Why start here |
-|---|---|---|---|
-| `SSA` | `1D` | native C++ plus Python fallback | strong first choice for interpretable single-series decomposition |
-| `STD` | `1D` and channelwise `2D` | native C++ plus Python fallback | simple seasonal-trend separation with stable defaults |
-| `STDR` | `1D` and channelwise `2D` | native C++ plus Python fallback | same interface as `STD` with shared seasonal-shape estimation |
-| `MSSA` | `2D` | Python implementation | joint multichannel decomposition when channels share structure |
+| Method | Input | Maturity | Backend story | Why start here |
+|---|---|---|---|---|
+| `SSA` | `1D` | flagship | native C++ plus Python fallback | strong first choice for interpretable single-series decomposition |
+| `STD` | `1D` and channelwise `2D` | flagship | native C++ plus Python fallback | simple seasonal-trend separation with stable defaults |
+| `STDR` | `1D` and channelwise `2D` | flagship | native C++ plus Python fallback | robust seasonal-trend decomposition with shared seasonal-shape estimation |
+| `MSSA` | `2D` | flagship | Python implementation | joint multichannel decomposition when channels share structure |
 
 ## Retained wrappers and specialist paths
 
-| Method | Input | Type | Notes |
-|---|---|---|---|
-| `STL` | univariate | `statsmodels` wrapper | good baseline when the primary period is known |
-| `MSTL` | univariate | `statsmodels` wrapper | multiple seasonal periods |
-| `EMD` | univariate | `PyEMD` wrapper | adaptive decomposition |
-| `CEEMDAN` | univariate | `PyEMD` wrapper | ensemble adaptive decomposition |
-| `VMD` | univariate | optional backend wrapper | variational mode decomposition |
-| `WAVELET` | univariate | `PyWavelets` wrapper | multi-scale decomposition |
-| `MA_BASELINE` | univariate | internal baseline | lightweight sanity check |
-| `MVMD` | multivariate | optional `PySDKit` backend | reinstall De-Time with the `multivar` extra |
-| `MEMD` | multivariate | optional `PySDKit` backend | reinstall De-Time with the `multivar` extra |
-| `GABOR_CLUSTER` | univariate | experimental internal method | use after you already trust a baseline |
+| Method | Input | Maturity | Dependency tier | Notes |
+|---|---|---|---|---|
+| `STL` | univariate | stable | core-upstream | good baseline when the primary period is known |
+| `MSTL` | univariate | stable | core-upstream | multiple seasonal periods |
+| `EMD` | univariate | stable | core | adaptive decomposition |
+| `CEEMDAN` | univariate | stable | core | ensemble adaptive decomposition |
+| `VMD` | univariate | stable | core | variational mode decomposition |
+| `WAVELET` | univariate | stable | core-upstream | multi-scale decomposition |
+| `MA_BASELINE` | univariate | stable | core | lightweight sanity check |
+| `MVMD` | multivariate | optional-backend | optional-backend | install with the `multivar` extra |
+| `MEMD` | multivariate | optional-backend | optional-backend | install with the `multivar` extra |
+| `GABOR_CLUSTER` | univariate | experimental | core | use after you already trust a baseline |
 
 ## Moved out of the main package
 
-The following methods are no longer part of `detime`:
-
-- `DR_TS_REG`
-- `DR_TS_AE`
-- `SL_LIB`
-
-These benchmark-derived methods moved to the companion repository
-`de-time-bench`.
+Benchmark-derived methods are not part of `detime`. Companion benchmark work
+now lives in
+[`systems-mechanobiology/de-time-bench`](https://github.com/systems-mechanobiology/de-time-bench).
 
 ## How to read this surface
 
@@ -42,3 +37,5 @@ These benchmark-derived methods moved to the companion repository
 - Treat upstream wrappers as integration convenience, not as evidence that
   De-Time replaces the upstream package.
 - Treat optional multivariate backends as opt-in extras.
+- Use `detime recommend` when you want a machine-readable shortlist instead of
+  choosing manually.

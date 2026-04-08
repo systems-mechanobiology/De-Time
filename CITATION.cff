@@ -1,18 +1,21 @@
 cff-version: 1.2.0
-message: "If you use the reviewed De-Time snapshot in research software or publications, please cite the software record below."
+message: "If you use De-Time in research software or publications, please cite the software record below."
 title: "De-Time"
 version: "0.1.0"
+date-released: 2026-04-08
 type: software
 abstract: >-
   De-Time is workflow-oriented research software for reproducible time-series
-  decomposition. The current 0.1.0 record identifies the reviewed GitHub
-  snapshot prior to formal GitHub release and PyPI publication.
+  decomposition. Release 0.1.0 packages a stable decomposition interface,
+  selected native-backed flagship methods, machine-readable schemas, and a
+  narrow tsdecomp compatibility layer.
 authors:
   - family-names: "Wu"
     given-names: "Zipeng"
     affiliation: "The University of Birmingham"
 license: "BSD-3-Clause"
 repository-code: "https://github.com/systems-mechanobiology/De-Time"
+repository-artifact: "https://github.com/systems-mechanobiology/De-Time/releases/tag/de-time-v0.1.0"
 url: "https://github.com/systems-mechanobiology/De-Time"
 keywords:
   - "time series"
@@ -29,9 +32,10 @@ preferred-citation:
       given-names: "Zipeng"
       affiliation: "The University of Birmingham"
   version: "0.1.0"
+  date-released: 2026-04-08
   url: "https://github.com/systems-mechanobiology/De-Time"
   repository-code: "https://github.com/systems-mechanobiology/De-Time"
+  repository-artifact: "https://github.com/systems-mechanobiology/De-Time/releases/tag/de-time-v0.1.0"
   notes: >-
-    Reviewed repository snapshot before the first formal release. Install from
-    GitHub, import in Python as detime, and treat the top-level tsdecomp import
-    and CLI as deprecated compatibility aliases.
+    Install from PyPI as de-time, import in Python as detime, and treat the
+    top-level tsdecomp import and CLI as deprecated compatibility aliases.

@@ -29,7 +29,12 @@ BANNED_COMMON = {
 BANNED_SDIST = {
     "src/detime/bench_config.py",
     "src/detime/leaderboard.py",
+    "docs/tutorials/visual-benchmark.md",
 }
+
+BANNED_SDIST_PREFIXES = (
+    "docs/assets/generated/tutorials/visual-benchmark/",
+)
 
 
 def _normalize_sdist_member(name: str) -> str:
@@ -39,11 +44,20 @@ def _normalize_sdist_member(name: str) -> str:
     return PurePosixPath(*parts[1:]).as_posix()
 
 
-def _check_entries(entries: set[str], allowed_tsdecomp: set[str], banned: set[str], label: str) -> list[str]:
+def _check_entries(
+    entries: set[str],
+    allowed_tsdecomp: set[str],
+    banned: set[str],
+    label: str,
+    banned_prefixes: tuple[str, ...] = (),
+) -> list[str]:
     failures: list[str] = []
 
     for path in sorted(banned):
         if path in entries:
+            failures.append(f"{label}: banned path present: {path}")
+    for prefix in banned_prefixes:
+        for path in sorted(entry for entry in entries if entry.startswith(prefix)):
             failures.append(f"{label}: banned path present: {path}")
 
     tsdecomp_entries = {entry for entry in entries if entry.startswith("tsdecomp/") or entry.startswith("src/tsdecomp/")}
@@ -70,6 +84,7 @@ def _inspect_sdist(path: str) -> list[str]:
         ALLOWED_TSDECOMP_SDIST,
         BANNED_SDIST,
         path,
+        banned_prefixes=BANNED_SDIST_PREFIXES,
     )
 
 

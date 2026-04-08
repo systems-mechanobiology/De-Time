@@ -6,6 +6,8 @@ python -c "import numpy as np; import detime; from detime import DecompositionCo
 python -c "import tsdecomp; from tsdecomp import DecompositionConfig, decompose; x = [0.0, 1.0, 0.5, 1.5]; res = decompose(x, DecompositionConfig(method='MA_BASELINE', params={'window': 2})); assert len(res.trend) == len(x)"
 python -m detime --help
 python -m tsdecomp --help
+python -m detime schema --name config
+python -m detime recommend --length 128 --channels 2
 """
 test-requires = []
 

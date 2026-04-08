@@ -121,12 +121,17 @@ include = [
   "native/**/*.hpp",
   "native/**/*.h",
   "src/detime/**/*.py",
+  "src/detime/**/*.json",
   "src/tsdecomp/__init__.py",
   "src/tsdecomp/__main__.py",
   "src/tsdecomp/_compat.py",
   "src/tsdecomp/cli.py",
   "tests/**/*.py",
   "scripts/check_dist_contents.py",
+  "scripts/check_doc_consistency.py",
+  "scripts/release_smoke_matrix.py",
+  "scripts/generate_performance_snapshot.py",
+  "scripts/generate_schema_assets.py",
 ]
 exclude = [
   ".DS_Store",
@@ -144,4 +149,9 @@ exclude = [
   "JMLR_*",
   "docs/tutorials/visual-benchmark.md",
   "docs/assets/generated/tutorials/visual-benchmark/**",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src",
 ]

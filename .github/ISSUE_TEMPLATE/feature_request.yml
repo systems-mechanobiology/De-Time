@@ -1,0 +1,25 @@
+name: Feature request
+description: Request a new workflow, method integration, or interface improvement.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What workflow gap are you trying to close?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the API, CLI, documentation, or workflow change you want.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Relevant methods, datasets, downstream tasks, or adoption context.

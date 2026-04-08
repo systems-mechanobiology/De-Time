@@ -57,6 +57,12 @@ install(
   PATTERN "*.py"
 )
 install(
+  DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/src/detime/schema_assets/"
+  DESTINATION "detime/schema_assets"
+  FILES_MATCHING
+  PATTERN "*.json"
+)
+install(
   FILES
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tsdecomp/__init__.py"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tsdecomp/__main__.py"

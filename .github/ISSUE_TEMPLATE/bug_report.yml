@@ -1,0 +1,28 @@
+name: Bug report
+description: Report a reproducible De-Time defect.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What went wrong?
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: Include the command, config, or code path that reproduces the problem.
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: Python version, OS, De-Time version, and backend used.
+    validations:
+      required: true

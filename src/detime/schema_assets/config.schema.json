@@ -1,0 +1,103 @@
+{
+  "description": "Configuration for a decomposition method.",
+  "properties": {
+    "backend": {
+      "default": "auto",
+      "enum": [
+        "auto",
+        "native",
+        "python",
+        "gpu"
+      ],
+      "title": "Backend",
+      "type": "string"
+    },
+    "channel_names": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Channel Names"
+    },
+    "device": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": "cpu",
+      "title": "Device"
+    },
+    "method": {
+      "title": "Method",
+      "type": "string"
+    },
+    "n_jobs": {
+      "default": 1,
+      "title": "N Jobs",
+      "type": "integer"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    },
+    "profile": {
+      "default": false,
+      "title": "Profile",
+      "type": "boolean"
+    },
+    "return_components": {
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Return Components"
+    },
+    "seed": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": 42,
+      "title": "Seed"
+    },
+    "speed_mode": {
+      "default": "exact",
+      "enum": [
+        "exact",
+        "fast"
+      ],
+      "title": "Speed Mode",
+      "type": "string"
+    }
+  },
+  "required": [
+    "method"
+  ],
+  "title": "DecompositionConfig",
+  "type": "object"
+}

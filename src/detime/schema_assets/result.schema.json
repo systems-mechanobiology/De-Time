@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Serialized De-Time decomposition result in full or summary mode.",
+  "oneOf": [
+    {
+      "$defs": {
+        "DiagnosticsModel": {
+          "properties": {
+            "component_count": {
+              "default": 0,
+              "title": "Component Count",
+              "type": "integer"
+            },
+            "component_names": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Component Names",
+              "type": "array"
+            },
+            "component_shapes": {
+              "additionalProperties": {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              "title": "Component Shapes",
+              "type": "object"
+            },
+            "limitations": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Limitations",
+              "type": "array"
+            },
+            "quality_metrics": {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "title": "Quality Metrics",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "title": "DiagnosticsModel",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "components": {
+          "additionalProperties": {
+            "items": {},
+            "type": "array"
+          },
+          "title": "Components",
+          "type": "object"
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/DiagnosticsModel"
+        },
+        "meta": {
+          "additionalProperties": true,
+          "title": "Meta",
+          "type": "object"
+        },
+        "mode": {
+          "const": "full",
+          "default": "full",
+          "title": "Mode",
+          "type": "string"
+        },
+        "residual": {
+          "items": {},
+          "title": "Residual",
+          "type": "array"
+        },
+        "season": {
+          "items": {},
+          "title": "Season",
+          "type": "array"
+        },
+        "trend": {
+          "items": {},
+          "title": "Trend",
+          "type": "array"
+        }
+      },
+      "required": [
+        "trend",
+        "season",
+        "residual"
+      ],
+      "title": "ResultPayloadModel",
+      "type": "object"
+    },
+    {
+      "$defs": {
+        "ArraySummaryModel": {
+          "properties": {
+            "l2_norm": {
+              "title": "L2 Norm",
+              "type": "number"
+            },
+            "max": {
+              "title": "Max",
+              "type": "number"
+            },
+            "mean": {
+              "title": "Mean",
+              "type": "number"
+            },
+            "min": {
+              "title": "Min",
+              "type": "number"
+            },
+            "shape": {
+              "items": {
+                "type": "integer"
+              },
+              "title": "Shape",
+              "type": "array"
+            },
+            "std": {
+              "title": "Std",
+              "type": "number"
+            }
+          },
+          "required": [
+            "mean",
+            "std",
+            "min",
+            "max",
+            "l2_norm"
+          ],
+          "title": "ArraySummaryModel",
+          "type": "object"
+        },
+        "DiagnosticsModel": {
+          "properties": {
+            "component_count": {
+              "default": 0,
+              "title": "Component Count",
+              "type": "integer"
+            },
+            "component_names": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Component Names",
+              "type": "array"
+            },
+            "component_shapes": {
+              "additionalProperties": {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              "title": "Component Shapes",
+              "type": "object"
+            },
+            "limitations": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Limitations",
+              "type": "array"
+            },
+            "quality_metrics": {
+              "additionalProperties": {
+                "type": "number"
+              },
+              "title": "Quality Metrics",
+              "type": "object"
+            },
+            "warnings": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Warnings",
+              "type": "array"
+            }
+          },
+          "title": "DiagnosticsModel",
+          "type": "object"
+        }
+      },
+      "properties": {
+        "components": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ArraySummaryModel"
+          },
+          "title": "Components",
+          "type": "object"
+        },
+        "diagnostics": {
+          "$ref": "#/$defs/DiagnosticsModel"
+        },
+        "meta": {
+          "additionalProperties": true,
+          "title": "Meta",
+          "type": "object"
+        },
+        "mode": {
+          "const": "summary",
+          "default": "summary",
+          "title": "Mode",
+          "type": "string"
+        },
+        "residual": {
+          "$ref": "#/$defs/ArraySummaryModel"
+        },
+        "season": {
+          "$ref": "#/$defs/ArraySummaryModel"
+        },
+        "trend": {
+          "$ref": "#/$defs/ArraySummaryModel"
+        }
+      },
+      "required": [
+        "trend",
+        "season",
+        "residual"
+      ],
+      "title": "SummaryResultPayloadModel",
+      "type": "object"
+    }
+  ],
+  "title": "DeTimeResultPayload"
+}

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: De-Time documentation
+    url: https://systems-mechanobiology.github.io/De-Time/
+    about: Start with the install, quickstart, comparisons, and API pages before opening a ticket.

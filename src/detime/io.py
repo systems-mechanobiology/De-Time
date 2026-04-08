@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 
 from .core import DecompResult
+from .serialization import normalize_fields, serialize_result
 
 
 def _normalize_cols(cols: str | Sequence[str] | None) -> list[str] | None:
@@ -129,12 +130,38 @@ def _flatten_component(name: str, value: np.ndarray, channel_names: list[str]) -
     raise ValueError(f"Component '{name}' must be 1D or 2D for CSV export, got shape {arr.shape}.")
 
 
-def save_result(result: DecompResult, out_dir: Union[str, Path], name: str):
+class NumpyEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, np.integer):
+            return int(obj)
+        if isinstance(obj, np.floating):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        return super().default(obj)
+
+
+def save_result(
+    result: DecompResult,
+    out_dir: Union[str, Path],
+    name: str,
+    *,
+    output_mode: str = "full",
+    fields: str | Sequence[str] | None = None,
+):
     """
     Save decomposition result to CSV and metadata to JSON.
     """
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    selected_fields = normalize_fields(fields)
+
+    if output_mode != "full":
+        payload = serialize_result(result, mode=output_mode, fields=selected_fields)
+        with open(out_dir / f"{name}_{output_mode}.json", "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, cls=NumpyEncoder)
+        return
 
     meta = dict(result.meta or {})
     trend = np.asarray(result.trend)
@@ -179,15 +206,10 @@ def save_result(result: DecompResult, out_dir: Union[str, Path], name: str):
             for key, value in npz_payload.items()
         }
 
-    class NumpyEncoder(json.JSONEncoder):
-        def default(self, obj):
-            if isinstance(obj, np.integer):
-                return int(obj)
-            if isinstance(obj, np.floating):
-                return float(obj)
-            if isinstance(obj, np.ndarray):
-                return obj.tolist()
-            return super().default(obj)
-
     with open(out_dir / f"{name}_meta.json", "w", encoding="utf-8") as f:
         json.dump(meta, f, indent=2, cls=NumpyEncoder)
+
+    if selected_fields:
+        payload = serialize_result(result, mode="full", fields=selected_fields)
+        with open(out_dir / f"{name}_full.json", "w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, cls=NumpyEncoder)

@@ -9,7 +9,14 @@
     "DecompositionConfig",
     "detime run",
     "detime batch",
-    "detime profile"
+    "detime profile",
+    "detime schema",
+    "detime recommend"
+  ],
+  "machine_entrypoints": [
+    "MethodRegistry.list_catalog()",
+    "python -m detime.mcp.server",
+    "src/detime/schema_assets/*.json"
   ],
   "best_first_methods": {
     "known_period_univariate": [
@@ -33,11 +40,14 @@
   "artifact_contract": [
     "*_components.csv",
     "*_meta.json",
-    "*_components_3d.npz"
+    "*_components_3d.npz",
+    "*_summary.json",
+    "*_full.json"
   ],
   "legacy_entrypoints": [
     "tsdecomp run",
     "tsdecomp batch",
     "tsdecomp profile"
-  ]
+  ],
+  "companion_benchmark_repo": "https://github.com/systems-mechanobiology/de-time-bench"
 }

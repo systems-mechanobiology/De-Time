@@ -1,0 +1,71 @@
+{
+  "$defs": {
+    "DiagnosticsModel": {
+      "properties": {
+        "component_count": {
+          "default": 0,
+          "title": "Component Count",
+          "type": "integer"
+        },
+        "component_names": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Component Names",
+          "type": "array"
+        },
+        "component_shapes": {
+          "additionalProperties": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "title": "Component Shapes",
+          "type": "object"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        },
+        "quality_metrics": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Quality Metrics",
+          "type": "object"
+        },
+        "warnings": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Warnings",
+          "type": "array"
+        }
+      },
+      "title": "DiagnosticsModel",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "diagnostics": {
+      "$ref": "#/$defs/DiagnosticsModel"
+    },
+    "meta": {
+      "additionalProperties": true,
+      "title": "Meta",
+      "type": "object"
+    },
+    "mode": {
+      "const": "meta",
+      "default": "meta",
+      "title": "Mode",
+      "type": "string"
+    }
+  },
+  "title": "MetaPayloadModel",
+  "type": "object"
+}

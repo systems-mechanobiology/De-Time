@@ -30,7 +30,8 @@ detime run \
   --series examples/data/example_series.csv \
   --col value \
   --param period=12 \
-  --out_dir out/std_run
+  --out_dir out/std_run \
+  --output-mode summary
 ```
 
 ## Multivariate
@@ -64,5 +65,8 @@ print(result.components["modes"].shape)
 
 - Use [Choose a Method](choose-a-method.md) to decide whether to stay on the
   flagship path or move to a wrapper.
+- Use `detime recommend --length ... --channels ...` when you want a
+  machine-readable shortlist.
+- Use `detime schema --name config` when you want the packaged config schema.
 - Use [Tutorials](tutorials/univariate.md) for step-by-step workflows.
 - Use [Migration from `tsdecomp`](migration.md) if you are updating older code.

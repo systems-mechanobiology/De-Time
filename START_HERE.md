@@ -4,8 +4,6 @@ If you only have one minute, use one of these paths.
 
 ## 1. One Python call
 
-Use this when you already have an array in memory.
-
 ```python
 import numpy as np
 from detime import DecompositionConfig, decompose
@@ -28,45 +26,39 @@ print(result.meta)
 
 ## 2. One file through the CLI
 
-Use this when your agent already has a CSV path.
-
 ```bash
 detime run \
   --method STD \
   --series examples/data/example_series.csv \
   --col value \
   --param period=12 \
-  --out_dir out/std_run
+  --out_dir out/std_run \
+  --output-mode summary
 ```
 
 This writes:
 
-- `out/std_run/example_series_components.csv`
-- `out/std_run/example_series_meta.json`
+- `out/std_run/example_series_summary.json`
 
-## 3. First method choice
+## 3. First routing tool
 
-- start with `STD` or `STDR` if you know the seasonal period
-- start with `SSA` if you want a strong general univariate baseline
-- start with `MSSA` if you have multiple aligned channels
-- move to `EMD`, `CEEMDAN`, `VMD`, `MVMD`, or `MEMD` when adaptive or
-  non-stationary oscillations matter more than classical seasonal structure
+```bash
+detime recommend --length 192 --channels 3 --prefer accuracy
+```
 
-## 4. First backend choice
+## 4. First machine-facing tool
+
+```bash
+detime schema --name method-registry
+```
+
+## 5. First backend choice
 
 - start with `backend="auto"`
 - use `backend="native"` when you want to force a native-backed method and
   fail fast if it is unavailable
 - use `backend="python"` when reproducibility against the pure Python path
   matters more than speed
-
-## 5. First docs to open
-
-- `ENTRYPOINTS.md`
-- `AGENT_MANIFEST.md`
-- `AGENT_INPUT_CONTRACT.md`
-- `docs/quickstart.md`
-- `docs/api.md`
 
 Legacy compatibility note:
 

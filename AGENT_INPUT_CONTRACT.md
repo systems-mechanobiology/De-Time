@@ -21,10 +21,10 @@ tasks in De-Time.
   - a channelwise-capable method such as `STD` or `STDR`
 - If the caller knows the main seasonal period, pass it explicitly in
   `params.period` or the method-specific equivalent.
+- If the task is routing rather than execution, call `detime recommend` or the
+  MCP `recommend_method` tool first.
 - If the caller wants a safe default, use `backend="auto"` and
   `speed_mode="exact"`.
-- If the task is exploratory or shortlist-oriented, consider
-  `speed_mode="fast"` before a final exact rerun.
 
 ## Minimal examples
 
@@ -44,62 +44,24 @@ tasks in De-Time.
 }
 ```
 
-### Decompose one file by a single named column
+### Ask for a method recommendation
 
 ```json
 {
-  "series_ref": "examples/data/example_series.csv",
-  "input_kind": "file",
-  "method": "STD",
-  "col": "value",
-  "params": {
-    "period": 12
-  }
+  "task": "recommend",
+  "length": 192,
+  "channels": 3,
+  "prefer": "accuracy",
+  "allow_optional_backends": false
 }
 ```
 
-### Decompose a multivariate file
+### Request a schema
 
 ```json
 {
-  "series_ref": "examples/data/example_multivariate.csv",
-  "input_kind": "file",
-  "method": "MSSA",
-  "cols": ["north_load", "south_load"],
-  "params": {
-    "window": 24,
-    "rank": 8,
-    "primary_period": 12
-  },
-  "backend": "auto",
-  "speed_mode": "fast"
-}
-```
-
-### Batch a folder
-
-```json
-{
-  "task": "decompose many files with the same method",
-  "glob": "data/*.csv",
-  "method": "STD",
-  "params": {
-    "period": 24
-  },
-  "backend": "auto",
-  "speed_mode": "exact"
-}
-```
-
-### Profile one method
-
-```json
-{
-  "task": "profile one method on representative lengths",
-  "method": "SSA",
-  "lengths": [128, 512, 2048],
-  "backend": "native",
-  "speed_mode": "exact"
+  "task": "schema",
+  "name": "method-registry"
 }
 ```
 
@@ -124,7 +86,7 @@ tasks in De-Time.
 
 ## Expected output contract
 
-Programmatic outputs should be normalized to a `DecompResult`-like shape:
+Programmatic outputs are normalized to a `DecompResult`-like shape:
 
 - `trend`
 - `season`
@@ -132,15 +94,13 @@ Programmatic outputs should be normalized to a `DecompResult`-like shape:
 - `components`
 - `meta`
 
-CLI-friendly persisted outputs should be interpreted as:
+CLI-friendly persisted outputs can be:
 
 - `*_components.csv`
-  - primary 1D or 2D outputs flattened into columns
 - `*_meta.json`
-  - runtime metadata, input layout, backend used, component shapes, channel
-    names
 - `*_components_3d.npz`
-  - optional storage for mode or IMF stacks
+- `*_summary.json`
+- `*_full.json`
 
 ## Handoff hints for downstream agents
 
@@ -148,5 +108,7 @@ CLI-friendly persisted outputs should be interpreted as:
   instead of inferring shape from file naming.
 - Check `meta.backend_used` before claiming native acceleration was actually
   used.
+- Use `summary` or `meta` output mode when token budget matters more than raw
+  arrays.
 - Treat `components` as optional and method-specific.
-- Do not assume every method returns interpretable mode stacks.
+- Use the packaged schemas instead of inferring payload shapes from examples.

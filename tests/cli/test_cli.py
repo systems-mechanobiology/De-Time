@@ -219,3 +219,91 @@ def test_run_command_rejects_multivariate_plotting(monkeypatch, tmp_path):
 
     with pytest.raises((ValueError, NotImplementedError), match="plot|multivariate|2D"):
         cli.cmd_run(args)
+
+
+def test_run_command_passes_output_mode_and_fields(monkeypatch, tmp_path):
+    monkeypatch.setattr(cli, "DecompositionConfig", FakeConfig)
+    monkeypatch.setattr(
+        cli,
+        "read_series",
+        lambda series, col=None, cols=None: np.asarray([1.0, 2.0, 3.0], dtype=float),
+    )
+    monkeypatch.setattr(
+        cli,
+        "decompose",
+        lambda series, cfg: DecompResult(
+            trend=series,
+            season=np.zeros_like(series),
+            residual=np.zeros_like(series),
+            meta={"backend_used": "python"},
+        ),
+    )
+    captured = {}
+    monkeypatch.setattr(
+        cli,
+        "save_result",
+        lambda result, out_dir, name, **kwargs: captured.update(
+            {"out_dir": out_dir, "name": name, **kwargs}
+        ),
+    )
+
+    args = Namespace(
+        method="SSA",
+        series="input.csv",
+        col=None,
+        cols=None,
+        param=[],
+        backend="python",
+        speed_mode="exact",
+        n_jobs=1,
+        profile=False,
+        device="cpu",
+        out_dir=str(tmp_path / "out"),
+        output_mode="summary",
+        fields="meta,diagnostics",
+        plot=False,
+    )
+
+    cli.cmd_run(args)
+
+    assert captured["output_mode"] == "summary"
+    assert captured["fields"] == ["meta", "diagnostics"]
+
+
+def test_schema_command_prints_json(capsys):
+    import sys
+
+    old_argv = sys.argv
+    sys.argv = ["detime", "schema", "--name", "config"]
+    try:
+        cli.main()
+    finally:
+        sys.argv = old_argv
+
+    captured = capsys.readouterr()
+    assert '"title"' in captured.out
+    assert "DecompositionConfig" in captured.out
+
+
+def test_recommend_command_outputs_json(capsys):
+    import sys
+
+    old_argv = sys.argv
+    sys.argv = [
+        "detime",
+        "recommend",
+        "--length",
+        "128",
+        "--channels",
+        "2",
+        "--prefer",
+        "accuracy",
+    ]
+    try:
+        cli.main()
+    finally:
+        sys.argv = old_argv
+
+    captured = capsys.readouterr()
+    assert '"recommendations"' in captured.out
+    assert "MSSA" in captured.out

@@ -1,0 +1,128 @@
+{
+  "$defs": {
+    "MethodMetadataModel": {
+      "properties": {
+        "dependency_tier": {
+          "enum": [
+            "core",
+            "core-upstream",
+            "optional-backend"
+          ],
+          "title": "Dependency Tier",
+          "type": "string"
+        },
+        "family": {
+          "title": "Family",
+          "type": "string"
+        },
+        "implementation": {
+          "enum": [
+            "native-backed",
+            "python",
+            "wrapper",
+            "optional-backend"
+          ],
+          "title": "Implementation",
+          "type": "string"
+        },
+        "input_mode": {
+          "enum": [
+            "univariate",
+            "multivariate",
+            "channelwise"
+          ],
+          "title": "Input Mode",
+          "type": "string"
+        },
+        "maturity": {
+          "enum": [
+            "flagship",
+            "stable",
+            "optional-backend",
+            "experimental"
+          ],
+          "title": "Maturity",
+          "type": "string"
+        },
+        "min_length": {
+          "default": 8,
+          "minimum": 1,
+          "title": "Min Length",
+          "type": "integer"
+        },
+        "multivariate_support": {
+          "enum": [
+            "univariate",
+            "channelwise",
+            "shared-model"
+          ],
+          "title": "Multivariate Support",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "native_backed": {
+          "title": "Native Backed",
+          "type": "boolean"
+        },
+        "recommended_for": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Recommended For",
+          "type": "array"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "typical_failure_modes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Typical Failure Modes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "family",
+        "input_mode",
+        "maturity",
+        "implementation",
+        "dependency_tier",
+        "multivariate_support",
+        "native_backed",
+        "summary"
+      ],
+      "title": "MethodMetadataModel",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "methods": {
+      "items": {
+        "$ref": "#/$defs/MethodMetadataModel"
+      },
+      "title": "Methods",
+      "type": "array"
+    },
+    "package": {
+      "const": "detime",
+      "default": "detime",
+      "title": "Package",
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "version"
+  ],
+  "title": "MethodRegistryPayloadModel",
+  "type": "object"
+}

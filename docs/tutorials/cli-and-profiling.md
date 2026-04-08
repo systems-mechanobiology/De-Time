@@ -5,6 +5,8 @@ The CLI supports three especially useful operational paths:
 - `run`
 - `batch`
 - `profile`
+- `schema`
+- `recommend`
 
 ## Single-file run
 
@@ -16,7 +18,8 @@ python -m detime run \
   --param window=24 \
   --param rank=6 \
   --param primary_period=12 \
-  --out_dir out/ssa
+  --out_dir out/ssa \
+  --output-mode summary
 ```
 
 ## Multivariate run
@@ -40,7 +43,8 @@ python -m detime batch \
   --glob "data/*.csv" \
   --col value \
   --param period=12 \
-  --out_dir out/std_batch
+  --out_dir out/std_batch \
+  --output-mode meta
 ```
 
 ## Runtime profiling
@@ -92,4 +96,11 @@ python -m detime profile \
   --col value \
   --param period=12 \
   --backend auto
+```
+
+## Machine-facing helpers
+
+```bash
+python -m detime schema --name method-registry
+python -m detime recommend --length 192 --channels 3 --prefer accuracy
 ```

@@ -14,9 +14,11 @@ Use this file when you want the shortest path into the product.
   - same method across many files
 - `detime profile`
   - runtime-oriented profiling by method and backend
+- `detime schema`
+  - packaged JSON schema lookup
+- `detime recommend`
+  - method shortlisting from workflow constraints
+- `python -m detime.mcp.server`
+  - minimal MCP server for tool-based access
 - `python -c "from detime import decompose, DecompositionConfig"`
   - fastest programmatic smoke-test path
-- `examples/univariate_quickstart.py`
-  - first univariate example
-- `examples/multivariate_mssa.py`
-  - first multivariate example

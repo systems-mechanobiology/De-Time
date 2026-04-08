@@ -1,24 +1,17 @@
 # Install
 
-## Current public install path
+## Public release path
 
-The current reviewer-facing install path is a GitHub source install. This keeps
-the public docs honest until the first PyPI release of `de-time` exists.
+De-Time `0.1.0` is published as the `de-time` distribution.
 
 ```bash
-pip install "de-time @ git+https://github.com/systems-mechanobiology/De-Time.git"
+pip install de-time
 ```
 
-For a pinned review snapshot, add a branch, tag, or commit after the URL, for
-example `@main` or `@<commit>`.
-
-## Optional extras
-
-Use the multivariate extra when you want optional backends such as `MVMD` and
-`MEMD`.
+For optional multivariate backends such as `MVMD` and `MEMD`:
 
 ```bash
-pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
+pip install "de-time[multivar]"
 ```
 
 ## Naming notes
@@ -26,6 +19,7 @@ pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/D
 - Product name: `De-Time`
 - Distribution name: `de-time`
 - Canonical import: `detime`
+- Legacy compatibility import: `tsdecomp`
 
 Do not install the unrelated `detime` package from PyPI when you want this
 project.
@@ -56,10 +50,8 @@ Transition-era submodules such as `tsdecomp.backends`,
 `tsdecomp.leaderboard`, and `tsdecomp.methods.*` are intentionally not shipped
 in install artifacts.
 
-## Future release path
+## Release record
 
-Once a PyPI release of `de-time` exists, the install command can be shortened
-to `pip install de-time`. Until then, the GitHub install path above is the
-public command that should be tested in clean environments. The current `0.1.0`
-version string identifies the reviewed snapshot before formal tag, GitHub
-release, and PyPI publication.
+The first public release is `0.1.0`, tagged as `de-time-v0.1.0` on April 8,
+2026. Release notes live in the GitHub release/tag record and in
+`CHANGELOG.md`.

@@ -2,8 +2,8 @@
 
 De-Time is workflow-oriented research software for reproducible time-series
 decomposition. It gives you one public package, one decomposition contract, and
-one set of docs across univariate, multivariate, and native-accelerated
-workflows.
+one docs surface across univariate, multivariate, native-backed, and
+machine-facing workflows.
 
 ## What it is
 
@@ -13,6 +13,8 @@ workflows.
 - A documentation set centered on practical workflows rather than benchmark
   scoreboards.
 - A package whose flagship methods are `SSA`, `STD`, `STDR`, and `MSSA`.
+- A machine-facing surface with schemas, recommendations, and a minimal MCP
+  server.
 
 ## What it is not
 
@@ -33,10 +35,11 @@ workflows.
 
 ## Package boundary
 
-This repository now ships the software package itself. Companion benchmark
-artifacts live in the separate `de-time-bench` repository. The main package no
-longer exposes benchmark orchestration, leaderboard helpers, or
-benchmark-derived methods such as `DR_TS_REG`, `DR_TS_AE`, and `SL_LIB`.
+This repository ships the software package itself. Companion benchmark
+artifacts live in the separate
+[`systems-mechanobiology/de-time-bench`](https://github.com/systems-mechanobiology/de-time-bench)
+repository. The main package no longer exposes benchmark orchestration,
+leaderboard helpers, or benchmark-derived methods.
 
 The legacy `tsdecomp` import and CLI still resolve to De-Time, but only as a
 deprecated compatibility alias.

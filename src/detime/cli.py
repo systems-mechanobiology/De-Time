@@ -11,7 +11,10 @@ from typing import Any, Dict, List
 import numpy as np
 
 from .core import DecompositionConfig
+from .recommend import recommend_methods
 from .registry import decompose
+from .schemas import available_schemas, get_schema
+from .serialization import normalize_fields
 
 try:
     PACKAGE_VERSION = version("de-time")
@@ -82,6 +85,10 @@ def parse_params(param_list: List[str]) -> Dict[str, Any]:
             except ValueError:
                 params[key] = val
     return params
+
+
+def _json_dump(payload: Any) -> str:
+    return json.dumps(payload, indent=2, sort_keys=True)
 
 
 def _parse_cols_arg(value: str | None) -> list[str] | None:
@@ -183,7 +190,13 @@ def cmd_run(args):
     out_dir.mkdir(parents=True, exist_ok=True)
 
     name = Path(args.series).stem
-    save_result(res, out_dir, name)
+    save_result(
+        res,
+        out_dir,
+        name,
+        output_mode=getattr(args, "output_mode", "full"),
+        fields=normalize_fields(getattr(args, "fields", None)),
+    )
 
     if args.plot:
         _ensure_plot_supported(series)
@@ -244,7 +257,13 @@ def cmd_batch(args):
                 runtime_ms = (time.perf_counter() - start) * 1000.0
                 _annotate_profile(res, args.backend, args.speed_mode, args.n_jobs, runtime_ms)
             name = Path(fpath).stem
-            save_result(res, out_dir, name)
+            save_result(
+                res,
+                out_dir,
+                name,
+                output_mode=getattr(args, "output_mode", "full"),
+                fields=normalize_fields(getattr(args, "fields", None)),
+            )
             if args.plot:
                 _ensure_plot_supported(series)
                 plot_components(res, series, save_path=out_dir / f"{name}_plot.png")
@@ -275,6 +294,68 @@ def cmd_profile(args):
 
 def cmd_version(_args):
     print(PACKAGE_VERSION)
+
+
+def cmd_schema(args):
+    schema = get_schema(args.name)
+    text = _json_dump(schema)
+    if args.output:
+        Path(args.output).write_text(text + "\n", encoding="utf-8")
+        print(f"Schema written to {args.output}")
+        return
+    print(text)
+
+
+def _recommend_request_from_args(args) -> Dict[str, Any]:
+    request: Dict[str, Any] = {
+        "prefer": args.prefer,
+        "allow_optional_backends": args.allow_optional_backends,
+        "require_native": args.require_native,
+        "top_k": args.top_k,
+    }
+
+    if args.series:
+        try:
+            series, info = read_series(
+                args.series,
+                col=args.col,
+                cols=_parse_cols_arg(args.cols),
+                method="MSSA" if args.channels and args.channels > 1 else None,
+                return_info=True,
+            )
+        except TypeError:
+            series = read_series(
+                args.series,
+                col=args.col,
+                cols=_parse_cols_arg(args.cols),
+            )
+            info = {"multivariate": np.asarray(series).ndim > 1}
+        arr = np.asarray(series)
+        request["length"] = int(arr.shape[0]) if arr.ndim > 0 else 1
+        request["channels"] = int(arr.shape[1]) if arr.ndim > 1 else 1
+        if args.channels:
+            request["channels"] = int(args.channels)
+        return request
+
+    if args.length is None:
+        raise ValueError("Provide either --series or --length for recommendation.")
+    request["length"] = int(args.length)
+    request["channels"] = int(args.channels or 1)
+    return request
+
+
+def cmd_recommend(args):
+    response = recommend_methods(_recommend_request_from_args(args))
+    payload = response.model_dump(mode="json")
+    if args.format == "json":
+        print(_json_dump(payload))
+        return
+
+    for item in payload["recommendations"]:
+        reason_codes = ", ".join(item["reason_codes"])
+        print(f"{item['rank']}. {item['method']} ({item['score']:.2f})")
+        print(f"   {item['summary']}")
+        print(f"   reasons: {reason_codes}")
 
 
 def _add_series_column_args(parser: argparse.ArgumentParser) -> None:
@@ -327,6 +408,16 @@ def main():
     p_run.add_argument("--profile", action="store_true", help="Record runtime metadata")
     p_run.add_argument("--device", default="cpu", help="Execution device")
     p_run.add_argument("--out_dir", required=True, help="Output directory")
+    p_run.add_argument(
+        "--output-mode",
+        choices=("full", "summary", "meta"),
+        default="full",
+        help="Artifact mode: full writes CSV/meta artifacts; summary/meta write lightweight JSON payloads.",
+    )
+    p_run.add_argument(
+        "--fields",
+        help="Optional comma-separated top-level fields to retain in the serialized payload view.",
+    )
     p_run.add_argument("--plot", action="store_true", help="Generate plots")
     p_run.set_defaults(func=cmd_run)
 
@@ -341,6 +432,15 @@ def main():
     p_batch.add_argument("--profile", action="store_true", help="Record runtime metadata")
     p_batch.add_argument("--device", default="cpu", help="Execution device")
     p_batch.add_argument("--out_dir", required=True)
+    p_batch.add_argument(
+        "--output-mode",
+        choices=("full", "summary", "meta"),
+        default="full",
+    )
+    p_batch.add_argument(
+        "--fields",
+        help="Optional comma-separated top-level fields to retain in the serialized payload view.",
+    )
     p_batch.add_argument("--plot", action="store_true")
     p_batch.set_defaults(func=cmd_batch)
 
@@ -361,6 +461,36 @@ def main():
 
     p_version = subparsers.add_parser("version", help="Print the installed De-Time version")
     p_version.set_defaults(func=cmd_version)
+
+    p_schema = subparsers.add_parser("schema", help="Print or save packaged JSON schemas")
+    p_schema.add_argument("--name", required=True, choices=available_schemas())
+    p_schema.add_argument("--output", help="Optional output path")
+    p_schema.set_defaults(func=cmd_schema)
+
+    p_recommend = subparsers.add_parser("recommend", help="Recommend methods for a workflow")
+    p_recommend.add_argument("--series", help="Optional path to input series (csv/parquet)")
+    _add_series_column_args(p_recommend)
+    p_recommend.add_argument("--length", type=int, help="Series length when no file is supplied")
+    p_recommend.add_argument("--channels", type=int, default=1, help="Channel count for recommendation")
+    p_recommend.add_argument(
+        "--prefer",
+        choices=("speed", "balanced", "accuracy"),
+        default="balanced",
+        help="Optimization preference for recommendation scoring.",
+    )
+    p_recommend.add_argument(
+        "--allow-optional-backends",
+        action="store_true",
+        help="Allow methods that depend on optional multivariate backends.",
+    )
+    p_recommend.add_argument(
+        "--require-native",
+        action="store_true",
+        help="Only keep native-backed methods in the recommendation result.",
+    )
+    p_recommend.add_argument("--top-k", type=int, default=5, help="Maximum number of suggestions to print")
+    p_recommend.add_argument("--format", choices=("json", "text"), default="json")
+    p_recommend.set_defaults(func=cmd_recommend)
 
     args = parser.parse_args()
     args.func(args)

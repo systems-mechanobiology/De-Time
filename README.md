@@ -1,6 +1,6 @@
 # De-Time
 
-Research software for reproducible time-series decomposition.
+Workflow-oriented research software for reproducible time-series decomposition.
 
 [![License: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-0f172a.svg)](LICENSE)
 ![Status: Beta](https://img.shields.io/badge/status-beta-1d4ed8.svg)
@@ -10,24 +10,27 @@ Research software for reproducible time-series decomposition.
 ![De-Time title card](docs/assets/brand/detime-title-card.svg)
 
 De-Time provides one stable software surface for decomposition workflows that
-would otherwise be spread across notebooks, method-specific wrappers, and
-one-off scripts. The canonical package is `detime`. The distribution name is
-`de-time`. The legacy top-level `tsdecomp` import and CLI remain available for
-one deprecation cycle. Transition-era `tsdecomp` submodules no longer ship in
-install artifacts.
+would otherwise be split across notebooks, method-specific wrappers, and
+one-off scripts. The product name is **De-Time**, the distribution is
+`de-time`, the canonical import is `detime`, and the legacy top-level
+`tsdecomp` import and CLI remain available for one deprecation cycle.
 
-The latest reviewed core-plus-flagship coverage snapshot is `91.40%`.
+Release `0.1.0` was cut on April 8, 2026 as tag `de-time-v0.1.0`. The latest
+documented coverage snapshot for the gated core-plus-flagship surface is
+`93.20%`.
 
 ## Scope
 
 De-Time is for:
 
-- a consistent `decompose()` entrypoint,
+- one `decompose()` entrypoint,
 - one `DecompositionConfig` model for Python and CLI usage,
 - one `DecompResult` contract for `trend`, `season`, `residual`, `components`,
   and `meta`,
 - native acceleration where it materially improves throughput,
-- multivariate decomposition workflows where shared structure matters.
+- multivariate decomposition workflows where shared structure matters,
+- machine-facing workflows that need schemas, recommendations, and low-token
+  result views.
 
 De-Time is not:
 
@@ -49,27 +52,24 @@ Other retained methods are wrappers or optional-backend integrations such as
 `STL`, `MSTL`, `EMD`, `CEEMDAN`, `VMD`, `WAVELET`, `MVMD`, `MEMD`, and
 `GABOR_CLUSTER`.
 
-Benchmark-derived methods `DR_TS_REG`, `DR_TS_AE`, and `SL_LIB` no longer ship
-in the main package. They moved to the companion benchmark repository
-`de-time-bench`.
+Benchmark-derived methods `DR_TS_REG`, `DR_TS_AE`, and `SL_LIB` do not ship in
+the main package. They belong to the companion benchmark repository
+[`systems-mechanobiology/de-time-bench`](https://github.com/systems-mechanobiology/de-time-bench).
 
 ## Install
 
 ```bash
-pip install "de-time @ git+https://github.com/systems-mechanobiology/De-Time.git"
+pip install de-time
 ```
 
 Optional multivariate backend extras:
 
 ```bash
-pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
+pip install "de-time[multivar]"
 ```
 
-The product name is `De-Time`, the distribution name is `de-time`, and the
-canonical import is `detime`. The current `0.1.0` version string identifies
-the reviewed GitHub snapshot, not a tagged GitHub release or published PyPI
-artifact. Until the first formal release exists, install from GitHub rather
-than from the unrelated `detime` package on PyPI.
+Do not install the unrelated `detime` package from PyPI when you want this
+project.
 
 ## Quickstart
 
@@ -99,7 +99,8 @@ detime run \
   --series examples/data/example_series.csv \
   --col value \
   --param period=12 \
-  --out_dir out/std_run
+  --out_dir out/std_run \
+  --output-mode summary
 ```
 
 ## CLI surface
@@ -110,17 +111,44 @@ The supported commands are:
 - `detime batch`
 - `detime profile`
 - `detime version`
+- `detime schema`
+- `detime recommend`
 
 The legacy `tsdecomp` executable calls the same code path but emits a
 deprecation notice.
 
+## Agent-native surface
+
+De-Time now includes:
+
+- packaged JSON schemas for `config`, `result`, `meta`, and `method-registry`,
+- low-token result export modes: `full`, `summary`, and `meta`,
+- machine-readable method metadata for registry, docs, and recommendation,
+- `detime schema` and `detime recommend`,
+- a minimal MCP server at `python -m detime.mcp.server`.
+
 ## Package boundary
 
-This repository now ships only the software package, documentation, tests, and
-examples needed for `detime` itself. Benchmark orchestration, leaderboard
-artifacts, and benchmark-derived methods have been split into the companion
-repository `de-time-bench`. Only the top-level `tsdecomp` import and CLI alias
-remain packaged for compatibility.
+This repository ships the reusable decomposition software package, docs, tests,
+and examples needed for `detime` itself. Benchmark orchestration, leaderboard
+artifacts, benchmark scenario galleries, and benchmark-derived methods are
+split into the companion repository
+[`systems-mechanobiology/de-time-bench`](https://github.com/systems-mechanobiology/de-time-bench).
+
+Only the top-level `tsdecomp` import and CLI alias remain packaged for
+compatibility.
+
+## Quality and evidence
+
+- Release smoke checks live in `scripts/release_smoke_matrix.py`.
+- Reviewer-facing documentation consistency checks live in
+  `scripts/check_doc_consistency.py`.
+- The current performance snapshot is generated by
+  `scripts/generate_performance_snapshot.py` and stored under
+  `docs/assets/generated/evidence/`.
+- The coverage gate applies to the canonical `detime` core-plus-flagship
+  surface; CLI, I/O, visualization helpers, and optional wrappers remain
+  tested but are outside the gated coverage denominator.
 
 ## Documentation
 

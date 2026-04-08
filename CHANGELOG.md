@@ -6,10 +6,7 @@ The project brand is **De-Time**, the PyPI distribution is `de-time`, the
 preferred Python import path is `detime`, and the legacy `tsdecomp` import/CLI
 aliases remain available for compatibility.
 
-## [0.1.0] - Reviewed snapshot (not yet tagged or published)
-
-This version string currently identifies the reviewed GitHub snapshot. Formal
-Git tag, GitHub release, and PyPI publication are still pending.
+## [0.1.0] - 2026-04-08
 
 ### Public surface
 
@@ -17,16 +14,18 @@ Git tag, GitHub release, and PyPI publication are still pending.
 - deprecated top-level `tsdecomp` import and CLI aliases
 - unified decomposition API centered on `DecompositionConfig`, `DecompResult`,
   and `decompose(...)`
-- CLI workflows for `run`, `batch`, `profile`, and `version`
+- CLI workflows for `run`, `batch`, `profile`, `version`, `schema`, and
+  `recommend`
 - native acceleration for `SSA`, `STD`, and `STDR`
 - multivariate workflows for `MSSA`, `MVMD`, `MEMD`, and channelwise `STD`
+- minimal MCP server for tool-based machine access
 
-### Included method surface
+### Machine-facing additions
 
-- seasonal-trend methods: `STL`, `MSTL`, `STD`, `STDR`
-- subspace methods: `SSA`, `MSSA`
-- adaptive/modal methods: `EMD`, `CEEMDAN`, `VMD`, `MVMD`, `MEMD`
-- additional workflows: `WAVELET`, `MA_BASELINE`, `GABOR_CLUSTER`
+- packaged JSON schemas for `config`, `result`, `meta`, and `method-registry`
+- method metadata catalog via `MethodRegistry.list_catalog()`
+- low-token `summary` and `meta` serialization modes
+- method recommendation surface for CLI and MCP workflows
 
 ### Packaging and quality
 
@@ -34,11 +33,12 @@ Git tag, GitHub release, and PyPI publication are still pending.
 - package-level test suite, docs tree, examples, and GitHub Actions workflows
 - coverage gate on the canonical core-plus-flagship surface
 - artifact-layout checks for wheel and sdist outputs
-- source-distribution hygiene for the reviewed standalone package boundary
+- documentation consistency checks and release smoke automation
+- reproducible performance snapshot generation
 
 ### Removed from install artifacts
 
 - benchmark configuration helpers and leaderboard stubs
-- benchmark-derived methods `DR_TS_REG`, `DR_TS_AE`, and `SL_LIB`
+- benchmark-derived methods in the main package
 - transition-era `tsdecomp` submodules outside the top-level import and CLI
   compatibility path

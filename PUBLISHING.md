@@ -4,13 +4,11 @@ This file describes the standalone release flow for the `de-time`
 distribution, the `detime` import path, and the legacy `tsdecomp`
 compatibility aliases.
 
-## Current status
+## Current release record
 
-The repository is currently in a pre-release review state. The version string
-`0.1.0` identifies the reviewed snapshot used for submission preparation, but
-no Git tag, GitHub release, or PyPI publication has been created yet.
+Release `0.1.0` was cut on April 8, 2026 as tag `de-time-v0.1.0`.
 
-## Release contract
+Release contract:
 
 - product brand: `De-Time`
 - PyPI distribution: `de-time`
@@ -19,73 +17,56 @@ no Git tag, GitHub release, or PyPI publication has been created yet.
 - preferred CLI: `detime`
 - legacy CLI alias: `tsdecomp`
 
-Until `de-time` is actually published on PyPI, reviewer-facing docs should use
-the GitHub installation path rather than claiming `pip install de-time`.
-
 The packaged compatibility scope is intentionally narrow: only top-level
 `import tsdecomp` and the `tsdecomp` CLI alias remain. Transition-era
 submodules such as `tsdecomp.methods.*`, `tsdecomp.leaderboard`, and
 `tsdecomp.bench_config` are not part of the release payload.
 
-## Before the first public release
+## Maintainer checklist for the next release
 
-Confirm these repository-level settings match the actual standalone repository:
-
-- `pyproject.toml` project URLs
-- `mkdocs.yml` `repo_url`, `repo_name`, and `site_url`
-- GitHub Pages target, if docs will be published
-- PyPI project name availability for `de-time`
-
-If the final standalone repository or docs site uses a different slug, update
-those URLs before tagging the release.
-
-## Maintainer checklist
-
-1. Update the version in `pyproject.toml`.
-2. Run local tests.
-3. Build a source distribution and wheel.
-4. Smoke-test the new package name and legacy compatibility surface.
-5. Commit the release changes.
-6. Tag the release.
-7. Push the branch and tag.
-8. Publish the GitHub release.
-9. Let the release workflow publish to PyPI.
-10. Verify the docs deployment and installation path.
+1. Update the version in `pyproject.toml`, `CHANGELOG.md`, and `CITATION.cff`.
+2. Regenerate schema assets.
+3. Regenerate the performance snapshot.
+4. Run the documentation consistency check.
+5. Run local tests.
+6. Build a source distribution and wheel.
+7. Run the release smoke matrix.
+8. Commit the release changes.
+9. Tag the release.
+10. Push the branch and tag.
+11. Publish the GitHub release.
+12. Let the release workflow publish to PyPI.
+13. Verify the docs deployment and installation path.
 
 ## Local release commands
 
 ```bash
-python3 -m pip install -U pip build twine
-python3 -m pip install -e .[dev,multivar,docs]
-python3 -m pytest tests -q
-python3 -m build
-python3 scripts/check_dist_contents.py dist/*.tar.gz dist/*.whl
-python3 -m twine check dist/*
-```
-
-Compatibility smoke tests:
-
-```bash
-python3 -m pip install dist/*.whl
-python3 -c "import detime, tsdecomp; print(detime.DecompositionConfig.__name__, tsdecomp.DecompositionConfig.__name__)"
-python3 -m detime --help
-python3 -m tsdecomp --help
+python -m pip install -U pip build twine
+python -m pip install -e .[dev,multivar,docs]
+python -m pytest tests -q
+python scripts/generate_schema_assets.py
+python scripts/generate_performance_snapshot.py
+python scripts/check_doc_consistency.py
+python -m build
+python scripts/check_dist_contents.py dist/*.tar.gz dist/*.whl
+python scripts/release_smoke_matrix.py
+python -m twine check dist/*
 ```
 
 ## Tagging convention
 
-Use a release tag that matches the new standalone product:
+Use release tags that match the standalone product:
 
 ```bash
-git tag de-time-v0.1.0
-git push origin de-time-v0.1.0
+git tag de-time-v0.1.1
+git push origin de-time-v0.1.1
 ```
 
-The included wheel workflow is configured around `de-time-v*` tags.
+The wheel workflow is configured around `de-time-v*` tags.
 
 ## GitHub Actions expectations
 
-The standalone repository should contain:
+The standalone repository contains:
 
 - `.github/workflows/ci.yml`
 - `.github/workflows/wheels.yml`
@@ -97,21 +78,21 @@ Those workflows assume this package directory is the repository root.
 
 If you use GitHub Actions for publishing:
 
-- configure PyPI trusted publishing for the standalone repository
-- ensure the release workflow has `id-token: write`
-- publish only from release tags or GitHub releases
+- configure PyPI trusted publishing for the standalone repository,
+- ensure the release workflow has `id-token: write`,
+- publish only from release tags or GitHub releases.
 
 ## Docs deployment
 
 The docs workflow builds MkDocs and deploys to GitHub Pages. Before using it:
 
-- enable GitHub Pages for the repository
-- allow Pages deployment from GitHub Actions
-- confirm `site_url` in `mkdocs.yml`
+- enable GitHub Pages for the repository,
+- allow Pages deployment from GitHub Actions,
+- confirm `site_url` in `mkdocs.yml`.
 
 ## Notes on compatibility
 
-The canonical implementation now lives under `src/detime/`. The
-`src/tsdecomp/` tree now retains only the top-level compatibility entrypoints
-needed for `import tsdecomp` and the legacy CLI alias. Transition-era
-submodules are intentionally omitted from the packaged artifacts.
+The canonical implementation lives under `src/detime/`. The `src/tsdecomp/`
+tree retains only the top-level compatibility entrypoints needed for
+`import tsdecomp` and the legacy CLI alias. Transition-era submodules are
+intentionally omitted from the packaged artifacts.
