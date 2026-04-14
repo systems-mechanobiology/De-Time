@@ -1,5 +1,8 @@
 # Quickstart
 
+The examples below assume either a tagged public release installed as
+`de-time`, or an editable install from the current branch.
+
 ## Python
 
 ```python

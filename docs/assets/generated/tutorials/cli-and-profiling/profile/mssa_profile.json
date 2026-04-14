@@ -1,0 +1,78 @@
+{
+  "backend_requested": "auto",
+  "backend_used": "python",
+  "column": null,
+  "columns": [
+    "x0",
+    "x1"
+  ],
+  "device": "cpu",
+  "method": "MSSA",
+  "n_jobs": 1,
+  "repeat": 3,
+  "result_meta": {
+    "backend_requested": "auto",
+    "backend_used": "python",
+    "channel_names": [
+      "x0",
+      "x1"
+    ],
+    "dominant_frequencies": [
+      0.008333333333333333,
+      0.08333333333333333,
+      0.08333333333333333,
+      0.008333333333333333,
+      0.125,
+      0.125,
+      0.2916666666666667,
+      0.2916666666666667,
+      0.49166666666666664,
+      0.475
+    ],
+    "input_shape": [
+      120,
+      2
+    ],
+    "method": "MSSA",
+    "n_channels": 2,
+    "rank": 10,
+    "result_layout": "multivariate",
+    "season_components": [
+      1,
+      2
+    ],
+    "singular_values": [
+      100.79974081545001,
+      28.28944286870545,
+      27.926270495654204,
+      4.307096686302977,
+      2.6674992687897345e-14,
+      2.6353560637622186e-14,
+      2.456856596081912e-14,
+      2.3931451730714314e-14,
+      2.26269945037069e-14,
+      2.1623607360052646e-14
+    ],
+    "speed_mode": "exact",
+    "trend_components": [
+      0,
+      3
+    ],
+    "window": 24
+  },
+  "samples_ms": [
+    11.38849999915692,
+    11.942299999645911,
+    11.524400000780588
+  ],
+  "series": "examples/data/example_multivariate.csv",
+  "speed_mode": "exact",
+  "summary": {
+    "mean_ms": 11.61839999986114,
+    "median_ms": 11.524400000780588,
+    "min_ms": 11.38849999915692,
+    "p95_ms": 11.942299999645911,
+    "stdev_ms": 0.23565597807787433
+  },
+  "warmup": 1
+}

@@ -60,6 +60,9 @@ REQUIRED_PATTERNS: dict[str, list[str]] = {
     "docs/install.md": ["pip install de-time", "tsdecomp` executable"],
     "docs/reproducibility.md": ["core-plus-flagship", "release_smoke_matrix.py", "generate_performance_snapshot.py"],
     "docs/comparisons.md": ["PySDKit", "SSALib", "sktime"],
+    "docs/tutorials/visual-univariate.md": ["$env:PYTHONPATH='src'", "python examples/visual_univariate_walkthrough.py"],
+    "docs/tutorials/visual-multivariate.md": ["$env:PYTHONPATH='src'", "python examples/visual_multivariate_walkthrough.py"],
+    "docs/tutorials/visual-comparison.md": ["$env:PYTHONPATH='src'", "python examples/visual_method_comparison.py"],
 }
 
 PUBLIC_DOCS = [
@@ -77,6 +80,26 @@ PUBLIC_BENCHMARK_BANS = [
     "leaderboard walkthrough",
     "Benchmark heatmap walkthrough",
 ]
+
+TUTORIAL_PLACEHOLDER_BANS = {
+    "docs/tutorials/cli-and-profiling.md": [
+        "data/monthly.csv",
+        "data/panel.csv",
+        "data/*.csv",
+    ],
+}
+
+POSIX_ONLY_VISUAL_BANS = {
+    "docs/tutorials/visual-univariate.md": [
+        "PYTHONPATH=src python3",
+    ],
+    "docs/tutorials/visual-multivariate.md": [
+        "PYTHONPATH=src python3",
+    ],
+    "docs/tutorials/visual-comparison.md": [
+        "PYTHONPATH=src python3",
+    ],
+}
 
 
 def _check_patterns(path: Path, patterns: list[str], *, expect_present: bool) -> list[str]:
@@ -105,6 +128,14 @@ def main() -> int:
     for relative_path in PUBLIC_DOCS:
         path = ROOT / relative_path
         failures.extend(_check_patterns(path, PUBLIC_BENCHMARK_BANS, expect_present=False))
+
+    for relative_path, patterns in TUTORIAL_PLACEHOLDER_BANS.items():
+        path = ROOT / relative_path
+        failures.extend(_check_patterns(path, patterns, expect_present=False))
+
+    for relative_path, patterns in POSIX_ONLY_VISUAL_BANS.items():
+        path = ROOT / relative_path
+        failures.extend(_check_patterns(path, patterns, expect_present=False))
 
     if failures:
         for failure in failures:

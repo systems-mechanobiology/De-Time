@@ -31,6 +31,10 @@ machine-facing workflows.
 - [ML Workflows](ml-workflows.md) for the package's machine-learning-facing use
   cases.
 - [Methods](methods.md) for method family details.
+- [Method Cards](method-cards.md) for per-method assumptions and failure modes.
+- [Machine API](machine-api.md) for schemas, catalog, recommendation, and MCP use.
+- [Comparison Evidence](comparison-evidence.md) for reviewer-grade matrices.
+- [Token Benchmarks](token-benchmarks.md) for bounded-context payload costs.
 - [Migration from `tsdecomp`](migration.md) if you are upgrading existing code.
 
 ## Package boundary
@@ -42,7 +46,7 @@ repository. The main package no longer exposes benchmark orchestration,
 leaderboard helpers, or benchmark-derived methods.
 
 The legacy `tsdecomp` import and CLI still resolve to De-Time, but only as a
-deprecated compatibility alias.
+deprecated compatibility alias through `0.1.x`.
 
 ## Visual reference
 

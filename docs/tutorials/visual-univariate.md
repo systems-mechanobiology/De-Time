@@ -14,15 +14,26 @@ Use one method on one synthetic series and inspect:
 
 ## Script
 
-Run:
+POSIX shell:
 
 ```bash
-PYTHONPATH=src python3 examples/visual_univariate_walkthrough.py \
+PYTHONPATH=src python examples/visual_univariate_walkthrough.py \
   --out-dir out/visual_univariate
+```
+
+PowerShell:
+
+```powershell
+$env:PYTHONPATH='src'
+python examples/visual_univariate_walkthrough.py --out-dir out/visual_univariate
 ```
 
 This script uses `SSA` on a synthetic seasonal series with drift and a short
 localized pulse.
+
+Published raw stdout:
+
+- [run_stdout.txt](../assets/generated/tutorials/visual-univariate/run_stdout.txt)
 
 ## Output files
 

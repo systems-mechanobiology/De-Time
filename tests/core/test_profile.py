@@ -51,6 +51,9 @@ def test_profile_output_structure(monkeypatch, tmp_path):
     assert len(report["samples_ms"]) == 3
     assert set(report["summary"]) == {"min_ms", "mean_ms", "median_ms", "p95_ms", "stdev_ms"}
 
+    json_text = profile.format_profile_report(report, fmt="json")
+    assert '"method": "SSA"' in json_text
+
     out_file = tmp_path / "profile.txt"
     profile.write_profile_report(report, out_file, fmt="text")
     text = out_file.read_text(encoding="utf-8")

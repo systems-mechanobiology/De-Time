@@ -4,22 +4,27 @@ import os
 import sys
 import time
 import warnings
-from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any, Dict, List
 
 import numpy as np
 
 from .core import DecompositionConfig
+from ._metadata import (
+    CANONICAL_IMPORT,
+    DISTRIBUTION_NAME,
+    LEGACY_COMPATIBILITY_SERIES,
+    LEGACY_EARLIEST_REMOVAL,
+    LEGACY_IMPORT,
+    PRODUCT_NAME,
+    installed_version,
+)
 from .recommend import recommend_methods
 from .registry import decompose
 from .schemas import available_schemas, get_schema
 from .serialization import normalize_fields
 
-try:
-    PACKAGE_VERSION = version("de-time")
-except PackageNotFoundError:  # pragma: no cover - source tree fallback
-    PACKAGE_VERSION = "0.1.0"
+PACKAGE_VERSION = installed_version()
 
 
 def read_series(*args, **kwargs):
@@ -56,6 +61,12 @@ def write_profile_report(*args, **kwargs):
     from .profile import write_profile_report as _write_profile_report
 
     return _write_profile_report(*args, **kwargs)
+
+
+def format_profile_report(*args, **kwargs):
+    from .profile import format_profile_report as _format_profile_report
+
+    return _format_profile_report(*args, **kwargs)
 
 
 def parse_params(param_list: List[str]) -> Dict[str, Any]:
@@ -289,7 +300,7 @@ def cmd_profile(args):
         write_profile_report(report, Path(args.output), fmt=args.format)
         print(f"Profile report written to {args.output}")
     else:
-        print(json.dumps(report, indent=2, sort_keys=True))
+        print(format_profile_report(report, fmt=args.format), end="")
 
 
 def cmd_version(_args):
@@ -366,27 +377,47 @@ def _add_series_column_args(parser: argparse.ArgumentParser) -> None:
 
 def _cli_identity() -> tuple[str, str]:
     env_brand = os.environ.get("DETIME_CLI_BRAND", "").lower()
-    if env_brand == "tsdecomp":
-        return "tsdecomp", "tsdecomp CLI is deprecated; install de-time and use detime."
-    if env_brand == "detime":
-        return "detime", "De-Time CLI for reproducible time-series decomposition."
+    if env_brand == LEGACY_IMPORT:
+        return (
+            LEGACY_IMPORT,
+            (
+                f"{LEGACY_IMPORT} CLI is deprecated, supported only through "
+                f"{LEGACY_COMPATIBILITY_SERIES}, and may be removed in {LEGACY_EARLIEST_REMOVAL}. "
+                f"Install {DISTRIBUTION_NAME} and use {CANONICAL_IMPORT}."
+            ),
+        )
+    if env_brand == CANONICAL_IMPORT:
+        return CANONICAL_IMPORT, f"{PRODUCT_NAME} CLI for reproducible time-series decomposition."
     argv0 = Path(sys.argv[0]).name.lower()
-    if "tsdecomp" in argv0:
-        return "tsdecomp", "tsdecomp CLI is deprecated; install de-time and use detime."
-    return "detime", "De-Time CLI for reproducible time-series decomposition."
+    if LEGACY_IMPORT in argv0:
+        return (
+            LEGACY_IMPORT,
+            (
+                f"{LEGACY_IMPORT} CLI is deprecated, supported only through "
+                f"{LEGACY_COMPATIBILITY_SERIES}, and may be removed in {LEGACY_EARLIEST_REMOVAL}. "
+                f"Install {DISTRIBUTION_NAME} and use {CANONICAL_IMPORT}."
+            ),
+        )
+    return CANONICAL_IMPORT, f"{PRODUCT_NAME} CLI for reproducible time-series decomposition."
 
 
 def _emit_deprecation_notice(prog: str) -> None:
-    if prog != "tsdecomp":
+    if prog != LEGACY_IMPORT:
         return
     warnings.warn(
-        "The 'tsdecomp' CLI is deprecated and will be removed in a future release. "
-        "Use 'detime' instead.",
+        (
+            f"The '{LEGACY_IMPORT}' CLI is deprecated, supported only through "
+            f"{LEGACY_COMPATIBILITY_SERIES}, and may be removed in {LEGACY_EARLIEST_REMOVAL}. "
+            f"Use '{CANONICAL_IMPORT}' instead."
+        ),
         DeprecationWarning,
         stacklevel=2,
     )
     print(
-        "DeprecationWarning: 'tsdecomp' is a legacy CLI alias. Use 'detime' instead.",
+        (
+            f"DeprecationWarning: '{LEGACY_IMPORT}' is a legacy CLI alias supported only through "
+            f"{LEGACY_COMPATIBILITY_SERIES}. Use '{CANONICAL_IMPORT}' instead."
+        ),
         file=sys.stderr,
     )
 

@@ -1,0 +1,169 @@
+{
+  "encoding": "cl100k_base",
+  "generated_at": "2026-04-14T20:22:42.202158+00:00",
+  "package_version": "0.1.1",
+  "rows": [
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 64,
+      "mode": "full",
+      "relative_to_full": 1.0,
+      "scenario": "univariate-short",
+      "tokens": 3138
+    },
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 64,
+      "mode": "summary",
+      "relative_to_full": 0.1501,
+      "scenario": "univariate-short",
+      "tokens": 471
+    },
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 64,
+      "mode": "meta",
+      "relative_to_full": 0.0472,
+      "scenario": "univariate-short",
+      "tokens": 148
+    },
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 256,
+      "mode": "full",
+      "relative_to_full": 1.0,
+      "scenario": "univariate-medium",
+      "tokens": 13030
+    },
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 256,
+      "mode": "summary",
+      "relative_to_full": 0.0377,
+      "scenario": "univariate-medium",
+      "tokens": 491
+    },
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 256,
+      "mode": "meta",
+      "relative_to_full": 0.0112,
+      "scenario": "univariate-medium",
+      "tokens": 146
+    },
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 1024,
+      "mode": "full",
+      "relative_to_full": 1.0,
+      "scenario": "univariate-long",
+      "tokens": 52239
+    },
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 1024,
+      "mode": "summary",
+      "relative_to_full": 0.0095,
+      "scenario": "univariate-long",
+      "tokens": 494
+    },
+    {
+      "channels": 1,
+      "encoding": "cl100k_base",
+      "length": 1024,
+      "mode": "meta",
+      "relative_to_full": 0.0029,
+      "scenario": "univariate-long",
+      "tokens": 149
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 64,
+      "mode": "full",
+      "relative_to_full": 1.0,
+      "scenario": "multivariate-short",
+      "tokens": 10711
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 64,
+      "mode": "summary",
+      "relative_to_full": 0.0487,
+      "scenario": "multivariate-short",
+      "tokens": 522
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 64,
+      "mode": "meta",
+      "relative_to_full": 0.0162,
+      "scenario": "multivariate-short",
+      "tokens": 174
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 256,
+      "mode": "full",
+      "relative_to_full": 1.0,
+      "scenario": "multivariate-medium",
+      "tokens": 46619
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 256,
+      "mode": "summary",
+      "relative_to_full": 0.0116,
+      "scenario": "multivariate-medium",
+      "tokens": 541
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 256,
+      "mode": "meta",
+      "relative_to_full": 0.0037,
+      "scenario": "multivariate-medium",
+      "tokens": 174
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 1024,
+      "mode": "full",
+      "relative_to_full": 1.0,
+      "scenario": "multivariate-long",
+      "tokens": 187883
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 1024,
+      "mode": "summary",
+      "relative_to_full": 0.0028,
+      "scenario": "multivariate-long",
+      "tokens": 532
+    },
+    {
+      "channels": 3,
+      "encoding": "cl100k_base",
+      "length": 1024,
+      "mode": "meta",
+      "relative_to_full": 0.0009,
+      "scenario": "multivariate-long",
+      "tokens": 176
+    }
+  ]
+}

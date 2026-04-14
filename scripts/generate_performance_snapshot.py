@@ -13,6 +13,7 @@ import numpy as np
 
 import detime
 from detime import DecompositionConfig, decompose, native_capabilities
+from detime._metadata import installed_version
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -86,7 +87,7 @@ def main() -> int:
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
-        "package_version": getattr(detime, "__version__", "0.1.0"),
+        "package_version": installed_version(),
         "platform": {
             "platform": platform.platform(),
             "python": sys.version.split()[0],

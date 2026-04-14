@@ -304,6 +304,60 @@ METHOD_METADATA: Dict[str, Dict[str, Any]] = {
 }
 
 
+def _default_assumptions(name: str, family: str, input_mode: InputMode) -> list[str]:
+    assumptions: list[str] = []
+    if input_mode == "univariate":
+        assumptions.append("expects one decomposed series at a time")
+    elif input_mode == "channelwise":
+        assumptions.append("treats each channel independently under one shared method surface")
+    else:
+        assumptions.append("expects a 2D array with at least two aligned channels")
+
+    family_assumptions = {
+        "SSA": "works best when window and rank reflect the dominant temporal structure",
+        "SeasonalTrend": "works best when one seasonal period or block structure is reasonably stable",
+        "EMD": "assumes oscillatory modes are meaningful enough to separate adaptively",
+        "Wavelet": "assumes a wavelet family and decomposition depth can be chosen sensibly",
+        "Variational": "assumes the number of modes and bandwidth penalties can be tuned to the signal family",
+        "Baseline": "assumes a coarse baseline is acceptable as a sanity check",
+        "Experimental": "assumes exploratory use is acceptable and output should be validated against a stable baseline",
+    }
+    if family in family_assumptions:
+        assumptions.append(family_assumptions[family])
+    assumptions.append(f"{name} should be evaluated against residual diagnostics rather than used as a black box")
+    return assumptions
+
+
+def _default_not_recommended(name: str, maturity: str, input_mode: InputMode) -> list[str]:
+    discouraged: list[str] = []
+    if input_mode == "univariate":
+        discouraged.append("shared-model multivariate decomposition problems")
+    elif input_mode == "multivariate":
+        discouraged.append("single-series workflows where a univariate flagship method is sufficient")
+    else:
+        discouraged.append("problems that require one shared latent model across channels")
+
+    if maturity == "optional-backend":
+        discouraged.append("environments where optional backend dependencies cannot be installed")
+    if maturity == "experimental":
+        discouraged.append("first-pass baselines or high-trust production workflows")
+    if name in {"SSA", "MSSA"}:
+        discouraged.append("very short series that cannot support a sensible window length")
+    if name in {"STD", "STDR", "STL", "MSTL", "ROBUST_STL"}:
+        discouraged.append("series where the dominant period is unknown and cannot be inferred reliably")
+    return discouraged
+
+
+def _default_optional_dependencies(name: str, dependency_tier: str) -> list[str]:
+    if dependency_tier == "optional-backend":
+        return ["PySDKit"]
+    if name in {"STL", "MSTL", "ROBUST_STL"}:
+        return ["statsmodels"]
+    if name == "WAVELET":
+        return ["PyWavelets"]
+    return []
+
+
 def _fallback_metadata(name: str, input_mode: InputMode) -> Dict[str, Any]:
     multivariate_support = "univariate"
     if input_mode == "multivariate":
@@ -327,6 +381,18 @@ def _fallback_metadata(name: str, input_mode: InputMode) -> Dict[str, Any]:
 def _metadata_for_method(name: str, input_mode: InputMode) -> Dict[str, Any]:
     base = dict(METHOD_METADATA.get(name, _fallback_metadata(name, input_mode)))
     base["input_mode"] = input_mode
+    base.setdefault(
+        "assumptions",
+        _default_assumptions(name, str(base.get("family", "Other")), input_mode),
+    )
+    base.setdefault(
+        "not_recommended_for",
+        _default_not_recommended(name, str(base.get("maturity", "stable")), input_mode),
+    )
+    base.setdefault(
+        "optional_dependencies",
+        _default_optional_dependencies(name, str(base.get("dependency_tier", "core"))),
+    )
     return base
 
 

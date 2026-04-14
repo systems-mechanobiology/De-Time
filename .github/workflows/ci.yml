@@ -69,18 +69,31 @@ jobs:
             --cov=detime \
             --cov-config=.coveragerc \
             --cov-report=term-missing \
-            --cov-report=xml:coverage.xml \
-            --cov-report=json:coverage.json \
-            --cov-report=html:htmlcov
+            --cov-report=xml:coverage-core.xml \
+            --cov-report=json:coverage-core.json \
+            --cov-report=html:htmlcov-core
+
+      - name: Run package-wide coverage
+        run: |
+          python -m pytest tests \
+            --cov=detime \
+            --cov-config=.coveragerc.package \
+            --cov-report=term-missing \
+            --cov-report=xml:coverage-package.xml \
+            --cov-report=json:coverage-package.json \
+            --cov-report=html:htmlcov-package
 
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
           name: de-time-coverage
           path: |
-            coverage.xml
-            coverage.json
-            htmlcov
+            coverage-core.xml
+            coverage-core.json
+            htmlcov-core
+            coverage-package.xml
+            coverage-package.json
+            htmlcov-package
 
   docs:
     name: Docs build (ubuntu, py3.11)
@@ -105,6 +118,27 @@ jobs:
 
       - name: Regenerate performance snapshot
         run: python scripts/generate_performance_snapshot.py
+
+      - name: Regenerate method cards
+        run: python scripts/generate_method_cards.py
+
+      - name: Regenerate tutorial assets
+        run: python scripts/generate_tutorial_assets.py
+
+      - name: Regenerate comparison evidence
+        run: python benchmarks/software_comparison/generate_comparison_evidence.py
+
+      - name: Regenerate workflow comparison evidence
+        run: python examples/workflow_comparisons/compare_specialist_glue_vs_detime.py
+
+      - name: Regenerate token benchmarks
+        run: python benchmarks/token_benchmarks/generate_token_benchmarks.py
+
+      - name: Regenerate agent eval summary
+        run: python evals/agent/run_agent_evals.py
+
+      - name: Regenerate reviewer bundle
+        run: python scripts/generate_reviewer_bundle.py
 
       - name: Build documentation
         run: mkdocs build --strict

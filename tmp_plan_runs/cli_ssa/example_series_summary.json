@@ -1,0 +1,81 @@
+{
+  "mode": "summary",
+  "trend": {
+    "shape": [
+      120
+    ],
+    "mean": 1.1908501600541532,
+    "std": 0.6917338604216825,
+    "min": -0.01524513453867199,
+    "max": 2.33405620097606,
+    "l2_norm": 15.086231487107252
+  },
+  "season": {
+    "shape": [
+      120
+    ],
+    "mean": -0.0008501600541535569,
+    "std": 0.7036104635973588,
+    "min": -1.0061953837335467,
+    "max": 1.002573622430239,
+    "l2_norm": 7.707672078565417
+  },
+  "residual": {
+    "shape": [
+      120
+    ],
+    "mean": 3.8384913014314717e-16,
+    "std": 1.497353027238232e-15,
+    "min": -4.218847493575595e-15,
+    "max": 4.9960036108132044e-15,
+    "l2_norm": 1.69330667378044e-14
+  },
+  "components": {},
+  "meta": {
+    "method": "SSA",
+    "window": 24,
+    "rank": 6,
+    "components": 4,
+    "singular_values": [
+      63.75833261361799,
+      24.088767584434564,
+      24.113180475756547,
+      2.594425090518128
+    ],
+    "trend_components": [
+      0,
+      3
+    ],
+    "season_components": [
+      1,
+      2
+    ],
+    "native_method": "SSA_NATIVE",
+    "backend_requested": "auto",
+    "backend_used": "native",
+    "speed_mode": "exact",
+    "input_shape": [
+      120
+    ],
+    "result_layout": "univariate",
+    "n_channels": 1,
+    "channel_names": [
+      "value"
+    ]
+  },
+  "diagnostics": {
+    "component_count": 0,
+    "component_names": [],
+    "component_shapes": {},
+    "quality_metrics": {
+      "trend_l2_norm": 15.086231487107252,
+      "season_l2_norm": 7.707672078565417,
+      "residual_l2_norm": 1.69330667378044e-14,
+      "residual_ratio": 1.014536339581353e-15
+    },
+    "warnings": [
+      "no_named_components"
+    ],
+    "limitations": []
+  }
+}

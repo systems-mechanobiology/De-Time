@@ -1,0 +1,5 @@
+Wrote:
+docs/assets/generated/tutorials/visual-multivariate/mssa_multivariate.png
+docs/assets/generated/tutorials/visual-multivariate/std_channelwise_multivariate.png
+docs/assets/generated/tutorials/visual-multivariate/channel0_trend_overlay.png
+docs/assets/generated/tutorials/visual-multivariate/multivariate_summary.csv

@@ -35,14 +35,27 @@ The current release and docs were checked with:
 - `python scripts/check_doc_consistency.py`
 - `python scripts/release_smoke_matrix.py`
 - `python scripts/generate_performance_snapshot.py`
+- `python scripts/generate_method_cards.py`
+- `python benchmarks/software_comparison/generate_comparison_evidence.py`
+- `python examples/workflow_comparisons/compare_specialist_glue_vs_detime.py`
+- `python benchmarks/token_benchmarks/generate_token_benchmarks.py`
+- `python evals/agent/run_agent_evals.py`
+- `python scripts/generate_reviewer_bundle.py`
 - `python -m twine check dist/*`
 
 ## Coverage boundary
 
-The coverage gate is applied to the canonical `detime` core-plus-flagship
-surface.
+The repository now publishes two coverage views so the denominator is explicit:
 
-The denominator intentionally omits:
+- **core-surface coverage**
+  - the gated `detime` core-plus-flagship contract
+- **package-wide coverage**
+  - the broader installable `detime` package, including CLI, I/O,
+    visualization, wrappers, and machine-facing helpers
+
+The core gate is applied to the canonical `detime` core-plus-flagship surface.
+
+The core-surface denominator intentionally omits:
 
 - the deprecated `tsdecomp` compatibility layer,
 - CLI wrappers,
@@ -53,10 +66,32 @@ The denominator intentionally omits:
 
 The latest gated local coverage run reached `93.20%`.
 
+Package-wide coverage is emitted separately in CI and uploaded as a second
+artifact so reviewer-facing reports can show both the narrow safety gate and
+the broader installable surface.
+
+## Native agreement checks
+
+Native-backed methods are not treated as correctness shortcuts. The test suite
+includes numeric agreement checks between native and Python implementations for:
+
+- `SSA`
+- `STD`
+- `STDR`
+
+The documented tolerances are:
+
+- `SSA`: `atol=1e-6`
+- `STD` / `STDR`: `atol=1e-9`
+
 ## Evidence artifacts
 
 - Performance snapshot: `docs/assets/generated/evidence/performance_snapshot.json`
 - Performance summary CSV: `docs/assets/generated/evidence/performance_snapshot.csv`
+- Comparison evidence: `docs/assets/generated/evidence/comparison_evidence.json`
+- Workflow comparison demo: `docs/assets/generated/evidence/workflow_comparison.json`
+- Token benchmark summary: `docs/assets/generated/evidence/token_benchmarks.json`
+- Agent eval summary: `docs/assets/generated/evidence/agent_eval_summary.json`
 - JSON schemas: `src/detime/schema_assets/*.json`
 
 The performance snapshot is reproducible from

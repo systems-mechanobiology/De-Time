@@ -3,13 +3,23 @@ from __future__ import annotations
 import sys
 import warnings
 
+from detime._metadata import (
+    CANONICAL_IMPORT,
+    DISTRIBUTION_NAME,
+    LEGACY_COMPATIBILITY_SERIES,
+    LEGACY_EARLIEST_REMOVAL,
+    LEGACY_IMPORT,
+)
+
 IMPORT_MESSAGE = (
-    "The 'tsdecomp' package is deprecated and will be removed in a future release. "
-    "Install 'de-time' and import 'detime' instead."
+    f"The '{LEGACY_IMPORT}' package is deprecated, supported only through "
+    f"{LEGACY_COMPATIBILITY_SERIES}, and may be removed in {LEGACY_EARLIEST_REMOVAL}. "
+    f"Install '{DISTRIBUTION_NAME}' and import '{CANONICAL_IMPORT}' instead."
 )
 
 CLI_MESSAGE = (
-    "DeprecationWarning: 'tsdecomp' is a legacy CLI alias. Use 'detime' instead."
+    f"DeprecationWarning: '{LEGACY_IMPORT}' is a legacy CLI alias supported only through "
+    f"{LEGACY_COMPATIBILITY_SERIES}. Use '{CANONICAL_IMPORT}' instead."
 )
 
 

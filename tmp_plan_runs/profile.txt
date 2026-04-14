@@ -1,0 +1,8 @@
+method=STD
+backend_requested=native
+backend_used=native
+speed_mode=exact
+repeat=2
+warmup=1
+samples_ms=[0.02099999983329326, 0.018300001102034003]
+summary={'min_ms': 0.018300001102034003, 'mean_ms': 0.01965000046766363, 'median_ms': 0.01965000046766363, 'p95_ms': 0.02099999983329326, 'stdev_ms': 0.0013499993656296283}

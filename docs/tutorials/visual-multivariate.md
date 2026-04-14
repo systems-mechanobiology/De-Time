@@ -12,15 +12,26 @@ Compare:
 
 ## Script
 
-Run:
+POSIX shell:
 
 ```bash
-PYTHONPATH=src python3 examples/visual_multivariate_walkthrough.py \
+PYTHONPATH=src python examples/visual_multivariate_walkthrough.py \
   --out-dir out/visual_multivariate
 ```
 
-The script builds a three-channel synthetic panel with related but not identical
-seasonal structure.
+PowerShell:
+
+```powershell
+$env:PYTHONPATH='src'
+python examples/visual_multivariate_walkthrough.py --out-dir out/visual_multivariate
+```
+
+The script builds a three-channel synthetic panel with related but not
+identical seasonal structure.
+
+Published raw stdout:
+
+- [run_stdout.txt](../assets/generated/tutorials/visual-multivariate/run_stdout.txt)
 
 ## Output files
 

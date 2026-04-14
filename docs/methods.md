@@ -39,3 +39,5 @@ now lives in
 - Treat optional multivariate backends as opt-in extras.
 - Use `detime recommend` when you want a machine-readable shortlist instead of
   choosing manually.
+- Use [Method Cards](method-cards.md) when you need assumptions, failure modes,
+  and not-recommended cases in one place.

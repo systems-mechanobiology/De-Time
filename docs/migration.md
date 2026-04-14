@@ -11,7 +11,8 @@ from detime import DecompositionConfig, decompose
 Legacy code may continue to import `tsdecomp` for one deprecation cycle, but it
 now emits a warning and resolves to the same De-Time implementation. Older
 submodule imports outside that package-level surface are no longer part of the
-packaged compatibility contract.
+packaged compatibility contract. The compatibility alias is supported through
+`0.1.x` and may be removed as early as `0.2.0`.
 
 ## CLI
 

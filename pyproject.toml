@@ -8,7 +8,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "de-time"
-version = "0.1.0"
+version = "0.1.1"
 description = "De-Time is workflow-oriented research software for reproducible time-series decomposition."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -66,6 +66,7 @@ dev = [
   "pytest>=7.4",
   "pytest-cov>=5.0",
   "mkdocs>=1.6",
+  "tiktoken>=0.7",
   "twine>=5.1",
 ]
 
@@ -110,13 +111,23 @@ include = [
   "docs/**/*.jpeg",
   "docs/**/*.gif",
   "docs/**/*.svg",
+  "docs/**/*.txt",
+  "docs/**/*.json",
+  "docs/**/*.csv",
   "docs/**/*.yml",
   "docs/**/*.yaml",
+  "benchmarks/**/*.py",
+  "benchmarks/**/*.md",
+  "benchmarks/**/*.json",
+  "benchmarks/**/*.csv",
   "examples/**/*.py",
   "examples/**/*.md",
   "examples/**/*.ipynb",
   "examples/**/*.csv",
   "examples/**/*.json",
+  "evals/**/*.py",
+  "evals/**/*.md",
+  "evals/**/*.json",
   "native/**/*.cpp",
   "native/**/*.hpp",
   "native/**/*.h",
@@ -132,6 +143,9 @@ include = [
   "scripts/release_smoke_matrix.py",
   "scripts/generate_performance_snapshot.py",
   "scripts/generate_schema_assets.py",
+  "scripts/generate_method_cards.py",
+  "scripts/generate_tutorial_assets.py",
+  "scripts/generate_reviewer_bundle.py",
 ]
 exclude = [
   ".DS_Store",

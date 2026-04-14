@@ -8,6 +8,10 @@ Use this file when you want the shortest path into the product.
   - docs homepage for humans who want the software overview first
 - `docs/quickstart.md`
   - shortest path to a first Python or CLI run
+- `docs/machine-api.md`
+  - schemas, catalog, compact result modes, and MCP guidance
+- `docs/method-cards.md`
+  - assumptions, failure modes, maturity, and not-recommended cases
 - `detime run`
   - one file in, one decomposition artifact set out
 - `detime batch`
@@ -20,5 +24,7 @@ Use this file when you want the shortest path into the product.
   - method shortlisting from workflow constraints
 - `python -m detime.mcp.server`
   - minimal MCP server for tool-based access
+- `docs/token-benchmarks.md`
+  - token-budget evidence for `full`, `summary`, and `meta`
 - `python -c "from detime import decompose, DecompositionConfig"`
   - fastest programmatic smoke-test path

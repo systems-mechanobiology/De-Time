@@ -1,0 +1,4 @@
+trend shape: (120,)
+season shape: (120,)
+residual shape: (120,)
+backend: native

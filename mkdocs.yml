@@ -17,6 +17,8 @@ nav:
   - Choose a Method: choose-a-method.md
   - ML Workflows: ml-workflows.md
   - Methods: methods.md
+  - Method Cards: method-cards.md
+  - Machine API: machine-api.md
   - API: api.md
   - Architecture: architecture.md
   - Tutorials:
@@ -28,6 +30,8 @@ nav:
       - CLI and Profiling: tutorials/cli-and-profiling.md
       - Profiling Reference: tutorials/profiling.md
   - Comparisons: comparisons.md
+  - Comparison Evidence: comparison-evidence.md
+  - Token Benchmarks: token-benchmarks.md
   - Migration from `tsdecomp`: migration.md
   - Reproducibility: reproducibility.md
   - Contributing: contributing.md

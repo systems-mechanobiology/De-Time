@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://systems-mechanobiology.github.io/De-Time/machine-api/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Machine API - De-Time</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">De-Time</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../why/" class="nav-link">Why De-Time</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../install/" class="nav-link">Install</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../quickstart/" class="nav-link">Quickstart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../choose-a-method/" class="nav-link">Choose a Method</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../ml-workflows/" class="nav-link">ML Workflows</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../methods/" class="nav-link">Methods</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../method-cards.md" class="nav-link">Method Cards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Machine API</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../api/" class="nav-link">API</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../architecture/" class="nav-link">Architecture</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Workflows</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/visual-univariate/" class="dropdown-item">Visual Univariate Walkthrough</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/visual-comparison/" class="dropdown-item">Visual Method Comparison</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Workflows</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/visual-multivariate/" class="dropdown-item">Visual Multivariate Walkthrough</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI and Profiling</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/profiling/" class="dropdown-item">Profiling Reference</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../comparisons/" class="nav-link">Comparisons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../comparison-evidence/" class="nav-link">Comparison Evidence</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../token-benchmarks/" class="nav-link">Token Benchmarks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../migration/" class="nav-link">Migration from `tsdecomp`</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../reproducibility/" class="nav-link">Reproducibility</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../contributing/" class="nav-link">Contributing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../citation/" class="nav-link">Citation / Release Notes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../methods/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../api/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/De-Time/edit/master/docs/machine-api.md" class="nav-link">Edit on systems-mechanobiology/De-Time
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#machine-api" class="nav-link">Machine API</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#contract-scope" class="nav-link">Contract scope</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#schema-assets" class="nav-link">Schema assets</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#stable-catalog-fields" class="nav-link">Stable catalog fields</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#recommendation-interface" class="nav-link">Recommendation interface</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#serialization-modes" class="nav-link">Serialization modes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#mcp-surface" class="nav-link">MCP surface</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#artifact-contract" class="nav-link">Artifact contract</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="machine-api">Machine API</h1>
+<p>De-Time exposes a local-first machine-facing surface for agents, scripts, and
+workflow tooling that need something more structured than the human-facing
+README.</p>
+<h2 id="contract-scope">Contract scope</h2>
+<p>The current machine contract series is <code>0.1</code>. Within this series, the package
+aims to keep the following stable:</p>
+<ul>
+<li>schema names: <code>config</code>, <code>result</code>, <code>meta</code>, <code>method-registry</code></li>
+<li>MCP tool names</li>
+<li>the core method-catalog field set</li>
+<li>the <code>full</code> / <code>summary</code> / <code>meta</code> serialization modes</li>
+</ul>
+<p>Breaking machine-facing changes should land with a package minor bump rather
+than as a silent patch-level surprise.</p>
+<h2 id="schema-assets">Schema assets</h2>
+<p>Packaged JSON schemas live under <code>src/detime/schema_assets/</code> and are also
+available through:</p>
+<ul>
+<li><code>detime schema --name config</code></li>
+<li><code>detime schema --name result</code></li>
+<li><code>detime schema --name meta</code></li>
+<li><code>detime schema --name method-registry</code></li>
+</ul>
+<p>These schemas are intended for validation, tool wiring, and regression checks,
+not just for documentation.</p>
+<h2 id="stable-catalog-fields">Stable catalog fields</h2>
+<p><code>MethodRegistry.list_catalog()</code> is the machine-readable source of truth for the
+public method catalog. Every entry is expected to expose at least:</p>
+<ul>
+<li><code>family</code></li>
+<li><code>maturity</code></li>
+<li><code>implementation</code></li>
+<li><code>dependency_tier</code></li>
+<li><code>multivariate_support</code></li>
+<li><code>native_backed</code></li>
+<li><code>min_length</code></li>
+<li><code>summary</code></li>
+<li><code>recommended_for</code></li>
+<li><code>typical_failure_modes</code></li>
+</ul>
+<p>The current catalog also carries assumptions, not-recommended cases, and
+optional-dependency hints so the generated method cards and MCP responses stay
+aligned.</p>
+<h2 id="recommendation-interface">Recommendation interface</h2>
+<p><code>detime recommend</code> and the MCP <code>recommend_method</code> tool provide the same routing
+surface:</p>
+<ul>
+<li>input length</li>
+<li>channel count</li>
+<li>speed / balanced / accuracy preference</li>
+<li>whether optional backends are allowed</li>
+<li>whether native-backed methods are required</li>
+</ul>
+<p>This lets an agent shortlist methods before touching any full decomposition
+payloads.</p>
+<h2 id="serialization-modes">Serialization modes</h2>
+<p>De-Time intentionally separates artifact size from decomposition execution.
+Machine consumers can request:</p>
+<ul>
+<li><code>full</code></li>
+<li>complete serialized arrays</li>
+<li><code>summary</code></li>
+<li>array shapes plus summary statistics and diagnostics</li>
+<li><code>meta</code></li>
+<li>metadata and diagnostics only</li>
+</ul>
+<p>The recommended progressive-disclosure path is:</p>
+<ol>
+<li>ask for <code>meta</code> or <code>summary</code></li>
+<li>inspect diagnostics and backend metadata</li>
+<li>request <code>full</code> only if downstream logic truly needs raw arrays</li>
+</ol>
+<h2 id="mcp-surface">MCP surface</h2>
+<p>The MCP server is available at:</p>
+<pre><code class="language-bash">python -m detime.mcp.server
+</code></pre>
+<p>Current status:</p>
+<ul>
+<li>local-first</li>
+<li>stdio transport</li>
+<li>no hosted remote endpoint claimed</li>
+<li>intended for deterministic tool access rather than free-form prompting</li>
+</ul>
+<p>Stable tools in the current surface:</p>
+<ul>
+<li><code>list_methods</code></li>
+<li><code>get_schema</code></li>
+<li><code>recommend_method</code></li>
+<li><code>run_decomposition</code></li>
+<li><code>summarize_result</code></li>
+</ul>
+<p>Recommended tool subsets:</p>
+<ul>
+<li>routing only: <code>list_methods</code>, <code>recommend_method</code>, <code>get_schema</code></li>
+<li>bounded-context execution: add <code>run_decomposition</code> in <code>summary</code> or <code>meta</code>
+  mode</li>
+<li>post-hoc condensation: add <code>summarize_result</code></li>
+</ul>
+<h2 id="artifact-contract">Artifact contract</h2>
+<p>Programmatic calls return one <code>DecompResult</code>. CLI calls persist one of the
+following artifact patterns:</p>
+<ul>
+<li><code>*_components.csv</code></li>
+<li><code>*_meta.json</code></li>
+<li>optional <code>*_components_3d.npz</code></li>
+<li><code>*_summary.json</code></li>
+<li><code>*_full.json</code></li>
+</ul>
+<p>Agents should prefer <code>meta.result_layout</code>, <code>meta.n_channels</code>, and
+<code>meta.channel_names</code> over filename inference.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

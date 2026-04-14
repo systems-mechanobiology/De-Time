@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="840" viewBox="0 0 1400 840" role="img" aria-labelledby="title desc">
+  <title id="title">De-Time title card</title>
+  <desc id="desc">A research software title card with signal plots and method badges for De-Time.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7fafc" />
+      <stop offset="55%" stop-color="#edf3fb" />
+      <stop offset="100%" stop-color="#e7eef8" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f7fbff" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#173255" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <rect width="1400" height="840" fill="url(#bg)" />
+
+  <rect x="64" y="64" width="1272" height="712" rx="36" fill="#ffffff" opacity="0.82" />
+
+  <g filter="url(#shadow)">
+    <rect x="92" y="92" width="820" height="656" rx="30" fill="url(#panel)" />
+    <rect x="944" y="92" width="364" height="656" rx="30" fill="url(#panel)" />
+  </g>
+
+  <text x="138" y="182" font-size="70" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">De-Time</text>
+  <text x="138" y="228" font-size="30" font-family="Helvetica, Arial, sans-serif" fill="#334155">
+    Research software for reproducible time-series decomposition.
+  </text>
+  <text x="138" y="268" font-size="25" font-family="Helvetica, Arial, sans-serif" fill="#5b6778">
+    Unified APIs, visual reports, native acceleration, and multivariate workflows.
+  </text>
+
+  <g>
+    <rect x="138" y="314" width="120" height="42" rx="21" fill="#0b5fff" />
+    <text x="170" y="341" font-size="21" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#ffffff">SSA</text>
+    <rect x="274" y="314" width="120" height="42" rx="21" fill="#eff6ff" stroke="#b7cdfa" />
+    <text x="306" y="341" font-size="21" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0b3a8f">STD</text>
+    <rect x="410" y="314" width="128" height="42" rx="21" fill="#eff6ff" stroke="#b7cdfa" />
+    <text x="438" y="341" font-size="21" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0b3a8f">MSSA</text>
+    <rect x="554" y="314" width="144" height="42" rx="21" fill="#ecfdf5" stroke="#b5ead0" />
+    <text x="581" y="341" font-size="21" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f766e">Native-backed</text>
+  </g>
+
+  <g>
+    <text x="138" y="415" font-size="24" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">Single-series decomposition</text>
+    <rect x="138" y="436" width="720" height="126" rx="22" fill="#f8fbff" stroke="#d7e1ee" />
+    <line x1="170" y1="530" x2="830" y2="530" stroke="#d5deea" stroke-width="2" />
+    <polyline points="170,501 205,493 240,470 275,484 310,443 345,462 380,432 415,458 450,477 485,453 520,486 555,520 590,510 625,552 660,542 695,575 730,560 765,584 800,567 830,592" fill="none" stroke="#0b5fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+    <polyline points="170,495 205,492 240,488 275,485 310,479 345,475 380,470 415,466 450,462 485,456 520,450 555,444 590,438 625,431 660,425 695,420 730,413 765,407 800,402 830,396" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    <polyline points="170,538 205,550 240,555 275,548 310,566 345,558 380,572 415,561 450,549 485,562 520,546 555,534 590,542 625,526 660,533 695,518 730,522 765,510 800,515 830,503" fill="none" stroke="#8b5cf6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="172" y="587" font-size="19" font-family="Helvetica, Arial, sans-serif" fill="#475569">Observed</text>
+    <text x="262" y="587" font-size="19" font-family="Helvetica, Arial, sans-serif" fill="#475569">Trend</text>
+    <text x="331" y="587" font-size="19" font-family="Helvetica, Arial, sans-serif" fill="#475569">Seasonal</text>
+  </g>
+
+  <g>
+    <text x="138" y="645" font-size="24" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">Multivariate structure</text>
+    <rect x="138" y="666" width="720" height="50" rx="16" fill="#f8fbff" stroke="#d7e1ee" />
+    <rect x="168" y="679" width="150" height="24" rx="12" fill="#dbeafe" />
+    <rect x="332" y="679" width="206" height="24" rx="12" fill="#c7d2fe" />
+    <rect x="552" y="679" width="132" height="24" rx="12" fill="#bfdbfe" />
+    <rect x="698" y="679" width="118" height="24" rx="12" fill="#e0e7ff" />
+    <text x="138" y="744" font-size="20" font-family="Helvetica, Arial, sans-serif" fill="#475569">
+      From one signal to channelwise and joint workflows on the same public contract.
+    </text>
+  </g>
+
+  <g>
+    <text x="980" y="174" font-size="26" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">Project snapshot</text>
+
+    <rect x="980" y="208" width="292" height="70" rx="18" fill="#f8fbff" stroke="#d7e1ee" />
+    <text x="1006" y="238" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#64748b">Package</text>
+    <text x="1006" y="264" font-size="28" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">de-time</text>
+
+    <rect x="980" y="296" width="292" height="70" rx="18" fill="#f8fbff" stroke="#d7e1ee" />
+    <text x="1006" y="326" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#64748b">Preferred import</text>
+    <text x="1006" y="352" font-size="28" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">detime</text>
+
+    <rect x="980" y="384" width="292" height="124" rx="18" fill="#f8fbff" stroke="#d7e1ee" />
+    <text x="1006" y="414" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#64748b">Flagship methods</text>
+    <text x="1006" y="447" font-size="24" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">SSA · STD · STDR</text>
+<text x="1006" y="478" font-size="24" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">STDR · MSSA</text>
+
+    <rect x="980" y="526" width="292" height="96" rx="18" fill="#f8fbff" stroke="#d7e1ee" />
+    <text x="1006" y="556" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#64748b">Outputs</text>
+    <text x="1006" y="588" font-size="23" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">trend · season</text>
+    <text x="1006" y="617" font-size="23" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0f172a">residual · meta</text>
+
+    <rect x="980" y="640" width="292" height="70" rx="18" fill="#eff6ff" stroke="#b7cdfa" />
+    <text x="1006" y="670" font-size="18" font-family="Helvetica, Arial, sans-serif" fill="#0b3a8f">Docs</text>
+    <text x="1006" y="696" font-size="24" font-family="Helvetica, Arial, sans-serif" font-weight="700" fill="#0b3a8f">GitHub Pages</text>
+  </g>
+</svg>

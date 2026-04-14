@@ -1,8 +1,8 @@
 # Install
 
-## Public release path
+## Tagged release path
 
-De-Time `0.1.0` is published as the `de-time` distribution.
+Public De-Time releases install as the `de-time` distribution.
 
 ```bash
 pip install de-time
@@ -24,7 +24,11 @@ pip install "de-time[multivar]"
 Do not install the unrelated `detime` package from PyPI when you want this
 project.
 
-## Editable install
+## Editable branch install
+
+Use this when you are working from an unreleased branch, validating the release
+target before the `de-time-v0.1.1` tag is published from `main`, or developing
+the package locally.
 
 ```bash
 python -m pip install --upgrade pip
@@ -48,10 +52,12 @@ to:
 
 Transition-era submodules such as `tsdecomp.backends`,
 `tsdecomp.leaderboard`, and `tsdecomp.methods.*` are intentionally not shipped
-in install artifacts.
+in install artifacts. The top-level alias is supported through `0.1.x` and may
+be removed as early as `0.2.0`.
 
 ## Release record
 
-The first public release is `0.1.0`, tagged as `de-time-v0.1.0` on April 8,
-2026. Release notes live in the GitHub release/tag record and in
-`CHANGELOG.md`.
+The repository already has a `0.1.0` GitHub release record. This branch is
+prepared for `0.1.1`, which will publish from `main` through the release
+workflow, verify `pip install de-time`, and then update the public docs site.
+Release notes live in the GitHub release/tag record and in `CHANGELOG.md`.

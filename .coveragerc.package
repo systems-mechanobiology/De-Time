@@ -1,0 +1,15 @@
+[run]
+source =
+    detime
+omit =
+    */tsdecomp/*
+
+[paths]
+detime =
+    src/detime
+    */site-packages/detime
+    *\site-packages\detime
+
+[report]
+show_missing = True
+skip_covered = False

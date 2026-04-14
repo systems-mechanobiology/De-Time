@@ -6,6 +6,7 @@ from typing import Any, Dict
 
 import numpy as np
 
+from .._metadata import MACHINE_CONTRACT_VERSION, installed_version
 from ..core import DecompResult, DecompositionConfig
 from ..io import read_series
 from ..recommend import recommend_methods
@@ -28,7 +29,10 @@ def _tool_definitions() -> list[dict[str, Any]]:
     return [
         {
             "name": "list_methods",
-            "description": "List registered De-Time methods and their machine-readable metadata.",
+            "description": (
+                "List registered De-Time methods and their machine-readable metadata. "
+                "Use this first when the agent needs a stable method catalog."
+            ),
             "inputSchema": {
                 "type": "object",
                 "properties": {
@@ -267,8 +271,12 @@ def serve_stdio() -> int:
             if method == "initialize":
                 result = {
                     "protocolVersion": "2024-11-05",
-                    "serverInfo": {"name": "detime-mcp", "version": "0.1.0"},
+                    "serverInfo": {"name": "detime-mcp", "version": installed_version()},
                     "capabilities": {"tools": {}},
+                    "instructions": (
+                        "This is the local-first De-Time MCP server. Tool names are stable within "
+                        f"the {MACHINE_CONTRACT_VERSION} machine-contract series."
+                    ),
                 }
             elif method == "ping":
                 result = {}

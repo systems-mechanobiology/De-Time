@@ -39,6 +39,9 @@ def test_registry_catalog_exposes_machine_metadata() -> None:
     assert ssa["maturity"] == "flagship"
     assert ssa["native_backed"] is True
     assert ssa["family"] == "SSA"
+    assert ssa["assumptions"]
+    assert ssa["not_recommended_for"]
+    assert isinstance(ssa["optional_dependencies"], list)
 
 
 def test_serialization_modes_and_diagnostics() -> None:
@@ -84,6 +87,7 @@ def test_schema_assets_are_packaged_and_regeneratable(tmp_path) -> None:
 
     method_registry_schema = get_schema("method-registry")
     assert method_registry_schema["title"] == "MethodRegistryPayloadModel"
+    assert "contract_version" in method_registry_schema["properties"]
 
     written = write_schema_assets(tmp_path)
     assert (tmp_path / "config.schema.json") == written["config"]

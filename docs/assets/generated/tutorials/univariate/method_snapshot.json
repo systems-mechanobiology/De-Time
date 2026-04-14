@@ -1,0 +1,22 @@
+[
+  {
+    "backend_used": "native",
+    "method": "SSA",
+    "reconstruction_max_abs_error": 4.440892098500626e-16,
+    "residual_peak_abs": 4.9960036108132044e-15,
+    "residual_rms": 1.5457704366726478e-15,
+    "season_std": 0.7036104635973588,
+    "trend_mean": 1.1908501600541532,
+    "trend_std": 0.6917338604216825
+  },
+  {
+    "backend_used": "native",
+    "method": "STD",
+    "reconstruction_max_abs_error": 2.220446049250313e-16,
+    "residual_peak_abs": 1.1102230246251565e-16,
+    "residual_rms": 3.994135664447016e-17,
+    "season_std": 0.65583965305194,
+    "trend_mean": 1.1900000000000002,
+    "trend_std": 0.6893475175845635
+  }
+]

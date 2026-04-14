@@ -1,0 +1,6 @@
+Wrote:
+docs/assets/generated/tutorials/visual-univariate/ssa_components.png
+docs/assets/generated/tutorials/visual-univariate/ssa_residual_error.png
+docs/assets/generated/tutorials/visual-univariate/ssa_summary.csv
+docs/assets/generated/tutorials/visual-univariate/ssa_summary.json
+Backend used: native

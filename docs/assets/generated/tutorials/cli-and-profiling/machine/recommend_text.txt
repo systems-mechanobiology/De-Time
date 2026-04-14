@@ -1,0 +1,9 @@
+1. MSSA (13.50)
+   Multivariate SSA for shared-structure decomposition across channels.
+   reasons: maturity:flagship, shared_multivariate, accuracy_shortlist, multivariate_accuracy_bonus
+2. STDR (11.75)
+   Robust seasonal-trend decomposition for noisier periodic signals.
+   reasons: maturity:flagship, native_backed, channelwise_multivariate, accuracy_shortlist, long_series_native
+3. STD (9.25)
+   Fast seasonal-trend decomposition with dispersion-aware diagnostics.
+   reasons: maturity:flagship, native_backed, channelwise_multivariate, long_series_native

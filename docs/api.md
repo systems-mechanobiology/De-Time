@@ -7,7 +7,8 @@ from detime import DecompositionConfig, DecompResult, MethodRegistry, decompose
 ```
 
 The preferred import is `detime`. The `tsdecomp` import path remains available
-only as a deprecated alias.
+only as a deprecated alias through `0.1.x`, with earliest removal planned for
+`0.2.0`.
 
 ## Public objects
 
@@ -44,6 +45,19 @@ Useful entrypoints:
 - `MethodRegistry.get(method_name)`
 - `MethodRegistry.register(method_name)`
 
+Every catalog entry is expected to expose at least:
+
+- `family`
+- `maturity`
+- `implementation`
+- `dependency_tier`
+- `multivariate_support`
+- `native_backed`
+- `min_length`
+- `summary`
+- `recommended_for`
+- `typical_failure_modes`
+
 ## Top-level helpers
 
 - `decompose(series, config)`
@@ -56,6 +70,10 @@ Useful entrypoints:
 - `detime schema --name config|result|meta|method-registry`
 - `detime recommend --length ... --channels ...`
 - `python -m detime.mcp.server`
+
+The machine contract is local-first in the current `0.1.x` line. Tool names,
+schema payloads, and the method catalog are intended to stay stable within the
+`0.1` machine-contract series.
 
 Run outputs support three serialization modes:
 

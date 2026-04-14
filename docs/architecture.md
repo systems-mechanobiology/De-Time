@@ -21,7 +21,8 @@ The canonical implementation lives under `src/detime`.
 `src/tsdecomp` is now a thin compatibility package. It re-exports the package-
 level De-Time surface and emits deprecation warnings for imports and CLI usage.
 Only the top-level import path and CLI alias remain packaged; transition-era
-submodules are intentionally not shipped in install artifacts.
+submodules are intentionally not shipped in install artifacts. The compatibility
+window is the `0.1.x` series, with earliest removal planned for `0.2.0`.
 
 ## Machine-facing boundary
 
@@ -30,7 +31,7 @@ Machine-oriented workflows use:
 - packaged JSON schemas under `src/detime/schema_assets`,
 - machine-readable method metadata from `MethodRegistry.list_catalog()`,
 - `detime schema` and `detime recommend`,
-- the minimal MCP server at `python -m detime.mcp.server`,
+- the local-first MCP server at `python -m detime.mcp.server`,
 - low-token result exports via `summary` and `meta` modes.
 
 ## Native boundary

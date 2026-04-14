@@ -127,11 +127,10 @@ def run_profile(
     return report
 
 
-def write_profile_report(report: Dict[str, Any], path: Path, fmt: str = "json") -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
+def format_profile_report(report: Dict[str, Any], fmt: str = "json") -> str:
     if fmt == "json":
-        path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-        return
+        return json.dumps(report, indent=2, sort_keys=True) + "\n"
+
     lines = [
         f"method={report.get('method')}",
         f"backend_requested={report.get('backend_requested')}",
@@ -142,4 +141,9 @@ def write_profile_report(report: Dict[str, Any], path: Path, fmt: str = "json") 
         f"samples_ms={report.get('samples_ms')}",
         f"summary={report.get('summary')}",
     ]
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return "\n".join(lines) + "\n"
+
+
+def write_profile_report(report: Dict[str, Any], path: Path, fmt: str = "json") -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(format_profile_report(report, fmt=fmt), encoding="utf-8")

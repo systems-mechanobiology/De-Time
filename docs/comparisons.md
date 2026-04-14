@@ -12,11 +12,38 @@ native-backed runs.
 | Core positioning | workflow-oriented decomposition layer | classical decomposition and modeling | EMD-family toolkit | wavelet toolkit | broader signal decomposition toolkit | SSA-focused toolkit | broad time-series ecosystem |
 | Common config object | yes | no | no | no | partial | SSA-specific | no |
 | Common result object | yes | partial | no | no | partial | SSA-specific | no |
+| Machine-readable catalog | yes | no | no | no | no | no | no |
 | Batch CLI | yes | no | no | no | limited | no | no |
 | Profiling path | yes | no | no | no | no | no | no |
 | Multivariate under one surface | yes | limited | family-specific | transform-specific | yes | no | partial |
 | Native-backed retained methods | yes | upstream internals | no | mixed | mixed | mixed | mixed |
 | Maturity labeling | explicit | not applicable | family-specific | family-specific | less explicit | focused | ecosystem-level |
+| Compact result modes | yes | no | no | no | no | no | no |
+| MCP / tool surface | yes | no | no | no | no | no | no |
+
+## Why not PySDKit?
+
+`PySDKit` is the nearest unified competitor because it also gathers multiple
+decomposition families under one project and exposes optional multivariate
+backends. De-Time's distinction is narrower and more software-structural:
+
+- one decomposition-specific config/result contract across flagship and wrapper paths,
+- machine-readable method metadata intended for docs, recommendation, and tool calls,
+- compact `full` / `summary` / `meta` payloads for bounded-context workflows,
+- a local-first MCP surface and schema assets that describe the machine-facing API.
+
+The claim is not that De-Time subsumes every decomposition feature in
+`PySDKit`. The claim is that De-Time invests more directly in workflow and
+machine-facing reproducibility for time-series decomposition itself.
+
+## Why not SSALib?
+
+`SSALib` is the more specialized SSA-focused package. It is deeper if your sole
+goal is SSA-family tooling, SSA-specific workflows, or a specialist SSA
+environment. De-Time does not claim to exceed that family depth. Its position
+is that `SSA` is one flagship path inside a broader decomposition layer that
+also keeps `STD`, `STDR`, `MSSA`, wrappers, CLI workflows, and machine-facing
+artifacts under one contract.
 
 ## Where specialist packages are deeper
 
@@ -47,10 +74,12 @@ claim. The raw evidence lives in `docs/assets/generated/evidence/`.
 
 ## Packaging and quality evidence
 
-- Release `0.1.0` is published as `de-time` and tagged as `de-time-v0.1.0`.
+- Release target `0.1.1` keeps the public install path, docs, and release
+  smoke verification aligned around `de-time`.
 - The canonical coverage gate applies to the `detime` core-plus-flagship
   surface, not to the entire repository tree.
-- The current gated coverage snapshot reached `93.20%`.
+- A second package-wide coverage report is emitted separately so the broader
+  denominator stays explicit.
 - Wheel and sdist smoke installs, documentation consistency checks,
   `mkdocs build --strict`, and `twine check` are part of the validation story.
 

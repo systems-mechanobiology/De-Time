@@ -4,8 +4,8 @@
 
 Use [`CITATION.cff`](https://github.com/systems-mechanobiology/De-Time/blob/main/CITATION.cff) for machine-readable citation metadata.
 
-The first public software release is `0.1.0`, published on April 8, 2026 and
-tagged as `de-time-v0.1.0`.
+The current branch targets `0.1.1`. Tagged standalone releases use the
+`de-time-v*` convention and publish the `de-time` distribution.
 
 ## Release notes
 
@@ -15,3 +15,4 @@ tagged as `de-time-v0.1.0`.
   for the main package.
 - Companion benchmark work now lives in
   [`systems-mechanobiology/de-time-bench`](https://github.com/systems-mechanobiology/de-time-bench).
+- The release workflow also performs post-publish smoke verification from PyPI.

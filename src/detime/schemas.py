@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import json
 from importlib import resources
-from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from typing import Any, Dict, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ._metadata import CANONICAL_IMPORT, MACHINE_CONTRACT_VERSION, installed_version
 from .core import DecompositionConfig
 from .registry import MethodRegistry
 
@@ -18,14 +18,6 @@ SCHEMA_FILENAMES: Dict[SchemaName, str] = {
     "meta": "meta.schema.json",
     "method-registry": "method-registry.schema.json",
 }
-
-
-def _package_version() -> str:
-    try:
-        return version("de-time")
-    except PackageNotFoundError:  # pragma: no cover - source tree fallback
-        return "0.1.0"
-
 
 class ArraySummaryModel(BaseModel):
     shape: list[int] = Field(default_factory=list)
@@ -84,13 +76,17 @@ class MethodMetadataModel(BaseModel):
     summary: str
     recommended_for: list[str] = Field(default_factory=list)
     typical_failure_modes: list[str] = Field(default_factory=list)
+    assumptions: list[str] = Field(default_factory=list)
+    not_recommended_for: list[str] = Field(default_factory=list)
+    optional_dependencies: list[str] = Field(default_factory=list)
 
 
 class MethodRegistryPayloadModel(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
-    package: Literal["detime"] = "detime"
+    package: Literal["detime"] = CANONICAL_IMPORT
     version: str
+    contract_version: str = MACHINE_CONTRACT_VERSION
     methods: list[MethodMetadataModel] = Field(default_factory=list)
 
 
@@ -120,7 +116,7 @@ class RecommendationResponseModel(BaseModel):
 
 def _catalog_payload() -> MethodRegistryPayloadModel:
     methods = [MethodMetadataModel.model_validate(entry) for entry in MethodRegistry.list_catalog()]
-    return MethodRegistryPayloadModel(version=_package_version(), methods=methods)
+    return MethodRegistryPayloadModel(version=installed_version(), methods=methods)
 
 
 def build_schema_bundle() -> Dict[SchemaName, Dict[str, Any]]:

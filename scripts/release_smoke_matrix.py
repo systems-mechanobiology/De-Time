@@ -13,6 +13,7 @@ import numpy as np
 import detime
 import tsdecomp
 from detime import DecompositionConfig, decompose
+from detime._metadata import installed_version
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,7 +43,7 @@ def main() -> int:
     report: dict[str, object] = {
         "platform": platform.platform(),
         "python": sys.version.split()[0],
-        "package_version": getattr(detime, "__version__", "0.1.0"),
+        "package_version": installed_version(),
         "imports": {
             "detime": detime.__name__,
             "tsdecomp": tsdecomp.__name__,

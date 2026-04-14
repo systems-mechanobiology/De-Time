@@ -3,6 +3,9 @@
   "distribution_name": "de-time",
   "preferred_runtime_package": "detime",
   "legacy_runtime_package": "tsdecomp",
+  "legacy_alias_window": "0.1.x",
+  "legacy_alias_earliest_removal": "0.2.0",
+  "machine_contract_version": "0.1",
   "type": "time-series decomposition package",
   "stable_entrypoints": [
     "decompose(series, config)",
@@ -18,6 +21,30 @@
     "python -m detime.mcp.server",
     "src/detime/schema_assets/*.json"
   ],
+  "mcp": {
+    "status": "local-first",
+    "tool_names": [
+      "list_methods",
+      "get_schema",
+      "recommend_method",
+      "run_decomposition",
+      "summarize_result"
+    ],
+    "recommended_tool_subsets": {
+      "routing": [
+        "list_methods",
+        "get_schema",
+        "recommend_method"
+      ],
+      "bounded_context_execution": [
+        "list_methods",
+        "get_schema",
+        "recommend_method",
+        "run_decomposition",
+        "summarize_result"
+      ]
+    }
+  },
   "best_first_methods": {
     "known_period_univariate": [
       "STD",
@@ -49,5 +76,6 @@
     "tsdecomp batch",
     "tsdecomp profile"
   ],
+  "versioning_policy": "Machine-facing contracts aim to stay stable within the 0.1 series; breaking changes should land with a package minor bump.",
   "companion_benchmark_repo": "https://github.com/systems-mechanobiology/de-time-bench"
 }

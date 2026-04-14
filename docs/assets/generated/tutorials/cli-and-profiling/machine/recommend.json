@@ -1,0 +1,156 @@
+{
+  "recommendations": [
+    {
+      "metadata": {
+        "assumptions": [
+          "expects a 2D array with at least two aligned channels",
+          "works best when window and rank reflect the dominant temporal structure",
+          "MSSA should be evaluated against residual diagnostics rather than used as a black box"
+        ],
+        "dependency_tier": "core",
+        "family": "SSA",
+        "implementation": "python",
+        "input_mode": "multivariate",
+        "maturity": "flagship",
+        "min_length": 24,
+        "multivariate_support": "shared-model",
+        "name": "MSSA",
+        "native_backed": false,
+        "not_recommended_for": [
+          "single-series workflows where a univariate flagship method is sufficient",
+          "very short series that cannot support a sensible window length"
+        ],
+        "optional_dependencies": [],
+        "recommended_for": [
+          "multivariate component recovery",
+          "shared seasonal structure across channels",
+          "accuracy-first multivariate workflows"
+        ],
+        "summary": "Multivariate SSA for shared-structure decomposition across channels.",
+        "typical_failure_modes": [
+          "too few channels for MSSA",
+          "window or rank too small for the shared structure"
+        ]
+      },
+      "method": "MSSA",
+      "rank": 1,
+      "reason_codes": [
+        "maturity:flagship",
+        "shared_multivariate",
+        "accuracy_shortlist",
+        "multivariate_accuracy_bonus"
+      ],
+      "score": 13.5,
+      "summary": "Multivariate SSA for shared-structure decomposition across channels."
+    },
+    {
+      "metadata": {
+        "assumptions": [
+          "treats each channel independently under one shared method surface",
+          "works best when one seasonal period or block structure is reasonably stable",
+          "STDR should be evaluated against residual diagnostics rather than used as a black box"
+        ],
+        "dependency_tier": "core",
+        "family": "SeasonalTrend",
+        "implementation": "native-backed",
+        "input_mode": "channelwise",
+        "maturity": "flagship",
+        "min_length": 8,
+        "multivariate_support": "channelwise",
+        "name": "STDR",
+        "native_backed": true,
+        "not_recommended_for": [
+          "problems that require one shared latent model across channels",
+          "series where the dominant period is unknown and cannot be inferred reliably"
+        ],
+        "optional_dependencies": [],
+        "recommended_for": [
+          "robust seasonal-trend decomposition",
+          "channelwise multivariate workflows",
+          "native-backed seasonal structure recovery"
+        ],
+        "summary": "Robust seasonal-trend decomposition for noisier periodic signals.",
+        "typical_failure_modes": [
+          "period omitted or mis-specified",
+          "heavy structural breaks that violate shared seasonal assumptions"
+        ]
+      },
+      "method": "STDR",
+      "rank": 2,
+      "reason_codes": [
+        "maturity:flagship",
+        "native_backed",
+        "channelwise_multivariate",
+        "accuracy_shortlist",
+        "long_series_native"
+      ],
+      "score": 11.75,
+      "summary": "Robust seasonal-trend decomposition for noisier periodic signals."
+    },
+    {
+      "metadata": {
+        "assumptions": [
+          "treats each channel independently under one shared method surface",
+          "works best when one seasonal period or block structure is reasonably stable",
+          "STD should be evaluated against residual diagnostics rather than used as a black box"
+        ],
+        "dependency_tier": "core",
+        "family": "SeasonalTrend",
+        "implementation": "native-backed",
+        "input_mode": "channelwise",
+        "maturity": "flagship",
+        "min_length": 8,
+        "multivariate_support": "channelwise",
+        "name": "STD",
+        "native_backed": true,
+        "not_recommended_for": [
+          "problems that require one shared latent model across channels",
+          "series where the dominant period is unknown and cannot be inferred reliably"
+        ],
+        "optional_dependencies": [],
+        "recommended_for": [
+          "fast seasonal-trend baselines",
+          "channelwise multivariate workflows",
+          "native-backed production paths"
+        ],
+        "summary": "Fast seasonal-trend decomposition with dispersion-aware diagnostics.",
+        "typical_failure_modes": [
+          "period omitted or mis-specified",
+          "shared seasonal structure changing too quickly across cycles"
+        ]
+      },
+      "method": "STD",
+      "rank": 3,
+      "reason_codes": [
+        "maturity:flagship",
+        "native_backed",
+        "channelwise_multivariate",
+        "long_series_native"
+      ],
+      "score": 9.25,
+      "summary": "Fast seasonal-trend decomposition with dispersion-aware diagnostics."
+    }
+  ],
+  "rejected_methods": {
+    "CEEMDAN": "univariate_only",
+    "EMD": "univariate_only",
+    "GABOR_CLUSTER": "univariate_only",
+    "MA_BASELINE": "univariate_only",
+    "MEMD": "optional_backend_disabled",
+    "MSTL": "univariate_only",
+    "MVMD": "optional_backend_disabled",
+    "ROBUST_STL": "univariate_only",
+    "SSA": "univariate_only",
+    "STL": "univariate_only",
+    "VMD": "univariate_only",
+    "WAVELET": "univariate_only"
+  },
+  "request": {
+    "allow_optional_backends": false,
+    "channels": 3,
+    "length": 192,
+    "prefer": "accuracy",
+    "require_native": false,
+    "top_k": 5
+  }
+}

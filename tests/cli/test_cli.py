@@ -128,6 +128,112 @@ def test_profile_command_writes_report(monkeypatch, tmp_path, capsys):
     assert report_path.exists()
 
 
+def test_profile_command_prints_text_stdout(monkeypatch, capsys):
+    monkeypatch.setattr(
+        cli,
+        "run_profile",
+        lambda **kwargs: {
+            "method": kwargs["method"],
+            "backend_requested": kwargs["backend"],
+            "backend_used": kwargs["backend"],
+            "speed_mode": kwargs["speed_mode"],
+            "repeat": kwargs["repeat"],
+            "warmup": kwargs["warmup"],
+            "samples_ms": [1.0, 2.0],
+            "summary": {
+                "min_ms": 1.0,
+                "mean_ms": 1.5,
+                "median_ms": 1.5,
+                "p95_ms": 2.0,
+                "stdev_ms": 0.5,
+            },
+        },
+    )
+
+    import sys
+
+    old_argv = sys.argv
+    sys.argv = [
+        "detime",
+        "profile",
+        "--method",
+        "SSA",
+        "--series",
+        "input.csv",
+        "--backend",
+        "native",
+        "--speed-mode",
+        "fast",
+        "--repeat",
+        "2",
+        "--warmup",
+        "1",
+        "--format",
+        "text",
+    ]
+    try:
+        cli.main()
+    finally:
+        sys.argv = old_argv
+
+    captured = capsys.readouterr()
+    assert "method=SSA" in captured.out
+    assert '"method"' not in captured.out
+
+
+def test_profile_command_prints_json_stdout(monkeypatch, capsys):
+    monkeypatch.setattr(
+        cli,
+        "run_profile",
+        lambda **kwargs: {
+            "method": kwargs["method"],
+            "backend_requested": kwargs["backend"],
+            "backend_used": kwargs["backend"],
+            "speed_mode": kwargs["speed_mode"],
+            "repeat": kwargs["repeat"],
+            "warmup": kwargs["warmup"],
+            "samples_ms": [1.0, 2.0],
+            "summary": {
+                "min_ms": 1.0,
+                "mean_ms": 1.5,
+                "median_ms": 1.5,
+                "p95_ms": 2.0,
+                "stdev_ms": 0.5,
+            },
+        },
+    )
+
+    import sys
+
+    old_argv = sys.argv
+    sys.argv = [
+        "detime",
+        "profile",
+        "--method",
+        "SSA",
+        "--series",
+        "input.csv",
+        "--backend",
+        "native",
+        "--speed-mode",
+        "fast",
+        "--repeat",
+        "2",
+        "--warmup",
+        "1",
+        "--format",
+        "json",
+    ]
+    try:
+        cli.main()
+    finally:
+        sys.argv = old_argv
+
+    captured = capsys.readouterr()
+    assert '"method": "SSA"' in captured.out
+    assert "method=SSA" not in captured.out
+
+
 def test_run_command_accepts_multivariate_cols(monkeypatch, tmp_path):
     monkeypatch.setattr(cli, "DecompositionConfig", FakeConfig)
     captured = {}

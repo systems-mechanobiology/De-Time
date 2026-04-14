@@ -107,3 +107,44 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist
+
+  verify-pypi-install:
+    name: Verify PyPI install
+    needs:
+      - publish-pypi
+    if: github.event_name == 'release' || startsWith(github.ref, 'refs/tags/de-time-v')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Resolve release version
+        shell: bash
+        run: echo "RELEASE_VERSION=${GITHUB_REF_NAME#de-time-v}" >> "$GITHUB_ENV"
+
+      - name: Install from PyPI with retry
+        shell: bash
+        run: |
+          python -m venv .venv-pypi
+          source .venv-pypi/bin/activate
+          python -m pip install --upgrade pip
+          for attempt in {1..10}; do
+            if python -m pip install --no-cache-dir "de-time==${RELEASE_VERSION}"; then
+              break
+            fi
+            if [ "$attempt" -eq 10 ]; then
+              echo "PyPI install did not become available in time" >&2
+              exit 1
+            fi
+            sleep 15
+          done
+          python -c "import detime; print(detime.__version__)"
+          python -m detime version
+          python -m detime schema --name config > /tmp/detime-config-schema.json
+          python scripts/release_smoke_matrix.py

@@ -13,11 +13,18 @@ Run several methods on the same series and compare:
 
 ## Script
 
-Run:
+POSIX shell:
 
 ```bash
-PYTHONPATH=src python3 examples/visual_method_comparison.py \
+PYTHONPATH=src python examples/visual_method_comparison.py \
   --out-dir out/visual_method_comparison
+```
+
+PowerShell:
+
+```powershell
+$env:PYTHONPATH='src'
+python examples/visual_method_comparison.py --out-dir out/visual_method_comparison
 ```
 
 This script compares:
@@ -26,6 +33,10 @@ This script compares:
 - `STDR`
 - `SSA`
 - `STL`
+
+Published raw stdout:
+
+- [run_stdout.txt](../assets/generated/tutorials/visual-comparison/run_stdout.txt)
 
 ## Output files
 

@@ -1,0 +1,44 @@
+{
+  "mode": "meta",
+  "meta": {
+    "method": "STD",
+    "period": 12,
+    "n_cycles": 2,
+    "incomplete_cycle": false,
+    "native_method": "STD_NATIVE",
+    "backend_requested": "auto",
+    "backend_used": "native",
+    "speed_mode": "exact",
+    "input_shape": [
+      24
+    ],
+    "result_layout": "univariate",
+    "n_channels": 1,
+    "channel_names": [
+      "value"
+    ]
+  },
+  "diagnostics": {
+    "component_count": 2,
+    "component_names": [
+      "dispersion",
+      "seasonal_shape"
+    ],
+    "component_shapes": {
+      "dispersion": [
+        24
+      ],
+      "seasonal_shape": [
+        24
+      ]
+    },
+    "quality_metrics": {
+      "trend_l2_norm": 1.2709051892253802,
+      "season_l2_norm": 2.16992538703431,
+      "residual_l2_norm": 7.850462293418876e-17,
+      "residual_ratio": 3.12181373188677e-17
+    },
+    "warnings": [],
+    "limitations": []
+  }
+}

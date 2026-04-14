@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://systems-mechanobiology.github.io/De-Time/comparisons/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Comparisons - De-Time</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">De-Time</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../why/" class="nav-link">Why De-Time</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../install/" class="nav-link">Install</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../quickstart/" class="nav-link">Quickstart</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../choose-a-method/" class="nav-link">Choose a Method</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../ml-workflows/" class="nav-link">ML Workflows</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../methods/" class="nav-link">Methods</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../method-cards.md" class="nav-link">Method Cards</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../machine-api/" class="nav-link">Machine API</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../api/" class="nav-link">API</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../architecture/" class="nav-link">Architecture</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Workflows</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/visual-univariate/" class="dropdown-item">Visual Univariate Walkthrough</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/visual-comparison/" class="dropdown-item">Visual Method Comparison</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Workflows</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/visual-multivariate/" class="dropdown-item">Visual Multivariate Walkthrough</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI and Profiling</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/profiling/" class="dropdown-item">Profiling Reference</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Comparisons</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../comparison-evidence/" class="nav-link">Comparison Evidence</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../token-benchmarks/" class="nav-link">Token Benchmarks</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../migration/" class="nav-link">Migration from `tsdecomp`</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../reproducibility/" class="nav-link">Reproducibility</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../contributing/" class="nav-link">Contributing</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../citation/" class="nav-link">Citation / Release Notes</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../tutorials/profiling/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../comparison-evidence/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/systems-mechanobiology/De-Time/edit/master/docs/comparisons.md" class="nav-link">Edit on systems-mechanobiology/De-Time
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#comparisons" class="nav-link">Comparisons</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#reviewer-grade-software-matrix" class="nav-link">Reviewer-grade software matrix</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#why-not-pysdkit" class="nav-link">Why not PySDKit?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#why-not-ssalib" class="nav-link">Why not SSALib?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#where-specialist-packages-are-deeper" class="nav-link">Where specialist packages are deeper</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#runtime-snapshot" class="nav-link">Runtime snapshot</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#packaging-and-quality-evidence" class="nav-link">Packaging and quality evidence</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#what-de-time-does-not-claim" class="nav-link">What De-Time does not claim</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="comparisons">Comparisons</h1>
+<p>De-Time is designed to sit beside specialist libraries, not erase them. The
+package is strongest when a workflow needs one decomposition contract, one
+saved-output story, and one place to switch between Python, CLI, and selected
+native-backed runs.</p>
+<h2 id="reviewer-grade-software-matrix">Reviewer-grade software matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Axis</th>
+<th>De-Time</th>
+<th><code>statsmodels</code></th>
+<th><code>PyEMD</code></th>
+<th><code>PyWavelets</code></th>
+<th><code>PySDKit</code></th>
+<th><code>SSALib</code></th>
+<th><code>sktime</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core positioning</td>
+<td>workflow-oriented decomposition layer</td>
+<td>classical decomposition and modeling</td>
+<td>EMD-family toolkit</td>
+<td>wavelet toolkit</td>
+<td>broader signal decomposition toolkit</td>
+<td>SSA-focused toolkit</td>
+<td>broad time-series ecosystem</td>
+</tr>
+<tr>
+<td>Common config object</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>partial</td>
+<td>SSA-specific</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Common result object</td>
+<td>yes</td>
+<td>partial</td>
+<td>no</td>
+<td>no</td>
+<td>partial</td>
+<td>SSA-specific</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Machine-readable catalog</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Batch CLI</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>limited</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Profiling path</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>Multivariate under one surface</td>
+<td>yes</td>
+<td>limited</td>
+<td>family-specific</td>
+<td>transform-specific</td>
+<td>yes</td>
+<td>no</td>
+<td>partial</td>
+</tr>
+<tr>
+<td>Native-backed retained methods</td>
+<td>yes</td>
+<td>upstream internals</td>
+<td>no</td>
+<td>mixed</td>
+<td>mixed</td>
+<td>mixed</td>
+<td>mixed</td>
+</tr>
+<tr>
+<td>Maturity labeling</td>
+<td>explicit</td>
+<td>not applicable</td>
+<td>family-specific</td>
+<td>family-specific</td>
+<td>less explicit</td>
+<td>focused</td>
+<td>ecosystem-level</td>
+</tr>
+<tr>
+<td>Compact result modes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>MCP / tool surface</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<h2 id="why-not-pysdkit">Why not PySDKit?</h2>
+<p><code>PySDKit</code> is the nearest unified competitor because it also gathers multiple
+decomposition families under one project and exposes optional multivariate
+backends. De-Time's distinction is narrower and more software-structural:</p>
+<ul>
+<li>one decomposition-specific config/result contract across flagship and wrapper paths,</li>
+<li>machine-readable method metadata intended for docs, recommendation, and tool calls,</li>
+<li>compact <code>full</code> / <code>summary</code> / <code>meta</code> payloads for bounded-context workflows,</li>
+<li>a local-first MCP surface and schema assets that describe the machine-facing API.</li>
+</ul>
+<p>The claim is not that De-Time subsumes every decomposition feature in
+<code>PySDKit</code>. The claim is that De-Time invests more directly in workflow and
+machine-facing reproducibility for time-series decomposition itself.</p>
+<h2 id="why-not-ssalib">Why not SSALib?</h2>
+<p><code>SSALib</code> is the more specialized SSA-focused package. It is deeper if your sole
+goal is SSA-family tooling, SSA-specific workflows, or a specialist SSA
+environment. De-Time does not claim to exceed that family depth. Its position
+is that <code>SSA</code> is one flagship path inside a broader decomposition layer that
+also keeps <code>STD</code>, <code>STDR</code>, <code>MSSA</code>, wrappers, CLI workflows, and machine-facing
+artifacts under one contract.</p>
+<h2 id="where-specialist-packages-are-deeper">Where specialist packages are deeper</h2>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Where it is deeper</th>
+<th>How De-Time positions itself</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>statsmodels</code></td>
+<td>mature classical decomposition and statistical modeling</td>
+<td>De-Time wraps <code>STL</code> and <code>MSTL</code> rather than replacing <code>statsmodels</code></td>
+</tr>
+<tr>
+<td><code>PyEMD</code></td>
+<td>deeper EMD-family tooling</td>
+<td>De-Time exposes <code>EMD</code> and <code>CEEMDAN</code> through the same workflow contract used for other families</td>
+</tr>
+<tr>
+<td><code>PyWavelets</code></td>
+<td>deeper wavelet transforms and transform-specific APIs</td>
+<td>De-Time uses wavelet decomposition as one workflow option, not as a claim of wavelet leadership</td>
+</tr>
+<tr>
+<td><code>PySDKit</code></td>
+<td>broader signal-decomposition toolkit, including optional multivariate backends</td>
+<td>De-Time uses <code>PySDKit</code> selectively for <code>MVMD</code> and <code>MEMD</code> while keeping a time-series-centered config/result layer</td>
+</tr>
+<tr>
+<td><code>SSALib</code></td>
+<td>deeper SSA-only environment and SSA-specific tooling</td>
+<td>De-Time offers <code>SSA</code> inside a broader cross-family package, not as a deeper SSA-only library</td>
+</tr>
+<tr>
+<td><code>sktime</code></td>
+<td>current maintained VMD reality plus a larger time-series transformation ecosystem</td>
+<td>De-Time treats VMD as one integrated workflow option and compares against the maintained <code>sktime</code> path rather than the old standalone <code>vmdpy</code> story</td>
+</tr>
+</tbody>
+</table>
+<h2 id="runtime-snapshot">Runtime snapshot</h2>
+<p>The release evidence includes a reproducible runtime snapshot generated by
+<code>scripts/generate_performance_snapshot.py</code>. The current committed snapshot was
+generated on Windows 10, Python 3.11.9, AMD64, with native <code>SSA</code> and <code>STD</code>
+capabilities available.</p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th style="text-align: right;">Python mean runtime (ms)</th>
+<th style="text-align: right;">Native mean runtime (ms)</th>
+<th style="text-align: right;">Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SSA</code></td>
+<td style="text-align: right;">13.815</td>
+<td style="text-align: right;">1.910</td>
+<td style="text-align: right;">7.232x</td>
+</tr>
+<tr>
+<td><code>STD</code></td>
+<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">0.036</td>
+<td style="text-align: right;">4.962x</td>
+</tr>
+<tr>
+<td><code>STDR</code></td>
+<td style="text-align: right;">0.183</td>
+<td style="text-align: right;">0.019</td>
+<td style="text-align: right;">9.599x</td>
+</tr>
+</tbody>
+</table>
+<p>These numbers are software-validation evidence, not a universal benchmark
+claim. The raw evidence lives in <code>docs/assets/generated/evidence/</code>.</p>
+<h2 id="packaging-and-quality-evidence">Packaging and quality evidence</h2>
+<ul>
+<li>Release target <code>0.1.1</code> keeps the public install path, docs, and release
+  smoke verification aligned around <code>de-time</code>.</li>
+<li>The canonical coverage gate applies to the <code>detime</code> core-plus-flagship
+  surface, not to the entire repository tree.</li>
+<li>A second package-wide coverage report is emitted separately so the broader
+  denominator stays explicit.</li>
+<li>Wheel and sdist smoke installs, documentation consistency checks,
+  <code>mkdocs build --strict</code>, and <code>twine check</code> are part of the validation story.</li>
+</ul>
+<h2 id="what-de-time-does-not-claim">What De-Time does not claim</h2>
+<ul>
+<li>It does not claim to outperform specialist packages across every task.</li>
+<li>It does not use benchmark leaderboards as the main evidence for the package.</li>
+<li>It does not claim that every wrapped method is equally mature.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
