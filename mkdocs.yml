@@ -18,6 +18,7 @@ nav:
   - ML Workflows: ml-workflows.md
   - Methods: methods.md
   - Method Cards: method-cards.md
+  - Method References: method-references.md
   - Machine API: machine-api.md
   - API: api.md
   - Architecture: architecture.md

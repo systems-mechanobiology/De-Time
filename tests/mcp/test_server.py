@@ -50,6 +50,9 @@ def test_mcp_tool_calls_cover_core_surface() -> None:
     schema = server.call_tool("get_schema", {"name": "config"})
     assert schema["structuredContent"]["schema"]["title"] == "DecompositionConfig"
 
+    registry_schema = server.call_tool("get_schema", {"name": "method-registry"})
+    assert "contract_version" in registry_schema["structuredContent"]["schema"]["properties"]
+
     recommendation = server.call_tool(
         "recommend_method",
         {"length": 128, "channels": 2, "prefer": "accuracy", "top_k": 2},

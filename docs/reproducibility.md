@@ -28,7 +28,12 @@ as `tsdecomp.methods.*`, `tsdecomp.leaderboard`, and `tsdecomp.bench_config`.
 The current release and docs were checked with:
 
 - `pytest tests -q`
+- `pytest tests/optional/test_multivar_optional_backends.py -q`
 - `pytest tests --cov=detime --cov-config=.coveragerc`
+- `pytest tests --cov=detime --cov-config=.coveragerc.package`
+- `python scripts/generate_schema_assets.py --check`
+- `python scripts/generate_schema_assets.py`
+- `python scripts/generate_tutorial_assets.py`
 - `mkdocs build --strict`
 - `python -m build`
 - `python scripts/check_dist_contents.py dist/*.tar.gz dist/*.whl`
@@ -64,11 +69,16 @@ The core-surface denominator intentionally omits:
 - optional wrappers and non-flagship integrations that remain tested but are
   not part of the gated coverage surface.
 
-The latest gated local coverage run reached `93.20%`.
+The latest local `0.1.1` release-candidate run reached `93.73%`
+core-surface coverage and `84.00%` package-wide coverage.
 
 Package-wide coverage is emitted separately in CI and uploaded as a second
 artifact so reviewer-facing reports can show both the narrow safety gate and
 the broader installable surface.
+
+Optional `.[multivar]` integrations are validated separately in a dedicated
+smoke path so `MVMD` / `MEMD` execution evidence is published without
+broadening the flagship-method coverage gate.
 
 ## Native agreement checks
 
@@ -95,5 +105,7 @@ The documented tolerances are:
 - JSON schemas: `src/detime/schema_assets/*.json`
 
 The performance snapshot is reproducible from
-`scripts/generate_performance_snapshot.py`. The release smoke report is
-reproducible from `scripts/release_smoke_matrix.py`.
+`scripts/generate_performance_snapshot.py`. Tutorial outputs are reproducible
+from `scripts/generate_tutorial_assets.py`. Schema assets are reproducible from
+`scripts/generate_schema_assets.py`. The release smoke report is reproducible
+from `scripts/release_smoke_matrix.py`.

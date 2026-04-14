@@ -171,6 +171,7 @@ compatibility.
 - ML workflows: <https://systems-mechanobiology.github.io/De-Time/ml-workflows/>
 - Methods: <https://systems-mechanobiology.github.io/De-Time/methods/>
 - Method cards: <https://systems-mechanobiology.github.io/De-Time/method-cards/>
+- Method references: <https://systems-mechanobiology.github.io/De-Time/method-references/>
 - Machine API: <https://systems-mechanobiology.github.io/De-Time/machine-api/>
 - API: <https://systems-mechanobiology.github.io/De-Time/api/>
 - Comparison evidence: <https://systems-mechanobiology.github.io/De-Time/comparison-evidence/>

@@ -34,3 +34,6 @@ detime recommend --length 192 --channels 3 --prefer accuracy
 - deprecated `tsdecomp` imports in new code,
 - benchmark-derived methods in this repository, because they live in the
   companion benchmark repository.
+
+Use [Method References](method-references.md) when you need the literature
+citations or official upstream package links behind any retained method.

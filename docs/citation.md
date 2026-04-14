@@ -10,6 +10,8 @@ The current branch targets `0.1.1`. Tagged standalone releases use the
 ## Release notes
 
 - [`CHANGELOG.md`](https://github.com/systems-mechanobiology/De-Time/blob/main/CHANGELOG.md) tracks package-level changes.
+- [Method References](method-references.md) lists the primary literature and
+  official upstream package links for the retained De-Time methods.
 - `tsdecomp` remains available only as a deprecated compatibility alias.
 - Benchmark code and review artifacts are no longer part of the release payload
   for the main package.

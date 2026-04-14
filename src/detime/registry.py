@@ -303,6 +303,214 @@ METHOD_METADATA: Dict[str, Dict[str, Any]] = {
     },
 }
 
+METHOD_REFERENCE_LINKS: Dict[str, list[Dict[str, str]]] = {
+    "SSA": [
+        {
+            "title": "Golyandina and Zhigljavsky (2020), Singular Spectrum Analysis for Time Series",
+            "url": "https://link.springer.com/book/10.1007/978-3-662-62436-4",
+            "note": "Primary SSA reference; the second edition also covers multivariate SSA (MSSA).",
+        }
+    ],
+    "MSSA": [
+        {
+            "title": "Golyandina and Zhigljavsky (2020), Singular Spectrum Analysis for Time Series",
+            "url": "https://link.springer.com/book/10.1007/978-3-662-62436-4",
+            "note": "Primary SSA/MSSA reference used for the multivariate extension.",
+        }
+    ],
+    "STD": [
+        {
+            "title": "Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series",
+            "url": "https://doi.org/10.48550/arXiv.2204.10398",
+            "note": "Primary reference for STD and the robust seasonal-trend-dispersion family.",
+        }
+    ],
+    "STDR": [
+        {
+            "title": "Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series",
+            "url": "https://doi.org/10.48550/arXiv.2204.10398",
+            "note": "Primary reference for STD and the robust seasonal-trend-dispersion family.",
+        }
+    ],
+    "STL": [
+        {
+            "title": "Cleveland et al. (1990), STL: A Seasonal-Trend Decomposition Procedure Based on LOESS",
+            "url": "https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.STL.html",
+            "note": "Statsmodels STL docs cite the original Journal of Official Statistics paper.",
+        }
+    ],
+    "ROBUST_STL": [
+        {
+            "title": "Cleveland et al. (1990), STL: A Seasonal-Trend Decomposition Procedure Based on LOESS",
+            "url": "https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.STL.html",
+            "note": "Robust STL in De-Time builds on the same STL literature and upstream implementation family.",
+        }
+    ],
+    "MSTL": [
+        {
+            "title": "Bandara, Hyndman, and Bergmeir (2021), MSTL: A Seasonal-Trend Decomposition Algorithm for Time Series with Multiple Seasonal Patterns",
+            "url": "https://arxiv.org/abs/2107.13462",
+            "note": "Primary MSTL reference used by the statsmodels implementation.",
+        }
+    ],
+    "EMD": [
+        {
+            "title": "Huang et al. (1998), The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis",
+            "url": "https://doi.org/10.1098/rspa.1998.0193",
+            "note": "Primary empirical mode decomposition reference.",
+        }
+    ],
+    "CEEMDAN": [
+        {
+            "title": "Torres et al. (2011), A complete ensemble empirical mode decomposition with adaptive noise",
+            "url": "https://pyemd.readthedocs.io/en/latest/ceemdan.html",
+            "note": "PyEMD CEEMDAN docs cite the original ICASSP 2011 paper.",
+        },
+        {
+            "title": "Colominas, Schlotthauer, and Torres (2014), Improved complete ensemble EMD: A suitable tool for biomedical signal processing",
+            "url": "https://pyemd.readthedocs.io/en/latest/ceemdan.html",
+            "note": "Improved CEEMDAN variant adopted by the PyEMD implementation used by De-Time.",
+        },
+    ],
+    "VMD": [
+        {
+            "title": "Dragomiretskiy and Zosso (2014), Variational Mode Decomposition",
+            "url": "https://doi.org/10.1109/TSP.2013.2288675",
+            "note": "Primary variational mode decomposition reference.",
+        }
+    ],
+    "WAVELET": [
+        {
+            "title": "Mallat (1989), A theory for multiresolution signal decomposition: the wavelet representation",
+            "url": "https://ieeexplore.ieee.org/document/192463",
+            "note": "Foundational wavelet multiresolution reference.",
+        },
+        {
+            "title": "Lee et al. (2019), PyWavelets: A Python package for wavelet analysis",
+            "url": "https://doi.org/10.21105/joss.01237",
+            "note": "Package citation for the upstream wavelet implementation used by De-Time.",
+        },
+    ],
+    "MVMD": [
+        {
+            "title": "Rehman and Aftab (2019), Multivariate Variational Mode Decomposition",
+            "url": "https://arxiv.org/abs/1907.04509",
+            "note": "Primary MVMD reference for the multivariate VMD extension.",
+        }
+    ],
+    "MEMD": [
+        {
+            "title": "Rehman and Mandic (2010), Multivariate empirical mode decomposition",
+            "url": "https://doi.org/10.1098/rspa.2009.0502",
+            "note": "Primary MEMD reference for the multivariate EMD extension.",
+        }
+    ],
+    "GABOR_CLUSTER": [
+        {
+            "title": "Gabor (1946), Theory of Communication",
+            "url": "https://www.rctn.org/w/images/b/b6/Gabor.pdf",
+            "note": "Historical reference for the Gabor time-frequency representation family.",
+        },
+        {
+            "title": "Douze et al. (2024), The Faiss library",
+            "url": "https://arxiv.org/abs/2401.08281",
+            "note": "Reference for the similarity-search backend used by the experimental clustering path.",
+        },
+    ],
+}
+
+METHOD_PACKAGE_LINKS: Dict[str, list[Dict[str, str]]] = {
+    "SSA": [
+        {
+            "title": "SSALib",
+            "url": "https://github.com/ADSCIAN/ssalib",
+            "note": "Specialist SSA package used as an external comparison point.",
+        }
+    ],
+    "MSSA": [
+        {
+            "title": "SSALib",
+            "url": "https://github.com/ADSCIAN/ssalib",
+            "note": "SSA-focused package; useful comparison point for SSA-family workflows.",
+        }
+    ],
+    "STL": [
+        {
+            "title": "statsmodels",
+            "url": "https://www.statsmodels.org/",
+            "note": "Official project site for the upstream STL implementation.",
+        }
+    ],
+    "ROBUST_STL": [
+        {
+            "title": "statsmodels",
+            "url": "https://www.statsmodels.org/",
+            "note": "Official project site for the upstream STL implementation family.",
+        }
+    ],
+    "MSTL": [
+        {
+            "title": "statsmodels",
+            "url": "https://www.statsmodels.org/",
+            "note": "Official project site for the upstream MSTL implementation.",
+        }
+    ],
+    "EMD": [
+        {
+            "title": "PyEMD",
+            "url": "https://github.com/laszukdawid/PyEMD",
+            "note": "Upstream Python package wrapped by De-Time for EMD-family methods.",
+        }
+    ],
+    "CEEMDAN": [
+        {
+            "title": "PyEMD",
+            "url": "https://github.com/laszukdawid/PyEMD",
+            "note": "Upstream Python package wrapped by De-Time for EMD-family methods.",
+        }
+    ],
+    "VMD": [
+        {
+            "title": "sktime",
+            "url": "https://www.sktime.net/en/stable/",
+            "note": "Current maintained ecosystem for `vmdpy`, which the archived project directs users toward.",
+        },
+        {
+            "title": "vmdpy",
+            "url": "https://github.com/vrcarva/vmdpy",
+            "note": "Archived Python VMD package used by the current De-Time wrapper.",
+        },
+    ],
+    "WAVELET": [
+        {
+            "title": "PyWavelets",
+            "url": "https://pywavelets.readthedocs.io/en/latest/",
+            "note": "Official documentation for the upstream wavelet package.",
+        }
+    ],
+    "MVMD": [
+        {
+            "title": "PySDKit",
+            "url": "https://pysdkit.readthedocs.io/en/latest/",
+            "note": "Optional multivariate backend used by De-Time for MVMD.",
+        }
+    ],
+    "MEMD": [
+        {
+            "title": "PySDKit",
+            "url": "https://pysdkit.readthedocs.io/en/latest/",
+            "note": "Optional multivariate backend used by De-Time for MEMD.",
+        }
+    ],
+    "GABOR_CLUSTER": [
+        {
+            "title": "Faiss",
+            "url": "https://github.com/facebookresearch/faiss",
+            "note": "Vector similarity search library required by the experimental clustering backend.",
+        }
+    ],
+}
+
 
 def _default_assumptions(name: str, family: str, input_mode: InputMode) -> list[str]:
     assumptions: list[str] = []
@@ -353,9 +561,23 @@ def _default_optional_dependencies(name: str, dependency_tier: str) -> list[str]
         return ["PySDKit"]
     if name in {"STL", "MSTL", "ROBUST_STL"}:
         return ["statsmodels"]
+    if name in {"EMD", "CEEMDAN"}:
+        return ["PyEMD"]
+    if name == "VMD":
+        return ["vmdpy", "sktime"]
     if name == "WAVELET":
         return ["PyWavelets"]
+    if name == "GABOR_CLUSTER":
+        return ["faiss"]
     return []
+
+
+def _default_references(name: str) -> list[Dict[str, str]]:
+    return [dict(item) for item in METHOD_REFERENCE_LINKS.get(name, [])]
+
+
+def _default_package_links(name: str) -> list[Dict[str, str]]:
+    return [dict(item) for item in METHOD_PACKAGE_LINKS.get(name, [])]
 
 
 def _fallback_metadata(name: str, input_mode: InputMode) -> Dict[str, Any]:
@@ -393,6 +615,8 @@ def _metadata_for_method(name: str, input_mode: InputMode) -> Dict[str, Any]:
         "optional_dependencies",
         _default_optional_dependencies(name, str(base.get("dependency_tier", "core"))),
     )
+    base.setdefault("references", _default_references(name))
+    base.setdefault("package_links", _default_package_links(name))
     return base
 
 

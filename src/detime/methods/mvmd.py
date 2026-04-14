@@ -167,7 +167,7 @@ def _load_optional_backend(method_name: str):
     ) from last_error
 
 
-def _instantiate_backend(backend_cls: Any, cfg: Dict[str, Any]) -> Any:
+def _instantiate_backend(backend_cls: Any, cfg: Dict[str, Any], method_name: str) -> Any:
     backend_kwargs = {
         key: value
         for key, value in cfg.items()
@@ -188,10 +188,20 @@ def _instantiate_backend(backend_cls: Any, cfg: Dict[str, Any]) -> Any:
             "seed",
         }
     }
-    return backend_cls(**backend_kwargs) if isinstance(backend_cls, type) else backend_cls
+    if method_name == "MVMD":
+        backend_kwargs.setdefault("alpha", 2000.0)
+        backend_kwargs.setdefault("K", 3)
+        backend_kwargs.setdefault("tau", 0.0)
+    if not isinstance(backend_cls, type):
+        return backend_cls
+    try:
+        return backend_cls(**backend_kwargs)
+    except TypeError:
+        return backend_cls()
 
 
 def _call_backend(instance: Any, y_arr: np.ndarray, method_name: str) -> Any:
+    last_error: Exception | None = None
     attempts = (
         ("fit_transform", y_arr),
         ("fit_transform", y_arr.T),
@@ -205,20 +215,26 @@ def _call_backend(instance: Any, y_arr: np.ndarray, method_name: str) -> Any:
             fn = getattr(instance, attr_name)
             try:
                 return fn(arg)
-            except TypeError:
+            except Exception as exc:
+                last_error = exc
                 continue
     if callable(instance):
         for arg in (y_arr, y_arr.T):
             try:
                 return instance(arg)
-            except TypeError:
+            except Exception as exc:
+                last_error = exc
                 continue
+    if last_error is not None:
+        raise RuntimeError(
+            f"Could not execute the optional backend for {method_name}."
+        ) from last_error
     raise RuntimeError(f"Could not execute the optional backend for {method_name}.")
 
 
 def _run_backend(method_name: str, y_arr: np.ndarray, cfg: Dict[str, Any]) -> np.ndarray:
     backend_cls = _load_optional_backend(method_name)
-    instance = _instantiate_backend(backend_cls, cfg)
+    instance = _instantiate_backend(backend_cls, cfg, method_name)
     raw = _call_backend(instance, y_arr, method_name)
     if isinstance(raw, dict):
         for key in ("modes", "imfs", "components"):

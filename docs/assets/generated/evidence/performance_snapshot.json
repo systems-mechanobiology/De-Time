@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-08T22:26:11.509880+00:00",
+  "generated_at": "2026-04-14T22:07:09.238739+00:00",
   "native_capabilities": {
     "gabor_cluster_decompose": false,
     "gabor_istft_rfft": false,
@@ -7,7 +7,7 @@
     "ssa_decompose": true,
     "std_decompose": true
   },
-  "package_version": "0.1.0",
+  "package_version": "0.1.1",
   "platform": {
     "machine": "AMD64",
     "platform": "Windows-10-10.0.26200-SP0",
@@ -17,112 +17,112 @@
     {
       "backend_requested": "python",
       "backend_used": "python",
-      "max_ms": 14.2291,
-      "mean_ms": 13.8148,
+      "max_ms": 14.6175,
+      "mean_ms": 14.239325,
       "method": "SSA",
-      "min_ms": 13.6288,
+      "min_ms": 13.8793,
       "params": {
         "primary_period": 12,
         "rank": 8,
         "window": 36
       },
       "samples_ms": [
-        14.2291,
-        13.7438,
-        13.6288,
-        13.6575
+        14.391,
+        14.6175,
+        14.0695,
+        13.8793
       ],
       "series_length": 240
     },
     {
       "backend_requested": "native",
       "backend_used": "native",
-      "max_ms": 1.9411,
-      "mean_ms": 1.910225,
+      "max_ms": 1.9205,
+      "mean_ms": 1.832575,
       "method": "SSA",
-      "min_ms": 1.8766,
+      "min_ms": 1.7302,
       "params": {
         "primary_period": 12,
         "rank": 8,
         "window": 36
       },
       "samples_ms": [
-        1.9348,
-        1.8884,
-        1.8766,
-        1.9411
+        1.9205,
+        1.7302,
+        1.8886,
+        1.791
       ],
       "series_length": 240
     },
     {
       "backend_requested": "python",
       "backend_used": "python",
-      "max_ms": 0.2226,
-      "mean_ms": 0.1775,
+      "max_ms": 0.2941,
+      "mean_ms": 0.1813,
       "method": "STD",
-      "min_ms": 0.1328,
+      "min_ms": 0.131,
       "params": {
         "period": 12
       },
       "samples_ms": [
-        0.2226,
-        0.1419,
-        0.1328,
-        0.2127
+        0.2941,
+        0.1684,
+        0.1317,
+        0.131
       ],
       "series_length": 240
     },
     {
       "backend_requested": "native",
       "backend_used": "native",
-      "max_ms": 0.071,
-      "mean_ms": 0.035775,
+      "max_ms": 0.0547,
+      "mean_ms": 0.031125,
       "method": "STD",
-      "min_ms": 0.019,
+      "min_ms": 0.0193,
       "params": {
         "period": 12
       },
       "samples_ms": [
-        0.071,
-        0.0278,
-        0.019,
-        0.0253
+        0.0547,
+        0.0253,
+        0.0193,
+        0.0252
       ],
       "series_length": 240
     },
     {
       "backend_requested": "python",
       "backend_used": "python",
-      "max_ms": 0.2028,
-      "mean_ms": 0.1831,
+      "max_ms": 0.211,
+      "mean_ms": 0.1915,
       "method": "STDR",
-      "min_ms": 0.1747,
+      "min_ms": 0.1818,
       "params": {
         "period": 12
       },
       "samples_ms": [
-        0.2028,
-        0.1794,
-        0.1755,
-        0.1747
+        0.211,
+        0.1903,
+        0.1829,
+        0.1818
       ],
       "series_length": 240
     },
     {
       "backend_requested": "native",
       "backend_used": "native",
-      "max_ms": 0.0236,
-      "mean_ms": 0.019075,
+      "max_ms": 0.0267,
+      "mean_ms": 0.02055,
       "method": "STDR",
-      "min_ms": 0.0166,
+      "min_ms": 0.0176,
       "params": {
         "period": 12
       },
       "samples_ms": [
-        0.0236,
-        0.0192,
-        0.0169,
-        0.0166
+        0.0267,
+        0.0201,
+        0.0178,
+        0.0176
       ],
       "series_length": 240
     }
@@ -130,21 +130,21 @@
   "summary": [
     {
       "method": "SSA",
-      "native_mean_ms": 1.910225,
-      "python_mean_ms": 13.8148,
-      "speedup": 7.232028
+      "native_mean_ms": 1.832575,
+      "python_mean_ms": 14.239325,
+      "speedup": 7.770119
     },
     {
       "method": "STD",
-      "native_mean_ms": 0.035775,
-      "python_mean_ms": 0.1775,
-      "speedup": 4.961565
+      "native_mean_ms": 0.031125,
+      "python_mean_ms": 0.1813,
+      "speedup": 5.8249
     },
     {
       "method": "STDR",
-      "native_mean_ms": 0.019075,
-      "python_mean_ms": 0.1831,
-      "speedup": 9.598952
+      "native_mean_ms": 0.02055,
+      "python_mean_ms": 0.1915,
+      "speedup": 9.318735
     }
   ]
 }

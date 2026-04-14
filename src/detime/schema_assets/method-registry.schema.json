@@ -1,7 +1,37 @@
 {
   "$defs": {
+    "CatalogLinkModel": {
+      "properties": {
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "url"
+      ],
+      "title": "CatalogLinkModel",
+      "type": "object"
+    },
     "MethodMetadataModel": {
       "properties": {
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
         "dependency_tier": {
           "enum": [
             "core",
@@ -67,11 +97,39 @@
           "title": "Native Backed",
           "type": "boolean"
         },
+        "not_recommended_for": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Not Recommended For",
+          "type": "array"
+        },
+        "optional_dependencies": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional Dependencies",
+          "type": "array"
+        },
+        "package_links": {
+          "items": {
+            "$ref": "#/$defs/CatalogLinkModel"
+          },
+          "title": "Package Links",
+          "type": "array"
+        },
         "recommended_for": {
           "items": {
             "type": "string"
           },
           "title": "Recommended For",
+          "type": "array"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/$defs/CatalogLinkModel"
+          },
+          "title": "References",
           "type": "array"
         },
         "summary": {
@@ -102,6 +160,10 @@
     }
   },
   "properties": {
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
     "methods": {
       "items": {
         "$ref": "#/$defs/MethodMetadataModel"
@@ -111,7 +173,6 @@
     },
     "package": {
       "const": "detime",
-      "default": "detime",
       "title": "Package",
       "type": "string"
     },
@@ -121,7 +182,9 @@
     }
   },
   "required": [
-    "version"
+    "package",
+    "version",
+    "contract_version"
   ],
   "title": "MethodRegistryPayloadModel",
   "type": "object"

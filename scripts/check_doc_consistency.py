@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -101,6 +102,10 @@ POSIX_ONLY_VISUAL_BANS = {
     ],
 }
 
+DOC_INDEX_PATH_CHECKS = [
+    "DOCS_INDEX.md",
+]
+
 
 def _check_patterns(path: Path, patterns: list[str], *, expect_present: bool) -> list[str]:
     text = path.read_text(encoding="utf-8")
@@ -111,6 +116,20 @@ def _check_patterns(path: Path, patterns: list[str], *, expect_present: bool) ->
             failures.append(f"{path}: required pattern missing: {pattern}")
         if not expect_present and found:
             failures.append(f"{path}: banned pattern present: {pattern}")
+    return failures
+
+
+def _check_backticked_repo_paths(path: Path) -> list[str]:
+    text = path.read_text(encoding="utf-8")
+    failures: list[str] = []
+    for candidate in re.findall(r"`([^`\n]+)`", text):
+        if "://" in candidate or "*" in candidate:
+            continue
+        if "/" not in candidate:
+            continue
+        repo_path = ROOT / candidate
+        if not repo_path.exists():
+            failures.append(f"{path}: referenced path does not exist: {candidate}")
     return failures
 
 
@@ -136,6 +155,10 @@ def main() -> int:
     for relative_path, patterns in POSIX_ONLY_VISUAL_BANS.items():
         path = ROOT / relative_path
         failures.extend(_check_patterns(path, patterns, expect_present=False))
+
+    for relative_path in DOC_INDEX_PATH_CHECKS:
+        path = ROOT / relative_path
+        failures.extend(_check_backticked_repo_paths(path))
 
     if failures:
         for failure in failures:

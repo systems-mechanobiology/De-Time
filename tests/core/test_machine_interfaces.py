@@ -8,7 +8,7 @@ from detime import DecompResult
 from detime.io import save_result
 from detime.recommend import recommend_methods
 from detime.registry import MethodRegistry
-from detime.schemas import available_schemas, get_schema, write_schema_assets
+from detime.schemas import available_schemas, build_schema_bundle, get_schema, write_schema_assets
 from detime.serialization import build_result_diagnostics, serialize_result
 
 
@@ -42,6 +42,8 @@ def test_registry_catalog_exposes_machine_metadata() -> None:
     assert ssa["assumptions"]
     assert ssa["not_recommended_for"]
     assert isinstance(ssa["optional_dependencies"], list)
+    assert ssa["references"]
+    assert any(link["url"].startswith("https://") for link in ssa["references"])
 
 
 def test_serialization_modes_and_diagnostics() -> None:
@@ -88,6 +90,10 @@ def test_schema_assets_are_packaged_and_regeneratable(tmp_path) -> None:
     method_registry_schema = get_schema("method-registry")
     assert method_registry_schema["title"] == "MethodRegistryPayloadModel"
     assert "contract_version" in method_registry_schema["properties"]
+    method_properties = method_registry_schema["$defs"]["MethodMetadataModel"]["properties"]
+    assert "references" in method_properties
+    assert "package_links" in method_properties
+    assert method_registry_schema == build_schema_bundle()["method-registry"]
 
     written = write_schema_assets(tmp_path)
     assert (tmp_path / "config.schema.json") == written["config"]

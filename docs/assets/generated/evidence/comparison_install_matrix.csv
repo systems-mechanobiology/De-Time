@@ -1,0 +1,8 @@
+package,public_release_story,pypi_path,github_release,wheels,ci_platforms,docs_website,tutorials,api_docs,coverage_disclosure,reproducibility_script
+De-Time,0.1.1 target from main,tag-driven publish workflow,de-time-v0.1.1,yes,"ubuntu, macOS, windows",GitHub Pages,yes,yes,dual report,yes
+statsmodels,yes,yes,yes,yes,yes,yes,yes,yes,project-dependent,project-dependent
+PyEMD,yes,yes,yes,partial,project-dependent,partial,partial,partial,project-dependent,no
+PyWavelets,yes,yes,yes,yes,yes,yes,yes,yes,project-dependent,no
+PySDKit,yes,yes,yes,partial,project-dependent,yes,partial,partial,project-dependent,no
+SSALib,yes,yes,yes,partial,project-dependent,yes,partial,partial,project-dependent,no
+sktime,yes,yes,yes,yes,yes,yes,yes,yes,project-dependent,project-dependent

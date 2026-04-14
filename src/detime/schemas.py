@@ -63,6 +63,12 @@ class MetaPayloadModel(BaseModel):
     diagnostics: DiagnosticsModel = Field(default_factory=DiagnosticsModel)
 
 
+class CatalogLinkModel(BaseModel):
+    title: str
+    url: str
+    note: str = ""
+
+
 class MethodMetadataModel(BaseModel):
     name: str
     family: str
@@ -79,14 +85,16 @@ class MethodMetadataModel(BaseModel):
     assumptions: list[str] = Field(default_factory=list)
     not_recommended_for: list[str] = Field(default_factory=list)
     optional_dependencies: list[str] = Field(default_factory=list)
+    references: list[CatalogLinkModel] = Field(default_factory=list)
+    package_links: list[CatalogLinkModel] = Field(default_factory=list)
 
 
 class MethodRegistryPayloadModel(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
 
-    package: Literal["detime"] = CANONICAL_IMPORT
+    package: Literal["detime"]
     version: str
-    contract_version: str = MACHINE_CONTRACT_VERSION
+    contract_version: str
     methods: list[MethodMetadataModel] = Field(default_factory=list)
 
 
@@ -116,7 +124,12 @@ class RecommendationResponseModel(BaseModel):
 
 def _catalog_payload() -> MethodRegistryPayloadModel:
     methods = [MethodMetadataModel.model_validate(entry) for entry in MethodRegistry.list_catalog()]
-    return MethodRegistryPayloadModel(version=installed_version(), methods=methods)
+    return MethodRegistryPayloadModel(
+        package=CANONICAL_IMPORT,
+        version=installed_version(),
+        contract_version=MACHINE_CONTRACT_VERSION,
+        methods=methods,
+    )
 
 
 def build_schema_bundle() -> Dict[SchemaName, Dict[str, Any]]:
@@ -150,12 +163,16 @@ def get_schema(name: SchemaName) -> Dict[str, Any]:
     if name not in SCHEMA_FILENAMES:
         raise ValueError(f"Unknown schema '{name}'. Available: {available_schemas()}")
 
+    live_bundle = build_schema_bundle()
     resource = resources.files("detime").joinpath("schema_assets").joinpath(SCHEMA_FILENAMES[name])
     try:
         with resource.open("r", encoding="utf-8") as handle:
-            return json.load(handle)
+            packaged = json.load(handle)
     except FileNotFoundError:  # pragma: no cover - source tree fallback
-        return build_schema_bundle()[name]
+        return live_bundle[name]
+    if packaged != live_bundle[name]:
+        return live_bundle[name]
+    return packaged
 
 
 def write_schema_assets(output_dir: str | Path | None = None) -> dict[str, Path]:

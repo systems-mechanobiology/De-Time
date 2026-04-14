@@ -73,6 +73,256 @@ std::vector<double> build_trajectory_matrix(
     return X;
 }
 
+py::array_t<double> to_numpy_matrix(
+    const std::vector<double>& values,
+    std::size_t rows,
+    std::size_t cols) {
+    auto out = py::array_t<double>({static_cast<py::ssize_t>(rows), static_cast<py::ssize_t>(cols)});
+    auto view = out.mutable_unchecked<2>();
+    for (std::size_t i = 0; i < rows; ++i) {
+        const std::size_t base = i * cols;
+        for (std::size_t j = 0; j < cols; ++j) {
+            view(static_cast<py::ssize_t>(i), static_cast<py::ssize_t>(j)) = values[base + j];
+        }
+    }
+    return out;
+}
+
+std::vector<double> build_left_gram_matrix(
+    const std::vector<double>& X,
+    std::size_t rows,
+    std::size_t cols) {
+    std::vector<double> gram(rows * rows, 0.0);
+    for (std::size_t i = 0; i < rows; ++i) {
+        const std::size_t base_i = i * cols;
+        for (std::size_t j = i; j < rows; ++j) {
+            const std::size_t base_j = j * cols;
+            double acc = 0.0;
+            for (std::size_t k = 0; k < cols; ++k) {
+                acc += X[base_i + k] * X[base_j + k];
+            }
+            gram[i * rows + j] = acc;
+            gram[j * rows + i] = acc;
+        }
+    }
+    return gram;
+}
+
+struct SymmetricEigenDecomposition {
+    std::vector<double> eigenvalues;
+    std::vector<double> eigenvectors;
+};
+
+SymmetricEigenDecomposition jacobi_eigendecomposition(
+    const std::vector<double>& input,
+    std::size_t n,
+    int max_sweeps = 128,
+    double tolerance = 1e-12) {
+    std::vector<double> matrix = input;
+    std::vector<double> eigenvectors(n * n, 0.0);
+    for (std::size_t i = 0; i < n; ++i) {
+        eigenvectors[i * n + i] = 1.0;
+    }
+
+    for (int sweep = 0; sweep < max_sweeps; ++sweep) {
+        std::size_t p = 0;
+        std::size_t q = 0;
+        double max_off_diag = 0.0;
+        for (std::size_t i = 0; i < n; ++i) {
+            for (std::size_t j = i + 1; j < n; ++j) {
+                const double value = std::abs(matrix[i * n + j]);
+                if (value > max_off_diag) {
+                    max_off_diag = value;
+                    p = i;
+                    q = j;
+                }
+            }
+        }
+
+        if (max_off_diag <= tolerance) {
+            break;
+        }
+
+        const double app = matrix[p * n + p];
+        const double aqq = matrix[q * n + q];
+        const double apq = matrix[p * n + q];
+        if (std::abs(apq) <= tolerance) {
+            continue;
+        }
+
+        const double tau = (aqq - app) / (2.0 * apq);
+        const double t = (tau >= 0.0 ? 1.0 : -1.0) /
+            (std::abs(tau) + std::sqrt(1.0 + tau * tau));
+        const double c = 1.0 / std::sqrt(1.0 + t * t);
+        const double s = t * c;
+
+        for (std::size_t k = 0; k < n; ++k) {
+            if (k == p || k == q) {
+                continue;
+            }
+            const double aik = matrix[k * n + p];
+            const double akq = matrix[k * n + q];
+            const double new_aik = c * aik - s * akq;
+            const double new_akq = s * aik + c * akq;
+            matrix[k * n + p] = new_aik;
+            matrix[p * n + k] = new_aik;
+            matrix[k * n + q] = new_akq;
+            matrix[q * n + k] = new_akq;
+        }
+
+        matrix[p * n + p] = c * c * app - 2.0 * s * c * apq + s * s * aqq;
+        matrix[q * n + q] = s * s * app + 2.0 * s * c * apq + c * c * aqq;
+        matrix[p * n + q] = 0.0;
+        matrix[q * n + p] = 0.0;
+
+        for (std::size_t k = 0; k < n; ++k) {
+            const double vip = eigenvectors[k * n + p];
+            const double viq = eigenvectors[k * n + q];
+            eigenvectors[k * n + p] = c * vip - s * viq;
+            eigenvectors[k * n + q] = s * vip + c * viq;
+        }
+    }
+
+    std::vector<double> eigenvalues(n, 0.0);
+    for (std::size_t i = 0; i < n; ++i) {
+        eigenvalues[i] = matrix[i * n + i];
+    }
+    return {std::move(eigenvalues), std::move(eigenvectors)};
+}
+
+std::vector<double> matrix_column(
+    const std::vector<double>& matrix,
+    std::size_t rows,
+    std::size_t cols,
+    std::size_t column) {
+    std::vector<double> out(rows, 0.0);
+    if (column >= cols) {
+        return out;
+    }
+    for (std::size_t row = 0; row < rows; ++row) {
+        out[row] = matrix[row * cols + column];
+    }
+    return out;
+}
+
+void stabilize_component_sign(
+    std::vector<double>& u,
+    std::vector<double>& v) {
+    std::size_t pivot = 0;
+    double max_abs = 0.0;
+    for (std::size_t i = 0; i < u.size(); ++i) {
+        const double candidate = std::abs(u[i]);
+        if (candidate > max_abs) {
+            max_abs = candidate;
+            pivot = i;
+        }
+    }
+    if (!u.empty() && u[pivot] < 0.0) {
+        for (double& value : u) {
+            value = -value;
+        }
+        for (double& value : v) {
+            value = -value;
+        }
+    }
+}
+
+std::pair<std::vector<std::vector<double>>, std::vector<double>> compute_ssa_components_exact(
+    const std::vector<double>& X,
+    std::size_t L,
+    std::size_t K,
+    std::size_t d,
+    std::size_t T) {
+    py::module_ np_linalg = py::module_::import("numpy.linalg");
+    py::tuple svd = np_linalg.attr("svd")(to_numpy_matrix(X, L, K), py::arg("full_matrices") = false);
+    auto U = svd[0].cast<py::array_t<double, py::array::c_style | py::array::forcecast>>();
+    auto singular = svd[1].cast<py::array_t<double, py::array::c_style | py::array::forcecast>>();
+    auto Vt = svd[2].cast<py::array_t<double, py::array::c_style | py::array::forcecast>>();
+
+    auto u_view = U.unchecked<2>();
+    auto s_view = singular.unchecked<1>();
+    auto vt_view = Vt.unchecked<2>();
+    std::vector<std::vector<double>> rc_list;
+    std::vector<double> singular_values;
+    rc_list.reserve(d);
+    singular_values.reserve(d);
+
+    const std::size_t upper = std::min<std::size_t>(d, static_cast<std::size_t>(s_view.shape(0)));
+    for (std::size_t comp = 0; comp < upper; ++comp) {
+        const double sigma = s_view(static_cast<py::ssize_t>(comp));
+        if (!std::isfinite(sigma) || sigma <= 1e-12) {
+            continue;
+        }
+        std::vector<double> u(L, 0.0);
+        std::vector<double> v(K, 0.0);
+        for (std::size_t row = 0; row < L; ++row) {
+            u[row] = u_view(static_cast<py::ssize_t>(row), static_cast<py::ssize_t>(comp));
+        }
+        for (std::size_t col = 0; col < K; ++col) {
+            v[col] = vt_view(static_cast<py::ssize_t>(comp), static_cast<py::ssize_t>(col));
+        }
+        stabilize_component_sign(u, v);
+
+        rc_list.push_back(diagonal_average_rank1(u, v, sigma, T));
+        singular_values.push_back(sigma);
+    }
+
+    return {std::move(rc_list), std::move(singular_values)};
+}
+
+std::pair<std::vector<std::vector<double>>, std::vector<double>> compute_ssa_components_fast(
+    const std::vector<double>& X,
+    std::size_t L,
+    std::size_t K,
+    std::size_t d,
+    std::size_t T,
+    int power_iterations,
+    unsigned int seed) {
+    std::vector<double> residual = X;
+    std::vector<std::vector<double>> rc_list;
+    std::vector<double> singular_values;
+    rc_list.reserve(d);
+    singular_values.reserve(d);
+
+    std::mt19937 rng(seed);
+    std::normal_distribution<double> dist(0.0, 1.0);
+
+    for (std::size_t comp = 0; comp < d; ++comp) {
+        std::vector<double> v(K, 0.0);
+        for (double& value : v) {
+            value = dist(rng);
+        }
+        normalize_inplace(v);
+        std::vector<double> u(L, 0.0);
+
+        for (int iter = 0; iter < std::max(power_iterations, 2); ++iter) {
+            u = trajectory_matvec(residual, L, K, v);
+            normalize_inplace(u);
+            v = trajectory_t_matvec(residual, L, K, u);
+            normalize_inplace(v);
+        }
+
+        auto xv = trajectory_matvec(residual, L, K, v);
+        const double sigma = dot(u, xv);
+        if (!std::isfinite(sigma) || std::abs(sigma) <= 1e-10) {
+            break;
+        }
+
+        stabilize_component_sign(u, v);
+        rc_list.push_back(diagonal_average_rank1(u, v, sigma, T));
+        singular_values.push_back(sigma);
+
+        for (std::size_t i = 0; i < L; ++i) {
+            const std::size_t base = i * K;
+            for (std::size_t j = 0; j < K; ++j) {
+                residual[base + j] -= sigma * u[i] * v[j];
+            }
+        }
+    }
+
+    return {std::move(rc_list), std::move(singular_values)};
+}
+
 }  // namespace
 
 py::dict ssa_decompose(
@@ -85,10 +335,9 @@ py::dict ssa_decompose(
     const py::object& primary_period_obj,
     double season_freq_tol_ratio,
     const py::object& trend_freq_threshold_obj,
+    const std::string& speed_mode,
     int power_iterations,
     unsigned int seed) {
-    (void) season_freq_tol_ratio;
-
     auto y = as_vector(y_arr);
     const std::size_t T = y.size();
     if (T < 4) {
@@ -103,45 +352,19 @@ py::dict ssa_decompose(
         static_cast<std::size_t>(std::max(rank, 1)),
         std::min(L, K));
 
-    auto X_res = build_trajectory_matrix(y, L, K);
+    auto X = build_trajectory_matrix(y, L, K);
     std::vector<std::vector<double>> rc_list;
-    rc_list.reserve(d);
     std::vector<double> singular_values;
-    singular_values.reserve(d);
-
-    std::mt19937 rng(seed);
-    std::normal_distribution<double> dist(0.0, 1.0);
-
-    for (std::size_t comp = 0; comp < d; ++comp) {
-        std::vector<double> v(K);
-        for (double& val : v) {
-            val = dist(rng);
-        }
-        normalize_inplace(v);
-        std::vector<double> u(L, 0.0);
-
-        for (int iter = 0; iter < std::max(power_iterations, 2); ++iter) {
-            u = trajectory_matvec(X_res, L, K, v);
-            normalize_inplace(u);
-            v = trajectory_t_matvec(X_res, L, K, u);
-            normalize_inplace(v);
-        }
-
-        auto xv = trajectory_matvec(X_res, L, K, v);
-        const double sigma = dot(u, xv);
-        if (!std::isfinite(sigma) || std::abs(sigma) <= 1e-10) {
-            break;
-        }
-
-        rc_list.push_back(diagonal_average_rank1(u, v, sigma, T));
-        singular_values.push_back(sigma);
-
-        for (std::size_t i = 0; i < L; ++i) {
-            const std::size_t base = i * K;
-            for (std::size_t j = 0; j < K; ++j) {
-                X_res[base + j] -= sigma * u[i] * v[j];
-            }
-        }
+    if (speed_mode == "fast") {
+        auto components = compute_ssa_components_fast(X, L, K, d, T, power_iterations, seed);
+        rc_list = std::move(components.first);
+        singular_values = std::move(components.second);
+    } else if (speed_mode == "exact") {
+        auto components = compute_ssa_components_exact(X, L, K, d, T);
+        rc_list = std::move(components.first);
+        singular_values = std::move(components.second);
+    } else {
+        throw std::invalid_argument("SSA native speed_mode must be 'exact' or 'fast'.");
     }
 
     std::vector<int> trend_idx = trend_components;
@@ -200,6 +423,8 @@ py::dict ssa_decompose(
     meta["singular_values"] = singular_values;
     meta["trend_components"] = trend_idx;
     meta["season_components"] = season_idx;
+    meta["native_solver"] = speed_mode == "fast" ? "power-iteration" : "jacobi-eigen";
+    meta["speed_mode"] = speed_mode;
     return to_python_result({trend, season, residual}, std::move(meta));
 }
 

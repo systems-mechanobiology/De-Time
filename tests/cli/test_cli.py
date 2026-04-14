@@ -391,6 +391,21 @@ def test_schema_command_prints_json(capsys):
     assert "DecompositionConfig" in captured.out
 
 
+def test_schema_command_prints_method_registry_contract_version(capsys):
+    import sys
+
+    old_argv = sys.argv
+    sys.argv = ["detime", "schema", "--name", "method-registry"]
+    try:
+        cli.main()
+    finally:
+        sys.argv = old_argv
+
+    captured = capsys.readouterr()
+    assert '"contract_version"' in captured.out
+    assert '"MethodRegistryPayloadModel"' in captured.out
+
+
 def test_recommend_command_outputs_json(capsys):
     import sys
 

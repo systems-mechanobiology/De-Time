@@ -37,6 +37,39 @@ def test_ssa_native_matches_python_with_documented_tolerance() -> None:
 
 
 @pytest.mark.skipif(
+    not native_capabilities().get("ssa_decompose", False),
+    reason="SSA native kernel is unavailable in this environment.",
+)
+def test_ssa_native_fast_mode_is_seeded_and_quality_bounded() -> None:
+    series = _signal(length=180)
+    params = {"window": 36, "rank": 8, "primary_period": 12, "power_iterations": 24}
+
+    exact_result = decompose(series, DecompositionConfig(method="SSA", params=params, backend="native"))
+    fast_a = decompose(
+        series,
+        DecompositionConfig(method="SSA", params=params, backend="native", speed_mode="fast", seed=123),
+    )
+    fast_b = decompose(
+        series,
+        DecompositionConfig(method="SSA", params=params, backend="native", speed_mode="fast", seed=123),
+    )
+
+    np.testing.assert_allclose(fast_a.trend, fast_b.trend, atol=1e-9)
+    np.testing.assert_allclose(fast_a.season, fast_b.season, atol=1e-9)
+    np.testing.assert_allclose(fast_a.residual, fast_b.residual, atol=1e-9)
+    np.testing.assert_allclose(fast_a.trend + fast_a.season + fast_a.residual, series, atol=1e-6)
+
+    fast_diag = build_result_diagnostics(fast_a)
+    exact_diag = build_result_diagnostics(exact_result)
+    assert fast_a.meta["speed_mode"] == "fast"
+    assert fast_a.meta["backend_used"] == "native"
+    assert fast_diag["quality_metrics"]["residual_ratio"] == pytest.approx(
+        exact_diag["quality_metrics"]["residual_ratio"],
+        abs=5e-2,
+    )
+
+
+@pytest.mark.skipif(
     not native_capabilities().get("std_decompose", False),
     reason="STD native kernel is unavailable in this environment.",
 )

@@ -41,3 +41,5 @@ now lives in
   choosing manually.
 - Use [Method Cards](method-cards.md) when you need assumptions, failure modes,
   and not-recommended cases in one place.
+- Use [Method References](method-references.md) when you need the primary
+  literature citations and official upstream package links behind each method.

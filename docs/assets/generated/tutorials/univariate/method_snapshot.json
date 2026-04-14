@@ -3,11 +3,11 @@
     "backend_used": "native",
     "method": "SSA",
     "reconstruction_max_abs_error": 4.440892098500626e-16,
-    "residual_peak_abs": 4.9960036108132044e-15,
-    "residual_rms": 1.5457704366726478e-15,
-    "season_std": 0.7036104635973588,
-    "trend_mean": 1.1908501600541532,
-    "trend_std": 0.6917338604216825
+    "residual_peak_abs": 6.439293542825908e-15,
+    "residual_rms": 1.6176725534817996e-15,
+    "season_std": 0.7036104657683112,
+    "trend_mean": 1.1908501617228024,
+    "trend_std": 0.6917338625864388
   },
   {
     "backend_used": "native",

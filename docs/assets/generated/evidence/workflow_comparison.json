@@ -1,0 +1,22 @@
+{
+  "detime": {
+    "packages": [
+      "detime"
+    ],
+    "snippet": "from detime import DecompositionConfig, decompose\nfrom detime.io import read_series\n\nseries = read_series(\"examples/data/example_series.csv\", col=\"value\")\nresult = decompose(\n    series,\n    DecompositionConfig(method=\"SSA\", params={\"window\": 24, \"rank\": 6, \"primary_period\": 12}),\n)\n\nsummary = {\n    \"trend_std\": float(result.trend.std()),\n    \"season_std\": float(result.season.std()),\n    \"component_count\": len(result.components),\n}\n",
+    "step_count": 12
+  },
+  "narrative": [
+    "The specialist workflow mixes multiple imports, result objects, and package-specific APIs.",
+    "The De-Time workflow keeps the same result contract and method switch path under one import surface."
+  ],
+  "specialist_glue": {
+    "packages": [
+      "pandas",
+      "statsmodels",
+      "ssalib"
+    ],
+    "snippet": "import pandas as pd\nfrom statsmodels.tsa.seasonal import STL\nfrom ssalib import SingularSpectrumAnalysis\n\nframe = pd.read_csv(\"examples/data/example_series.csv\")\nseries = frame[\"value\"].to_numpy()\n\nstl = STL(series, period=12).fit()\nssa = SingularSpectrumAnalysis(window_size=24, rank=6)\nssa_components = ssa.fit_transform(series)\n\nsummary = {\n    \"trend_std\": float(stl.trend.std()),\n    \"season_std\": float(stl.seasonal.std()),\n    \"ssa_components\": int(ssa_components.shape[1]),\n}\n",
+    "step_count": 13
+  }
+}

@@ -6,6 +6,35 @@ The project brand is **De-Time**, the PyPI distribution is `de-time`, the
 preferred Python import path is `detime`, and the legacy `tsdecomp` import/CLI
 aliases remain available for compatibility.
 
+## [0.1.1] - 2026-04-14
+
+### Contract and release evidence
+
+- `method-registry` schemas and payloads now carry explicit `package`,
+  `version`, and `contract_version` root fields
+- packaged schema assets are regenerated from the live Pydantic models and are
+  checked in CI with `scripts/generate_schema_assets.py --check`
+- reviewer-facing evidence now reports both core-surface coverage and
+  package-wide coverage from the same `0.1.1` candidate
+
+### Native and optional-backend behavior
+
+- native `SSA` now treats `speed_mode='exact'` as a deterministic exact path
+  rather than as an approximate iterative shortcut
+- the iterative native SSA kernel remains available under
+  `speed_mode='fast'`
+- optional `MVMD` / `MEMD` integrations now have dedicated smoke coverage and
+  example evidence under the `multivar` extra
+
+### Docs and submission hardening
+
+- API and install docs were rewritten into reviewer-grade reference and
+  troubleshooting material
+- publishing, reproducibility, and machine-API docs now reflect the `0.1.1`
+  candidate and the current machine-contract wording
+- submission materials now use an explicit early-adoption framing instead of
+  implying a large external community
+
 ## [0.1.0] - 2026-04-08
 
 ### Public surface

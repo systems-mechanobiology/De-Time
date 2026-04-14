@@ -12,6 +12,7 @@ py::dict ssa_decompose(
     const py::object& primary_period_obj = py::none(),
     double season_freq_tol_ratio = 0.25,
     const py::object& trend_freq_threshold_obj = py::none(),
+    const std::string& speed_mode = "exact",
     int power_iterations = 12,
     unsigned int seed = 42);
 
@@ -39,6 +40,7 @@ PYBIND11_MODULE(_detime_native, m) {
         py::arg("primary_period") = py::none(),
         py::arg("season_freq_tol_ratio") = 0.25,
         py::arg("trend_freq_threshold") = py::none(),
+        py::arg("speed_mode") = "exact",
         py::arg("power_iterations") = 12,
         py::arg("seed") = 42);
 

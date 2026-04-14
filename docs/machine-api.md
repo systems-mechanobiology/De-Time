@@ -30,6 +30,16 @@ available through:
 These schemas are intended for validation, tool wiring, and regression checks,
 not just for documentation.
 
+The `method-registry` payload now exposes stable root metadata fields:
+
+- `package`
+- `version`
+- `contract_version`
+- `methods`
+
+Consumers should key compatibility checks off `contract_version` and treat
+`version` as the package release identifier for the generated catalog bundle.
+
 ## Stable catalog fields
 
 `MethodRegistry.list_catalog()` is the machine-readable source of truth for the
@@ -48,7 +58,9 @@ public method catalog. Every entry is expected to expose at least:
 
 The current catalog also carries assumptions, not-recommended cases, and
 optional-dependency hints so the generated method cards and MCP responses stay
-aligned.
+aligned. It now also carries structured `references` and `package_links`
+arrays so machine consumers can trace each retained method back to its
+literature and official upstream project pages.
 
 ## Recommendation interface
 

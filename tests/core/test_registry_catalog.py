@@ -15,6 +15,8 @@ REQUIRED_FIELDS = {
     "summary",
     "recommended_for",
     "typical_failure_modes",
+    "references",
+    "package_links",
 }
 
 
@@ -34,14 +36,18 @@ def test_registry_catalog_covers_flagship_wrapper_and_optional_paths() -> None:
     mvmd = MethodRegistry.get_metadata("MVMD")
 
     assert ssa["maturity"] == "flagship"
+    assert ssa["references"]
     assert stl["implementation"] == "wrapper"
+    assert stl["package_links"]
     assert mvmd["dependency_tier"] == "optional-backend"
     assert mvmd["optional_dependencies"] == ["PySDKit"]
 
 
 def test_registry_payload_model_roundtrip() -> None:
     payload = MethodRegistryPayloadModel(
+        package="detime",
         version="0.1.1",
+        contract_version="0.1",
         methods=[MethodMetadataModel.model_validate(entry) for entry in MethodRegistry.list_catalog()],
     )
     assert payload.package == "detime"

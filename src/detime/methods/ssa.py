@@ -85,6 +85,9 @@ def ssa_decompose(
             season_components=list(cfg.get("season_components", [])),
             season_freq_tol_ratio=float(cfg.get("season_freq_tol_ratio", 0.25)),
             trend_freq_threshold=cfg.get("trend_freq_threshold"),
+            speed_mode=runtime.speed_mode,
+            power_iterations=int(cfg.get("power_iterations", 12)),
+            seed=42 if runtime.seed is None else int(runtime.seed),
         )
         return finalize_result(
             result_from_native_payload(payload, method="SSA"),

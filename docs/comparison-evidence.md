@@ -3,6 +3,9 @@
 This page complements [Comparisons](comparisons.md) with the generated evidence
 files that back the reviewer-grade matrices.
 
+Primary method citations and official upstream package links are collected in
+[Method References](method-references.md).
+
 ## Generated evidence files
 
 - `docs/assets/generated/evidence/comparison_evidence.json`

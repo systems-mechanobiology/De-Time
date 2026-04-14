@@ -5,6 +5,9 @@ method cards stay aligned with the machine-facing catalog contract.
 
 Current package version target: `0.1.1`.
 
+Source citations and official upstream package links are collected in
+[Method References](method-references.md).
+
 The `tsdecomp` top-level alias remains compatibility-only through `0.1.x` and is
 not the canonical surface for any method listed below.
 
@@ -41,6 +44,12 @@ Not recommended for:
 - single-series workflows where a univariate flagship method is sufficient
 - very short series that cannot support a sensible window length
 
+Method references:
+- [Golyandina and Zhigljavsky (2020), Singular Spectrum Analysis for Time Series](https://link.springer.com/book/10.1007/978-3-662-62436-4) - Primary SSA/MSSA reference used for the multivariate extension.
+
+Related package links:
+- [SSALib](https://github.com/ADSCIAN/ssalib) - SSA-focused package; useful comparison point for SSA-family workflows.
+
 ### `SSA`
 
 - Family: `SSA`
@@ -71,6 +80,12 @@ Typical failure modes:
 Not recommended for:
 - shared-model multivariate decomposition problems
 - very short series that cannot support a sensible window length
+
+Method references:
+- [Golyandina and Zhigljavsky (2020), Singular Spectrum Analysis for Time Series](https://link.springer.com/book/10.1007/978-3-662-62436-4) - Primary SSA reference; the second edition also covers multivariate SSA (MSSA).
+
+Related package links:
+- [SSALib](https://github.com/ADSCIAN/ssalib) - Specialist SSA package used as an external comparison point.
 
 ### `STD`
 
@@ -103,6 +118,12 @@ Not recommended for:
 - problems that require one shared latent model across channels
 - series where the dominant period is unknown and cannot be inferred reliably
 
+Method references:
+- [Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series](https://doi.org/10.48550/arXiv.2204.10398) - Primary reference for STD and the robust seasonal-trend-dispersion family.
+
+Related package links:
+- none declared
+
 ### `STDR`
 
 - Family: `SeasonalTrend`
@@ -134,6 +155,12 @@ Not recommended for:
 - problems that require one shared latent model across channels
 - series where the dominant period is unknown and cannot be inferred reliably
 
+Method references:
+- [Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series](https://doi.org/10.48550/arXiv.2204.10398) - Primary reference for STD and the robust seasonal-trend-dispersion family.
+
+Related package links:
+- none declared
+
 ## Stable wrappers and retained methods
 
 ### `CEEMDAN`
@@ -146,7 +173,7 @@ Not recommended for:
 - Multivariate support: `univariate`
 - Native-backed: `False`
 - Minimum length hint: `24`
-- Optional dependencies: none
+- Optional dependencies: PyEMD
 - Summary: Noise-assisted EMD variant for more stable IMF extraction.
 
 Assumptions:
@@ -165,6 +192,13 @@ Typical failure modes:
 Not recommended for:
 - shared-model multivariate decomposition problems
 
+Method references:
+- [Torres et al. (2011), A complete ensemble empirical mode decomposition with adaptive noise](https://pyemd.readthedocs.io/en/latest/ceemdan.html) - PyEMD CEEMDAN docs cite the original ICASSP 2011 paper.
+- [Colominas, Schlotthauer, and Torres (2014), Improved complete ensemble EMD: A suitable tool for biomedical signal processing](https://pyemd.readthedocs.io/en/latest/ceemdan.html) - Improved CEEMDAN variant adopted by the PyEMD implementation used by De-Time.
+
+Related package links:
+- [PyEMD](https://github.com/laszukdawid/PyEMD) - Upstream Python package wrapped by De-Time for EMD-family methods.
+
 ### `EMD`
 
 - Family: `EMD`
@@ -175,7 +209,7 @@ Not recommended for:
 - Multivariate support: `univariate`
 - Native-backed: `False`
 - Minimum length hint: `16`
-- Optional dependencies: none
+- Optional dependencies: PyEMD
 - Summary: Empirical mode decomposition under the De-Time result contract.
 
 Assumptions:
@@ -193,6 +227,12 @@ Typical failure modes:
 
 Not recommended for:
 - shared-model multivariate decomposition problems
+
+Method references:
+- [Huang et al. (1998), The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis](https://doi.org/10.1098/rspa.1998.0193) - Primary empirical mode decomposition reference.
+
+Related package links:
+- [PyEMD](https://github.com/laszukdawid/PyEMD) - Upstream Python package wrapped by De-Time for EMD-family methods.
 
 ### `MA_BASELINE`
 
@@ -222,6 +262,12 @@ Typical failure modes:
 
 Not recommended for:
 - shared-model multivariate decomposition problems
+
+Method references:
+- none declared
+
+Related package links:
+- none declared
 
 ### `MSTL`
 
@@ -253,6 +299,12 @@ Not recommended for:
 - shared-model multivariate decomposition problems
 - series where the dominant period is unknown and cannot be inferred reliably
 
+Method references:
+- [Bandara, Hyndman, and Bergmeir (2021), MSTL: A Seasonal-Trend Decomposition Algorithm for Time Series with Multiple Seasonal Patterns](https://arxiv.org/abs/2107.13462) - Primary MSTL reference used by the statsmodels implementation.
+
+Related package links:
+- [statsmodels](https://www.statsmodels.org/) - Official project site for the upstream MSTL implementation.
+
 ### `ROBUST_STL`
 
 - Family: `SeasonalTrend`
@@ -282,6 +334,12 @@ Typical failure modes:
 Not recommended for:
 - shared-model multivariate decomposition problems
 - series where the dominant period is unknown and cannot be inferred reliably
+
+Method references:
+- [Cleveland et al. (1990), STL: A Seasonal-Trend Decomposition Procedure Based on LOESS](https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.STL.html) - Robust STL in De-Time builds on the same STL literature and upstream implementation family.
+
+Related package links:
+- [statsmodels](https://www.statsmodels.org/) - Official project site for the upstream STL implementation family.
 
 ### `STL`
 
@@ -313,6 +371,12 @@ Not recommended for:
 - shared-model multivariate decomposition problems
 - series where the dominant period is unknown and cannot be inferred reliably
 
+Method references:
+- [Cleveland et al. (1990), STL: A Seasonal-Trend Decomposition Procedure Based on LOESS](https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.STL.html) - Statsmodels STL docs cite the original Journal of Official Statistics paper.
+
+Related package links:
+- [statsmodels](https://www.statsmodels.org/) - Official project site for the upstream STL implementation.
+
 ### `VMD`
 
 - Family: `Variational`
@@ -323,7 +387,7 @@ Not recommended for:
 - Multivariate support: `univariate`
 - Native-backed: `False`
 - Minimum length hint: `24`
-- Optional dependencies: none
+- Optional dependencies: vmdpy, sktime
 - Summary: Variational mode decomposition integrated into the common workflow layer.
 
 Assumptions:
@@ -341,6 +405,13 @@ Typical failure modes:
 
 Not recommended for:
 - shared-model multivariate decomposition problems
+
+Method references:
+- [Dragomiretskiy and Zosso (2014), Variational Mode Decomposition](https://doi.org/10.1109/TSP.2013.2288675) - Primary variational mode decomposition reference.
+
+Related package links:
+- [sktime](https://www.sktime.net/en/stable/) - Current maintained ecosystem for `vmdpy`, which the archived project directs users toward.
+- [vmdpy](https://github.com/vrcarva/vmdpy) - Archived Python VMD package used by the current De-Time wrapper.
 
 ### `WAVELET`
 
@@ -370,6 +441,13 @@ Typical failure modes:
 
 Not recommended for:
 - shared-model multivariate decomposition problems
+
+Method references:
+- [Mallat (1989), A theory for multiresolution signal decomposition: the wavelet representation](https://ieeexplore.ieee.org/document/192463) - Foundational wavelet multiresolution reference.
+- [Lee et al. (2019), PyWavelets: A Python package for wavelet analysis](https://doi.org/10.21105/joss.01237) - Package citation for the upstream wavelet implementation used by De-Time.
+
+Related package links:
+- [PyWavelets](https://pywavelets.readthedocs.io/en/latest/) - Official documentation for the upstream wavelet package.
 
 ## Optional backend methods
 
@@ -403,6 +481,12 @@ Not recommended for:
 - single-series workflows where a univariate flagship method is sufficient
 - environments where optional backend dependencies cannot be installed
 
+Method references:
+- [Rehman and Mandic (2010), Multivariate empirical mode decomposition](https://doi.org/10.1098/rspa.2009.0502) - Primary MEMD reference for the multivariate EMD extension.
+
+Related package links:
+- [PySDKit](https://pysdkit.readthedocs.io/en/latest/) - Optional multivariate backend used by De-Time for MEMD.
+
 ### `MVMD`
 
 - Family: `Variational`
@@ -433,6 +517,12 @@ Not recommended for:
 - single-series workflows where a univariate flagship method is sufficient
 - environments where optional backend dependencies cannot be installed
 
+Method references:
+- [Rehman and Aftab (2019), Multivariate Variational Mode Decomposition](https://arxiv.org/abs/1907.04509) - Primary MVMD reference for the multivariate VMD extension.
+
+Related package links:
+- [PySDKit](https://pysdkit.readthedocs.io/en/latest/) - Optional multivariate backend used by De-Time for MVMD.
+
 ## Experimental methods
 
 ### `GABOR_CLUSTER`
@@ -445,7 +535,7 @@ Not recommended for:
 - Multivariate support: `univariate`
 - Native-backed: `False`
 - Minimum length hint: `16`
-- Optional dependencies: none
+- Optional dependencies: faiss
 - Summary: Experimental clustering-based decomposition path.
 
 Assumptions:
@@ -464,3 +554,10 @@ Typical failure modes:
 Not recommended for:
 - shared-model multivariate decomposition problems
 - first-pass baselines or high-trust production workflows
+
+Method references:
+- [Gabor (1946), Theory of Communication](https://www.rctn.org/w/images/b/b6/Gabor.pdf) - Historical reference for the Gabor time-frequency representation family.
+- [Douze et al. (2024), The Faiss library](https://arxiv.org/abs/2401.08281) - Reference for the similarity-search backend used by the experimental clustering path.
+
+Related package links:
+- [Faiss](https://github.com/facebookresearch/faiss) - Vector similarity search library required by the experimental clustering backend.

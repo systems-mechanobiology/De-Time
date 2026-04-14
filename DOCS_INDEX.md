@@ -27,8 +27,10 @@ This file is a compact documentation map for agents and contributors.
   - public package surface
 - `docs/methods.md`
   - method families and maturity notes
-- `docs/examples.md`
-  - runnable examples
+- `docs/method-references.md`
+  - citations and upstream package links for retained methods
+- `docs/tutorials/univariate.md`
+  - runnable workflow tutorial with published outputs
 
 ## Examples
 
@@ -47,5 +49,5 @@ This file is a compact documentation map for agents and contributors.
 
 - open `AGENT_INPUT_CONTRACT.md` before trying to synthesize a wrapper
 - open `docs/api.md` before calling programmatic entrypoints
-- open `src/tsdecomp/registry.py` if you need exact method and input-mode rules
-- open `src/tsdecomp/io.py` if you need the persisted artifact contract
+- open `src/detime/registry.py` if you need exact method and input-mode rules
+- open `src/detime/io.py` if you need the persisted artifact contract

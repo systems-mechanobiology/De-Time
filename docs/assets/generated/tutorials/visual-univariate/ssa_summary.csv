@@ -1,2 +1,2 @@
 method,length,window,rank,primary_period,backend_used,trend_mean,season_std,residual_rms,residual_peak_abs,reconstruction_max_abs_error
-SSA,180,36,8,12,native,1.3969830578243756,0.8420445165426315,0.17626286529363305,0.4019804829585453,0.0
+SSA,180,36,8,12,native,1.396983057905015,0.8420445166528586,0.17626286529363494,0.401980482958544,0.0

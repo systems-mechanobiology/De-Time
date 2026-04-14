@@ -4,9 +4,11 @@ This file describes the standalone release flow for the `de-time`
 distribution, the `detime` import path, and the legacy `tsdecomp`
 compatibility aliases.
 
-## Current release record
+## Current release target
 
-Release `0.1.0` was cut on April 8, 2026 as tag `de-time-v0.1.0`.
+The current reviewed release target is `0.1.1`. Freeze the GitHub tag and PyPI
+publication only after the full evidence bundle below is regenerated on the
+exact candidate commit. The intended public tag is `de-time-v0.1.1`.
 
 Release contract:
 
@@ -25,12 +27,12 @@ submodules such as `tsdecomp.methods.*`, `tsdecomp.leaderboard`, and
 ## Maintainer checklist for the next release
 
 1. Update the version in `pyproject.toml`, `CHANGELOG.md`, and `CITATION.cff`.
-2. Regenerate schema assets.
-3. Regenerate the performance snapshot.
-4. Run the documentation consistency check.
-5. Run local tests.
+2. Regenerate and check schema assets.
+3. Regenerate tutorial assets and reviewer-facing evidence files.
+4. Run the documentation consistency check and strict docs build.
+5. Run local tests, including the dedicated `.[multivar]` smoke path.
 6. Build a source distribution and wheel.
-7. Run the release smoke matrix.
+7. Run the release smoke matrix and distribution-content checks.
 8. Commit the release changes.
 9. Tag the release.
 10. Push the branch and tag.
@@ -44,9 +46,19 @@ submodules such as `tsdecomp.methods.*`, `tsdecomp.leaderboard`, and
 python -m pip install -U pip build twine
 python -m pip install -e .[dev,multivar,docs]
 python -m pytest tests -q
+python -m pytest tests/optional/test_multivar_optional_backends.py -q
+python scripts/generate_schema_assets.py --check
 python scripts/generate_schema_assets.py
+python scripts/generate_tutorial_assets.py
 python scripts/generate_performance_snapshot.py
+python benchmarks/software_comparison/generate_comparison_evidence.py
+python examples/workflow_comparisons/compare_specialist_glue_vs_detime.py
+python benchmarks/token_benchmarks/generate_token_benchmarks.py
+python evals/agent/run_agent_evals.py
+python scripts/generate_method_cards.py
+python scripts/generate_reviewer_bundle.py
 python scripts/check_doc_consistency.py
+python -m mkdocs build --strict
 python -m build
 python scripts/check_dist_contents.py dist/*.tar.gz dist/*.whl
 python scripts/release_smoke_matrix.py

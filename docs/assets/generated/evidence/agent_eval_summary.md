@@ -1,0 +1,11 @@
+# Agent eval summary
+
+Passed `5` / `5` deterministic MCP workflow checks.
+
+| case | status | details |
+| --- | --- | --- |
+| list_methods | pass | stable catalog keys present |
+| recommend_method | pass | MSSA leads multivariate accuracy routing |
+| get_schema | pass | method-registry schema resolved |
+| summary_first_decompose | pass | summary payload returned without full arrays |
+| bounded_context_report | pass | meta payload supports bounded-context reporting |
