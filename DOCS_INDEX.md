@@ -18,19 +18,23 @@ This file is a compact documentation map for agents and contributors.
 - `README.md`
   - GitHub-facing product overview
 - `docs/index.md`
-  - docs homepage
+  - docs homepage and core routing page
 - `docs/install.md`
   - installation and platform notes
 - `docs/quickstart.md`
   - first Python and CLI workflows
-- `docs/api.md`
-  - public package surface
 - `docs/methods.md`
-  - method families and maturity notes
+  - methods overview in the top-nav `Methods` group
+- `docs/tutorials/univariate.md`
+  - first runnable workflow tutorial with published outputs
+- `docs/api.md`
+  - public package surface in the top-nav `API` group
+- `docs/machine-api.md`
+  - schemas, catalog contracts, recommendation, and MCP
 - `docs/method-references.md`
   - citations and upstream package links for retained methods
-- `docs/tutorials/univariate.md`
-  - runnable workflow tutorial with published outputs
+- `docs/comparisons.md`
+  - non-core comparison framing under the top-nav `More` group
 
 ## Examples
 

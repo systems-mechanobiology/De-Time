@@ -11,17 +11,14 @@ extra_css:
   - stylesheets/extra.css
 nav:
   - Home: index.md
-  - Why De-Time: why.md
   - Install: install.md
   - Quickstart: quickstart.md
-  - Choose a Method: choose-a-method.md
-  - ML Workflows: ml-workflows.md
-  - Methods: methods.md
-  - Method Cards: method-cards.md
-  - Method References: method-references.md
-  - Machine API: machine-api.md
-  - API: api.md
-  - Architecture: architecture.md
+  - Methods:
+      - Methods Overview: methods.md
+      - Choose a Method: choose-a-method.md
+      - ML Workflows: ml-workflows.md
+      - Method Cards: method-cards.md
+      - Method References: method-references.md
   - Tutorials:
       - Univariate Workflows: tutorials/univariate.md
       - Visual Univariate Walkthrough: tutorials/visual-univariate.md
@@ -30,10 +27,16 @@ nav:
       - Visual Multivariate Walkthrough: tutorials/visual-multivariate.md
       - CLI and Profiling: tutorials/cli-and-profiling.md
       - Profiling Reference: tutorials/profiling.md
-  - Comparisons: comparisons.md
-  - Comparison Evidence: comparison-evidence.md
-  - Token Benchmarks: token-benchmarks.md
-  - Migration from `tsdecomp`: migration.md
-  - Reproducibility: reproducibility.md
-  - Contributing: contributing.md
-  - Citation / Release Notes: citation.md
+  - API:
+      - API Overview: api.md
+      - Machine API: machine-api.md
+  - More:
+      - Why De-Time: why.md
+      - Architecture: architecture.md
+      - Comparisons: comparisons.md
+      - Comparison Evidence: comparison-evidence.md
+      - Token Benchmarks: token-benchmarks.md
+      - Migration from `tsdecomp`: migration.md
+      - Reproducibility: reproducibility.md
+      - Contributing: contributing.md
+      - Citation / Release Notes: citation.md

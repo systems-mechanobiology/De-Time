@@ -166,17 +166,21 @@ compatibility.
 
 ## Documentation
 
+Core docs:
 - Homepage: <https://systems-mechanobiology.github.io/De-Time/>
+- Install: <https://systems-mechanobiology.github.io/De-Time/install/>
 - Quickstart: <https://systems-mechanobiology.github.io/De-Time/quickstart/>
-- ML workflows: <https://systems-mechanobiology.github.io/De-Time/ml-workflows/>
-- Methods: <https://systems-mechanobiology.github.io/De-Time/methods/>
+- Methods overview: <https://systems-mechanobiology.github.io/De-Time/methods/>
+- Tutorials: <https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/>
+- API: <https://systems-mechanobiology.github.io/De-Time/api/>
+
+Reference and review:
 - Method cards: <https://systems-mechanobiology.github.io/De-Time/method-cards/>
 - Method references: <https://systems-mechanobiology.github.io/De-Time/method-references/>
 - Machine API: <https://systems-mechanobiology.github.io/De-Time/machine-api/>
-- API: <https://systems-mechanobiology.github.io/De-Time/api/>
+- Comparisons: <https://systems-mechanobiology.github.io/De-Time/comparisons/>
 - Comparison evidence: <https://systems-mechanobiology.github.io/De-Time/comparison-evidence/>
-- Token benchmarks: <https://systems-mechanobiology.github.io/De-Time/token-benchmarks/>
-- Migration guide: <https://systems-mechanobiology.github.io/De-Time/migration/>
+- Reproducibility: <https://systems-mechanobiology.github.io/De-Time/reproducibility/>
 
 ## Project files
 
