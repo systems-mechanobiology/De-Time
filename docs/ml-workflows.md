@@ -18,6 +18,27 @@ The package contribution is that these steps use one configuration contract,
 one result object, and one CLI/Python surface rather than a mix of notebooks,
 method-specific wrappers, and one-off scripts.
 
+<div class="pipeline-panel">
+  <div class="pipeline-flow">
+    <div class="pipeline-step">
+      <strong>Raw series</strong>
+      <span>sensor, experimental, or panel data</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>De-Time</strong>
+      <span>trend / season / residual / components</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>Features</strong>
+      <span>component summaries, residual diagnostics, channel structure</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>Model</strong>
+      <span>regression, classification, clustering, or inspection</span>
+    </div>
+  </div>
+</div>
+
 ## Small scikit-learn-facing example
 
 ```python
@@ -48,8 +69,8 @@ This example is intentionally small. The point is not that De-Time replaces
 scikit-learn, but that decomposition outputs can feed a downstream estimator
 through a stable package-level workflow.
 
-## Why this matters for JMLR MLOSS
+## Project and review notes
 
-What De-Time contributes to machine learning software is not algorithmic
-novelty. It is a reproducible software boundary for decomposition work that is
-often used inside ML experiments, ablations, and preprocessing pipelines.
+Release checks, coverage boundaries, and reviewer-facing evidence live in
+[Reproducibility](reproducibility.md). This page stays focused on where the
+package fits in downstream ML work.

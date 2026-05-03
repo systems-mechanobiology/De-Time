@@ -12,36 +12,25 @@ theme:
 extra_css:
   - stylesheets/extra.css
 nav:
-  - Home: index.md
   - Install: install.md
   - Quickstart: quickstart.md
   - Methods:
-      - Methods Overview: methods.md
-      - Choose a Method: choose-a-method.md
-      - ML Workflows: ml-workflows.md
-      - Method Cards: method-cards.md
+      - Methods & Chooser: methods.md
       - Method Matrix: method-matrix.md
       - Method References: method-references.md
   - Tutorials:
       - Notebook Gallery: notebook-gallery.md
-      - Univariate Workflows: tutorials/univariate.md
-      - Visual Univariate Walkthrough: tutorials/visual-univariate.md
-      - Visual Method Comparison: tutorials/visual-comparison.md
-      - Multivariate Workflows: tutorials/multivariate.md
-      - Visual Multivariate Walkthrough: tutorials/visual-multivariate.md
-      - CLI and Profiling: tutorials/cli-and-profiling.md
-      - Profiling Reference: tutorials/profiling.md
+      - Univariate Tutorial: tutorials/univariate.md
+      - Multivariate Tutorial: tutorials/multivariate.md
+      - CLI Guide: tutorials/cli-and-profiling.md
   - API:
       - API Overview: api.md
       - Config Reference: config-reference.md
       - Machine API: machine-api.md
-  - More:
-      - Why De-Time: why.md
-      - Architecture: architecture.md
-      - Comparisons: comparisons.md
-      - Comparison Evidence: comparison-evidence.md
-      - Token Benchmarks: token-benchmarks.md
-      - Migration from `tsdecomp`: migration.md
+  - Project:
+      - Compare Alternatives: comparisons.md
       - Reproducibility: reproducibility.md
+      - Architecture: architecture.md
+      - Migration from `tsdecomp`: migration.md
       - Contributing: contributing.md
       - Citation / Release Notes: citation.md

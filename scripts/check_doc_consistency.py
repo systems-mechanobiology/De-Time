@@ -26,6 +26,10 @@ BANNED_PATTERNS: dict[str, list[str]] = {
         "not yet available",
         "reviewed snapshot",
     ],
+    "docs/comparisons.md": [
+        "not erase them",
+        "What De-Time does not claim",
+    ],
     "docs/reproducibility.md": [
         "GitHub source install",
         "reviewed snapshot",

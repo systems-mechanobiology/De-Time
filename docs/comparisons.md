@@ -1,62 +1,50 @@
-# Comparisons
+# Compare Alternatives
 
-De-Time is designed to sit beside specialist libraries, not erase them. The
-package is strongest when a workflow needs one decomposition contract, one
-saved-output story, and one place to switch between Python, CLI, and selected
-native-backed runs.
+De-Time is useful when the project needs one decomposition workflow across
+Python, CLI, saved artifacts, and machine-readable metadata. Specialist
+packages remain the better choice when you only need their deepest family-
+specific API.
 
-## Reviewer-grade software matrix
+## Before and after
+
+<div class="pipeline-panel">
+  <div class="pipeline-flow">
+    <div class="pipeline-step">
+      <strong>Specialist glue</strong>
+      <span>different configs, result objects, filenames, and backend rules per package</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>De-Time layer</strong>
+      <span>one <code>DecompositionConfig</code>, one <code>DecompResult</code>, one CLI artifact contract</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>Reviewable output</strong>
+      <span>summary/meta/full JSON modes, method catalog, schemas, and reproducible figures</span>
+    </div>
+  </div>
+</div>
+
+## Software matrix
 
 | Axis | De-Time | [`statsmodels`](https://www.statsmodels.org/) | [`PyEMD`](https://github.com/laszukdawid/PyEMD) | [`PyWavelets`](https://pywavelets.readthedocs.io/en/latest/) | [`PySDKit`](https://pysdkit.readthedocs.io/en/latest/) | [`SSALib`](https://github.com/ADSCIAN/ssalib) | [`sktime`](https://www.sktime.net/en/stable/) |
 |---|---|---|---|---|---|---|---|
-| Core positioning | workflow-oriented decomposition layer | classical decomposition and modeling | EMD-family toolkit | wavelet toolkit | broader signal decomposition toolkit | SSA-focused toolkit | broad time-series ecosystem |
-| Common config object | yes | no | no | no | partial | SSA-specific | no |
-| Common result object | yes | partial | no | no | partial | SSA-specific | no |
-| Machine-readable catalog | yes | no | no | no | no | no | no |
-| Batch CLI | yes | no | no | no | limited | no | no |
-| Profiling path | yes | no | no | no | no | no | no |
+| Best fit | cross-method workflow | classical decomposition/statistics | EMD-family work | wavelet transforms | broad signal decomposition | SSA-focused work | broader time-series ecosystem |
+| Shared config/result contract | yes | partial | no | no | partial | SSA-specific | no |
+| CLI, batch, profiling | yes | no | no | no | limited | no | partial |
+| Machine-readable catalog/schemas | yes | no | no | no | no | no | no |
 | Multivariate under one surface | yes | limited | family-specific | transform-specific | yes | no | partial |
-| Native-backed retained methods | yes | upstream internals | no | mixed | mixed | mixed | mixed |
-| Maturity labeling | explicit | not applicable | family-specific | family-specific | less explicit | focused | ecosystem-level |
-| Compact result modes | yes | no | no | no | no | no | no |
-| MCP / tool surface | yes | no | no | no | no | no | no |
+| Where it is deeper | workflow reproducibility | statistical modeling | EMD variants | wavelet tooling | decomposition breadth | SSA workflows | ecosystem breadth |
 
-## Why not PySDKit?
+## Package-by-package reading
 
-[`PySDKit`](https://pysdkit.readthedocs.io/en/latest/) is the nearest unified competitor because it also gathers multiple
-decomposition families under one project and exposes optional multivariate
-backends. De-Time's distinction is narrower and more software-structural:
-
-- one decomposition-specific config/result contract across flagship and wrapper paths,
-- machine-readable method metadata intended for docs, recommendation, and tool calls,
-- compact `full` / `summary` / `meta` payloads for bounded-context workflows,
-- a local-first MCP surface and schema assets that describe the machine-facing API.
-
-The claim is not that De-Time subsumes every decomposition feature in
-[`PySDKit`](https://pysdkit.readthedocs.io/en/latest/). The claim is that De-Time invests more directly in workflow and
-machine-facing reproducibility for time-series decomposition itself. The
-primary method references and official package links behind this comparison are
-collected in [Method References](method-references.md).
-
-## Why not SSALib?
-
-[`SSALib`](https://github.com/ADSCIAN/ssalib) is the more specialized SSA-focused package. It is deeper if your sole
-goal is SSA-family tooling, SSA-specific workflows, or a specialist SSA
-environment. De-Time does not claim to exceed that family depth. Its position
-is that `SSA` is one flagship path inside a broader decomposition layer that
-also keeps `STD`, `STDR`, `MSSA`, wrappers, CLI workflows, and machine-facing
-artifacts under one contract.
-
-## Where specialist packages are deeper
-
-| Package | Where it is deeper | How De-Time positions itself |
+| Package | Use it directly when | Use De-Time when |
 |---|---|---|
-| [`statsmodels`](https://www.statsmodels.org/) | mature classical decomposition and statistical modeling | De-Time wraps `STL` and `MSTL` rather than replacing `statsmodels` |
-| [`PyEMD`](https://github.com/laszukdawid/PyEMD) | deeper EMD-family tooling | De-Time exposes `EMD` and `CEEMDAN` through the same workflow contract used for other families |
-| [`PyWavelets`](https://pywavelets.readthedocs.io/en/latest/) | deeper wavelet transforms and transform-specific APIs | De-Time uses wavelet decomposition as one workflow option, not as a claim of wavelet leadership |
-| [`PySDKit`](https://pysdkit.readthedocs.io/en/latest/) | broader signal-decomposition toolkit, including optional multivariate backends | De-Time uses `PySDKit` selectively for `MVMD` and `MEMD` while keeping a time-series-centered config/result layer |
-| [`SSALib`](https://github.com/ADSCIAN/ssalib) | deeper SSA-only environment and SSA-specific tooling | De-Time offers `SSA` inside a broader cross-family package, not as a deeper SSA-only library |
-| [`sktime`](https://www.sktime.net/en/stable/) | current maintained VMD reality plus a larger time-series transformation ecosystem | De-Time treats VMD as one integrated workflow option and compares against the maintained `sktime` path rather than the old standalone `vmdpy` story |
+| [`statsmodels`](https://www.statsmodels.org/) | you need the full statistical modeling stack | you want `STL` / `MSTL` output in the same contract as other methods |
+| [`PyEMD`](https://github.com/laszukdawid/PyEMD) | you need deeper EMD-family controls | you want `EMD` / `CEEMDAN` beside SSA, STD, VMD, and CLI artifacts |
+| [`PyWavelets`](https://pywavelets.readthedocs.io/en/latest/) | you need transform-specific wavelet APIs | you want wavelet decomposition as one option in a broader workflow |
+| [`PySDKit`](https://pysdkit.readthedocs.io/en/latest/) | you need its broad signal-decomposition catalog | you want selected optional multivariate backends behind De-Time metadata and I/O |
+| [`SSALib`](https://github.com/ADSCIAN/ssalib) | you only need SSA-family tooling | you want `SSA` as one flagship method in a cross-family package |
+| [`sktime`](https://www.sktime.net/en/stable/) | you need a large time-series ML ecosystem | you want decomposition outputs with De-Time's artifact and schema contract |
 
 ## Runtime snapshot
 
@@ -71,22 +59,41 @@ capabilities available.
 | `STD` | 0.181 | 0.031 | 5.825x |
 | `STDR` | 0.192 | 0.021 | 9.319x |
 
-These numbers are software-validation evidence, not a universal benchmark
-claim. The raw evidence lives in `docs/assets/generated/evidence/`.
+These numbers are a release smoke snapshot, not a universal benchmark.
 
-## Packaging and quality evidence
+## Evidence appendix
 
-- Release target `0.1.1` keeps the public install path, docs, and release
-  smoke verification aligned around `de-time`.
-- The canonical coverage gate applies to the `detime` core-plus-flagship
-  surface, not to the entire repository tree.
-- A second package-wide coverage report is emitted separately so the broader
-  denominator stays explicit.
-- Wheel and sdist smoke installs, documentation consistency checks,
-  `mkdocs build --strict`, and `twine check` are part of the validation story.
+<div class="compact-faq">
 
-## What De-Time does not claim
+<details>
+<summary>Generated comparison files</summary>
 
-- It does not claim to outperform specialist packages across every task.
-- It does not use benchmark leaderboards as the main evidence for the package.
-- It does not claim that every wrapped method is equally mature.
+- [`comparison_evidence.json`](assets/generated/evidence/comparison_evidence.json)
+- [`comparison_capability_matrix.csv`](assets/generated/evidence/comparison_capability_matrix.csv)
+- [`comparison_install_matrix.csv`](assets/generated/evidence/comparison_install_matrix.csv)
+- [`comparison_family_fairness.csv`](assets/generated/evidence/comparison_family_fairness.csv)
+- [`comparison_agent_matrix.csv`](assets/generated/evidence/comparison_agent_matrix.csv)
+- [`workflow_comparison.json`](assets/generated/evidence/workflow_comparison.json)
+
+Regenerate them with:
+
+```bash
+python benchmarks/software_comparison/generate_comparison_evidence.py
+python examples/workflow_comparisons/compare_specialist_glue_vs_detime.py
+```
+
+</details>
+
+<details>
+<summary>Quality and packaging checks</summary>
+
+- `python scripts/check_doc_consistency.py`
+- `mkdocs build --strict`
+- `python -m build`
+- `python scripts/check_dist_contents.py dist/*.tar.gz dist/*.whl`
+- `python -m twine check dist/*`
+- `python scripts/release_smoke_matrix.py`
+
+</details>
+
+</div>

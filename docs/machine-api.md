@@ -94,6 +94,10 @@ The recommended progressive-disclosure path is:
 2. inspect diagnostics and backend metadata
 3. request `full` only if downstream logic truly needs raw arrays
 
+Token-budget evidence for these modes is summarized in
+[Token Benchmarks](token-benchmarks.md). That page is kept as a reference
+appendix rather than a primary navigation item.
+
 ## MCP surface
 
 The MCP server is available at:

@@ -99,6 +99,7 @@ include = [
   "CITATION.cff",
   "START_HERE.md",
   "DOCS_INDEX.md",
+  "DESIGN.md",
   "ENTRYPOINTS.md",
   "LICENSE",
   "CONTRIBUTING.md",

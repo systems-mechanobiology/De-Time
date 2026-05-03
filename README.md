@@ -1,6 +1,6 @@
 # De-Time
 
-Workflow-oriented research software for reproducible time-series decomposition.
+One Python and CLI interface for trend, oscillation, residual, components, and metadata.
 
 [![License: BSD-3-Clause](https://img.shields.io/badge/license-BSD--3--Clause-0f172a.svg)](LICENSE)
 ![Status: Beta](https://img.shields.io/badge/status-beta-1d4ed8.svg)
@@ -31,7 +31,7 @@ Fast entry points:
 
 ## Scope
 
-De-Time is for:
+Use De-Time when you want:
 
 - one `decompose()` entrypoint,
 - one `DecompositionConfig` model for Python and CLI usage,
@@ -42,12 +42,8 @@ De-Time is for:
 - machine-facing workflows that need schemas, recommendations, and low-token
   result views.
 
-De-Time is not:
-
-- a new decomposition algorithm,
-- a benchmark leaderboard package,
-- a replacement for every specialized upstream library,
-- a claim that every bundled wrapper has equal maturity.
+Use a specialist package directly when you only need that package's deepest
+family-specific API.
 
 ## Flagship methods
 
@@ -80,8 +76,8 @@ specialist packages, not as a replacement for all of them.
 | Multivariate under one surface | yes | limited | family-specific | transform-specific | yes | no | partial |
 | Where it is deeper | workflow reproducibility | statistical modeling | EMD variants | wavelet tooling | decomposition breadth | SSA workflows | ecosystem breadth |
 
-Full reviewer-facing comparison evidence is in
-[docs/comparisons.md](docs/comparisons.md) and
+Full comparison details are in [docs/comparisons.md](docs/comparisons.md);
+generated evidence files are kept in
 [docs/comparison-evidence.md](docs/comparison-evidence.md).
 
 ## Install
@@ -208,19 +204,18 @@ Core docs:
 - API: <https://systems-mechanobiology.github.io/De-Time/api/>
 
 Reference and review:
-- Method cards: <https://systems-mechanobiology.github.io/De-Time/method-cards/>
 - Method matrix: <https://systems-mechanobiology.github.io/De-Time/method-matrix/>
 - Config reference: <https://systems-mechanobiology.github.io/De-Time/config-reference/>
 - Method references: <https://systems-mechanobiology.github.io/De-Time/method-references/>
 - Machine API: <https://systems-mechanobiology.github.io/De-Time/machine-api/>
 - Comparisons: <https://systems-mechanobiology.github.io/De-Time/comparisons/>
-- Comparison evidence: <https://systems-mechanobiology.github.io/De-Time/comparison-evidence/>
 - Reproducibility: <https://systems-mechanobiology.github.io/De-Time/reproducibility/>
 
 ## Project files
 
 - Citation metadata: [`CITATION.cff`](CITATION.cff)
 - Changelog: [`CHANGELOG.md`](CHANGELOG.md)
+- Design notes: [`DESIGN.md`](DESIGN.md)
 - Contributing guide: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 - Security policy: [`SECURITY.md`](SECURITY.md)
 - Publishing notes: [`PUBLISHING.md`](PUBLISHING.md)

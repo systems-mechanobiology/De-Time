@@ -1,7 +1,16 @@
 # Quickstart
 
-The examples below assume either a tagged public release installed as
-`de-time`, or an editable install from the current branch.
+Before you start, install the current repository:
+
+```bash
+python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"
+```
+
+Contributor checkout:
+
+```bash
+python -m pip install -e .[dev,docs]
+```
 
 ## Python
 
@@ -25,6 +34,27 @@ print(result.trend.shape)
 print(result.meta["backend_used"])
 ```
 
+Expected output on a native-enabled build:
+
+```text
+(120,)
+native
+```
+
+The result object carries the same shape contract for every method:
+
+```python
+print(result.season.shape)
+print(result.residual.shape)
+print(sorted(result.meta))
+```
+
+```text
+(120,)
+(120,)
+['backend_requested', 'backend_used', 'input_shape', 'method', 'n_channels', ...]
+```
+
 ## CLI
 
 ```bash
@@ -36,6 +66,19 @@ detime run \
   --out_dir out/std_run \
   --output-mode summary
 ```
+
+Expected stdout:
+
+```text
+Running STD on examples/data/example_series.csv...
+Done. Results saved to out/std_run
+```
+
+This writes `out/std_run/example_series_summary.json`. The same command with
+`--plot` also writes decomposition and residual figures.
+
+For a published plot-backed run, see the
+[Univariate Tutorial](tutorials/univariate.md#saving-output-with-the-cli).
 
 ## Multivariate
 
@@ -64,10 +107,16 @@ result = decompose(
 print(result.components["modes"].shape)
 ```
 
+Expected output:
+
+```text
+(8, 96, 2)
+```
+
 ## Next steps
 
-- Use [Choose a Method](choose-a-method.md) to decide whether to stay on the
-  flagship path or move to a wrapper.
+- Use [Methods & Chooser](methods.md) to decide whether to stay on the flagship
+  path or move to a wrapper.
 - Use `detime recommend --length ... --channels ...` when you want a
   machine-readable shortlist.
 - Use `detime schema --name config` when you want the packaged config schema.

@@ -69,6 +69,41 @@
   border: 1px solid #bcd0f7;
 }
 
+.pipeline-panel,
+.io-panel {
+  border: 1px solid #d8dee6;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 12px 28px rgba(32, 56, 85, 0.08);
+  padding: 1rem;
+  margin: 1rem 0 1.65rem;
+}
+
+.pipeline-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+  align-items: stretch;
+}
+
+.pipeline-step {
+  border: 1px solid #dbe7f4;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+  padding: 0.85rem;
+}
+
+.pipeline-step strong {
+  display: block;
+  color: #0b3a8f;
+  margin-bottom: 0.25rem;
+}
+
+.pipeline-step span {
+  color: #485466;
+  font-size: 0.92rem;
+}
+
 .trust-strip {
   display: flex;
   flex-wrap: wrap;
@@ -153,6 +188,44 @@
   margin: 0;
   color: #485466;
   line-height: 1.45;
+}
+
+.method-use-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.6rem;
+}
+
+.method-use-card {
+  border: 1px solid #d8dee6;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 26px rgba(32, 56, 85, 0.08);
+  padding: 1rem;
+}
+
+.method-use-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.55rem;
+}
+
+.method-use-card p {
+  margin: 0.45rem 0;
+}
+
+.compact-faq details {
+  border: 1px solid #d8dee6;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 0.8rem 0.95rem;
+  margin: 0.7rem 0;
+}
+
+.compact-faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #0f172a;
 }
 
 .showcase-grid {

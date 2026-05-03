@@ -100,50 +100,31 @@ def _code_json(value: object) -> str:
     return json.dumps(value, indent=2, sort_keys=True)
 
 
+def _heading_anchor(value: object) -> str:
+    return str(value).lower()
+
+
 def _render_method(entry: dict[str, object]) -> str:
     optional_dependencies = entry.get("optional_dependencies", [])
     optional_dep_text = ", ".join(optional_dependencies) if optional_dependencies else "none"
-    references = list(entry.get("references", []))
-    package_links = list(entry.get("package_links", []))
     params = list(entry.get("parameter_docs", []))
     outputs = list(entry.get("output_components", []))
+    use_when = list(entry.get("recommended_for", []))[:2]
+    avoid_when = list(entry.get("not_recommended_for", []))[:2]
     return "\n".join(
         [
             f"### `{entry['name']}`",
             "",
-            f"- Family: `{entry['family']}`",
-            f"- Input mode: `{entry['input_mode']}`",
-            f"- Maturity: `{entry['maturity']}`",
-            f"- Implementation: `{entry['implementation']}`",
-            f"- Dependency tier: `{entry['dependency_tier']}`",
-            f"- Multivariate support: `{entry['multivariate_support']}`",
-            f"- Native-backed: `{entry['native_backed']}`",
-            f"- Minimum length hint: `{entry['min_length']}`",
-            f"- Optional dependencies: {optional_dep_text}",
             f"- Summary: {entry['summary']}",
-            f"- Common parameters: {_common_params(params)}",
+            f"- Use when: {'; '.join(str(item) for item in use_when) if use_when else 'general decomposition workflow'}",
+            f"- Avoid when: {'; '.join(str(item) for item in avoid_when) if avoid_when else 'parameter assumptions do not match the data'}",
+            f"- Key params: {_common_params(params)}",
+            f"- Input/backend: `{entry['input_mode']}` input, `{entry['implementation']}` implementation, maturity `{entry['maturity']}`",
+            f"- Optional dependencies: {optional_dep_text}",
             f"- Output components: {', '.join(f'`{item}`' for item in outputs) if outputs else '`trend`, `season`, `residual`'}",
+            f"- References: [Method References](method-references.md#{_heading_anchor(entry['name'])})",
             "",
-            "Assumptions:",
-            _bullet_list(list(entry.get("assumptions", []))),
-            "",
-            "Recommended for:",
-            _bullet_list(list(entry.get("recommended_for", []))),
-            "",
-            "Typical failure modes:",
-            _bullet_list(list(entry.get("typical_failure_modes", []))),
-            "",
-            "Not recommended for:",
-            _bullet_list(list(entry.get("not_recommended_for", []))),
-            "",
-            "Method references:",
-            _link_list(references),
-            "",
-            "Related package links:",
-            _link_list(package_links),
-            "",
-            "Parameter notes:",
-            _param_table(params),
+            f"See [Config Reference](config-reference.md#{_heading_anchor(entry['name'])}) for the full parameter table.",
             "",
         ]
     )
@@ -164,6 +145,10 @@ def _render_cards(catalog: list[dict[str, object]]) -> str:
         "",
         "Source citations and official upstream package links are collected in",
         "[Method References](method-references.md).",
+        "",
+        "This page intentionally keeps cards compact. Use",
+        "[Method Matrix](method-matrix.md) for table comparison and",
+        "[Config Reference](config-reference.md) for full parameter semantics.",
         "",
         "The `tsdecomp` top-level alias remains compatibility-only through `0.1.x` and is",
         "not the canonical surface for any method listed below.",

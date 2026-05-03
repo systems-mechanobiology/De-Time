@@ -1,27 +1,26 @@
 # De-Time
 
-De-Time is workflow-oriented research software for reproducible time-series
-decomposition. It gives you one public package, one decomposition contract, and
-one docs surface across univariate, multivariate, native-backed, and
-machine-facing workflows.
+De-Time gives one Python and CLI interface for trend, oscillation, residual,
+method-specific components, and metadata across univariate and aligned
+multichannel decomposition workflows.
 
 <div class="hero-panel hero-split">
   <div class="hero-copy">
     <img class="brand-logo" alt="De-Time logo" src="assets/brand/detime-logo.svg">
     <h2>De-Time</h2>
-    <p class="hero-kicker">Workflow-oriented time-series decomposition software</p>
-    <p>One package, one decomposition contract, and one docs surface across univariate, multivariate, native-backed, and machine-facing workflows.</p>
+    <p class="hero-kicker">One interface for trend, oscillation, residual, and metadata.</p>
+    <p>Give De-Time one series or aligned multichannel data. It returns trend, seasonal or oscillatory structure, residuals, method-specific components, and metadata through the same Python and CLI interface.</p>
     <div class="hero-actions">
-      <a href="quickstart/">Get Started</a>
-      <a class="secondary" href="install/">Install</a>
+      <a href="quickstart/">Run First Example</a>
+      <a class="secondary" href="install/">Install from GitHub</a>
     </div>
   </div>
   <div class="hero-points">
     <ul>
       <li>Stable Python and CLI entrypoints for decomposition workflows</li>
       <li>Flagship support for <code>SSA</code>, <code>STD</code>, <code>STDR</code>, and <code>MSSA</code></li>
-      <li>Machine-facing schemas, recommendation, and MCP support</li>
-      <li>Reproducible docs, evidence artifacts, and release validation</li>
+      <li>Examples publish real stdout, plots, and saved artifacts</li>
+      <li>Machine-facing schemas and recommendation when automation matters</li>
     </ul>
   </div>
 </div>
@@ -33,18 +32,41 @@ machine-facing workflows.
   <span class="trust-pill">Machine-facing schemas and low-token result modes</span>
 </div>
 
+## Data in, components out
+
+<div class="pipeline-panel">
+  <div class="pipeline-flow">
+    <div class="pipeline-step">
+      <strong>Input</strong>
+      <span>1D series or aligned 2D panel</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>Config</strong>
+      <span><code>DecompositionConfig(method, params)</code></span>
+    </div>
+    <div class="pipeline-step">
+      <strong>Run</strong>
+      <span><code>decompose(...)</code> or <code>detime run</code></span>
+    </div>
+    <div class="pipeline-step">
+      <strong>Output</strong>
+      <span>trend, season, residual, components, metadata</span>
+    </div>
+  </div>
+</div>
+
 ## Getting Started
 
 <div class="info-grid">
   <a class="info-card" href="install/">
     <h3>Install</h3>
-    <p>Public install path, extras, native build prerequisites, and troubleshooting.</p>
+    <p>Current GitHub install path, extras, native build prerequisites, and FAQ.</p>
   </a>
   <a class="info-card" href="quickstart/">
     <h3>Quickstart</h3>
     <p>First successful Python and CLI runs with the retained De-Time surface.</p>
   </a>
-  <a class="info-card" href="choose-a-method/">
+  <a class="info-card" href="methods/">
     <h3>Choose a Method</h3>
     <p>Pick a flagship path quickly before dropping into wrappers or optional backends.</p>
   </a>
@@ -60,10 +82,6 @@ machine-facing workflows.
   <a class="info-card" href="methods/">
     <h3>Methods Overview</h3>
     <p>Method families, maturity levels, and where to start on the retained surface.</p>
-  </a>
-  <a class="info-card" href="method-cards/">
-    <h3>Method Cards</h3>
-    <p>Per-method assumptions, failure modes, and recommended use cases.</p>
   </a>
   <a class="info-card" href="method-matrix/">
     <h3>Method Matrix</h3>
@@ -102,16 +120,16 @@ machine-facing workflows.
 
 <div class="info-grid">
   <a class="info-card" href="comparisons/">
-    <h3>Comparisons</h3>
-    <p>Position De-Time relative to specialist packages without overselling replacement claims.</p>
-  </a>
-  <a class="info-card" href="comparison-evidence/">
-    <h3>Comparison Evidence</h3>
-    <p>Generated files behind the cross-package software comparison matrices.</p>
+    <h3>Compare Alternatives</h3>
+    <p>When to use De-Time and when to use specialist packages directly.</p>
   </a>
   <a class="info-card" href="reproducibility/">
     <h3>Reproducibility</h3>
-    <p>Coverage boundaries, release checks, generated evidence, and validation workflow.</p>
+    <p>Coverage boundaries, release checks, generated evidence, and validation commands.</p>
+  </a>
+  <a class="info-card" href="method-references/">
+    <h3>Method References</h3>
+    <p>Primary literature and official upstream package links for retained methods.</p>
   </a>
   <a class="info-card" href="citation/">
     <h3>Citation / Release Notes</h3>

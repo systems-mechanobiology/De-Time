@@ -17,6 +17,8 @@ This file is a compact documentation map for agents and contributors.
 
 - `README.md`
   - GitHub-facing product overview
+- `DESIGN.md`
+  - docs voice, information architecture, and visual-system notes
 - `docs/index.md`
   - docs homepage and core routing page
 - `docs/install.md`
@@ -24,7 +26,7 @@ This file is a compact documentation map for agents and contributors.
 - `docs/quickstart.md`
   - first Python and CLI workflows
 - `docs/methods.md`
-  - methods overview in the top-nav `Methods` group
+  - methods overview and chooser in the top-nav `Methods` group
 - `docs/method-matrix.md`
   - generated retained-method comparison table
 - `docs/config-reference.md`
@@ -40,9 +42,9 @@ This file is a compact documentation map for agents and contributors.
 - `docs/method-references.md`
   - citations and upstream package links for retained methods
 - `docs/comparisons.md`
-  - non-core comparison framing under the top-nav `More` group
+  - comparison framing under the top-nav `Project` group
 - `docs/comparison-evidence.md`
-  - generated cross-package comparison evidence files
+  - generated cross-package evidence appendix, linked from `docs/comparisons.md`
 
 ## Examples
 

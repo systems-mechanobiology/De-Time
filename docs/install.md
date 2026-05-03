@@ -21,12 +21,14 @@ Notebook tooling for the method gallery installs with:
 python -m pip install "de-time[notebook] @ git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
-Naming summary:
+Names used by this project:
 
-- Product name: `De-Time`
-- Distribution name: `de-time`
-- Canonical import: `detime`
-- Compatibility alias: `tsdecomp`
+| Context | Name |
+|---|---|
+| Project/product | `De-Time` |
+| Planned Python distribution | `de-time` |
+| Python import | `detime` |
+| Deprecated compatibility alias | `tsdecomp` |
 
 Do not install the unrelated `detime` package from PyPI when you want this
 project. Planned PyPI install after the release is:
@@ -51,7 +53,7 @@ For optional multivariate wrappers during development:
 python -m pip install -e .[dev,docs,multivar]
 ```
 
-## Platform prerequisites
+## Platform Prerequisites
 
 Most users will install from wheels and do not need a local compiler. If a
 wheel is unavailable and pip falls back to building from source, you need:
@@ -127,78 +129,78 @@ Transition-era submodules such as `tsdecomp.backends`,
 `tsdecomp.leaderboard`, and `tsdecomp.methods.*` are intentionally excluded
 from install artifacts.
 
-## Troubleshooting
+## Troubleshooting FAQ
 
-### Wrong package installed
+<div class="compact-faq">
 
-Symptom:
+<details>
+<summary>Wrong package installed</summary>
 
-- `import detime` imports an unrelated package
+Symptom: `import detime` imports an unrelated package.
 
-Fix:
-
-- uninstall the unrelated `detime` package
-- install this repository from GitHub
+Fix: uninstall the unrelated `detime` package, then install this repository
+from GitHub.
 
 ```bash
 python -m pip uninstall -y detime
 python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
-### Native build failed during install
+</details>
 
-Symptom:
+<details>
+<summary>Native build failed during install</summary>
 
-- pip attempts a source build and fails in the CMake or compiler stage
+Symptom: pip attempts a source build and fails in the CMake or compiler stage.
 
-Fix:
-
-- ensure your platform toolchain is installed
-- upgrade pip
-- retry the install
+Fix: ensure your platform toolchain is installed, upgrade pip, and retry the
+install.
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install --no-cache-dir "git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
-### Native backend unavailable at runtime
+</details>
 
-Symptom:
+<details>
+<summary>Native backend unavailable at runtime</summary>
 
-- `backend="native"` raises that the native implementation is unavailable
+Symptom: `backend="native"` raises that the native implementation is
+unavailable.
 
-Fix:
+Fix: reinstall from a wheel when available, rebuild locally with a working
+compiler toolchain, or use `backend="auto"` / `backend="python"` until the
+native path is present.
 
-- reinstall from a wheel when available, or
-- rebuild locally with a working compiler toolchain, or
-- use `backend="auto"` or `backend="python"` until the native path is present
+</details>
 
-### Optional multivariate backend import error
+<details>
+<summary>Optional backend import error</summary>
 
-Symptom:
+Symptom: `MVMD` or `MEMD` raises an `ImportError`.
 
-- `MVMD` or `MEMD` raises an `ImportError`
-
-Fix:
-
-- install the multivariate extra
+Fix: install the multivariate extra.
 
 ```bash
 python -m pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
-### Editable install looks stale
+</details>
 
-Symptom:
+<details>
+<summary>Editable install looks stale</summary>
 
-- schema assets, docs, or native behavior do not match the current checkout
+Symptom: schema assets, docs, or native behavior do not match the current
+checkout.
 
-Fix:
-
-- reinstall the editable package after source changes that affect package data
-  or the native extension
+Fix: reinstall the editable package after source changes that affect package
+data or the native extension.
 
 ```bash
 python -m pip install -e .[dev,docs]
 ```
+
+</details>
+
+</div>

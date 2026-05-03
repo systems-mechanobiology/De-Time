@@ -23,7 +23,12 @@ than as a mixed library-plus-benchmark artifact.
 The release artifacts also exclude transition-era compatibility submodules such
 as `tsdecomp.methods.*`, `tsdecomp.leaderboard`, and `tsdecomp.bench_config`.
 
-## Validation workflow
+## Release Checks
+
+<div class="compact-faq">
+
+<details>
+<summary>Commands used for release and docs validation</summary>
 
 The current release and docs were checked with:
 
@@ -47,6 +52,10 @@ The current release and docs were checked with:
 - `python evals/agent/run_agent_evals.py`
 - `python scripts/generate_reviewer_bundle.py`
 - `python -m twine check dist/*`
+
+</details>
+
+</div>
 
 ## Coverage boundary
 
@@ -94,14 +103,14 @@ The documented tolerances are:
 - `SSA`: `atol=1e-6`
 - `STD` / `STDR`: `atol=1e-9`
 
-## Evidence artifacts
+## Evidence Artifacts
 
-- Performance snapshot: `docs/assets/generated/evidence/performance_snapshot.json`
-- Performance summary CSV: `docs/assets/generated/evidence/performance_snapshot.csv`
-- Comparison evidence: `docs/assets/generated/evidence/comparison_evidence.json`
-- Workflow comparison demo: `docs/assets/generated/evidence/workflow_comparison.json`
-- Token benchmark summary: `docs/assets/generated/evidence/token_benchmarks.json`
-- Agent eval summary: `docs/assets/generated/evidence/agent_eval_summary.json`
+- [Performance snapshot JSON](assets/generated/evidence/performance_snapshot.json)
+- [Performance summary CSV](assets/generated/evidence/performance_snapshot.csv)
+- [Comparison evidence JSON](assets/generated/evidence/comparison_evidence.json)
+- [Workflow comparison demo JSON](assets/generated/evidence/workflow_comparison.json)
+- [Token benchmark summary JSON](assets/generated/evidence/token_benchmarks.json)
+- [Agent eval summary JSON](assets/generated/evidence/agent_eval_summary.json)
 - JSON schemas: `src/detime/schema_assets/*.json`
 
 The performance snapshot is reproducible from
