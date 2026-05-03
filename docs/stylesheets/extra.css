@@ -22,6 +22,13 @@
   line-height: 1.05;
 }
 
+.brand-logo {
+  display: block;
+  max-width: 260px;
+  height: auto;
+  margin-bottom: 0.85rem;
+}
+
 .hero-kicker {
   font-size: 1.2rem;
   font-weight: 600;

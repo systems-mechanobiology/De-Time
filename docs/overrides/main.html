@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+  {% if page and page.meta.hide_toc %}
+    <div class="col-md-12" role="main">{% include "content.html" %}</div>
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}

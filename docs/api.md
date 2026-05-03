@@ -14,6 +14,10 @@ CLI remain compatibility aliases only through `0.1.x`.
 `DecompositionConfig` is the validated runtime contract for Python calls and
 mirrors the CLI surface.
 
+For the generated parameter-level reference, see
+[Config Reference](config-reference.md). For method-level input/backend/output
+comparison, see [Method Matrix](method-matrix.md).
+
 - `method: str`
   Required method name such as `SSA`, `STD`, `STDR`, `MSSA`, `MVMD`, or
   `MEMD`.
@@ -138,6 +142,9 @@ Every method entry exposes at least:
 - `optional_dependencies`
 - `references`
 - `package_links`
+- `parameter_docs`
+- `output_components`
+- `example_config`
 
 ## Serialization and machine-facing APIs
 

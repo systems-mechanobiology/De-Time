@@ -7,7 +7,9 @@ Workflow-oriented research software for reproducible time-series decomposition.
 [![Docs: GitHub Pages](https://img.shields.io/badge/docs-GitHub_Pages-0b5fff.svg)](https://systems-mechanobiology.github.io/De-Time/)
 ![Python: 3.10+](https://img.shields.io/badge/python-3.10%2B-0f766e.svg)
 
-![De-Time title card](docs/assets/brand/detime-title-card.svg)
+<p align="center">
+  <img src="docs/assets/brand/detime-logo.svg" alt="De-Time logo" width="640">
+</p>
 
 De-Time provides one stable software surface for decomposition workflows that
 would otherwise be split across notebooks, method-specific wrappers, and
@@ -16,10 +18,16 @@ one-off scripts. The product name is **De-Time**, the distribution is
 `tsdecomp` import and CLI remain compatibility-only through `0.1.x`, with
 earliest removal planned for `0.2.0`.
 
-The current branch targets release `0.1.1`. Tagged public releases install as
-`pip install de-time`; if you are working from an unreleased branch or waiting
-for the `de-time-v0.1.1` tag to publish from `main`, use the editable install
-path below.
+The current branch targets release `0.1.1`. PyPI publication is planned after
+the reviewed release is cut; until then, install from GitHub or use the
+editable contributor path below.
+
+Fast entry points:
+
+- [Documentation site](https://systems-mechanobiology.github.io/De-Time/)
+- [Beginner notebook method gallery](examples/notebooks/de_time_method_gallery.ipynb)
+- [Cross-package comparison](docs/comparisons.md)
+- [Method comparison matrix](docs/method-matrix.md)
 
 ## Scope
 
@@ -51,34 +59,58 @@ The main package is centered on four methods:
 - `MSSA`
 
 Other retained methods are wrappers or optional-backend integrations such as
-`STL`, `MSTL`, `EMD`, `CEEMDAN`, `VMD`, `WAVELET`, `MVMD`, `MEMD`, and
-`GABOR_CLUSTER`.
+`STL`, `MSTL`, `ROBUST_STL`, `EMD`, `CEEMDAN`, `VMD`, `WAVELET`,
+`MA_BASELINE`, `MVMD`, `MEMD`, and `GABOR_CLUSTER`.
 
 Benchmark-derived methods `DR_TS_REG`, `DR_TS_AE`, and `SL_LIB` do not ship in
 the main package. They belong to the companion benchmark repository
 [`systems-mechanobiology/de-time-bench`](https://github.com/systems-mechanobiology/de-time-bench).
 
+## Cross-package comparison
+
+De-Time is positioned as a workflow and machine-contract layer beside
+specialist packages, not as a replacement for all of them.
+
+| Axis | De-Time | [statsmodels](https://www.statsmodels.org/) | [PyEMD](https://github.com/laszukdawid/PyEMD) | [PyWavelets](https://pywavelets.readthedocs.io/en/latest/) | [PySDKit](https://pysdkit.readthedocs.io/en/latest/) | [SSALib](https://github.com/ADSCIAN/ssalib) | [sktime](https://www.sktime.net/en/stable/) |
+|---|---|---|---|---|---|---|---|
+| Primary role | unified decomposition workflow | classical decomposition/statistics | EMD family | wavelet transforms | broad decomposition toolkit | SSA specialist | broad time-series ecosystem |
+| Common config/result contract | yes | partial | no | no | partial | SSA-specific | no |
+| CLI, batch, profiling | yes | no | no | no | limited | no | partial |
+| Machine-readable catalog/schemas | yes | no | no | no | no | no | no |
+| Multivariate under one surface | yes | limited | family-specific | transform-specific | yes | no | partial |
+| Where it is deeper | workflow reproducibility | statistical modeling | EMD variants | wavelet tooling | decomposition breadth | SSA workflows | ecosystem breadth |
+
+Full reviewer-facing comparison evidence is in
+[docs/comparisons.md](docs/comparisons.md) and
+[docs/comparison-evidence.md](docs/comparison-evidence.md).
+
 ## Install
 
 ```bash
-pip install de-time
+python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
-Editable install for branch or release-prep work:
+Editable install for contributors and release-prep work:
 
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -e .[dev,docs]
 ```
 
-Optional multivariate backend extras:
+Notebook tooling:
 
 ```bash
-pip install "de-time[multivar]"
+python -m pip install -e .[dev,docs,notebook]
+```
+
+Optional multivariate backend extras from GitHub:
+
+```bash
+python -m pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
 Do not install the unrelated `detime` package from PyPI when you want this
-project.
+project. Planned PyPI install after the release is `pip install de-time`.
 
 ## Quickstart
 
@@ -171,11 +203,14 @@ Core docs:
 - Install: <https://systems-mechanobiology.github.io/De-Time/install/>
 - Quickstart: <https://systems-mechanobiology.github.io/De-Time/quickstart/>
 - Methods overview: <https://systems-mechanobiology.github.io/De-Time/methods/>
+- Notebook gallery: <https://systems-mechanobiology.github.io/De-Time/notebook-gallery/>
 - Tutorials: <https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/>
 - API: <https://systems-mechanobiology.github.io/De-Time/api/>
 
 Reference and review:
 - Method cards: <https://systems-mechanobiology.github.io/De-Time/method-cards/>
+- Method matrix: <https://systems-mechanobiology.github.io/De-Time/method-matrix/>
+- Config reference: <https://systems-mechanobiology.github.io/De-Time/config-reference/>
 - Method references: <https://systems-mechanobiology.github.io/De-Time/method-references/>
 - Machine API: <https://systems-mechanobiology.github.io/De-Time/machine-api/>
 - Comparisons: <https://systems-mechanobiology.github.io/De-Time/comparisons/>

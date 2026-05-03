@@ -41,5 +41,9 @@ now lives in
   choosing manually.
 - Use [Method Cards](method-cards.md) when you need assumptions, failure modes,
   and not-recommended cases in one place.
+- Use [Method Matrix](method-matrix.md) when you need a compact comparison of
+  input mode, maturity, dependencies, parameters, outputs, and recommended use.
+- Use [Config Reference](config-reference.md) when you need exact
+  `DecompositionConfig` fields and per-method parameter semantics.
 - Use [Method References](method-references.md) when you need the primary
   literature citations and official upstream package links behind each method.

@@ -7,6 +7,7 @@ machine-facing workflows.
 
 <div class="hero-panel hero-split">
   <div class="hero-copy">
+    <img class="brand-logo" alt="De-Time logo" src="assets/brand/detime-logo.svg">
     <h2>De-Time</h2>
     <p class="hero-kicker">Workflow-oriented time-series decomposition software</p>
     <p>One package, one decomposition contract, and one docs surface across univariate, multivariate, native-backed, and machine-facing workflows.</p>
@@ -32,24 +33,6 @@ machine-facing workflows.
   <span class="trust-pill">Machine-facing schemas and low-token result modes</span>
 </div>
 
-## What it is
-
-- A canonical Python package with import path `detime`.
-- A stable `decompose()` entrypoint plus `DecompositionConfig` and
-  `DecompResult`.
-- A documentation set centered on practical workflows rather than benchmark
-  scoreboards.
-- A package whose flagship methods are `SSA`, `STD`, `STDR`, and `MSSA`.
-- A machine-facing surface with schemas, recommendations, and a minimal MCP
-  server.
-
-## What it is not
-
-- Not a new decomposition algorithm.
-- Not a benchmark-paper artifact disguised as a library.
-- Not a replacement for every specialized upstream implementation.
-- Not a promise that every wrapper has the same maturity as the flagship path.
-
 ## Getting Started
 
 <div class="info-grid">
@@ -65,9 +48,9 @@ machine-facing workflows.
     <h3>Choose a Method</h3>
     <p>Pick a flagship path quickly before dropping into wrappers or optional backends.</p>
   </a>
-  <a class="info-card" href="tutorials/univariate/">
-    <h3>Univariate Tutorial</h3>
-    <p>Step-by-step workflow with real generated outputs published on the page.</p>
+  <a class="info-card" href="notebook-gallery/">
+    <h3>Notebook Gallery</h3>
+    <p>GitHub-visible plots and summaries for the retained decomposition methods.</p>
   </a>
 </div>
 
@@ -82,13 +65,17 @@ machine-facing workflows.
     <h3>Method Cards</h3>
     <p>Per-method assumptions, failure modes, and recommended use cases.</p>
   </a>
+  <a class="info-card" href="method-matrix/">
+    <h3>Method Matrix</h3>
+    <p>Inputs, maturity, parameters, dependencies, outputs, and recommended use in one table.</p>
+  </a>
+  <a class="info-card" href="config-reference/">
+    <h3>Config Reference</h3>
+    <p>Top-level <code>DecompositionConfig</code> fields plus per-method parameter semantics.</p>
+  </a>
   <a class="info-card" href="api/">
     <h3>API Overview</h3>
     <p>Canonical Python surface, config and result contracts, and CLI summary.</p>
-  </a>
-  <a class="info-card" href="machine-api/">
-    <h3>Machine API</h3>
-    <p>Schemas, catalog contracts, recommendation flow, and MCP entrypoints.</p>
   </a>
 </div>
 
@@ -118,27 +105,16 @@ machine-facing workflows.
     <h3>Comparisons</h3>
     <p>Position De-Time relative to specialist packages without overselling replacement claims.</p>
   </a>
+  <a class="info-card" href="comparison-evidence/">
+    <h3>Comparison Evidence</h3>
+    <p>Generated files behind the cross-package software comparison matrices.</p>
+  </a>
   <a class="info-card" href="reproducibility/">
     <h3>Reproducibility</h3>
     <p>Coverage boundaries, release checks, generated evidence, and validation workflow.</p>
-  </a>
-  <a class="info-card" href="method-references/">
-    <h3>Method References</h3>
-    <p>Primary literature and official upstream package links for the retained methods.</p>
   </a>
   <a class="info-card" href="citation/">
     <h3>Citation / Release Notes</h3>
     <p>Package citation metadata, release notes, and links needed for software review.</p>
   </a>
 </div>
-
-## Package boundary
-
-This repository ships the software package itself. Companion benchmark
-artifacts live in the separate
-[`systems-mechanobiology/de-time-bench`](https://github.com/systems-mechanobiology/de-time-bench)
-repository. The main package no longer exposes benchmark orchestration,
-leaderboard helpers, or benchmark-derived methods.
-
-The legacy `tsdecomp` import and CLI still resolve to De-Time, but only as a
-deprecated compatibility alias through `0.1.x`.

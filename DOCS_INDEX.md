@@ -25,6 +25,12 @@ This file is a compact documentation map for agents and contributors.
   - first Python and CLI workflows
 - `docs/methods.md`
   - methods overview in the top-nav `Methods` group
+- `docs/method-matrix.md`
+  - generated retained-method comparison table
+- `docs/config-reference.md`
+  - generated `DecompositionConfig` and method parameter reference
+- `docs/notebook-gallery.md`
+  - entry page for the GitHub-visible method gallery notebook
 - `docs/tutorials/univariate.md`
   - first runnable workflow tutorial with published outputs
 - `docs/api.md`
@@ -35,6 +41,8 @@ This file is a compact documentation map for agents and contributors.
   - citations and upstream package links for retained methods
 - `docs/comparisons.md`
   - non-core comparison framing under the top-nav `More` group
+- `docs/comparison-evidence.md`
+  - generated cross-package comparison evidence files
 
 ## Examples
 
@@ -42,12 +50,8 @@ This file is a compact documentation map for agents and contributors.
 - `examples/multivariate_mssa.py`
 - `examples/method_survey.py`
 - `examples/profile_and_cli.py`
-
-## Submission and software notes
-
-- `JMLR_SOFTWARE_IMPROVEMENTS.md`
-- `JMLR_MLOSS_CHECKLIST.md`
-- `JMLR_SUBMISSION_CHECKLIST.md`
+- `examples/notebooks/de_time_method_gallery.ipynb`
+  - plotted beginner gallery for retained decomposition methods
 
 ## Best next files for agents
 

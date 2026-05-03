@@ -1,3 +1,7 @@
+---
+hide_toc: true
+---
+
 # Why De-Time
 
 De-Time exists because decomposition workflows are often split across

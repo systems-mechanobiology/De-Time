@@ -512,6 +512,180 @@ METHOD_PACKAGE_LINKS: Dict[str, list[Dict[str, str]]] = {
 }
 
 
+def _param_doc(
+    name: str,
+    type_: str,
+    description: str,
+    *,
+    default: Any = None,
+    required: bool = False,
+    common: bool = True,
+) -> Dict[str, Any]:
+    return {
+        "name": name,
+        "type": type_,
+        "required": required,
+        "default": default,
+        "description": description,
+        "common": common,
+    }
+
+
+METHOD_PARAMETER_GUIDE: Dict[str, list[Dict[str, Any]]] = {
+    "SSA": [
+        _param_doc("window", "int", "Embedding window length for trajectory-matrix construction.", required=True),
+        _param_doc("rank", "int | None", "Number of elementary components to retain before grouping.", default=None),
+        _param_doc("primary_period", "int | None", "Dominant seasonal period used by automatic grouping.", default=None),
+        _param_doc("fs", "float", "Sampling frequency used by frequency-based grouping.", default=1.0, common=False),
+        _param_doc("trend_components", "list[int] | None", "Explicit component indexes assigned to trend.", default=None, common=False),
+        _param_doc("season_components", "list[int] | None", "Explicit component indexes assigned to season.", default=None, common=False),
+        _param_doc("power_iterations", "int", "Fast native mode iteration count when speed_mode='fast'.", default=4, common=False),
+    ],
+    "STD": [
+        _param_doc("period", "int", "Seasonal period in samples.", required=True),
+        _param_doc("max_period_search", "int | None", "Optional search horizon when period inference is enabled.", default=None, common=False),
+        _param_doc("eps", "float", "Small numerical guard for dispersion calculations.", default=1e-8, common=False),
+    ],
+    "STDR": [
+        _param_doc("period", "int", "Seasonal period in samples.", required=True),
+        _param_doc("max_period_search", "int | None", "Optional search horizon when period inference is enabled.", default=None, common=False),
+        _param_doc("eps", "float", "Small numerical guard for robust dispersion calculations.", default=1e-8, common=False),
+    ],
+    "MSSA": [
+        _param_doc("window", "int", "Shared embedding window length for aligned channels.", required=True),
+        _param_doc("rank", "int | None", "Number of shared elementary components to retain.", default=None),
+        _param_doc("primary_period", "int | None", "Dominant shared period used by automatic grouping.", default=None),
+        _param_doc("fs", "float", "Sampling frequency used by frequency-based grouping.", default=1.0, common=False),
+        _param_doc("trend_components", "list[int] | None", "Explicit component indexes assigned to trend.", default=None, common=False),
+        _param_doc("season_components", "list[int] | None", "Explicit component indexes assigned to season.", default=None, common=False),
+    ],
+    "STL": [
+        _param_doc("period", "int", "Seasonal period passed to statsmodels STL.", required=True),
+        _param_doc("seasonal", "int | None", "Odd LOESS seasonal smoother length.", default=None, common=False),
+        _param_doc("trend", "int | None", "Odd LOESS trend smoother length.", default=None, common=False),
+        _param_doc("robust", "bool", "Whether to use robust LOESS fitting.", default=False, common=False),
+    ],
+    "MSTL": [
+        _param_doc("periods", "list[int]", "One or more seasonal periods passed to statsmodels MSTL.", required=True),
+        _param_doc("windows", "list[int] | None", "Optional smoother windows aligned with periods.", default=None, common=False),
+        _param_doc("stl_kwargs", "dict | None", "Additional statsmodels STL keyword arguments.", default=None, common=False),
+    ],
+    "ROBUST_STL": [
+        _param_doc("period", "int", "Seasonal period passed to robust statsmodels STL.", required=True),
+        _param_doc("seasonal", "int | None", "Odd LOESS seasonal smoother length.", default=None, common=False),
+        _param_doc("trend", "int | None", "Odd LOESS trend smoother length.", default=None, common=False),
+    ],
+    "EMD": [
+        _param_doc("n_imfs", "int | None", "Maximum number of intrinsic mode functions to retain.", default=None),
+        _param_doc("primary_period", "int | None", "Period hint for grouping IMFs into season and trend.", default=None),
+        _param_doc("trend_imfs", "list[int] | None", "Explicit IMF indexes assigned to trend.", default=None, common=False),
+        _param_doc("season_imfs", "list[int] | None", "Explicit IMF indexes assigned to season.", default=None, common=False),
+        _param_doc("fs", "float", "Sampling frequency used by grouping heuristics.", default=1.0, common=False),
+    ],
+    "CEEMDAN": [
+        _param_doc("trials", "int", "Number of noise-assisted ensemble trials.", default=50),
+        _param_doc("noise_width", "float", "Relative width of the injected noise.", default=0.05),
+        _param_doc("primary_period", "int | None", "Period hint for grouping IMFs into season and trend.", default=None),
+        _param_doc("fs", "float", "Sampling frequency used by grouping heuristics.", default=1.0, common=False),
+    ],
+    "VMD": [
+        _param_doc("K", "int", "Number of variational modes.", default=4),
+        _param_doc("alpha", "float", "Bandwidth penalty parameter.", default=2000.0),
+        _param_doc("tau", "float", "Dual ascent time step.", default=0.0, common=False),
+        _param_doc("DC", "bool", "Keep the first mode at zero frequency.", default=False, common=False),
+        _param_doc("init", "int", "Initialization policy used by the VMD backend.", default=1, common=False),
+        _param_doc("tol", "float", "Convergence tolerance.", default=1e-7, common=False),
+        _param_doc("primary_period", "int | None", "Period hint for grouping modes into season and trend.", default=None),
+    ],
+    "WAVELET": [
+        _param_doc("wavelet", "str", "PyWavelets wavelet family name.", default="db4"),
+        _param_doc("level", "int | None", "Decomposition depth. Defaults to PyWavelets maximum usable level.", default=None),
+        _param_doc("trend_levels", "list[int] | None", "Detail levels assigned to trend reconstruction.", default=None, common=False),
+        _param_doc("season_levels", "list[int] | None", "Detail levels assigned to seasonal reconstruction.", default=None, common=False),
+    ],
+    "MA_BASELINE": [
+        _param_doc("trend_window", "int", "Moving-average window used for the trend estimate.", default=7),
+        _param_doc("season_period", "int | None", "Optional period for a simple seasonal average.", default=None),
+    ],
+    "MVMD": [
+        _param_doc("K", "int", "Number of shared variational modes requested from PySDKit.", default=4),
+        _param_doc("alpha", "float", "Bandwidth penalty parameter for the MVMD backend.", default=2000.0),
+        _param_doc("primary_period", "int | None", "Shared period hint for grouping modes.", default=None),
+        _param_doc("fs", "float", "Sampling frequency used by grouping heuristics.", default=1.0, common=False),
+    ],
+    "MEMD": [
+        _param_doc("primary_period", "int | None", "Shared period hint for grouping multivariate IMFs.", default=None),
+        _param_doc("trend_modes", "list[int] | None", "Explicit mode indexes assigned to trend.", default=None, common=False),
+        _param_doc("season_modes", "list[int] | None", "Explicit mode indexes assigned to season.", default=None, common=False),
+        _param_doc("fs", "float", "Sampling frequency used by grouping heuristics.", default=1.0, common=False),
+    ],
+    "GABOR_CLUSTER": [
+        _param_doc("model", "GaborClusterModel | None", "In-memory trained clustering model.", default=None),
+        _param_doc("model_path", "str | None", "Path to a serialized trained clustering model.", default=None),
+        _param_doc("max_clusters", "int | None", "Optional cap on clusters used during reconstruction.", default=None, common=False),
+        _param_doc("trend_freq_thr", "float | None", "Frequency threshold used for trend-like atoms.", default=None, common=False),
+    ],
+}
+
+METHOD_OUTPUT_COMPONENTS: Dict[str, list[str]] = {
+    "SSA": ["trend", "season", "residual", "components.elementary"],
+    "STD": ["trend", "season", "residual", "components.dispersion", "components.seasonal_shape"],
+    "STDR": ["trend", "season", "residual", "components.dispersion", "components.seasonal_shape"],
+    "MSSA": ["trend", "season", "residual", "components.elementary"],
+    "STL": ["trend", "season", "residual"],
+    "MSTL": ["trend", "season", "residual", "components.seasonal_terms"],
+    "ROBUST_STL": ["trend", "season", "residual"],
+    "EMD": ["trend", "season", "residual", "components.imfs"],
+    "CEEMDAN": ["trend", "season", "residual", "components.imfs"],
+    "VMD": ["trend", "season", "residual", "components.modes"],
+    "WAVELET": ["trend", "season", "residual", "components.coefficients"],
+    "MA_BASELINE": ["trend", "season", "residual"],
+    "MVMD": ["trend", "season", "residual", "components.modes"],
+    "MEMD": ["trend", "season", "residual", "components.imfs"],
+    "GABOR_CLUSTER": ["trend", "season", "residual", "components.clusters"],
+}
+
+METHOD_EXAMPLE_CONFIGS: Dict[str, Dict[str, Any]] = {
+    "SSA": {
+        "method": "SSA",
+        "params": {"window": 24, "rank": 6, "primary_period": 12},
+        "backend": "auto",
+        "speed_mode": "exact",
+        "seed": 42,
+    },
+    "STD": {
+        "method": "STD",
+        "params": {"period": 12},
+        "backend": "auto",
+        "speed_mode": "exact",
+    },
+    "STDR": {
+        "method": "STDR",
+        "params": {"period": 12},
+        "backend": "auto",
+        "speed_mode": "exact",
+    },
+    "MSSA": {
+        "method": "MSSA",
+        "params": {"window": 24, "rank": 6, "primary_period": 12},
+        "backend": "python",
+        "speed_mode": "exact",
+        "channel_names": ["channel_a", "channel_b", "channel_c"],
+    },
+    "STL": {"method": "STL", "params": {"period": 12}},
+    "MSTL": {"method": "MSTL", "params": {"periods": [12, 24]}},
+    "ROBUST_STL": {"method": "ROBUST_STL", "params": {"period": 12}},
+    "EMD": {"method": "EMD", "params": {"primary_period": 12, "n_imfs": 4}},
+    "CEEMDAN": {"method": "CEEMDAN", "params": {"primary_period": 12, "trials": 20, "noise_width": 0.05}},
+    "VMD": {"method": "VMD", "params": {"K": 4, "alpha": 2000.0, "primary_period": 12}},
+    "WAVELET": {"method": "WAVELET", "params": {"wavelet": "db4", "level": 3}},
+    "MA_BASELINE": {"method": "MA_BASELINE", "params": {"trend_window": 7, "season_period": 12}},
+    "MVMD": {"method": "MVMD", "params": {"K": 4, "alpha": 2000.0, "primary_period": 12}},
+    "MEMD": {"method": "MEMD", "params": {"primary_period": 12}},
+    "GABOR_CLUSTER": {"method": "GABOR_CLUSTER", "params": {"model_path": "path/to/trained-gabor-model.pkl"}},
+}
+
+
 def _default_assumptions(name: str, family: str, input_mode: InputMode) -> list[str]:
     assumptions: list[str] = []
     if input_mode == "univariate":
@@ -580,6 +754,18 @@ def _default_package_links(name: str) -> list[Dict[str, str]]:
     return [dict(item) for item in METHOD_PACKAGE_LINKS.get(name, [])]
 
 
+def _default_parameter_docs(name: str) -> list[Dict[str, Any]]:
+    return [dict(item) for item in METHOD_PARAMETER_GUIDE.get(name, [])]
+
+
+def _default_output_components(name: str) -> list[str]:
+    return list(METHOD_OUTPUT_COMPONENTS.get(name, ["trend", "season", "residual"]))
+
+
+def _default_example_config(name: str) -> Dict[str, Any]:
+    return dict(METHOD_EXAMPLE_CONFIGS.get(name, {"method": name, "params": {}}))
+
+
 def _fallback_metadata(name: str, input_mode: InputMode) -> Dict[str, Any]:
     multivariate_support = "univariate"
     if input_mode == "multivariate":
@@ -617,6 +803,9 @@ def _metadata_for_method(name: str, input_mode: InputMode) -> Dict[str, Any]:
     )
     base.setdefault("references", _default_references(name))
     base.setdefault("package_links", _default_package_links(name))
+    base.setdefault("parameter_docs", _default_parameter_docs(name))
+    base.setdefault("output_components", _default_output_components(name))
+    base.setdefault("example_config", _default_example_config(name))
     return base
 
 

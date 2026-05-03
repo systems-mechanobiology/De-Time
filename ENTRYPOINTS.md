@@ -12,6 +12,12 @@ Use this file when you want the shortest path into the product.
   - schemas, catalog, compact result modes, and MCP guidance
 - `docs/method-cards.md`
   - assumptions, failure modes, maturity, and not-recommended cases
+- `docs/method-matrix.md`
+  - compact method comparison table for input mode, dependencies, params, and outputs
+- `docs/config-reference.md`
+  - `DecompositionConfig` fields and per-method parameter semantics
+- `examples/notebooks/de_time_method_gallery.ipynb`
+  - plotted beginner notebook for the retained method surface
 - `detime run`
   - one file in, one decomposition artifact set out
 - `detime batch`

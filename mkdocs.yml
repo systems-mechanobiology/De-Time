@@ -7,6 +7,8 @@ repo_url: https://github.com/systems-mechanobiology/De-Time
 docs_dir: docs
 theme:
   name: mkdocs
+  custom_dir: docs/overrides
+  favicon: assets/brand/detime-logo-square.svg
 extra_css:
   - stylesheets/extra.css
 nav:
@@ -18,8 +20,10 @@ nav:
       - Choose a Method: choose-a-method.md
       - ML Workflows: ml-workflows.md
       - Method Cards: method-cards.md
+      - Method Matrix: method-matrix.md
       - Method References: method-references.md
   - Tutorials:
+      - Notebook Gallery: notebook-gallery.md
       - Univariate Workflows: tutorials/univariate.md
       - Visual Univariate Walkthrough: tutorials/visual-univariate.md
       - Visual Method Comparison: tutorials/visual-comparison.md
@@ -29,6 +33,7 @@ nav:
       - Profiling Reference: tutorials/profiling.md
   - API:
       - API Overview: api.md
+      - Config Reference: config-reference.md
       - Machine API: machine-api.md
   - More:
       - Why De-Time: why.md

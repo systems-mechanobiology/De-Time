@@ -1,3 +1,7 @@
+---
+hide_toc: true
+---
+
 # Citation / Release Notes
 
 ## Citation

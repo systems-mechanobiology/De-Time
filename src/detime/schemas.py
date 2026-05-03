@@ -69,6 +69,15 @@ class CatalogLinkModel(BaseModel):
     note: str = ""
 
 
+class MethodParameterDocModel(BaseModel):
+    name: str
+    type: str
+    required: bool = False
+    default: Any = None
+    description: str
+    common: bool = True
+
+
 class MethodMetadataModel(BaseModel):
     name: str
     family: str
@@ -87,6 +96,9 @@ class MethodMetadataModel(BaseModel):
     optional_dependencies: list[str] = Field(default_factory=list)
     references: list[CatalogLinkModel] = Field(default_factory=list)
     package_links: list[CatalogLinkModel] = Field(default_factory=list)
+    parameter_docs: list[MethodParameterDocModel] = Field(default_factory=list)
+    output_components: list[str] = Field(default_factory=list)
+    example_config: Dict[str, Any] = Field(default_factory=dict)
 
 
 class MethodRegistryPayloadModel(BaseModel):

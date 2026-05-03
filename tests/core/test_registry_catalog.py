@@ -17,6 +17,9 @@ REQUIRED_FIELDS = {
     "typical_failure_modes",
     "references",
     "package_links",
+    "parameter_docs",
+    "output_components",
+    "example_config",
 }
 
 
@@ -37,6 +40,9 @@ def test_registry_catalog_covers_flagship_wrapper_and_optional_paths() -> None:
 
     assert ssa["maturity"] == "flagship"
     assert ssa["references"]
+    assert any(param["name"] == "window" for param in ssa["parameter_docs"])
+    assert "trend" in ssa["output_components"]
+    assert ssa["example_config"]["method"] == "SSA"
     assert stl["implementation"] == "wrapper"
     assert stl["package_links"]
     assert mvmd["dependency_tier"] == "optional-backend"

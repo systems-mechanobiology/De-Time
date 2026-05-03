@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">De-Time square logo</title>
+  <desc id="desc">A square De-Time mark with a time-series line.</desc>
+  <defs>
+    <linearGradient id="markGradient" x1="10" x2="118" y1="118" y2="10" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="lineGradient" x1="24" x2="108" y1="82" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#markGradient)"/>
+  <path d="M28 79h16l10-23 14 38 15-58 18 33h20" fill="none" stroke="url(#lineGradient)" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M26 32h24M26 32v24M83 96h24M107 72v24" fill="none" stroke="#dbeafe" stroke-width="6" stroke-linecap="round"/>
+</svg>

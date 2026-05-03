@@ -1,17 +1,24 @@
 # Install
 
-## Public install path
+## Current install path
 
-Public releases install as the `de-time` distribution:
+PyPI publication is planned after the reviewed `0.1.1` release is cut. Until
+then, install the current public repository directly from GitHub:
 
 ```bash
-pip install de-time
+python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
-Optional multivariate backends for `MVMD` and `MEMD` install with:
+Optional multivariate backends for `MVMD` and `MEMD` install from GitHub with:
 
 ```bash
-pip install "de-time[multivar]"
+python -m pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
+```
+
+Notebook tooling for the method gallery installs with:
+
+```bash
+python -m pip install "de-time[notebook] @ git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
 Naming summary:
@@ -22,7 +29,11 @@ Naming summary:
 - Compatibility alias: `tsdecomp`
 
 Do not install the unrelated `detime` package from PyPI when you want this
-project.
+project. Planned PyPI install after the release is:
+
+```bash
+pip install de-time
+```
 
 ## Editable install
 
@@ -127,11 +138,11 @@ Symptom:
 Fix:
 
 - uninstall the unrelated `detime` package
-- install `de-time`
+- install this repository from GitHub
 
 ```bash
 python -m pip uninstall -y detime
-python -m pip install --upgrade de-time
+python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
 ### Native build failed during install
@@ -148,7 +159,7 @@ Fix:
 
 ```bash
 python -m pip install --upgrade pip
-python -m pip install --no-cache-dir de-time
+python -m pip install --no-cache-dir "git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
 ### Native backend unavailable at runtime
@@ -174,7 +185,7 @@ Fix:
 - install the multivariate extra
 
 ```bash
-python -m pip install "de-time[multivar]"
+python -m pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
 ```
 
 ### Editable install looks stale

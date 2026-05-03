@@ -25,6 +25,8 @@ not the canonical surface for any method listed below.
 - Minimum length hint: `24`
 - Optional dependencies: none
 - Summary: Multivariate SSA for shared-structure decomposition across channels.
+- Common parameters: `window` (required), `rank` (null), `primary_period` (null)
+- Output components: `trend`, `season`, `residual`, `components.elementary`
 
 Assumptions:
 - expects a 2D array with at least two aligned channels
@@ -50,6 +52,16 @@ Method references:
 Related package links:
 - [SSALib](https://github.com/ADSCIAN/ssalib) - SSA-focused package; useful comparison point for SSA-family workflows.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `window` | int | yes | required | Shared embedding window length for aligned channels. |
+| `rank` | int \| None | no | `None` | Number of shared elementary components to retain. |
+| `primary_period` | int \| None | no | `None` | Dominant shared period used by automatic grouping. |
+| `fs` | float | no | `1.0` | Sampling frequency used by frequency-based grouping. |
+| `trend_components` | list[int] \| None | no | `None` | Explicit component indexes assigned to trend. |
+| `season_components` | list[int] \| None | no | `None` | Explicit component indexes assigned to season. |
+
 ### `SSA`
 
 - Family: `SSA`
@@ -62,6 +74,8 @@ Related package links:
 - Minimum length hint: `24`
 - Optional dependencies: none
 - Summary: Singular spectrum analysis for structured univariate decomposition.
+- Common parameters: `window` (required), `rank` (null), `primary_period` (null)
+- Output components: `trend`, `season`, `residual`, `components.elementary`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -87,6 +101,17 @@ Method references:
 Related package links:
 - [SSALib](https://github.com/ADSCIAN/ssalib) - Specialist SSA package used as an external comparison point.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `window` | int | yes | required | Embedding window length for trajectory-matrix construction. |
+| `rank` | int \| None | no | `None` | Number of elementary components to retain before grouping. |
+| `primary_period` | int \| None | no | `None` | Dominant seasonal period used by automatic grouping. |
+| `fs` | float | no | `1.0` | Sampling frequency used by frequency-based grouping. |
+| `trend_components` | list[int] \| None | no | `None` | Explicit component indexes assigned to trend. |
+| `season_components` | list[int] \| None | no | `None` | Explicit component indexes assigned to season. |
+| `power_iterations` | int | no | `4` | Fast native mode iteration count when speed_mode='fast'. |
+
 ### `STD`
 
 - Family: `SeasonalTrend`
@@ -99,6 +124,8 @@ Related package links:
 - Minimum length hint: `8`
 - Optional dependencies: none
 - Summary: Fast seasonal-trend decomposition with dispersion-aware diagnostics.
+- Common parameters: `period` (required)
+- Output components: `trend`, `season`, `residual`, `components.dispersion`, `components.seasonal_shape`
 
 Assumptions:
 - treats each channel independently under one shared method surface
@@ -124,6 +151,13 @@ Method references:
 Related package links:
 - none declared
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `period` | int | yes | required | Seasonal period in samples. |
+| `max_period_search` | int \| None | no | `None` | Optional search horizon when period inference is enabled. |
+| `eps` | float | no | `1e-08` | Small numerical guard for dispersion calculations. |
+
 ### `STDR`
 
 - Family: `SeasonalTrend`
@@ -136,6 +170,8 @@ Related package links:
 - Minimum length hint: `8`
 - Optional dependencies: none
 - Summary: Robust seasonal-trend decomposition for noisier periodic signals.
+- Common parameters: `period` (required)
+- Output components: `trend`, `season`, `residual`, `components.dispersion`, `components.seasonal_shape`
 
 Assumptions:
 - treats each channel independently under one shared method surface
@@ -161,6 +197,13 @@ Method references:
 Related package links:
 - none declared
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `period` | int | yes | required | Seasonal period in samples. |
+| `max_period_search` | int \| None | no | `None` | Optional search horizon when period inference is enabled. |
+| `eps` | float | no | `1e-08` | Small numerical guard for robust dispersion calculations. |
+
 ## Stable wrappers and retained methods
 
 ### `CEEMDAN`
@@ -175,6 +218,8 @@ Related package links:
 - Minimum length hint: `24`
 - Optional dependencies: PyEMD
 - Summary: Noise-assisted EMD variant for more stable IMF extraction.
+- Common parameters: `trials` (50), `noise_width` (0.05), `primary_period` (null)
+- Output components: `trend`, `season`, `residual`, `components.imfs`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -199,6 +244,14 @@ Method references:
 Related package links:
 - [PyEMD](https://github.com/laszukdawid/PyEMD) - Upstream Python package wrapped by De-Time for EMD-family methods.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `trials` | int | no | `50` | Number of noise-assisted ensemble trials. |
+| `noise_width` | float | no | `0.05` | Relative width of the injected noise. |
+| `primary_period` | int \| None | no | `None` | Period hint for grouping IMFs into season and trend. |
+| `fs` | float | no | `1.0` | Sampling frequency used by grouping heuristics. |
+
 ### `EMD`
 
 - Family: `EMD`
@@ -211,6 +264,8 @@ Related package links:
 - Minimum length hint: `16`
 - Optional dependencies: PyEMD
 - Summary: Empirical mode decomposition under the De-Time result contract.
+- Common parameters: `n_imfs` (null), `primary_period` (null)
+- Output components: `trend`, `season`, `residual`, `components.imfs`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -234,6 +289,15 @@ Method references:
 Related package links:
 - [PyEMD](https://github.com/laszukdawid/PyEMD) - Upstream Python package wrapped by De-Time for EMD-family methods.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `n_imfs` | int \| None | no | `None` | Maximum number of intrinsic mode functions to retain. |
+| `primary_period` | int \| None | no | `None` | Period hint for grouping IMFs into season and trend. |
+| `trend_imfs` | list[int] \| None | no | `None` | Explicit IMF indexes assigned to trend. |
+| `season_imfs` | list[int] \| None | no | `None` | Explicit IMF indexes assigned to season. |
+| `fs` | float | no | `1.0` | Sampling frequency used by grouping heuristics. |
+
 ### `MA_BASELINE`
 
 - Family: `Baseline`
@@ -246,6 +310,8 @@ Related package links:
 - Minimum length hint: `4`
 - Optional dependencies: none
 - Summary: Simple moving-average baseline for smoke tests and lightweight workflows.
+- Common parameters: `trend_window` (7), `season_period` (null)
+- Output components: `trend`, `season`, `residual`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -269,6 +335,12 @@ Method references:
 Related package links:
 - none declared
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `trend_window` | int | no | `7` | Moving-average window used for the trend estimate. |
+| `season_period` | int \| None | no | `None` | Optional period for a simple seasonal average. |
+
 ### `MSTL`
 
 - Family: `SeasonalTrend`
@@ -281,6 +353,8 @@ Related package links:
 - Minimum length hint: `24`
 - Optional dependencies: statsmodels
 - Summary: Statsmodels MSTL wrapped into the De-Time workflow surface.
+- Common parameters: `periods` (required)
+- Output components: `trend`, `season`, `residual`, `components.seasonal_terms`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -305,6 +379,13 @@ Method references:
 Related package links:
 - [statsmodels](https://www.statsmodels.org/) - Official project site for the upstream MSTL implementation.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `periods` | list[int] | yes | required | One or more seasonal periods passed to statsmodels MSTL. |
+| `windows` | list[int] \| None | no | `None` | Optional smoother windows aligned with periods. |
+| `stl_kwargs` | dict \| None | no | `None` | Additional statsmodels STL keyword arguments. |
+
 ### `ROBUST_STL`
 
 - Family: `SeasonalTrend`
@@ -317,6 +398,8 @@ Related package links:
 - Minimum length hint: `12`
 - Optional dependencies: statsmodels
 - Summary: Robust STL-style decomposition wrapped for reproducible workflows.
+- Common parameters: `period` (required)
+- Output components: `trend`, `season`, `residual`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -341,6 +424,13 @@ Method references:
 Related package links:
 - [statsmodels](https://www.statsmodels.org/) - Official project site for the upstream STL implementation family.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `period` | int | yes | required | Seasonal period passed to robust statsmodels STL. |
+| `seasonal` | int \| None | no | `None` | Odd LOESS seasonal smoother length. |
+| `trend` | int \| None | no | `None` | Odd LOESS trend smoother length. |
+
 ### `STL`
 
 - Family: `SeasonalTrend`
@@ -353,6 +443,8 @@ Related package links:
 - Minimum length hint: `12`
 - Optional dependencies: statsmodels
 - Summary: Classical STL wrapped into the De-Time workflow contract.
+- Common parameters: `period` (required)
+- Output components: `trend`, `season`, `residual`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -377,6 +469,14 @@ Method references:
 Related package links:
 - [statsmodels](https://www.statsmodels.org/) - Official project site for the upstream STL implementation.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `period` | int | yes | required | Seasonal period passed to statsmodels STL. |
+| `seasonal` | int \| None | no | `None` | Odd LOESS seasonal smoother length. |
+| `trend` | int \| None | no | `None` | Odd LOESS trend smoother length. |
+| `robust` | bool | no | `false` | Whether to use robust LOESS fitting. |
+
 ### `VMD`
 
 - Family: `Variational`
@@ -389,6 +489,8 @@ Related package links:
 - Minimum length hint: `24`
 - Optional dependencies: vmdpy, sktime
 - Summary: Variational mode decomposition integrated into the common workflow layer.
+- Common parameters: `K` (4), `alpha` (2000.0), `primary_period` (null)
+- Output components: `trend`, `season`, `residual`, `components.modes`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -413,6 +515,17 @@ Related package links:
 - [sktime](https://www.sktime.net/en/stable/) - Current maintained ecosystem for `vmdpy`, which the archived project directs users toward.
 - [vmdpy](https://github.com/vrcarva/vmdpy) - Archived Python VMD package used by the current De-Time wrapper.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `K` | int | no | `4` | Number of variational modes. |
+| `alpha` | float | no | `2000.0` | Bandwidth penalty parameter. |
+| `tau` | float | no | `0.0` | Dual ascent time step. |
+| `DC` | bool | no | `false` | Keep the first mode at zero frequency. |
+| `init` | int | no | `1` | Initialization policy used by the VMD backend. |
+| `tol` | float | no | `1e-07` | Convergence tolerance. |
+| `primary_period` | int \| None | no | `None` | Period hint for grouping modes into season and trend. |
+
 ### `WAVELET`
 
 - Family: `Wavelet`
@@ -425,6 +538,8 @@ Related package links:
 - Minimum length hint: `8`
 - Optional dependencies: PyWavelets
 - Summary: Wavelet-based decomposition exposed through the common output contract.
+- Common parameters: `wavelet` ("db4"), `level` (null)
+- Output components: `trend`, `season`, `residual`, `components.coefficients`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -449,6 +564,14 @@ Method references:
 Related package links:
 - [PyWavelets](https://pywavelets.readthedocs.io/en/latest/) - Official documentation for the upstream wavelet package.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `wavelet` | str | no | `"db4"` | PyWavelets wavelet family name. |
+| `level` | int \| None | no | `None` | Decomposition depth. Defaults to PyWavelets maximum usable level. |
+| `trend_levels` | list[int] \| None | no | `None` | Detail levels assigned to trend reconstruction. |
+| `season_levels` | list[int] \| None | no | `None` | Detail levels assigned to seasonal reconstruction. |
+
 ## Optional backend methods
 
 ### `MEMD`
@@ -463,6 +586,8 @@ Related package links:
 - Minimum length hint: `24`
 - Optional dependencies: PySDKit
 - Summary: Optional multivariate EMD backend for shared oscillatory structure.
+- Common parameters: `primary_period` (null)
+- Output components: `trend`, `season`, `residual`, `components.imfs`
 
 Assumptions:
 - expects a 2D array with at least two aligned channels
@@ -487,6 +612,14 @@ Method references:
 Related package links:
 - [PySDKit](https://pysdkit.readthedocs.io/en/latest/) - Optional multivariate backend used by De-Time for MEMD.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Shared period hint for grouping multivariate IMFs. |
+| `trend_modes` | list[int] \| None | no | `None` | Explicit mode indexes assigned to trend. |
+| `season_modes` | list[int] \| None | no | `None` | Explicit mode indexes assigned to season. |
+| `fs` | float | no | `1.0` | Sampling frequency used by grouping heuristics. |
+
 ### `MVMD`
 
 - Family: `Variational`
@@ -499,6 +632,8 @@ Related package links:
 - Minimum length hint: `24`
 - Optional dependencies: PySDKit
 - Summary: Optional multivariate VMD backend for shared frequency structure.
+- Common parameters: `K` (4), `alpha` (2000.0), `primary_period` (null)
+- Output components: `trend`, `season`, `residual`, `components.modes`
 
 Assumptions:
 - expects a 2D array with at least two aligned channels
@@ -523,6 +658,14 @@ Method references:
 Related package links:
 - [PySDKit](https://pysdkit.readthedocs.io/en/latest/) - Optional multivariate backend used by De-Time for MVMD.
 
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `K` | int | no | `4` | Number of shared variational modes requested from PySDKit. |
+| `alpha` | float | no | `2000.0` | Bandwidth penalty parameter for the MVMD backend. |
+| `primary_period` | int \| None | no | `None` | Shared period hint for grouping modes. |
+| `fs` | float | no | `1.0` | Sampling frequency used by grouping heuristics. |
+
 ## Experimental methods
 
 ### `GABOR_CLUSTER`
@@ -537,6 +680,8 @@ Related package links:
 - Minimum length hint: `16`
 - Optional dependencies: faiss
 - Summary: Experimental clustering-based decomposition path.
+- Common parameters: `model` (null), `model_path` (null)
+- Output components: `trend`, `season`, `residual`, `components.clusters`
 
 Assumptions:
 - expects one decomposed series at a time
@@ -561,3 +706,11 @@ Method references:
 
 Related package links:
 - [Faiss](https://github.com/facebookresearch/faiss) - Vector similarity search library required by the experimental clustering backend.
+
+Parameter notes:
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `model` | GaborClusterModel \| None | no | `None` | In-memory trained clustering model. |
+| `model_path` | str \| None | no | `None` | Path to a serialized trained clustering model. |
+| `max_clusters` | int \| None | no | `None` | Optional cap on clusters used during reconstruction. |
+| `trend_freq_thr` | float \| None | no | `None` | Frequency threshold used for trend-like atoms. |

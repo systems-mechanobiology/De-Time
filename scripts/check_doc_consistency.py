@@ -10,7 +10,6 @@ ROOT = Path(__file__).resolve().parents[1]
 BANNED_PATTERNS: dict[str, list[str]] = {
     "README.md": [
         "reviewed snapshot",
-        "GitHub source install",
     ],
     "PUBLISHING.md": [
         "reviewed snapshot",
@@ -24,7 +23,6 @@ BANNED_PATTERNS: dict[str, list[str]] = {
         "still pending",
     ],
     "docs/install.md": [
-        "GitHub source install",
         "not yet available",
         "reviewed snapshot",
     ],
@@ -42,23 +40,28 @@ BANNED_PATTERNS: dict[str, list[str]] = {
         "have not yet created",
     ],
     "submission/software_evidence.md": [
-        "GitHub source install",
         "still pending",
         "not created yet",
         "reviewed snapshot",
     ],
-    "JMLR_MLOSS_CHECKLIST.md": [
-        "submission checklist for `tsdecomp`",
-        "`DR_TS_REG`",
-    ],
-    "JMLR_SOFTWARE_IMPROVEMENTS.md": [
-        "`DR_TS_REG`",
-    ],
 }
 
 REQUIRED_PATTERNS: dict[str, list[str]] = {
-    "README.md": ["pip install de-time", "detime schema", "detime recommend"],
-    "docs/install.md": ["pip install de-time", "tsdecomp` executable"],
+    "README.md": [
+        'python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"',
+        "examples/notebooks/de_time_method_gallery.ipynb",
+        "docs/method-matrix.md",
+        "detime schema",
+        "detime recommend",
+    ],
+    "docs/install.md": [
+        'python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"',
+        "Planned PyPI install after the release",
+        "tsdecomp` executable",
+    ],
+    "docs/notebook-gallery.md": ["de_time_method_gallery.ipynb", "generate_notebook_gallery.py"],
+    "docs/method-matrix.md": ["Required/common params", "Optional deps", "Output components"],
+    "docs/config-reference.md": ["Top-level fields", "Method-specific parameters", "Univariate SSA"],
     "docs/reproducibility.md": ["core-plus-flagship", "release_smoke_matrix.py", "generate_performance_snapshot.py"],
     "docs/comparisons.md": ["PySDKit", "SSALib", "sktime"],
     "docs/tutorials/visual-univariate.md": ["$env:PYTHONPATH='src'", "python examples/visual_univariate_walkthrough.py"],
@@ -73,6 +76,9 @@ PUBLIC_DOCS = [
     "docs/install.md",
     "docs/comparisons.md",
     "docs/methods.md",
+    "docs/method-matrix.md",
+    "docs/config-reference.md",
+    "docs/notebook-gallery.md",
     "docs/api.md",
 ]
 

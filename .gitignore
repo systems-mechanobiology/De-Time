@@ -9,6 +9,10 @@ htmlcov/
 build/
 dist/
 site/
+tmp_plan_*/
+tmp/
+.ipynb_checkpoints/
+.jupyter/
 .venv/
 .python-version
 *.egg-info/

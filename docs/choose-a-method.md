@@ -1,3 +1,7 @@
+---
+hide_toc: true
+---
+
 # Choose a Method
 
 ## Default starting points

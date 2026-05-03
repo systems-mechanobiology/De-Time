@@ -93,6 +93,9 @@ def test_schema_assets_are_packaged_and_regeneratable(tmp_path) -> None:
     method_properties = method_registry_schema["$defs"]["MethodMetadataModel"]["properties"]
     assert "references" in method_properties
     assert "package_links" in method_properties
+    assert "parameter_docs" in method_properties
+    assert "output_components" in method_properties
+    assert "example_config" in method_properties
     assert method_registry_schema == build_schema_bundle()["method-registry"]
 
     written = write_schema_assets(tmp_path)
