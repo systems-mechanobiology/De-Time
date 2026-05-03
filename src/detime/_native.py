@@ -1,11 +1,43 @@
 from __future__ import annotations
 
 from importlib import import_module
+from importlib import util as importlib_util
+from importlib.machinery import EXTENSION_SUFFIXES
+from importlib.metadata import PackageNotFoundError, distribution
+import sys
 from types import ModuleType
 from typing import Any, Dict
 
 _MODULE: ModuleType | None = None
 _IMPORT_ERROR: Exception | None = None
+
+
+def _load_installed_extension() -> ModuleType | None:
+    """Load the packaged native extension when running from an unbuilt source tree."""
+    try:
+        dist = distribution("de-time")
+    except PackageNotFoundError:
+        return None
+
+    for file in dist.files or ():
+        path_parts = tuple(file.parts)
+        if len(path_parts) != 2 or path_parts[0] != "detime":
+            continue
+        if not path_parts[1].startswith("_detime_native"):
+            continue
+        if not any(path_parts[1].endswith(suffix) for suffix in EXTENSION_SUFFIXES):
+            continue
+
+        extension_path = dist.locate_file(file)
+        spec = importlib_util.spec_from_file_location("detime._detime_native", extension_path)
+        if spec is None or spec.loader is None:
+            continue
+        module = importlib_util.module_from_spec(spec)
+        sys.modules["detime._detime_native"] = module
+        spec.loader.exec_module(module)
+        return module
+    return None
+
 
 for _module_name in (
     "detime._detime_native",
@@ -17,6 +49,12 @@ for _module_name in (
         _MODULE = import_module(_module_name)
         _IMPORT_ERROR = None
         break
+    except Exception as exc:  # pragma: no cover - import error depends on env/build
+        _IMPORT_ERROR = exc
+if _MODULE is None:
+    try:
+        _MODULE = _load_installed_extension()
+        _IMPORT_ERROR = None if _MODULE is not None else _IMPORT_ERROR
     except Exception as exc:  # pragma: no cover - import error depends on env/build
         _IMPORT_ERROR = exc
 

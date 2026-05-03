@@ -8,6 +8,21 @@
           "MSSA should be evaluated against residual diagnostics rather than used as a black box"
         ],
         "dependency_tier": "core",
+        "example_config": {
+          "backend": "python",
+          "channel_names": [
+            "channel_a",
+            "channel_b",
+            "channel_c"
+          ],
+          "method": "MSSA",
+          "params": {
+            "primary_period": 12,
+            "rank": 6,
+            "window": 24
+          },
+          "speed_mode": "exact"
+        },
         "family": "SSA",
         "implementation": "python",
         "input_mode": "multivariate",
@@ -21,10 +36,80 @@
           "very short series that cannot support a sensible window length"
         ],
         "optional_dependencies": [],
+        "output_components": [
+          "trend",
+          "season",
+          "residual",
+          "components.elementary"
+        ],
+        "package_links": [
+          {
+            "note": "SSA-focused package; useful comparison point for SSA-family workflows.",
+            "title": "SSALib",
+            "url": "https://github.com/ADSCIAN/ssalib"
+          }
+        ],
+        "parameter_docs": [
+          {
+            "common": true,
+            "default": null,
+            "description": "Shared embedding window length for aligned channels.",
+            "name": "window",
+            "required": true,
+            "type": "int"
+          },
+          {
+            "common": true,
+            "default": null,
+            "description": "Number of shared elementary components to retain.",
+            "name": "rank",
+            "required": false,
+            "type": "int | None"
+          },
+          {
+            "common": true,
+            "default": null,
+            "description": "Dominant shared period used by automatic grouping.",
+            "name": "primary_period",
+            "required": false,
+            "type": "int | None"
+          },
+          {
+            "common": false,
+            "default": 1.0,
+            "description": "Sampling frequency used by frequency-based grouping.",
+            "name": "fs",
+            "required": false,
+            "type": "float"
+          },
+          {
+            "common": false,
+            "default": null,
+            "description": "Explicit component indexes assigned to trend.",
+            "name": "trend_components",
+            "required": false,
+            "type": "list[int] | None"
+          },
+          {
+            "common": false,
+            "default": null,
+            "description": "Explicit component indexes assigned to season.",
+            "name": "season_components",
+            "required": false,
+            "type": "list[int] | None"
+          }
+        ],
         "recommended_for": [
           "multivariate component recovery",
           "shared seasonal structure across channels",
           "accuracy-first multivariate workflows"
+        ],
+        "references": [
+          {
+            "note": "Primary SSA/MSSA reference used for the multivariate extension.",
+            "title": "Golyandina and Zhigljavsky (2020), Singular Spectrum Analysis for Time Series",
+            "url": "https://link.springer.com/book/10.1007/978-3-662-62436-4"
+          }
         ],
         "summary": "Multivariate SSA for shared-structure decomposition across channels.",
         "typical_failure_modes": [
@@ -51,6 +136,14 @@
           "STDR should be evaluated against residual diagnostics rather than used as a black box"
         ],
         "dependency_tier": "core",
+        "example_config": {
+          "backend": "auto",
+          "method": "STDR",
+          "params": {
+            "period": 12
+          },
+          "speed_mode": "exact"
+        },
         "family": "SeasonalTrend",
         "implementation": "native-backed",
         "input_mode": "channelwise",
@@ -64,10 +157,51 @@
           "series where the dominant period is unknown and cannot be inferred reliably"
         ],
         "optional_dependencies": [],
+        "output_components": [
+          "trend",
+          "season",
+          "residual",
+          "components.dispersion",
+          "components.seasonal_shape"
+        ],
+        "package_links": [],
+        "parameter_docs": [
+          {
+            "common": true,
+            "default": null,
+            "description": "Seasonal period in samples.",
+            "name": "period",
+            "required": true,
+            "type": "int"
+          },
+          {
+            "common": false,
+            "default": null,
+            "description": "Optional search horizon when period inference is enabled.",
+            "name": "max_period_search",
+            "required": false,
+            "type": "int | None"
+          },
+          {
+            "common": false,
+            "default": 1e-08,
+            "description": "Small numerical guard for robust dispersion calculations.",
+            "name": "eps",
+            "required": false,
+            "type": "float"
+          }
+        ],
         "recommended_for": [
           "robust seasonal-trend decomposition",
           "channelwise multivariate workflows",
           "native-backed seasonal structure recovery"
+        ],
+        "references": [
+          {
+            "note": "Primary reference for STD and the robust seasonal-trend-dispersion family.",
+            "title": "Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series",
+            "url": "https://doi.org/10.48550/arXiv.2204.10398"
+          }
         ],
         "summary": "Robust seasonal-trend decomposition for noisier periodic signals.",
         "typical_failure_modes": [
@@ -95,6 +229,14 @@
           "STD should be evaluated against residual diagnostics rather than used as a black box"
         ],
         "dependency_tier": "core",
+        "example_config": {
+          "backend": "auto",
+          "method": "STD",
+          "params": {
+            "period": 12
+          },
+          "speed_mode": "exact"
+        },
         "family": "SeasonalTrend",
         "implementation": "native-backed",
         "input_mode": "channelwise",
@@ -108,10 +250,51 @@
           "series where the dominant period is unknown and cannot be inferred reliably"
         ],
         "optional_dependencies": [],
+        "output_components": [
+          "trend",
+          "season",
+          "residual",
+          "components.dispersion",
+          "components.seasonal_shape"
+        ],
+        "package_links": [],
+        "parameter_docs": [
+          {
+            "common": true,
+            "default": null,
+            "description": "Seasonal period in samples.",
+            "name": "period",
+            "required": true,
+            "type": "int"
+          },
+          {
+            "common": false,
+            "default": null,
+            "description": "Optional search horizon when period inference is enabled.",
+            "name": "max_period_search",
+            "required": false,
+            "type": "int | None"
+          },
+          {
+            "common": false,
+            "default": 1e-08,
+            "description": "Small numerical guard for dispersion calculations.",
+            "name": "eps",
+            "required": false,
+            "type": "float"
+          }
+        ],
         "recommended_for": [
           "fast seasonal-trend baselines",
           "channelwise multivariate workflows",
           "native-backed production paths"
+        ],
+        "references": [
+          {
+            "note": "Primary reference for STD and the robust seasonal-trend-dispersion family.",
+            "title": "Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series",
+            "url": "https://doi.org/10.48550/arXiv.2204.10398"
+          }
         ],
         "summary": "Fast seasonal-trend decomposition with dispersion-aware diagnostics.",
         "typical_failure_modes": [

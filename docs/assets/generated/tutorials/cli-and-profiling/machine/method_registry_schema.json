@@ -1,5 +1,28 @@
 {
   "$defs": {
+    "CatalogLinkModel": {
+      "properties": {
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "url"
+      ],
+      "title": "CatalogLinkModel",
+      "type": "object"
+    },
     "MethodMetadataModel": {
       "properties": {
         "assumptions": {
@@ -17,6 +40,11 @@
           ],
           "title": "Dependency Tier",
           "type": "string"
+        },
+        "example_config": {
+          "additionalProperties": true,
+          "title": "Example Config",
+          "type": "object"
         },
         "family": {
           "title": "Family",
@@ -88,11 +116,39 @@
           "title": "Optional Dependencies",
           "type": "array"
         },
+        "output_components": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Output Components",
+          "type": "array"
+        },
+        "package_links": {
+          "items": {
+            "$ref": "#/$defs/CatalogLinkModel"
+          },
+          "title": "Package Links",
+          "type": "array"
+        },
+        "parameter_docs": {
+          "items": {
+            "$ref": "#/$defs/MethodParameterDocModel"
+          },
+          "title": "Parameter Docs",
+          "type": "array"
+        },
         "recommended_for": {
           "items": {
             "type": "string"
           },
           "title": "Recommended For",
+          "type": "array"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/$defs/CatalogLinkModel"
+          },
+          "title": "References",
           "type": "array"
         },
         "summary": {
@@ -119,6 +175,43 @@
         "summary"
       ],
       "title": "MethodMetadataModel",
+      "type": "object"
+    },
+    "MethodParameterDocModel": {
+      "properties": {
+        "common": {
+          "default": true,
+          "title": "Common",
+          "type": "boolean"
+        },
+        "default": {
+          "default": null,
+          "title": "Default"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "description"
+      ],
+      "title": "MethodParameterDocModel",
       "type": "object"
     }
   },

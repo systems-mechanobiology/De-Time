@@ -9,7 +9,7 @@ include cibuildwheel.toml
 recursive-include src *.py
 recursive-include native *.cpp *.hpp *.h
 recursive-include tests *.py
-recursive-include docs *.md *.png *.jpg *.jpeg *.gif *.svg *.txt *.json *.csv *.yml *.yaml
+recursive-include docs *.md *.png *.jpg *.jpeg *.gif *.svg *.txt *.py *.ipynb *.zip *.json *.csv *.yml *.yaml
 recursive-include benchmarks *.py *.md *.json *.csv
 recursive-include evals *.py *.md *.json
 recursive-include examples *.py *.md *.ipynb *.csv *.json

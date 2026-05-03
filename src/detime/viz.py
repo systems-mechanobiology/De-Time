@@ -8,6 +8,49 @@ import numpy as np
 
 from .core import DecompResult
 
+COLORS = {
+    "original": "#111827",
+    "trend": "#2563eb",
+    "season": "#0f766e",
+    "residual": "#f97316",
+    "error": "#dc2626",
+    "muted": "#64748b",
+}
+
+SERIES_PALETTE = [
+    "#2563eb",
+    "#0f766e",
+    "#f97316",
+    "#7c3aed",
+    "#db2777",
+    "#0891b2",
+    "#ca8a04",
+    "#475569",
+]
+
+
+def _component_color(name: str, idx: int = 0) -> str:
+    key = name.lower()
+    if key in COLORS:
+        return COLORS[key]
+    return SERIES_PALETTE[idx % len(SERIES_PALETTE)]
+
+
+def _style_axis(ax, *, title: str | None = None) -> None:
+    if hasattr(ax, "set_facecolor"):
+        ax.set_facecolor("#ffffff")
+    ax.grid(True, axis="y", alpha=0.22, color="#94a3b8", linewidth=0.8)
+    ax.grid(False, axis="x")
+    if hasattr(ax, "spines"):
+        ax.spines["top"].set_visible(False)
+        ax.spines["right"].set_visible(False)
+        ax.spines["left"].set_color("#cbd5e1")
+        ax.spines["bottom"].set_color("#cbd5e1")
+    if hasattr(ax, "tick_params"):
+        ax.tick_params(colors="#334155", labelsize=9)
+    if title:
+        ax.set_title(title, loc="left", fontsize=11, fontweight="bold", color="#0f172a")
+
 
 def _as_1d(array: np.ndarray, label: str) -> np.ndarray:
     arr = np.asarray(array)
@@ -37,11 +80,22 @@ def _plt():
 
 
 def _finalize_figure(fig, plt, save_path, interactive: bool) -> None:
-    plt.tight_layout()
+    if hasattr(fig, "patch") and hasattr(fig.patch, "set_facecolor"):
+        fig.patch.set_facecolor("#f8fafc")
+    try:
+        fig.tight_layout(rect=(0, 0, 1, 0.97))
+    except Exception:
+        pass
     if save_path is not None:
         out_path = Path(save_path)
         out_path.parent.mkdir(parents=True, exist_ok=True)
-        fig.savefig(out_path, dpi=150)
+        save_kwargs = {"dpi": 220, "bbox_inches": "tight"}
+        if hasattr(fig, "get_facecolor"):
+            save_kwargs["facecolor"] = fig.get_facecolor()
+        try:
+            fig.savefig(out_path, **save_kwargs)
+        except TypeError:
+            fig.savefig(out_path, dpi=220)
     if interactive:
         plt.show()
     else:
@@ -84,18 +138,18 @@ def plot_components(
         names.insert(0, "Original")
 
     nrows = len(components)
-    fig, axes = plt.subplots(nrows, 1, figsize=(10, 2.5 * nrows), sharex=True)
+    fig, axes = plt.subplots(nrows, 1, figsize=(11, 2.25 * nrows), sharex=True)
     axes_grid = _coerce_axes_grid(axes, nrows, 1)
 
     for row, (comp, name) in enumerate(zip(components, names)):
         ax = axes_grid[row, 0]
-        ax.plot(comp, label=name, linewidth=1.5)
+        ax.plot(comp, label=name, linewidth=1.65, color=_component_color(name))
         ax.set_ylabel(name)
-        ax.legend(loc="upper right")
-        ax.grid(True, alpha=0.3)
+        ax.legend(loc="upper right", frameon=True, framealpha=0.9, fontsize=9)
+        _style_axis(ax, title=name)
 
     axes_grid[-1, 0].set_xlabel("Time")
-    fig.suptitle(title)
+    fig.suptitle(title, x=0.02, ha="left", fontsize=15, fontweight="bold", color="#0f172a")
     _finalize_figure(fig, plt, save_path, interactive)
 
 
@@ -112,13 +166,15 @@ def plot_error(
     _ = _as_1d(series, "series")
     error = np.abs(_as_1d(result.residual, "residual"))
 
-    fig, ax = plt.subplots(figsize=(10, 4))
-    ax.plot(error, color="red", label="|Residual|", linewidth=1.5)
+    fig, ax = plt.subplots(figsize=(11, 3.6))
+    x = np.arange(error.size)
+    if hasattr(ax, "fill_between"):
+        ax.fill_between(x, error, color=COLORS["error"], alpha=0.14)
+    ax.plot(error, color=COLORS["error"], label="|Residual|", linewidth=1.6)
     ax.set_ylabel("Absolute Error")
     ax.set_xlabel("Time")
-    ax.set_title(title)
-    ax.legend()
-    ax.grid(True, alpha=0.3)
+    _style_axis(ax, title=title)
+    ax.legend(frameon=True, framealpha=0.9)
     _finalize_figure(fig, plt, save_path, interactive)
 
 
@@ -138,19 +194,24 @@ def plot_component_overlay(
     if not results:
         raise ValueError("results must contain at least one method.")
 
-    fig, ax = plt.subplots(figsize=(11, 4))
+    fig, ax = plt.subplots(figsize=(11, 3.8))
     if series is not None:
-        ax.plot(_as_1d(series, "series"), color="black", alpha=0.35, label="Original")
+        ax.plot(
+            _as_1d(series, "series"),
+            color=COLORS["original"],
+            alpha=0.28,
+            linewidth=1.7,
+            label="Original",
+        )
 
-    for method_name, result in results.items():
+    for idx, (method_name, result) in enumerate(results.items()):
         values = _as_1d(getattr(result, component), f"{method_name}.{component}")
-        ax.plot(values, linewidth=1.6, label=method_name)
+        ax.plot(values, linewidth=1.8, label=method_name, color=_component_color(method_name, idx))
 
     ax.set_xlabel("Time")
     ax.set_ylabel(component.title())
-    ax.set_title(title or f"{component.title()} overlay")
-    ax.legend(loc="upper right", ncol=2)
-    ax.grid(True, alpha=0.3)
+    _style_axis(ax, title=title or f"{component.title()} overlay")
+    ax.legend(loc="upper right", ncol=2, frameon=True, framealpha=0.92, fontsize=9)
     _finalize_figure(fig, plt, save_path, interactive)
 
 
@@ -174,13 +235,13 @@ def plot_method_comparison(
     fig, axes = plt.subplots(
         nrows,
         ncols,
-        figsize=(3.8 * ncols, 2.6 * nrows),
+        figsize=(4.0 * ncols, 2.5 * nrows),
         sharex=True,
     )
     axes_grid = _coerce_axes_grid(axes, nrows, ncols)
 
     for col, column_name in enumerate(columns):
-        axes_grid[0, col].set_title(column_name)
+        axes_grid[0, col].set_title(column_name, fontsize=11, fontweight="bold", color="#0f172a")
 
     for row, (method_name, result) in enumerate(results.items()):
         row_data = [
@@ -191,19 +252,19 @@ def plot_method_comparison(
         ]
         for col, values in enumerate(row_data):
             ax = axes_grid[row, col]
+            component_name = columns[col]
             if col == 0:
-                ax.plot(values, color="black", linewidth=1.4)
+                ax.plot(values, color=COLORS["original"], linewidth=1.45)
             else:
-                ax.plot(values, linewidth=1.4)
+                ax.plot(values, linewidth=1.45, color=_component_color(component_name))
             if col == 0:
                 ax.set_ylabel(method_name)
-            ax.grid(True, alpha=0.3)
-        axes_grid[row, 0].legend([method_name], loc="upper right")
+            _style_axis(ax)
 
     for col in range(ncols):
         axes_grid[-1, col].set_xlabel("Time")
 
-    fig.suptitle(title)
+    fig.suptitle(title, x=0.02, ha="left", fontsize=15, fontweight="bold", color="#0f172a")
     _finalize_figure(fig, plt, save_path, interactive)
 
 
@@ -254,24 +315,24 @@ def plot_multivariate_components(
     fig, axes = plt.subplots(
         nrows,
         ncols,
-        figsize=(3.8 * ncols, 2.5 * nrows),
+        figsize=(4.0 * ncols, 2.35 * nrows),
         sharex=True,
     )
     axes_grid = _coerce_axes_grid(axes, nrows, ncols)
 
     for col, (label, _) in enumerate(components):
-        axes_grid[0, col].set_title(label)
+        axes_grid[0, col].set_title(label, fontsize=11, fontweight="bold", color="#0f172a")
 
     for row, channel_name in enumerate(names):
         for col, (_, values) in enumerate(components):
             ax = axes_grid[row, col]
-            ax.plot(values[:, row], linewidth=1.4)
+            ax.plot(values[:, row], linewidth=1.45, color=_component_color(components[col][0], row))
             if col == 0:
                 ax.set_ylabel(channel_name)
-            ax.grid(True, alpha=0.3)
+            _style_axis(ax)
 
     for col in range(ncols):
         axes_grid[-1, col].set_xlabel("Time")
 
-    fig.suptitle(title)
+    fig.suptitle(title, x=0.02, ha="left", fontsize=15, fontweight="bold", color="#0f172a")
     _finalize_figure(fig, plt, save_path, interactive)

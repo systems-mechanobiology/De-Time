@@ -18,8 +18,18 @@ ROOT = Path(__file__).resolve().parents[1]
 SRC_DIR = ROOT / "src"
 DEFAULT_OUTPUT_ROOT = ROOT / "docs" / "assets" / "generated" / "tutorials"
 
-if str(SRC_DIR) not in sys.path:
-    sys.path.insert(0, str(SRC_DIR))
+def _prefer_repo_source() -> None:
+    """Prefer the checkout over stale local editable wheels during docs generation."""
+    sys.meta_path[:] = [
+        finder for finder in sys.meta_path
+        if finder.__class__.__module__ != "_de_time_editable"
+    ]
+    src = str(SRC_DIR)
+    if src not in sys.path:
+        sys.path.insert(0, src)
+
+
+_prefer_repo_source()
 
 from detime import DecompositionConfig, decompose  # noqa: E402
 
@@ -77,6 +87,8 @@ def _run_command(command: list[str], stdout_path: Path | None = None) -> str:
 def _python_script(script: str, *args: str) -> list[str]:
     bootstrap = (
         "import runpy, sys; "
+        "sys.meta_path[:] = [finder for finder in sys.meta_path "
+        "if finder.__class__.__module__ != '_de_time_editable']; "
         f"sys.path.insert(0, {str(SRC_DIR)!r}); "
         "script = sys.argv[1]; "
         "script_args = sys.argv[2:]; "
@@ -89,6 +101,8 @@ def _python_script(script: str, *args: str) -> list[str]:
 def _detime_cli(*args: str) -> list[str]:
     bootstrap = (
         "import sys; "
+        "sys.meta_path[:] = [finder for finder in sys.meta_path "
+        "if finder.__class__.__module__ != '_de_time_editable']; "
         f"sys.path.insert(0, {str(SRC_DIR)!r}); "
         "from detime.cli import main; "
         "sys.argv = ['detime', *sys.argv[1:]]; "

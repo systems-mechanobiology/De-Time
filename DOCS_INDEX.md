@@ -32,7 +32,7 @@ This file is a compact documentation map for agents and contributors.
 - `docs/config-reference.md`
   - generated `DecompositionConfig` and method parameter reference
 - `docs/notebook-gallery.md`
-  - entry page for the GitHub-visible method gallery notebook
+  - inline method gallery with code, outputs, figures, and notebook downloads
 - `docs/tutorials/univariate.md`
   - first runnable workflow tutorial with published outputs
 - `docs/api.md`

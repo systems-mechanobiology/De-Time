@@ -24,8 +24,17 @@ def test_notebook_gallery_is_committed_with_outputs() -> None:
     notebook_path = ROOT / "examples" / "notebooks" / "de_time_method_gallery.ipynb"
     page = (ROOT / "docs" / "notebook-gallery.md").read_text(encoding="utf-8")
     notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
+    asset_dir = ROOT / "docs" / "assets" / "generated" / "notebooks" / "method-gallery"
 
     assert "de_time_method_gallery.ipynb" in page
+    assert "Out:" in page
+    assert "gallery-note" in page
+    assert "Download Python source code" in page
+    assert "assets/generated/notebooks/method-gallery/ssa.png" in page
+    assert (asset_dir / "ssa.png").is_file()
+    assert (asset_dir / "de_time_method_gallery.ipynb").is_file()
+    assert (asset_dir / "de_time_method_gallery.py").is_file()
+    assert (asset_dir / "de_time_method_gallery.zip").is_file()
     assert len(notebook["cells"]) >= 30
     code_cells = [cell for cell in notebook["cells"] if cell["cell_type"] == "code"]
     assert any(cell.get("outputs") for cell in code_cells)

@@ -25,6 +25,7 @@ editable contributor path below.
 Fast entry points:
 
 - [Documentation site](https://systems-mechanobiology.github.io/De-Time/)
+- [Inline method gallery](https://systems-mechanobiology.github.io/De-Time/notebook-gallery/)
 - [Beginner notebook method gallery](examples/notebooks/de_time_method_gallery.ipynb)
 - [Cross-package comparison](docs/comparisons.md)
 - [Method comparison matrix](docs/method-matrix.md)
