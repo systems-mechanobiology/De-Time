@@ -64,7 +64,10 @@ jobs:
           # pre-rendered site (HTML/CSS/JS) is checked into the repo and should
           # be deployed as-is. To re-enable the build-from-source behaviour,
           # revert this step to run the scripts and `mkdocs build --strict`.
-          if [ -d site ]; then
+          if [ -d website/De-time.design/site ]; then
+            echo "Found prebuilt website/De-time.design/site — skipping MkDocs build."
+            ls -la website/De-time.design/site | head -n 20
+          elif [ -d site ]; then
             echo "Found prebuilt site/ directory — skipping MkDocs build."
             ls -la site | head -n 20
           else
@@ -83,13 +86,22 @@ jobs:
             mkdocs build --strict
           fi
 
+      - name: Select Pages output directory
+        id: pages_output
+        run: |
+          if [ -d website/De-time.design/site ]; then
+            echo "site_dir=website/De-time.design/site" >> "$GITHUB_OUTPUT"
+          else
+            echo "site_dir=site" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: ${{ steps.pages_output.outputs.site_dir }}
 
       - name: Deploy to GitHub Pages
         id: deployment
