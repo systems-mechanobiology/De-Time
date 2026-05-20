@@ -8,7 +8,7 @@ One Python and CLI interface for trend, oscillation, residual, components, and m
 ![Python: 3.10+](https://img.shields.io/badge/python-3.10%2B-0f766e.svg)
 
 <p align="center">
-  <img src="docs/assets/brand/detime-logo.svg" alt="De-Time logo" width="640">
+  <img src="docs/assets/brand/detime-logo-color.png" alt="De-Time logo" width="640">
 </p>
 
 De-Time provides one stable software surface for decomposition workflows that
