@@ -1,0 +1,85 @@
+name: de-time docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "docs/**"
+      - "benchmarks/**"
+      - "evals/**"
+      - "examples/**"
+      - "mkdocs.yml"
+      - "README.md"
+      - "MANIFEST.in"
+      - "pyproject.toml"
+      - "scripts/check_doc_consistency.py"
+      - "scripts/generate_schema_assets.py"
+      - "scripts/generate_method_cards.py"
+      - "scripts/generate_notebook_gallery.py"
+      - "scripts/generate_tutorial_assets.py"
+      - "scripts/generate_reviewer_bundle.py"
+      - "src/detime/schema_assets/**"
+      - "src/detime/registry.py"
+      - "src/detime/schemas.py"
+      - ".github/workflows/deploy-docs.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build docs
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install docs dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .[dev,docs,notebook]
+
+      - name: Build MkDocs site
+        run: |
+          python scripts/generate_schema_assets.py --check
+          python scripts/generate_schema_assets.py
+          python scripts/generate_method_cards.py
+          python scripts/generate_notebook_gallery.py
+          python scripts/generate_tutorial_assets.py
+          python benchmarks/software_comparison/generate_comparison_evidence.py
+          python examples/workflow_comparisons/compare_specialist_glue_vs_detime.py
+          python benchmarks/token_benchmarks/generate_token_benchmarks.py
+          python evals/agent/run_agent_evals.py
+          python scripts/generate_reviewer_bundle.py
+          python scripts/check_doc_consistency.py
+          mkdocs build --strict
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
