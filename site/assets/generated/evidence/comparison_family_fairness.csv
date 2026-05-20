@@ -1,0 +1,6 @@
+family,specialist,specialist_deeper_strength,de_time_position
+classical decomposition,statsmodels,deeper classical decomposition and statistical modeling,wraps STL and MSTL under one config/result/CLI layer
+SSA,SSALib,deeper SSA-only environment with SSA-specific tooling,uses SSA as one flagship method inside a cross-family workflow layer
+EMD family,PyEMD,deeper EMD-family tooling,exposes EMD and CEEMDAN through the same contract used for other families
+wavelet workflows,PyWavelets,deeper wavelet transforms and transform-specific APIs,uses wavelets as one workflow option rather than a wavelet-first toolkit
+unified toolkit layer,PySDKit,broader signal-decomposition toolkit with optional multivariate backends,"focuses on time-series decomposition workflows, machine-facing contracts, and compact outputs"

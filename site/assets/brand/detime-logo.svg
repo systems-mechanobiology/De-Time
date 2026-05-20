@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
+  <title id="title">De-Time logo</title>
+  <desc id="desc">A compact scientific-toolkit logo with a time-series line and De-Time wordmark.</desc>
+  <defs>
+    <linearGradient id="markGradient" x1="18" x2="148" y1="150" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="lineGradient" x1="34" x2="138" y1="108" y2="66" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e0f2fe"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="180" rx="34" fill="#f8fafc"/>
+  <g transform="translate(30 26)">
+    <rect width="128" height="128" rx="30" fill="url(#markGradient)"/>
+    <path d="M30 92h17l11-24 15 40 16-62 18 35h21" fill="none" stroke="url(#lineGradient)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M28 36h26M28 36v26M100 96h26M126 70v26" fill="none" stroke="#dbeafe" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <g fill="#0f172a" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <text x="190" y="83" font-size="52" font-weight="800" letter-spacing="-1">De-Time</text>
+    <text x="193" y="122" font-size="22" font-weight="600" fill="#334155">workflow-oriented time-series decomposition</text>
+  </g>
+</svg>

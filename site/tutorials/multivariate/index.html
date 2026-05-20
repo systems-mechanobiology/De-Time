@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://jackson-jjc.github.io/De-time.design/tutorials/multivariate/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Multivariate Tutorial - De-Time</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../stylesheets/brand.css" rel="stylesheet">
+        <link href="../../stylesheets/extra.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+   
+
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">De-Time</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Start <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Workflows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gallery <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../univariate/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../cli-and-profiling/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Jackson-jjc/De-time.design" class="nav-link">Jackson-jjc/De-time.design</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#multivariate-workflows" class="nav-link">Multivariate workflows</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#supported-multivariate-methods" class="nav-link">Supported multivariate methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#python-example-mssa" class="nav-link">Python example: MSSA</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#published-multivariate-comparison" class="nav-link">Published multivariate comparison</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#cli" class="nav-link">CLI</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#where-to-go-next" class="nav-link">Where to go next</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="multivariate-workflows">Multivariate workflows</h1>
+<h2 id="supported-multivariate-methods">Supported multivariate methods</h2>
+<p>Current multivariate-capable methods are:</p>
+<ul>
+<li><code>MSSA</code></li>
+<li><code>MVMD</code></li>
+<li><code>MEMD</code></li>
+</ul>
+<p>Channelwise methods that also accept <code>2D (T, C)</code> input:</p>
+<ul>
+<li><code>STD</code></li>
+<li><code>STDR</code></li>
+</ul>
+<h2 id="python-example-mssa">Python example: MSSA</h2>
+<pre><code class="language-python">import numpy as np
+from detime import DecompositionConfig, decompose
+
+t = np.arange(96, dtype=float)
+series = np.column_stack(
+    [
+        0.03 * t + np.sin(2.0 * np.pi * t / 12.0),
+        -0.01 * t + 0.6 * np.sin(2.0 * np.pi * t / 12.0 + 0.4),
+    ]
+)
+
+result = decompose(
+    series,
+    DecompositionConfig(
+        method=&quot;MSSA&quot;,
+        params={&quot;window&quot;: 24, &quot;rank&quot;: 8, &quot;primary_period&quot;: 12},
+        channel_names=[&quot;x0&quot;, &quot;x1&quot;],
+    ),
+)
+</code></pre>
+<p>Observed output from <code>examples/multivariate_mssa.py</code> on the current docs build:</p>
+<pre><code class="language-text">trend shape: (96, 2)
+modes shape: (8, 96, 2)
+backend: python
+</code></pre>
+<p>Published raw stdout:</p>
+<ul>
+<li><a href="../../assets/generated/tutorials/multivariate/python_example_stdout.txt">python_example_stdout.txt</a></li>
+</ul>
+<h2 id="published-multivariate-comparison">Published multivariate comparison</h2>
+<p>The current docs build also publishes a joint <code>MSSA</code> versus channelwise <code>STD</code>
+ walkthrough on a three-channel synthetic panel.</p>
+<table>
+<thead>
+<tr>
+<th>Channel</th>
+<th>MSSA backend</th>
+<th>STD backend</th>
+<th align="right">MSSA residual RMS</th>
+<th align="right">STD residual RMS</th>
+<th align="right">Mean abs trend gap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sensor_a</code></td>
+<td><code>python</code></td>
+<td><code>native</code></td>
+<td align="right">0.0047</td>
+<td align="right">0.0000</td>
+<td align="right">0.0590</td>
+</tr>
+<tr>
+<td><code>sensor_b</code></td>
+<td><code>python</code></td>
+<td><code>native</code></td>
+<td align="right">0.0038</td>
+<td align="right">0.0000</td>
+<td align="right">0.0260</td>
+</tr>
+<tr>
+<td><code>sensor_c</code></td>
+<td><code>python</code></td>
+<td><code>native</code></td>
+<td align="right">0.0999</td>
+<td align="right">0.0000</td>
+<td align="right">0.0128</td>
+</tr>
+</tbody>
+</table>
+<p>Published experiment record:</p>
+<ul>
+<li><a href="../../assets/generated/tutorials/visual-multivariate/multivariate_summary.csv">multivariate_summary.csv</a></li>
+</ul>
+<p>Published example outputs:</p>
+<p><img alt="MSSA multivariate components" src="../../assets/generated/tutorials/visual-multivariate/mssa_multivariate.png" /></p>
+<p><img alt="Channelwise STD multivariate components" src="../../assets/generated/tutorials/visual-multivariate/std_channelwise_multivariate.png" /></p>
+<p><img alt="Channel 0 trend overlay" src="../../assets/generated/tutorials/visual-multivariate/channel0_trend_overlay.png" /></p>
+<h2 id="cli">CLI</h2>
+<pre><code class="language-bash">python -m detime run \
+  --method MSSA \
+  --series examples/data/example_multivariate.csv \
+  --cols x0,x1 \
+  --param window=24 \
+  --param rank=8 \
+  --param primary_period=12 \
+  --out_dir out/mssa_run \
+  --output-mode summary
+</code></pre>
+<p>Published CLI stdout from the current docs build:</p>
+<pre><code class="language-text">Running MSSA on examples/data/example_multivariate.csv...
+Done. Results saved to out/mssa_run
+</code></pre>
+<p>Published output files:</p>
+<ul>
+<li><a href="../../assets/generated/tutorials/cli-and-profiling/multivariate/example_multivariate_summary.json">example_multivariate_summary.json</a></li>
+<li><a href="../../assets/generated/tutorials/cli-and-profiling/multivariate/command_stdout.txt">command_stdout.txt</a></li>
+</ul>
+<p>Representative summary excerpt from the current build:</p>
+<pre><code class="language-json">{
+  &quot;mode&quot;: &quot;summary&quot;,
+  &quot;trend&quot;: { &quot;shape&quot;: [120, 2] },
+  &quot;season&quot;: { &quot;shape&quot;: [120, 2] },
+  &quot;components&quot;: {
+    &quot;modes&quot;: { &quot;shape&quot;: [8, 120, 2] }
+  },
+  &quot;meta&quot;: {
+    &quot;backend_used&quot;: &quot;python&quot;,
+    &quot;channel_names&quot;: [&quot;x0&quot;, &quot;x1&quot;]
+  }
+}
+</code></pre>
+<p>When <code>output-mode</code> is <code>full</code>, multivariate results are written as wide CSV for
+<code>2D</code> outputs plus <code>.npz</code> archives for <code>3D</code> components. In the published docs
+build, <code>summary</code> mode is used to keep the artifact small and easy to inspect.</p>
+<h2 id="where-to-go-next">Where to go next</h2>
+<ul>
+<li>Use <a href="../visual-multivariate/">Visual Multivariate Walkthrough</a> for the full
+  side-by-side interpretation of the figures above.</li>
+<li>Use <a href="../cli-and-profiling/">CLI and Profiling</a> when you want the exact batch,
+  profile, schema, and recommendation commands that operate on repo-shipped
+  files.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

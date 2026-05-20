@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://jackson-jjc.github.io/De-time.design/config-reference/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Config Reference - De-Time</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../stylesheets/brand.css" rel="stylesheet">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+   
+
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">De-Time</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Start <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Workflows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gallery <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../api/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../machine-api/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Jackson-jjc/De-time.design" class="nav-link">Jackson-jjc/De-time.design</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#config-reference" class="nav-link">Config Reference</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#top-level-fields" class="nav-link">Top-level fields</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#complete-examples" class="nav-link">Complete examples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#method-specific-parameters" class="nav-link">Method-specific parameters</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="config-reference">Config Reference</h1>
+<p><code>DecompositionConfig</code> is the single runtime contract shared by Python, CLI,
+docs examples, and machine-facing schema exports.</p>
+<p>Current package version target: <code>0.1.1</code>.</p>
+<h2 id="top-level-fields">Top-level fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Default</th>
+<th>Semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>method</code></td>
+<td><code>str</code></td>
+<td>required</td>
+<td>Registered method name such as <code>SSA</code>, <code>STD</code>, <code>STDR</code>, or <code>MSSA</code>.</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td><code>dict[str, Any]</code></td>
+<td><code>{}</code></td>
+<td>Method-specific parameters documented below.</td>
+</tr>
+<tr>
+<td><code>return_components</code></td>
+<td><code>list[str] \| None</code></td>
+<td><code>None</code></td>
+<td>Compatibility field; retained methods return the normalized result object.</td>
+</tr>
+<tr>
+<td><code>backend</code></td>
+<td><code>auto \| native \| python \| gpu</code></td>
+<td><code>auto</code></td>
+<td>Backend preference. <code>native</code> requires an available native kernel.</td>
+</tr>
+<tr>
+<td><code>speed_mode</code></td>
+<td><code>exact \| fast</code></td>
+<td><code>exact</code></td>
+<td>Accuracy policy. Native <code>SSA</code> uses exact SVD in <code>exact</code> and an iterative approximation in <code>fast</code>.</td>
+</tr>
+<tr>
+<td><code>profile</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>Attach runtime metadata or produce profile reports when routed through the profiler.</td>
+</tr>
+<tr>
+<td><code>device</code></td>
+<td><code>str \| None</code></td>
+<td><code>cpu</code></td>
+<td>Reserved device selector; retained methods are CPU workflows unless a wrapper says otherwise.</td>
+</tr>
+<tr>
+<td><code>n_jobs</code></td>
+<td><code>int</code></td>
+<td><code>1</code></td>
+<td>Parallelism hint for wrappers that support it.</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td><code>int \| None</code></td>
+<td><code>42</code></td>
+<td>Seed used by approximate or randomized paths where relevant.</td>
+</tr>
+<tr>
+<td><code>channel_names</code></td>
+<td><code>list[str] \| None</code></td>
+<td><code>None</code></td>
+<td>Optional labels for aligned multivariate channels.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="complete-examples">Complete examples</h2>
+<h3 id="univariate-ssa">Univariate SSA</h3>
+<pre><code class="language-json">{
+  &quot;backend&quot;: &quot;auto&quot;,
+  &quot;method&quot;: &quot;SSA&quot;,
+  &quot;params&quot;: {
+    &quot;primary_period&quot;: 12,
+    &quot;rank&quot;: 6,
+    &quot;window&quot;: 24
+  },
+  &quot;seed&quot;: 42,
+  &quot;speed_mode&quot;: &quot;exact&quot;
+}
+</code></pre>
+<h3 id="seasonal-std">Seasonal STD</h3>
+<pre><code class="language-json">{
+  &quot;backend&quot;: &quot;auto&quot;,
+  &quot;method&quot;: &quot;STD&quot;,
+  &quot;params&quot;: {
+    &quot;period&quot;: 12
+  },
+  &quot;speed_mode&quot;: &quot;exact&quot;
+}
+</code></pre>
+<h3 id="multivariate-mssa">Multivariate MSSA</h3>
+<pre><code class="language-json">{
+  &quot;backend&quot;: &quot;python&quot;,
+  &quot;channel_names&quot;: [
+    &quot;channel_a&quot;,
+    &quot;channel_b&quot;,
+    &quot;channel_c&quot;
+  ],
+  &quot;method&quot;: &quot;MSSA&quot;,
+  &quot;params&quot;: {
+    &quot;primary_period&quot;: 12,
+    &quot;rank&quot;: 6,
+    &quot;window&quot;: 24
+  },
+  &quot;speed_mode&quot;: &quot;exact&quot;
+}
+</code></pre>
+<h2 id="method-specific-parameters">Method-specific parameters</h2>
+<h3 id="ceemdan"><code>CEEMDAN</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>stable</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.imfs</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>trials</code></td>
+<td>int</td>
+<td align="right">no</td>
+<td><code>50</code></td>
+<td>Number of noise-assisted ensemble trials.</td>
+</tr>
+<tr>
+<td><code>noise_width</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>0.05</code></td>
+<td>Relative width of the injected noise.</td>
+</tr>
+<tr>
+<td><code>primary_period</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Period hint for grouping IMFs into season and trend.</td>
+</tr>
+<tr>
+<td><code>fs</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1.0</code></td>
+<td>Sampling frequency used by grouping heuristics.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;CEEMDAN&quot;,
+  &quot;params&quot;: {
+    &quot;noise_width&quot;: 0.05,
+    &quot;primary_period&quot;: 12,
+    &quot;trials&quot;: 20
+  }
+}
+</code></pre>
+<h3 id="emd"><code>EMD</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>stable</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.imfs</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>n_imfs</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Maximum number of intrinsic mode functions to retain.</td>
+</tr>
+<tr>
+<td><code>primary_period</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Period hint for grouping IMFs into season and trend.</td>
+</tr>
+<tr>
+<td><code>trend_imfs</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Explicit IMF indexes assigned to trend.</td>
+</tr>
+<tr>
+<td><code>season_imfs</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Explicit IMF indexes assigned to season.</td>
+</tr>
+<tr>
+<td><code>fs</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1.0</code></td>
+<td>Sampling frequency used by grouping heuristics.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;EMD&quot;,
+  &quot;params&quot;: {
+    &quot;n_imfs&quot;: 4,
+    &quot;primary_period&quot;: 12
+  }
+}
+</code></pre>
+<h3 id="gabor_cluster"><code>GABOR_CLUSTER</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>experimental</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.clusters</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>model</code></td>
+<td>GaborClusterModel | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>In-memory trained clustering model.</td>
+</tr>
+<tr>
+<td><code>model_path</code></td>
+<td>str | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Path to a serialized trained clustering model.</td>
+</tr>
+<tr>
+<td><code>max_clusters</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Optional cap on clusters used during reconstruction.</td>
+</tr>
+<tr>
+<td><code>trend_freq_thr</code></td>
+<td>float | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Frequency threshold used for trend-like atoms.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;GABOR_CLUSTER&quot;,
+  &quot;params&quot;: {
+    &quot;model_path&quot;: &quot;path/to/trained-gabor-model.pkl&quot;
+  }
+}
+</code></pre>
+<h3 id="ma_baseline"><code>MA_BASELINE</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>stable</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>trend_window</code></td>
+<td>int</td>
+<td align="right">no</td>
+<td><code>7</code></td>
+<td>Moving-average window used for the trend estimate.</td>
+</tr>
+<tr>
+<td><code>season_period</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Optional period for a simple seasonal average.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;MA_BASELINE&quot;,
+  &quot;params&quot;: {
+    &quot;season_period&quot;: 12,
+    &quot;trend_window&quot;: 7
+  }
+}
+</code></pre>
+<h3 id="memd"><code>MEMD</code></h3>
+<ul>
+<li>Input mode: <code>multivariate</code></li>
+<li>Maturity: <code>optional-backend</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.imfs</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>primary_period</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Shared period hint for grouping multivariate IMFs.</td>
+</tr>
+<tr>
+<td><code>trend_modes</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Explicit mode indexes assigned to trend.</td>
+</tr>
+<tr>
+<td><code>season_modes</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Explicit mode indexes assigned to season.</td>
+</tr>
+<tr>
+<td><code>fs</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1.0</code></td>
+<td>Sampling frequency used by grouping heuristics.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;MEMD&quot;,
+  &quot;params&quot;: {
+    &quot;primary_period&quot;: 12
+  }
+}
+</code></pre>
+<h3 id="mssa"><code>MSSA</code></h3>
+<ul>
+<li>Input mode: <code>multivariate</code></li>
+<li>Maturity: <code>flagship</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.elementary</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>window</code></td>
+<td>int</td>
+<td align="right">yes</td>
+<td>required</td>
+<td>Shared embedding window length for aligned channels.</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Number of shared elementary components to retain.</td>
+</tr>
+<tr>
+<td><code>primary_period</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Dominant shared period used by automatic grouping.</td>
+</tr>
+<tr>
+<td><code>fs</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1.0</code></td>
+<td>Sampling frequency used by frequency-based grouping.</td>
+</tr>
+<tr>
+<td><code>trend_components</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Explicit component indexes assigned to trend.</td>
+</tr>
+<tr>
+<td><code>season_components</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Explicit component indexes assigned to season.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;backend&quot;: &quot;python&quot;,
+  &quot;channel_names&quot;: [
+    &quot;channel_a&quot;,
+    &quot;channel_b&quot;,
+    &quot;channel_c&quot;
+  ],
+  &quot;method&quot;: &quot;MSSA&quot;,
+  &quot;params&quot;: {
+    &quot;primary_period&quot;: 12,
+    &quot;rank&quot;: 6,
+    &quot;window&quot;: 24
+  },
+  &quot;speed_mode&quot;: &quot;exact&quot;
+}
+</code></pre>
+<h3 id="mstl"><code>MSTL</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>stable</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.seasonal_terms</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>periods</code></td>
+<td>list[int]</td>
+<td align="right">yes</td>
+<td>required</td>
+<td>One or more seasonal periods passed to statsmodels MSTL.</td>
+</tr>
+<tr>
+<td><code>windows</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Optional smoother windows aligned with periods.</td>
+</tr>
+<tr>
+<td><code>stl_kwargs</code></td>
+<td>dict | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Additional statsmodels STL keyword arguments.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;MSTL&quot;,
+  &quot;params&quot;: {
+    &quot;periods&quot;: [
+      12,
+      24
+    ]
+  }
+}
+</code></pre>
+<h3 id="mvmd"><code>MVMD</code></h3>
+<ul>
+<li>Input mode: <code>multivariate</code></li>
+<li>Maturity: <code>optional-backend</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.modes</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>K</code></td>
+<td>int</td>
+<td align="right">no</td>
+<td><code>4</code></td>
+<td>Number of shared variational modes requested from PySDKit.</td>
+</tr>
+<tr>
+<td><code>alpha</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>2000.0</code></td>
+<td>Bandwidth penalty parameter for the MVMD backend.</td>
+</tr>
+<tr>
+<td><code>primary_period</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Shared period hint for grouping modes.</td>
+</tr>
+<tr>
+<td><code>fs</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1.0</code></td>
+<td>Sampling frequency used by grouping heuristics.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;MVMD&quot;,
+  &quot;params&quot;: {
+    &quot;K&quot;: 4,
+    &quot;alpha&quot;: 2000.0,
+    &quot;primary_period&quot;: 12
+  }
+}
+</code></pre>
+<h3 id="robust_stl"><code>ROBUST_STL</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>stable</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>period</code></td>
+<td>int</td>
+<td align="right">yes</td>
+<td>required</td>
+<td>Seasonal period passed to robust statsmodels STL.</td>
+</tr>
+<tr>
+<td><code>seasonal</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Odd LOESS seasonal smoother length.</td>
+</tr>
+<tr>
+<td><code>trend</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Odd LOESS trend smoother length.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;ROBUST_STL&quot;,
+  &quot;params&quot;: {
+    &quot;period&quot;: 12
+  }
+}
+</code></pre>
+<h3 id="ssa"><code>SSA</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>flagship</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.elementary</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>window</code></td>
+<td>int</td>
+<td align="right">yes</td>
+<td>required</td>
+<td>Embedding window length for trajectory-matrix construction.</td>
+</tr>
+<tr>
+<td><code>rank</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Number of elementary components to retain before grouping.</td>
+</tr>
+<tr>
+<td><code>primary_period</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Dominant seasonal period used by automatic grouping.</td>
+</tr>
+<tr>
+<td><code>fs</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1.0</code></td>
+<td>Sampling frequency used by frequency-based grouping.</td>
+</tr>
+<tr>
+<td><code>trend_components</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Explicit component indexes assigned to trend.</td>
+</tr>
+<tr>
+<td><code>season_components</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Explicit component indexes assigned to season.</td>
+</tr>
+<tr>
+<td><code>power_iterations</code></td>
+<td>int</td>
+<td align="right">no</td>
+<td><code>4</code></td>
+<td>Fast native mode iteration count when speed_mode='fast'.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;backend&quot;: &quot;auto&quot;,
+  &quot;method&quot;: &quot;SSA&quot;,
+  &quot;params&quot;: {
+    &quot;primary_period&quot;: 12,
+    &quot;rank&quot;: 6,
+    &quot;window&quot;: 24
+  },
+  &quot;seed&quot;: 42,
+  &quot;speed_mode&quot;: &quot;exact&quot;
+}
+</code></pre>
+<h3 id="std"><code>STD</code></h3>
+<ul>
+<li>Input mode: <code>channelwise</code></li>
+<li>Maturity: <code>flagship</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.dispersion</code>, <code>components.seasonal_shape</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>period</code></td>
+<td>int</td>
+<td align="right">yes</td>
+<td>required</td>
+<td>Seasonal period in samples.</td>
+</tr>
+<tr>
+<td><code>max_period_search</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Optional search horizon when period inference is enabled.</td>
+</tr>
+<tr>
+<td><code>eps</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1e-08</code></td>
+<td>Small numerical guard for dispersion calculations.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;backend&quot;: &quot;auto&quot;,
+  &quot;method&quot;: &quot;STD&quot;,
+  &quot;params&quot;: {
+    &quot;period&quot;: 12
+  },
+  &quot;speed_mode&quot;: &quot;exact&quot;
+}
+</code></pre>
+<h3 id="stdr"><code>STDR</code></h3>
+<ul>
+<li>Input mode: <code>channelwise</code></li>
+<li>Maturity: <code>flagship</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.dispersion</code>, <code>components.seasonal_shape</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>period</code></td>
+<td>int</td>
+<td align="right">yes</td>
+<td>required</td>
+<td>Seasonal period in samples.</td>
+</tr>
+<tr>
+<td><code>max_period_search</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Optional search horizon when period inference is enabled.</td>
+</tr>
+<tr>
+<td><code>eps</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1e-08</code></td>
+<td>Small numerical guard for robust dispersion calculations.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;backend&quot;: &quot;auto&quot;,
+  &quot;method&quot;: &quot;STDR&quot;,
+  &quot;params&quot;: {
+    &quot;period&quot;: 12
+  },
+  &quot;speed_mode&quot;: &quot;exact&quot;
+}
+</code></pre>
+<h3 id="stl"><code>STL</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>stable</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>period</code></td>
+<td>int</td>
+<td align="right">yes</td>
+<td>required</td>
+<td>Seasonal period passed to statsmodels STL.</td>
+</tr>
+<tr>
+<td><code>seasonal</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Odd LOESS seasonal smoother length.</td>
+</tr>
+<tr>
+<td><code>trend</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Odd LOESS trend smoother length.</td>
+</tr>
+<tr>
+<td><code>robust</code></td>
+<td>bool</td>
+<td align="right">no</td>
+<td><code>false</code></td>
+<td>Whether to use robust LOESS fitting.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;STL&quot;,
+  &quot;params&quot;: {
+    &quot;period&quot;: 12
+  }
+}
+</code></pre>
+<h3 id="vmd"><code>VMD</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>stable</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.modes</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>K</code></td>
+<td>int</td>
+<td align="right">no</td>
+<td><code>4</code></td>
+<td>Number of variational modes.</td>
+</tr>
+<tr>
+<td><code>alpha</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>2000.0</code></td>
+<td>Bandwidth penalty parameter.</td>
+</tr>
+<tr>
+<td><code>tau</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>0.0</code></td>
+<td>Dual ascent time step.</td>
+</tr>
+<tr>
+<td><code>DC</code></td>
+<td>bool</td>
+<td align="right">no</td>
+<td><code>false</code></td>
+<td>Keep the first mode at zero frequency.</td>
+</tr>
+<tr>
+<td><code>init</code></td>
+<td>int</td>
+<td align="right">no</td>
+<td><code>1</code></td>
+<td>Initialization policy used by the VMD backend.</td>
+</tr>
+<tr>
+<td><code>tol</code></td>
+<td>float</td>
+<td align="right">no</td>
+<td><code>1e-07</code></td>
+<td>Convergence tolerance.</td>
+</tr>
+<tr>
+<td><code>primary_period</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Period hint for grouping modes into season and trend.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;VMD&quot;,
+  &quot;params&quot;: {
+    &quot;K&quot;: 4,
+    &quot;alpha&quot;: 2000.0,
+    &quot;primary_period&quot;: 12
+  }
+}
+</code></pre>
+<h3 id="wavelet"><code>WAVELET</code></h3>
+<ul>
+<li>Input mode: <code>univariate</code></li>
+<li>Maturity: <code>stable</code></li>
+<li>Output components: <code>trend</code>, <code>season</code>, <code>residual</code>, <code>components.coefficients</code></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th align="right">Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wavelet</code></td>
+<td>str</td>
+<td align="right">no</td>
+<td><code>"db4"</code></td>
+<td>PyWavelets wavelet family name.</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td>int | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Decomposition depth. Defaults to PyWavelets maximum usable level.</td>
+</tr>
+<tr>
+<td><code>trend_levels</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Detail levels assigned to trend reconstruction.</td>
+</tr>
+<tr>
+<td><code>season_levels</code></td>
+<td>list[int] | None</td>
+<td align="right">no</td>
+<td><code>None</code></td>
+<td>Detail levels assigned to seasonal reconstruction.</td>
+</tr>
+</tbody>
+</table>
+<p>Example config:</p>
+<pre><code class="language-json">{
+  &quot;method&quot;: &quot;WAVELET&quot;,
+  &quot;params&quot;: {
+    &quot;level&quot;: 3,
+    &quot;wavelet&quot;: &quot;db4&quot;
+  }
+}
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

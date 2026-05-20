@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --dt-blue: #1F4FFF;
+  --dt-blue-bright: #2D67FF;
+  --dt-blue-light: #8EC5FF;
+  --dt-ink: #050816;
+  --dt-white: #F1F5F9;
+  --dt-gray: #E2E8F0;
+  --dt-text: #CBD5E1;
+  --dt-text-heading: #F8FAFC;
+  --dt-muted: #94A3B8;
+  --dt-muted-strong: #64748B;
+  --dt-sidebar-text: #94A3B8;
+  --dt-sidebar-hover: #E2E8F0;
+  --dt-border: rgba(226, 232, 240, 0.12);
+  --dt-border-strong: rgba(226, 232, 240, 0.2);
+  --dt-panel: rgba(255, 255, 255, 0.035);
+  --dt-panel-strong: rgba(255, 255, 255, 0.065);
+  --dt-shadow: 0 24px 70px rgba(0, 0, 0, 0.38);
+  --dt-radius: 8px;
+}
+
+html,
+body {
+  background: var(--dt-ink);
+  color: var(--dt-text);
+}

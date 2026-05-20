@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://jackson-jjc.github.io/De-time.design/token-benchmarks/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Token Benchmarks - De-Time</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../stylesheets/brand.css" rel="stylesheet">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+   
+
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">De-Time</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Start <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Workflows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gallery <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Jackson-jjc/De-time.design" class="nav-link">Jackson-jjc/De-time.design</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#token-benchmarks" class="nav-link">Token Benchmarks</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#method" class="nav-link">Method</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#what-to-expect" class="nav-link">What to expect</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#figure" class="nav-link">Figure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#reading-the-results" class="nav-link">Reading the results</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="token-benchmarks">Token Benchmarks</h1>
+<p>De-Time's compact result modes are meant to lower context cost for machine
+consumers. This page tracks that claim with a reproducible tokenizer-specific
+benchmark rather than anecdotal wording.</p>
+<h2 id="method">Method</h2>
+<ul>
+<li>tokenizer: <code>tiktoken</code> <code>cl100k_base</code></li>
+<li>scenarios:</li>
+<li>univariate short / medium / long</li>
+<li>multivariate short / medium / long</li>
+<li>modes:</li>
+<li><code>full</code></li>
+<li><code>summary</code></li>
+<li><code>meta</code></li>
+</ul>
+<p>Regenerate the benchmark with:</p>
+<pre><code class="language-bash">python benchmarks/token_benchmarks/generate_token_benchmarks.py
+</code></pre>
+<p>Generated artifacts:</p>
+<ul>
+<li><code>docs/assets/generated/evidence/token_benchmarks.json</code></li>
+<li><code>docs/assets/generated/evidence/token_benchmarks.csv</code></li>
+<li><code>docs/assets/generated/evidence/token_benchmarks.svg</code></li>
+</ul>
+<h2 id="what-to-expect">What to expect</h2>
+<p>The benchmark is designed to show two stable directional results:</p>
+<ul>
+<li><code>summary</code> is materially cheaper than <code>full</code></li>
+<li><code>meta</code> is materially cheaper than <code>summary</code></li>
+</ul>
+<p>The exact counts depend on the payload structure and the chosen tokenizer, so
+the benchmark should be read as a bounded-cost proxy rather than a universal
+token law.</p>
+<h2 id="figure">Figure</h2>
+<p><img alt="Token benchmark chart" src="../assets/generated/evidence/token_benchmarks.svg" /></p>
+<h2 id="reading-the-results">Reading the results</h2>
+<ul>
+<li>Use <code>full</code> only when downstream logic truly needs raw arrays.</li>
+<li>Use <code>summary</code> when diagnostics and array-shape statistics are enough.</li>
+<li>Use <code>meta</code> for routing, provenance, backend checks, and bounded-context
+  reporting.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://jackson-jjc.github.io/De-time.design/methods/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Methods & Chooser - De-Time</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../stylesheets/brand.css" rel="stylesheet">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+   
+
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">De-Time</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Start <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../method-references/" class="dropdown-item">Method References</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Workflows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gallery <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../quickstart/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../method-matrix/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Jackson-jjc/De-time.design" class="nav-link">Jackson-jjc/De-time.design</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#methods-chooser" class="nav-link">Methods &amp; Chooser</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#flagship-method-cards" class="nav-link">Flagship method cards</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#decision-flow" class="nav-link">Decision flow</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#wrapper-use-cases" class="nav-link">Wrapper use cases</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#more-detail" class="nav-link">More detail</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="methods-chooser">Methods &amp; Chooser</h1>
+<p>Start with the four retained flagship paths. Move to wrappers only when the
+data or comparison need points there.</p>
+<div class="method-signature-banner">
+  <span>Observed</span>
+  <span>Trend</span>
+  <span>Seasonal</span>
+  <span>Residual</span>
+</div>
+
+<h2 id="flagship-method-cards">Flagship method cards</h2>
+<div class="method-use-grid">
+  <div class="method-use-card">
+    <h3><code>SSA</code></h3>
+    <p><strong>Use when:</strong> one series needs interpretable subspace components.</p>
+    <p><strong>Avoid when:</strong> the series is too short for a meaningful window.</p>
+    <p><strong>Key params:</strong> <code>window</code>, <code>rank</code>, <code>primary_period</code>.</p>
+  </div>
+  <div class="method-use-card">
+    <h3><code>STD</code></h3>
+    <p><strong>Use when:</strong> a known seasonal period should split trend, season, and dispersion quickly.</p>
+    <p><strong>Avoid when:</strong> the main period is unknown or unstable.</p>
+    <p><strong>Key params:</strong> <code>period</code>.</p>
+  </div>
+  <div class="method-use-card">
+    <h3><code>STDR</code></h3>
+    <p><strong>Use when:</strong> the same seasonal-trend task has outliers or noisier cycles.</p>
+    <p><strong>Avoid when:</strong> structural breaks dominate the seasonal pattern.</p>
+    <p><strong>Key params:</strong> <code>period</code>.</p>
+  </div>
+  <div class="method-use-card">
+    <h3><code>MSSA</code></h3>
+    <p><strong>Use when:</strong> aligned channels share trend or oscillatory structure.</p>
+    <p><strong>Avoid when:</strong> channels are unrelated or one univariate method is enough.</p>
+    <p><strong>Key params:</strong> <code>window</code>, <code>rank</code>, <code>primary_period</code>.</p>
+  </div>
+</div>
+
+<h2 id="decision-flow">Decision flow</h2>
+<div class="pipeline-panel">
+  <div class="pipeline-flow">
+    <div class="pipeline-step">
+      <strong>One regular seasonal series?</strong>
+      <span>Start with <code>STD</code>. Use <code>STDR</code> if outliers matter.</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>One series, unknown components?</strong>
+      <span>Start with <code>SSA</code>, then compare against <code>STD</code> or <code>STL</code>.</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>Aligned channels?</strong>
+      <span>Use <code>MSSA</code> for shared structure; use <code>STD</code> channelwise for a fast baseline.</span>
+    </div>
+    <div class="pipeline-step">
+      <strong>Need a specialist family?</strong>
+      <span>Move to <code>EMD</code>, <code>CEEMDAN</code>, <code>VMD</code>, <code>WAVELET</code>, <code>MVMD</code>, or <code>MEMD</code>.</span>
+    </div>
+  </div>
+</div>
+
+<h2 id="wrapper-use-cases">Wrapper use cases</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Typical scenario</th>
+<th>First parameter to check</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>STL</code></td>
+<td>classical seasonal-trend baseline for one known period</td>
+<td><code>period</code></td>
+</tr>
+<tr>
+<td><code>MSTL</code></td>
+<td>one series with multiple seasonal periods</td>
+<td><code>periods</code></td>
+</tr>
+<tr>
+<td><code>ROBUST_STL</code></td>
+<td>STL-style baseline with outliers</td>
+<td><code>period</code></td>
+</tr>
+<tr>
+<td><code>EMD</code></td>
+<td>adaptive IMF inspection for nonlinear signals</td>
+<td><code>n_imfs</code></td>
+</tr>
+<tr>
+<td><code>CEEMDAN</code></td>
+<td>noise-assisted EMD when mode stability matters</td>
+<td><code>trials</code></td>
+</tr>
+<tr>
+<td><code>VMD</code></td>
+<td>band-limited modes with a chosen mode count</td>
+<td><code>K</code>, <code>alpha</code></td>
+</tr>
+<tr>
+<td><code>WAVELET</code></td>
+<td>multiscale signal inspection</td>
+<td><code>wavelet</code>, <code>level</code></td>
+</tr>
+<tr>
+<td><code>MVMD</code></td>
+<td>optional multivariate VMD through PySDKit</td>
+<td><code>K</code>, <code>alpha</code></td>
+</tr>
+<tr>
+<td><code>MEMD</code></td>
+<td>optional multivariate EMD through PySDKit</td>
+<td><code>primary_period</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="more-detail">More detail</h2>
+<ul>
+<li><a href="../method-matrix/">Method Matrix</a> gives a compact table across input mode,
+  maturity, dependencies, parameters, outputs, and recommended use.</li>
+<li><a href="../config-reference/">Config Reference</a> documents exact
+  <code>DecompositionConfig</code> fields and method-specific parameters.</li>
+<li><a href="../method-references/">Method References</a> collects primary literature and
+  official package links.</li>
+<li><a href="../notebook-gallery/">Notebook Gallery</a> shows runnable plots for the retained
+  method surface.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

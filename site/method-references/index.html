@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Zipeng Wu">
+        <link rel="canonical" href="https://jackson-jjc.github.io/De-time.design/method-references/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Method References - De-Time</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../stylesheets/brand.css" rel="stylesheet">
+        <link href="../stylesheets/extra.css" rel="stylesheet">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+   
+
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">De-Time</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Start <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Install</a>
+</li>
+                                    
+<li>
+    <a href="../quickstart/" class="dropdown-item">Quickstart</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Methods <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../methods/" class="dropdown-item">Methods & Chooser</a>
+</li>
+                                    
+<li>
+    <a href="../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active">Method References</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Workflows <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/univariate/" class="dropdown-item">Univariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/cli-and-profiling/" class="dropdown-item">CLI Guide</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Gallery <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../gallery/ssa/" class="dropdown-item">SSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/std/" class="dropdown-item">STD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stdr/" class="dropdown-item">STDR</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mssa/" class="dropdown-item">MSSA</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/stl/" class="dropdown-item">STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mstl/" class="dropdown-item">MSTL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/robust-stl/" class="dropdown-item">ROBUST_STL</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/emd/" class="dropdown-item">EMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ceemdan/" class="dropdown-item">CEEMDAN</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/vmd/" class="dropdown-item">VMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/wavelet/" class="dropdown-item">WAVELET</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/ma-baseline/" class="dropdown-item">MA_BASELINE</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/mvmd/" class="dropdown-item">MVMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/memd/" class="dropdown-item">MEMD</a>
+</li>
+                                    
+<li>
+    <a href="../gallery/gabor-cluster/" class="dropdown-item">GABOR_CLUSTER</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Reference <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../api/" class="dropdown-item">API Overview</a>
+</li>
+                                    
+<li>
+    <a href="../config-reference/" class="dropdown-item">Config Reference</a>
+</li>
+                                    
+<li>
+    <a href="../machine-api/" class="dropdown-item">Machine API</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Project <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../comparisons/" class="dropdown-item">Compare Alternatives</a>
+</li>
+                                    
+<li>
+    <a href="../reproducibility/" class="dropdown-item">Reproducibility</a>
+</li>
+                                    
+<li>
+    <a href="../architecture/" class="dropdown-item">Architecture</a>
+</li>
+                                    
+<li>
+    <a href="../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
+</li>
+                                    
+<li>
+    <a href="../contributing/" class="dropdown-item">Contributing</a>
+</li>
+                                    
+<li>
+    <a href="../citation/" class="dropdown-item">Citation / Release Notes</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../method-matrix/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../notebook-gallery/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/Jackson-jjc/De-time.design" class="nav-link">Jackson-jjc/De-time.design</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#method-references" class="nav-link">Method References</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#flagship-methods" class="nav-link">Flagship methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#stable-wrappers-and-retained-methods" class="nav-link">Stable wrappers and retained methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#optional-backend-methods" class="nav-link">Optional backend methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#experimental-methods" class="nav-link">Experimental methods</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="method-references">Method References</h1>
+<p>This page is generated from <code>MethodRegistry.list_catalog()</code> so citations,
+upstream package links, and method metadata stay aligned.</p>
+<p>Current package version target: <code>0.1.1</code>.</p>
+<p>These links cover the method families and upstream packages used or compared
+in the public De-Time workflow surface. <code>MA_BASELINE</code> is an in-package smoke
+baseline and therefore has no separate upstream citation.</p>
+<h2 id="flagship-methods">Flagship methods</h2>
+<h3 id="mssa"><code>MSSA</code></h3>
+<ul>
+<li>Summary: Multivariate SSA for shared-structure decomposition across channels.</li>
+<li>Optional/runtime dependencies: none</li>
+</ul>
+<p>Primary references:
+- <a href="https://link.springer.com/book/10.1007/978-3-662-62436-4">Golyandina and Zhigljavsky (2020), Singular Spectrum Analysis for Time Series</a> - Primary SSA/MSSA reference used for the multivariate extension.</p>
+<p>Related packages:
+- <a href="https://github.com/ADSCIAN/ssalib">SSALib</a> - SSA-focused package; useful comparison point for SSA-family workflows.</p>
+<h3 id="ssa"><code>SSA</code></h3>
+<ul>
+<li>Summary: Singular spectrum analysis for structured univariate decomposition.</li>
+<li>Optional/runtime dependencies: none</li>
+</ul>
+<p>Primary references:
+- <a href="https://link.springer.com/book/10.1007/978-3-662-62436-4">Golyandina and Zhigljavsky (2020), Singular Spectrum Analysis for Time Series</a> - Primary SSA reference; the second edition also covers multivariate SSA (MSSA).</p>
+<p>Related packages:
+- <a href="https://github.com/ADSCIAN/ssalib">SSALib</a> - Specialist SSA package used as an external comparison point.</p>
+<h3 id="std"><code>STD</code></h3>
+<ul>
+<li>Summary: Fast seasonal-trend decomposition with dispersion-aware diagnostics.</li>
+<li>Optional/runtime dependencies: none</li>
+</ul>
+<p>Primary references:
+- <a href="https://doi.org/10.48550/arXiv.2204.10398">Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series</a> - Primary reference for STD and the robust seasonal-trend-dispersion family.</p>
+<p>Related packages:
+- none declared</p>
+<h3 id="stdr"><code>STDR</code></h3>
+<ul>
+<li>Summary: Robust seasonal-trend decomposition for noisier periodic signals.</li>
+<li>Optional/runtime dependencies: none</li>
+</ul>
+<p>Primary references:
+- <a href="https://doi.org/10.48550/arXiv.2204.10398">Dudek (2022), STD: A Seasonal-Trend-Dispersion Decomposition of Time Series</a> - Primary reference for STD and the robust seasonal-trend-dispersion family.</p>
+<p>Related packages:
+- none declared</p>
+<h2 id="stable-wrappers-and-retained-methods">Stable wrappers and retained methods</h2>
+<h3 id="ceemdan"><code>CEEMDAN</code></h3>
+<ul>
+<li>Summary: Noise-assisted EMD variant for more stable IMF extraction.</li>
+<li>Optional/runtime dependencies: PyEMD</li>
+</ul>
+<p>Primary references:
+- <a href="https://pyemd.readthedocs.io/en/latest/ceemdan.html">Torres et al. (2011), A complete ensemble empirical mode decomposition with adaptive noise</a> - PyEMD CEEMDAN docs cite the original ICASSP 2011 paper.
+- <a href="https://pyemd.readthedocs.io/en/latest/ceemdan.html">Colominas, Schlotthauer, and Torres (2014), Improved complete ensemble EMD: A suitable tool for biomedical signal processing</a> - Improved CEEMDAN variant adopted by the PyEMD implementation used by De-Time.</p>
+<p>Related packages:
+- <a href="https://github.com/laszukdawid/PyEMD">PyEMD</a> - Upstream Python package wrapped by De-Time for EMD-family methods.</p>
+<h3 id="emd"><code>EMD</code></h3>
+<ul>
+<li>Summary: Empirical mode decomposition under the De-Time result contract.</li>
+<li>Optional/runtime dependencies: PyEMD</li>
+</ul>
+<p>Primary references:
+- <a href="https://doi.org/10.1098/rspa.1998.0193">Huang et al. (1998), The empirical mode decomposition and the Hilbert spectrum for nonlinear and non-stationary time series analysis</a> - Primary empirical mode decomposition reference.</p>
+<p>Related packages:
+- <a href="https://github.com/laszukdawid/PyEMD">PyEMD</a> - Upstream Python package wrapped by De-Time for EMD-family methods.</p>
+<h3 id="ma_baseline"><code>MA_BASELINE</code></h3>
+<ul>
+<li>Summary: Simple moving-average baseline for smoke tests and lightweight workflows.</li>
+<li>Optional/runtime dependencies: none</li>
+</ul>
+<p>Primary references:
+- none declared</p>
+<p>Related packages:
+- none declared</p>
+<h3 id="mstl"><code>MSTL</code></h3>
+<ul>
+<li>Summary: Statsmodels MSTL wrapped into the De-Time workflow surface.</li>
+<li>Optional/runtime dependencies: statsmodels</li>
+</ul>
+<p>Primary references:
+- <a href="https://arxiv.org/abs/2107.13462">Bandara, Hyndman, and Bergmeir (2021), MSTL: A Seasonal-Trend Decomposition Algorithm for Time Series with Multiple Seasonal Patterns</a> - Primary MSTL reference used by the statsmodels implementation.</p>
+<p>Related packages:
+- <a href="https://www.statsmodels.org/">statsmodels</a> - Official project site for the upstream MSTL implementation.</p>
+<h3 id="robust_stl"><code>ROBUST_STL</code></h3>
+<ul>
+<li>Summary: Robust STL-style decomposition wrapped for reproducible workflows.</li>
+<li>Optional/runtime dependencies: statsmodels</li>
+</ul>
+<p>Primary references:
+- <a href="https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.STL.html">Cleveland et al. (1990), STL: A Seasonal-Trend Decomposition Procedure Based on LOESS</a> - Robust STL in De-Time builds on the same STL literature and upstream implementation family.</p>
+<p>Related packages:
+- <a href="https://www.statsmodels.org/">statsmodels</a> - Official project site for the upstream STL implementation family.</p>
+<h3 id="stl"><code>STL</code></h3>
+<ul>
+<li>Summary: Classical STL wrapped into the De-Time workflow contract.</li>
+<li>Optional/runtime dependencies: statsmodels</li>
+</ul>
+<p>Primary references:
+- <a href="https://www.statsmodels.org/dev/generated/statsmodels.tsa.seasonal.STL.html">Cleveland et al. (1990), STL: A Seasonal-Trend Decomposition Procedure Based on LOESS</a> - Statsmodels STL docs cite the original Journal of Official Statistics paper.</p>
+<p>Related packages:
+- <a href="https://www.statsmodels.org/">statsmodels</a> - Official project site for the upstream STL implementation.</p>
+<h3 id="vmd"><code>VMD</code></h3>
+<ul>
+<li>Summary: Variational mode decomposition integrated into the common workflow layer.</li>
+<li>Optional/runtime dependencies: vmdpy, sktime</li>
+</ul>
+<p>Primary references:
+- <a href="https://doi.org/10.1109/TSP.2013.2288675">Dragomiretskiy and Zosso (2014), Variational Mode Decomposition</a> - Primary variational mode decomposition reference.</p>
+<p>Related packages:
+- <a href="https://www.sktime.net/en/stable/">sktime</a> - Current maintained ecosystem for <code>vmdpy</code>, which the archived project directs users toward.
+- <a href="https://github.com/vrcarva/vmdpy">vmdpy</a> - Archived Python VMD package used by the current De-Time wrapper.</p>
+<h3 id="wavelet"><code>WAVELET</code></h3>
+<ul>
+<li>Summary: Wavelet-based decomposition exposed through the common output contract.</li>
+<li>Optional/runtime dependencies: PyWavelets</li>
+</ul>
+<p>Primary references:
+- <a href="https://ieeexplore.ieee.org/document/192463">Mallat (1989), A theory for multiresolution signal decomposition: the wavelet representation</a> - Foundational wavelet multiresolution reference.
+- <a href="https://doi.org/10.21105/joss.01237">Lee et al. (2019), PyWavelets: A Python package for wavelet analysis</a> - Package citation for the upstream wavelet implementation used by De-Time.</p>
+<p>Related packages:
+- <a href="https://pywavelets.readthedocs.io/en/latest/">PyWavelets</a> - Official documentation for the upstream wavelet package.</p>
+<h2 id="optional-backend-methods">Optional backend methods</h2>
+<h3 id="memd"><code>MEMD</code></h3>
+<ul>
+<li>Summary: Optional multivariate EMD backend for shared oscillatory structure.</li>
+<li>Optional/runtime dependencies: PySDKit</li>
+</ul>
+<p>Primary references:
+- <a href="https://doi.org/10.1098/rspa.2009.0502">Rehman and Mandic (2010), Multivariate empirical mode decomposition</a> - Primary MEMD reference for the multivariate EMD extension.</p>
+<p>Related packages:
+- <a href="https://pysdkit.readthedocs.io/en/latest/">PySDKit</a> - Optional multivariate backend used by De-Time for MEMD.</p>
+<h3 id="mvmd"><code>MVMD</code></h3>
+<ul>
+<li>Summary: Optional multivariate VMD backend for shared frequency structure.</li>
+<li>Optional/runtime dependencies: PySDKit</li>
+</ul>
+<p>Primary references:
+- <a href="https://arxiv.org/abs/1907.04509">Rehman and Aftab (2019), Multivariate Variational Mode Decomposition</a> - Primary MVMD reference for the multivariate VMD extension.</p>
+<p>Related packages:
+- <a href="https://pysdkit.readthedocs.io/en/latest/">PySDKit</a> - Optional multivariate backend used by De-Time for MVMD.</p>
+<h2 id="experimental-methods">Experimental methods</h2>
+<h3 id="gabor_cluster"><code>GABOR_CLUSTER</code></h3>
+<ul>
+<li>Summary: Experimental clustering-based decomposition path.</li>
+<li>Optional/runtime dependencies: faiss</li>
+</ul>
+<p>Primary references:
+- <a href="https://www.rctn.org/w/images/b/b6/Gabor.pdf">Gabor (1946), Theory of Communication</a> - Historical reference for the Gabor time-frequency representation family.
+- <a href="https://arxiv.org/abs/2401.08281">Douze et al. (2024), The Faiss library</a> - Reference for the similarity-search backend used by the experimental clustering path.</p>
+<p>Related packages:
+- <a href="https://github.com/facebookresearch/faiss">Faiss</a> - Vector similarity search library required by the experimental clustering backend.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

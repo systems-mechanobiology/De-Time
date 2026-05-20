@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 420" fill="none">
+  <defs>
+    <linearGradient id="orbit" x1="100" x2="760" y1="350" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F4FFF" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#8EC5FF" stop-opacity="0.12"/>
+    </linearGradient>
+  </defs>
+  <g opacity="0.72">
+    <path d="M62 236c52-91 146-148 246-148 88 0 167 42 219 108" stroke="url(#orbit)" stroke-width="2"/>
+    <path d="M178 286c46 41 104 63 166 63 112 0 211-72 259-179" stroke="url(#orbit)" stroke-width="2"/>
+    <path d="M364 84c90-28 194-7 274 61 58 49 93 113 103 178" stroke="url(#orbit)" stroke-width="1.5"/>
+    <path d="M98 324c84 42 192 45 294 1 82-36 142-96 170-165" stroke="url(#orbit)" stroke-width="1.5"/>
+  </g>
+  <g fill="#8EC5FF">
+    <circle cx="156" cy="158" r="3"/>
+    <circle cx="296" cy="90" r="4"/>
+    <circle cx="532" cy="196" r="3.5"/>
+    <circle cx="654" cy="142" r="2.5"/>
+    <circle cx="706" cy="316" r="4"/>
+  </g>
+</svg>

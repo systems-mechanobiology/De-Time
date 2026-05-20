@@ -1,0 +1,247 @@
+{
+  "$defs": {
+    "CatalogLinkModel": {
+      "properties": {
+        "note": {
+          "default": "",
+          "title": "Note",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "url"
+      ],
+      "title": "CatalogLinkModel",
+      "type": "object"
+    },
+    "MethodMetadataModel": {
+      "properties": {
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "dependency_tier": {
+          "enum": [
+            "core",
+            "core-upstream",
+            "optional-backend"
+          ],
+          "title": "Dependency Tier",
+          "type": "string"
+        },
+        "example_config": {
+          "additionalProperties": true,
+          "title": "Example Config",
+          "type": "object"
+        },
+        "family": {
+          "title": "Family",
+          "type": "string"
+        },
+        "implementation": {
+          "enum": [
+            "native-backed",
+            "python",
+            "wrapper",
+            "optional-backend"
+          ],
+          "title": "Implementation",
+          "type": "string"
+        },
+        "input_mode": {
+          "enum": [
+            "univariate",
+            "multivariate",
+            "channelwise"
+          ],
+          "title": "Input Mode",
+          "type": "string"
+        },
+        "maturity": {
+          "enum": [
+            "flagship",
+            "stable",
+            "optional-backend",
+            "experimental"
+          ],
+          "title": "Maturity",
+          "type": "string"
+        },
+        "min_length": {
+          "default": 8,
+          "minimum": 1,
+          "title": "Min Length",
+          "type": "integer"
+        },
+        "multivariate_support": {
+          "enum": [
+            "univariate",
+            "channelwise",
+            "shared-model"
+          ],
+          "title": "Multivariate Support",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "native_backed": {
+          "title": "Native Backed",
+          "type": "boolean"
+        },
+        "not_recommended_for": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Not Recommended For",
+          "type": "array"
+        },
+        "optional_dependencies": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Optional Dependencies",
+          "type": "array"
+        },
+        "output_components": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Output Components",
+          "type": "array"
+        },
+        "package_links": {
+          "items": {
+            "$ref": "#/$defs/CatalogLinkModel"
+          },
+          "title": "Package Links",
+          "type": "array"
+        },
+        "parameter_docs": {
+          "items": {
+            "$ref": "#/$defs/MethodParameterDocModel"
+          },
+          "title": "Parameter Docs",
+          "type": "array"
+        },
+        "recommended_for": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Recommended For",
+          "type": "array"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/$defs/CatalogLinkModel"
+          },
+          "title": "References",
+          "type": "array"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "typical_failure_modes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Typical Failure Modes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "family",
+        "input_mode",
+        "maturity",
+        "implementation",
+        "dependency_tier",
+        "multivariate_support",
+        "native_backed",
+        "summary"
+      ],
+      "title": "MethodMetadataModel",
+      "type": "object"
+    },
+    "MethodParameterDocModel": {
+      "properties": {
+        "common": {
+          "default": true,
+          "title": "Common",
+          "type": "boolean"
+        },
+        "default": {
+          "default": null,
+          "title": "Default"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "required": {
+          "default": false,
+          "title": "Required",
+          "type": "boolean"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "description"
+      ],
+      "title": "MethodParameterDocModel",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "contract_version": {
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "methods": {
+      "items": {
+        "$ref": "#/$defs/MethodMetadataModel"
+      },
+      "title": "Methods",
+      "type": "array"
+    },
+    "package": {
+      "const": "detime",
+      "title": "Package",
+      "type": "string"
+    },
+    "version": {
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "package",
+    "version",
+    "contract_version"
+  ],
+  "title": "MethodRegistryPayloadModel",
+  "type": "object"
+}

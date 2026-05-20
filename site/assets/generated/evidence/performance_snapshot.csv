@@ -1,0 +1,4 @@
+method,python_mean_ms,native_mean_ms,speedup
+SSA,14.239325,1.832575,7.770119
+STD,0.1813,0.031125,5.8249
+STDR,0.1915,0.02055,9.318735

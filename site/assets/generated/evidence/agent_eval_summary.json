@@ -1,0 +1,35 @@
+{
+  "cases": [
+    {
+      "case": "list_methods",
+      "details": "stable catalog keys present",
+      "status": "pass"
+    },
+    {
+      "case": "recommend_method",
+      "details": "MSSA leads multivariate accuracy routing",
+      "status": "pass"
+    },
+    {
+      "case": "get_schema",
+      "details": "method-registry schema resolved",
+      "status": "pass"
+    },
+    {
+      "case": "summary_first_decompose",
+      "details": "summary payload returned without full arrays",
+      "status": "pass"
+    },
+    {
+      "case": "bounded_context_report",
+      "details": "meta payload supports bounded-context reporting",
+      "status": "pass"
+    }
+  ],
+  "generated_at": "2026-04-14T22:07:12.717129+00:00",
+  "summary": {
+    "failed": 0,
+    "passed": 5,
+    "total": 5
+  }
+}
