@@ -24,26 +24,8 @@ $(document).ready(function() {
 
     // Normalize canonical + repo links for GitHub Pages deployment
     try {
-        // Ensure Bootstrap 5 data attribute for consistent styling
-        document.documentElement.setAttribute('data-bs-theme', 'light');
-
         var canonical = window.location.origin + window.location.pathname;
         $('link[rel="canonical"]').attr('href', canonical);
-
-        // Ensure Font Awesome v6 styles are loaded (design uses v6 bundle)
-        var head = document.head || document.getElementsByTagName('head')[0];
-        var ensureStylesheet = function(href) {
-            if (!document.querySelector('link[rel="stylesheet"][href="' + href + '"]')) {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.href = href;
-                head.appendChild(link);
-            }
-        };
-        ensureStylesheet('css/fontawesome.min.css');
-        ensureStylesheet('css/brands.min.css');
-        ensureStylesheet('css/solid.min.css');
-        ensureStylesheet('css/v4-font-face.min.css');
 
         var repoHref = 'https://github.com/systems-mechanobiology/De-Time';
         var repoText = 'systems-mechanobiology/De-Time';
