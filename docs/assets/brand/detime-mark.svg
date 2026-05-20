@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
+  <title id="title">De-Time mark</title>
+  <desc id="desc">De-Time orbit mark for workflow-oriented time-series decomposition.</desc>
+  <defs>
+    <linearGradient id="blue" x1="18" x2="105" y1="108" y2="18" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1F4FFF"/>
+      <stop offset="0.58" stop-color="#2D67FF"/>
+      <stop offset="1" stop-color="#8EC5FF"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="#050816"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M28 80a43 43 0 0 1 12-45 43 43 0 0 1 32-12" stroke="url(#blue)" stroke-width="10"/>
+    <path d="M84 28a34 34 0 0 1 18 30" stroke="#8EC5FF" stroke-width="8"/>
+    <path d="M28 90a51 51 0 0 0 42 20" stroke="#1F4FFF" stroke-width="10"/>
+    <path d="M84 97a35 35 0 0 0 18-24" stroke="#1F4FFF" stroke-width="10"/>
+    <path d="M43 84a28 28 0 0 1 15-50" stroke="#1F4FFF" stroke-width="9"/>
+    <path d="M92 68a18 18 0 0 0 2-10" stroke="#8EC5FF" stroke-width="7"/>
+  </g>
+  <circle cx="63" cy="64" r="6.5" fill="#FFFFFF"/>
+  <circle cx="94" cy="72" r="4.5" fill="#1F4FFF"/>
+</svg>
