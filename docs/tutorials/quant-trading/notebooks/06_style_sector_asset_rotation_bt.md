@@ -12,22 +12,14 @@ ETF rotation is a natural target-weight problem. This notebook constructs De-Tim
 
 ```python
 from pathlib import Path
-import sys
-
-ROOT = Path.cwd()
-while ROOT != ROOT.parent and not (ROOT / "pyproject.toml").exists():
-    ROOT = ROOT.parent
-for path in [ROOT / "src", ROOT / "examples"]:
-    if str(path) not in sys.path:
-        sys.path.insert(0, str(path))
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from quant_trading.data import fetch_yahoo_prices, fetch_yahoo_ohlcv, data_audit_report, DEFAULT_UNIVERSES
-from quant_trading.features import decompose_one_series, walkforward_decompose, build_feature_table
-from quant_trading.signals import (
+from examples.quant_trading.data import fetch_yahoo_prices, fetch_yahoo_ohlcv, data_audit_report, DEFAULT_UNIVERSES
+from examples.quant_trading.features import decompose_one_series, walkforward_decompose, build_feature_table
+from examples.quant_trading.signals import (
     trend_pullback_signals,
     residual_mean_reversion_signals,
     turtle_donchian_signals,
@@ -35,7 +27,9 @@ from quant_trading.signals import (
     cross_sectional_rotation_weights,
     residual_stress_filter,
 )
-from quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
+from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
+
+DATA_CACHE = Path("examples/quant_trading/data/cache")
 ```
 </div>
 
@@ -44,7 +38,7 @@ from quant_trading.backtest import backtest_weights, backtest_long_short_signals
 
 ```python
 universe = DEFAULT_UNIVERSES["us_sector_etfs"]
-prices = fetch_yahoo_prices(universe, start="2016-01-01", cache_dir=ROOT / "examples" / "quant_trading" / "data" / "cache")
+prices = fetch_yahoo_prices(universe, start="2016-01-01", cache_dir=DATA_CACHE)
 features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
 weights = cross_sectional_rotation_weights(prices, features, top_n=3, vol_target=0.12, max_weight=0.40)
 result = backtest_weights(prices, weights, fee_bps=1.0, slippage_bps=2.0)
@@ -143,21 +137,21 @@ weights.tail().style.format("{:.2%}")
 <div class="notebook-html-output">
 <style type="text/css">
 </style>
-<table id="T_eee67">
+<table id="T_2c077">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
-      <th id="T_eee67_level0_col0" class="col_heading level0 col0" >XLK</th>
-      <th id="T_eee67_level0_col1" class="col_heading level0 col1" >XLF</th>
-      <th id="T_eee67_level0_col2" class="col_heading level0 col2" >XLE</th>
-      <th id="T_eee67_level0_col3" class="col_heading level0 col3" >XLV</th>
-      <th id="T_eee67_level0_col4" class="col_heading level0 col4" >XLY</th>
-      <th id="T_eee67_level0_col5" class="col_heading level0 col5" >XLP</th>
-      <th id="T_eee67_level0_col6" class="col_heading level0 col6" >XLI</th>
-      <th id="T_eee67_level0_col7" class="col_heading level0 col7" >XLU</th>
-      <th id="T_eee67_level0_col8" class="col_heading level0 col8" >XLB</th>
-      <th id="T_eee67_level0_col9" class="col_heading level0 col9" >XLRE</th>
-      <th id="T_eee67_level0_col10" class="col_heading level0 col10" >XLC</th>
+      <th id="T_2c077_level0_col0" class="col_heading level0 col0" >XLK</th>
+      <th id="T_2c077_level0_col1" class="col_heading level0 col1" >XLF</th>
+      <th id="T_2c077_level0_col2" class="col_heading level0 col2" >XLE</th>
+      <th id="T_2c077_level0_col3" class="col_heading level0 col3" >XLV</th>
+      <th id="T_2c077_level0_col4" class="col_heading level0 col4" >XLY</th>
+      <th id="T_2c077_level0_col5" class="col_heading level0 col5" >XLP</th>
+      <th id="T_2c077_level0_col6" class="col_heading level0 col6" >XLI</th>
+      <th id="T_2c077_level0_col7" class="col_heading level0 col7" >XLU</th>
+      <th id="T_2c077_level0_col8" class="col_heading level0 col8" >XLB</th>
+      <th id="T_2c077_level0_col9" class="col_heading level0 col9" >XLRE</th>
+      <th id="T_2c077_level0_col10" class="col_heading level0 col10" >XLC</th>
     </tr>
     <tr>
       <th class="index_name level0" >Date</th>
@@ -176,74 +170,74 @@ weights.tail().style.format("{:.2%}")
   </thead>
   <tbody>
     <tr>
-      <th id="T_eee67_level0_row0" class="row_heading level0 row0" >2026-05-18 00:00:00</th>
-      <td id="T_eee67_row0_col0" class="data row0 col0" >0.00%</td>
-      <td id="T_eee67_row0_col1" class="data row0 col1" >0.00%</td>
-      <td id="T_eee67_row0_col2" class="data row0 col2" >36.84%</td>
-      <td id="T_eee67_row0_col3" class="data row0 col3" >0.00%</td>
-      <td id="T_eee67_row0_col4" class="data row0 col4" >0.00%</td>
-      <td id="T_eee67_row0_col5" class="data row0 col5" >0.00%</td>
-      <td id="T_eee67_row0_col6" class="data row0 col6" >0.00%</td>
-      <td id="T_eee67_row0_col7" class="data row0 col7" >36.84%</td>
-      <td id="T_eee67_row0_col8" class="data row0 col8" >36.84%</td>
-      <td id="T_eee67_row0_col9" class="data row0 col9" >0.00%</td>
-      <td id="T_eee67_row0_col10" class="data row0 col10" >0.00%</td>
+      <th id="T_2c077_level0_row0" class="row_heading level0 row0" >2026-05-18 00:00:00</th>
+      <td id="T_2c077_row0_col0" class="data row0 col0" >0.00%</td>
+      <td id="T_2c077_row0_col1" class="data row0 col1" >0.00%</td>
+      <td id="T_2c077_row0_col2" class="data row0 col2" >36.84%</td>
+      <td id="T_2c077_row0_col3" class="data row0 col3" >0.00%</td>
+      <td id="T_2c077_row0_col4" class="data row0 col4" >0.00%</td>
+      <td id="T_2c077_row0_col5" class="data row0 col5" >0.00%</td>
+      <td id="T_2c077_row0_col6" class="data row0 col6" >0.00%</td>
+      <td id="T_2c077_row0_col7" class="data row0 col7" >36.84%</td>
+      <td id="T_2c077_row0_col8" class="data row0 col8" >36.84%</td>
+      <td id="T_2c077_row0_col9" class="data row0 col9" >0.00%</td>
+      <td id="T_2c077_row0_col10" class="data row0 col10" >0.00%</td>
     </tr>
     <tr>
-      <th id="T_eee67_level0_row1" class="row_heading level0 row1" >2026-05-19 00:00:00</th>
-      <td id="T_eee67_row1_col0" class="data row1 col0" >0.00%</td>
-      <td id="T_eee67_row1_col1" class="data row1 col1" >0.00%</td>
-      <td id="T_eee67_row1_col2" class="data row1 col2" >37.01%</td>
-      <td id="T_eee67_row1_col3" class="data row1 col3" >0.00%</td>
-      <td id="T_eee67_row1_col4" class="data row1 col4" >0.00%</td>
-      <td id="T_eee67_row1_col5" class="data row1 col5" >0.00%</td>
-      <td id="T_eee67_row1_col6" class="data row1 col6" >0.00%</td>
-      <td id="T_eee67_row1_col7" class="data row1 col7" >37.01%</td>
-      <td id="T_eee67_row1_col8" class="data row1 col8" >37.01%</td>
-      <td id="T_eee67_row1_col9" class="data row1 col9" >0.00%</td>
-      <td id="T_eee67_row1_col10" class="data row1 col10" >0.00%</td>
+      <th id="T_2c077_level0_row1" class="row_heading level0 row1" >2026-05-19 00:00:00</th>
+      <td id="T_2c077_row1_col0" class="data row1 col0" >0.00%</td>
+      <td id="T_2c077_row1_col1" class="data row1 col1" >0.00%</td>
+      <td id="T_2c077_row1_col2" class="data row1 col2" >37.01%</td>
+      <td id="T_2c077_row1_col3" class="data row1 col3" >0.00%</td>
+      <td id="T_2c077_row1_col4" class="data row1 col4" >0.00%</td>
+      <td id="T_2c077_row1_col5" class="data row1 col5" >0.00%</td>
+      <td id="T_2c077_row1_col6" class="data row1 col6" >0.00%</td>
+      <td id="T_2c077_row1_col7" class="data row1 col7" >37.01%</td>
+      <td id="T_2c077_row1_col8" class="data row1 col8" >37.01%</td>
+      <td id="T_2c077_row1_col9" class="data row1 col9" >0.00%</td>
+      <td id="T_2c077_row1_col10" class="data row1 col10" >0.00%</td>
     </tr>
     <tr>
-      <th id="T_eee67_level0_row2" class="row_heading level0 row2" >2026-05-20 00:00:00</th>
-      <td id="T_eee67_row2_col0" class="data row2 col0" >0.00%</td>
-      <td id="T_eee67_row2_col1" class="data row2 col1" >0.00%</td>
-      <td id="T_eee67_row2_col2" class="data row2 col2" >36.98%</td>
-      <td id="T_eee67_row2_col3" class="data row2 col3" >0.00%</td>
-      <td id="T_eee67_row2_col4" class="data row2 col4" >0.00%</td>
-      <td id="T_eee67_row2_col5" class="data row2 col5" >0.00%</td>
-      <td id="T_eee67_row2_col6" class="data row2 col6" >0.00%</td>
-      <td id="T_eee67_row2_col7" class="data row2 col7" >36.98%</td>
-      <td id="T_eee67_row2_col8" class="data row2 col8" >36.98%</td>
-      <td id="T_eee67_row2_col9" class="data row2 col9" >0.00%</td>
-      <td id="T_eee67_row2_col10" class="data row2 col10" >0.00%</td>
+      <th id="T_2c077_level0_row2" class="row_heading level0 row2" >2026-05-20 00:00:00</th>
+      <td id="T_2c077_row2_col0" class="data row2 col0" >0.00%</td>
+      <td id="T_2c077_row2_col1" class="data row2 col1" >0.00%</td>
+      <td id="T_2c077_row2_col2" class="data row2 col2" >36.98%</td>
+      <td id="T_2c077_row2_col3" class="data row2 col3" >0.00%</td>
+      <td id="T_2c077_row2_col4" class="data row2 col4" >0.00%</td>
+      <td id="T_2c077_row2_col5" class="data row2 col5" >0.00%</td>
+      <td id="T_2c077_row2_col6" class="data row2 col6" >0.00%</td>
+      <td id="T_2c077_row2_col7" class="data row2 col7" >36.98%</td>
+      <td id="T_2c077_row2_col8" class="data row2 col8" >36.98%</td>
+      <td id="T_2c077_row2_col9" class="data row2 col9" >0.00%</td>
+      <td id="T_2c077_row2_col10" class="data row2 col10" >0.00%</td>
     </tr>
     <tr>
-      <th id="T_eee67_level0_row3" class="row_heading level0 row3" >2026-05-21 00:00:00</th>
-      <td id="T_eee67_row3_col0" class="data row3 col0" >0.00%</td>
-      <td id="T_eee67_row3_col1" class="data row3 col1" >0.00%</td>
-      <td id="T_eee67_row3_col2" class="data row3 col2" >37.04%</td>
-      <td id="T_eee67_row3_col3" class="data row3 col3" >0.00%</td>
-      <td id="T_eee67_row3_col4" class="data row3 col4" >0.00%</td>
-      <td id="T_eee67_row3_col5" class="data row3 col5" >0.00%</td>
-      <td id="T_eee67_row3_col6" class="data row3 col6" >0.00%</td>
-      <td id="T_eee67_row3_col7" class="data row3 col7" >37.04%</td>
-      <td id="T_eee67_row3_col8" class="data row3 col8" >37.04%</td>
-      <td id="T_eee67_row3_col9" class="data row3 col9" >0.00%</td>
-      <td id="T_eee67_row3_col10" class="data row3 col10" >0.00%</td>
+      <th id="T_2c077_level0_row3" class="row_heading level0 row3" >2026-05-21 00:00:00</th>
+      <td id="T_2c077_row3_col0" class="data row3 col0" >0.00%</td>
+      <td id="T_2c077_row3_col1" class="data row3 col1" >0.00%</td>
+      <td id="T_2c077_row3_col2" class="data row3 col2" >37.04%</td>
+      <td id="T_2c077_row3_col3" class="data row3 col3" >0.00%</td>
+      <td id="T_2c077_row3_col4" class="data row3 col4" >0.00%</td>
+      <td id="T_2c077_row3_col5" class="data row3 col5" >0.00%</td>
+      <td id="T_2c077_row3_col6" class="data row3 col6" >0.00%</td>
+      <td id="T_2c077_row3_col7" class="data row3 col7" >37.04%</td>
+      <td id="T_2c077_row3_col8" class="data row3 col8" >37.04%</td>
+      <td id="T_2c077_row3_col9" class="data row3 col9" >0.00%</td>
+      <td id="T_2c077_row3_col10" class="data row3 col10" >0.00%</td>
     </tr>
     <tr>
-      <th id="T_eee67_level0_row4" class="row_heading level0 row4" >2026-05-22 00:00:00</th>
-      <td id="T_eee67_row4_col0" class="data row4 col0" >0.00%</td>
-      <td id="T_eee67_row4_col1" class="data row4 col1" >0.00%</td>
-      <td id="T_eee67_row4_col2" class="data row4 col2" >37.04%</td>
-      <td id="T_eee67_row4_col3" class="data row4 col3" >0.00%</td>
-      <td id="T_eee67_row4_col4" class="data row4 col4" >0.00%</td>
-      <td id="T_eee67_row4_col5" class="data row4 col5" >0.00%</td>
-      <td id="T_eee67_row4_col6" class="data row4 col6" >0.00%</td>
-      <td id="T_eee67_row4_col7" class="data row4 col7" >37.04%</td>
-      <td id="T_eee67_row4_col8" class="data row4 col8" >37.04%</td>
-      <td id="T_eee67_row4_col9" class="data row4 col9" >0.00%</td>
-      <td id="T_eee67_row4_col10" class="data row4 col10" >0.00%</td>
+      <th id="T_2c077_level0_row4" class="row_heading level0 row4" >2026-05-22 00:00:00</th>
+      <td id="T_2c077_row4_col0" class="data row4 col0" >0.00%</td>
+      <td id="T_2c077_row4_col1" class="data row4 col1" >0.00%</td>
+      <td id="T_2c077_row4_col2" class="data row4 col2" >37.04%</td>
+      <td id="T_2c077_row4_col3" class="data row4 col3" >0.00%</td>
+      <td id="T_2c077_row4_col4" class="data row4 col4" >0.00%</td>
+      <td id="T_2c077_row4_col5" class="data row4 col5" >0.00%</td>
+      <td id="T_2c077_row4_col6" class="data row4 col6" >0.00%</td>
+      <td id="T_2c077_row4_col7" class="data row4 col7" >37.04%</td>
+      <td id="T_2c077_row4_col8" class="data row4 col8" >37.04%</td>
+      <td id="T_2c077_row4_col9" class="data row4 col9" >0.00%</td>
+      <td id="T_2c077_row4_col10" class="data row4 col10" >0.00%</td>
     </tr>
   </tbody>
 </table>
@@ -283,7 +277,7 @@ plt.show()
 <div class="notebook-input-label">In [5]</div>
 
 ```python
-from quant_trading.frameworks import run_bt_target_weights
+from examples.quant_trading.frameworks import run_bt_target_weights
 
 # bt_result = run_bt_target_weights(prices, weights, name="detime_sector_rotation")
 # bt_result.display()

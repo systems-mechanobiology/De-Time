@@ -12,22 +12,14 @@ This notebook combines Korean equities, US ETFs, and crypto pairs. The purpose i
 
 ```python
 from pathlib import Path
-import sys
-
-ROOT = Path.cwd()
-while ROOT != ROOT.parent and not (ROOT / "pyproject.toml").exists():
-    ROOT = ROOT.parent
-for path in [ROOT / "src", ROOT / "examples"]:
-    if str(path) not in sys.path:
-        sys.path.insert(0, str(path))
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from quant_trading.data import fetch_yahoo_prices, fetch_yahoo_ohlcv, data_audit_report, DEFAULT_UNIVERSES
-from quant_trading.features import decompose_one_series, walkforward_decompose, build_feature_table
-from quant_trading.signals import (
+from examples.quant_trading.data import fetch_yahoo_prices, fetch_yahoo_ohlcv, data_audit_report, DEFAULT_UNIVERSES
+from examples.quant_trading.features import decompose_one_series, walkforward_decompose, build_feature_table
+from examples.quant_trading.signals import (
     trend_pullback_signals,
     residual_mean_reversion_signals,
     turtle_donchian_signals,
@@ -35,7 +27,9 @@ from quant_trading.signals import (
     cross_sectional_rotation_weights,
     residual_stress_filter,
 )
-from quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
+from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
+
+DATA_CACHE = Path("examples/quant_trading/data/cache")
 ```
 </div>
 
@@ -44,7 +38,7 @@ from quant_trading.backtest import backtest_weights, backtest_long_short_signals
 
 ```python
 tickers = ["005930.KS", "000660.KS", "035420.KS", "SPY", "QQQ", "BTC-USD", "ETH-USD"]
-prices = fetch_yahoo_prices(tickers, start="2018-01-01", cache_dir=ROOT / "examples" / "quant_trading" / "data" / "cache", min_observations=500)
+prices = fetch_yahoo_prices(tickers, start="2018-01-01", cache_dir=DATA_CACHE, min_observations=500)
 data_audit_report(prices)
 ```
 

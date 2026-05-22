@@ -86,3 +86,19 @@ def test_rendered_column_notebooks_do_not_expose_local_paths() -> None:
             page = page_path.read_text(encoding="utf-8")
             for fragment in banned_fragments:
                 assert fragment not in page, f"{page_path} exposes local path fragment {fragment}"
+
+
+def test_column_notebooks_do_not_render_path_bootstrap() -> None:
+    roots = [
+        ROOT / "examples" / "notebooks" / "quant_trading",
+        ROOT / "examples" / "notebooks" / "hot_trends",
+        ROOT / "docs" / "tutorials" / "quant-trading" / "notebooks",
+        ROOT / "docs" / "tutorials" / "hot-trend-lab" / "notebooks",
+    ]
+    banned_fragments = ["ROOT = Path.cwd()", "repo_root = Path.cwd()", "sys.path", "ROOT /", "repo_root /"]
+
+    for root in roots:
+        for path in sorted(root.glob("*.ipynb")) + sorted(root.glob("*.md")):
+            text = path.read_text(encoding="utf-8")
+            for fragment in banned_fragments:
+                assert fragment not in text, f"{path} exposes notebook path bootstrap fragment {fragment}"
