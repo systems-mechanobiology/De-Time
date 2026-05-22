@@ -17,6 +17,7 @@ from pathlib import Path
 import os
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -51,6 +52,7 @@ from examples.hot_trends.scoring import article_language_guardrails
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
+plt.rcParams.update({"axes.grid": True})
 
 CACHE_DIR = repo_root / "examples" / "hot_trends" / "cache"
 OUTPUT_DIR = repo_root / "examples" / "hot_trends" / "outputs"
@@ -636,10 +638,39 @@ summary
 </div>
 </div>
 
-## 5. Residual shock events
+## Visualization: Wikimedia attention components
+
+Top article panels reveal the transformed pageview trend and residual attention shocks.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [6]</div>
+
+```python
+top_articles = summary["article"].head(3).tolist()
+fig, axes = plt.subplots(len(top_articles), 2, figsize=(11, max(3.0, 2.6 * len(top_articles))), squeeze=False)
+for row, article in enumerate(top_articles):
+    panel = components.loc[components["article"].eq(article)].sort_values("date").copy()
+    panel["date"] = pd.to_datetime(panel["date"])
+    axes[row, 0].plot(panel["date"], panel["observed"], label="observed", linewidth=1.6)
+    axes[row, 0].plot(panel["date"], panel["trend"], label="trend", linewidth=1.8)
+    axes[row, 0].set_title(article)
+    axes[row, 1].bar(panel["date"], panel["residual"], color=np.where(panel["residual"] >= 0, "tab:red", "tab:blue"), width=1.0)
+    axes[row, 1].set_title("residual")
+axes[0, 0].legend(loc="best")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/05_wikipedia_attention_hype_decay/cell-012-output-01.png" alt="Notebook output cell 12" class="notebook-output-image">
+</div>
+</div>
+
+## 5. Residual shock events
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [7]</div>
 
 ```python
 events = residual_event_table(components, entity_col="article", time_col="date", top_n=25)
@@ -991,7 +1022,7 @@ events
 A simple decay proxy: after each article's largest residual event, count days until residual drops below half of that peak.
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [7]</div>
+<div class="notebook-input-label">In [8]</div>
 
 ```python
 decay_rows = []
@@ -1087,8 +1118,34 @@ decay
 </div>
 </div>
 
+## Visualization: hype decay half-life
+
+The bar chart exposes which attention spikes decayed quickly and which stayed elevated or remain unresolved.
+
 <div class="notebook-cell">
-<div class="notebook-input-label">In [8]</div>
+<div class="notebook-input-label">In [9]</div>
+
+```python
+decay_plot = decay.copy()
+decay_plot["attention_half_life_days"] = pd.to_numeric(decay_plot["attention_half_life_days"], errors="coerce")
+decay_plot = decay_plot.sort_values("peak_residual_abs")
+fig, axes = plt.subplots(1, 2, figsize=(12, 4.2))
+decay_plot.plot(kind="barh", x="article", y="peak_residual_abs", ax=axes[0], color="tab:red", legend=False, title="Largest residual spike")
+decay_plot.assign(attention_half_life_days=decay_plot["attention_half_life_days"].fillna(0)).plot(kind="barh", x="article", y="attention_half_life_days", ax=axes[1], color="tab:blue", legend=False, title="Days to half residual")
+axes[0].set_ylabel("")
+axes[1].set_ylabel("")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/05_wikipedia_attention_hype_decay/cell-018-output-01.png" alt="Notebook output cell 18" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [10]</div>
 
 ```python
 save_table(audit, "05_wikipedia_attention_audit")

@@ -78,19 +78,19 @@ result.stats_frame()
   <tbody>
     <tr>
       <th>total_return</th>
-      <td>4.315378</td>
+      <td>4.418421</td>
     </tr>
     <tr>
       <th>cagr</th>
-      <td>0.195287</td>
+      <td>0.197740</td>
     </tr>
     <tr>
       <th>volatility</th>
-      <td>0.157839</td>
+      <td>0.157338</td>
     </tr>
     <tr>
       <th>sharpe</th>
-      <td>1.209254</td>
+      <td>1.225659</td>
     </tr>
     <tr>
       <th>max_drawdown</th>
@@ -98,19 +98,19 @@ result.stats_frame()
     </tr>
     <tr>
       <th>calmar</th>
-      <td>0.678168</td>
+      <td>0.686687</td>
     </tr>
     <tr>
       <th>hit_rate</th>
-      <td>0.491525</td>
+      <td>0.491949</td>
     </tr>
     <tr>
       <th>average_turnover</th>
-      <td>0.040488</td>
+      <td>0.040126</td>
     </tr>
     <tr>
       <th>average_gross_exposure</th>
-      <td>0.528434</td>
+      <td>0.533525</td>
     </tr>
     <tr>
       <th>fee_bps</th>
@@ -158,7 +158,7 @@ weights.tail(10)
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Ticker</th>
+      <th></th>
       <th>AAPL</th>
       <th>MSFT</th>
       <th>NVDA</th>
@@ -322,8 +322,32 @@ weights.tail(10)
 </div>
 </div>
 
+## Visualization: cross-sectional allocation snapshot
+
+The latest allocation and the recent weight history make the factor-selection surface visible.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [4]</div>
+
+```python
+latest_weights = weights.dropna(how="all").tail(1).T.iloc[:, 0].sort_values()
+fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+latest_weights.plot(kind="barh", ax=axes[0], title="Latest target weights")
+weights.tail(252).plot.area(ax=axes[1], title="Recent target allocation history", linewidth=0.0)
+axes[0].set_xlabel("weight")
+axes[1].set_ylabel("weight")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/05_cross_sectional_factor_selection/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
 
 ```python
 result.equity.plot(figsize=(10, 4), title="Cross-sectional De-Time rotation")
@@ -332,6 +356,30 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-![Notebook output cell 6](../../../assets/generated/notebooks/columns/quant-trading/05_cross_sectional_factor_selection/cell-006-output-01.png)
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/05_cross_sectional_factor_selection/cell-008-output-01.png" alt="Notebook output cell 8" class="notebook-output-image">
+</div>
+</div>
+
+## Visualization: rotation drawdown
+
+A drawdown panel keeps the headline equity curve tied to risk.
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [6]</div>
+
+```python
+drawdown = result.equity / result.equity.cummax() - 1.0
+fig, axes = plt.subplots(2, 1, figsize=(10, 5.2), sharex=True)
+result.equity.plot(ax=axes[0], title="Cross-sectional De-Time rotation equity")
+drawdown.plot(ax=axes[1], color="tab:red", title="Cross-sectional rotation drawdown")
+axes[0].set_ylabel("equity")
+axes[1].set_ylabel("drawdown")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/05_cross_sectional_factor_selection/cell-010-output-01.png" alt="Notebook output cell 10" class="notebook-output-image">
 </div>
 </div>

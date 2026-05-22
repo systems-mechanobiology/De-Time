@@ -164,11 +164,6 @@ pd.DataFrame({
       <th>entries_per_asset</th>
       <th>exits_per_asset</th>
     </tr>
-    <tr>
-      <th>Ticker</th>
-      <th></th>
-      <th></th>
-    </tr>
   </thead>
   <tbody>
     <tr>
@@ -198,8 +193,42 @@ pd.DataFrame({
 </div>
 </div>
 
+## Visualization: Donchian breakout channels
+
+The SPY channel plot shows how the De-Time trend filter gates classic Donchian entries and exits.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [4]</div>
+
+```python
+asset = "SPY"
+window = prices.index[-504:]
+price_line = prices.loc[window, asset]
+upper = prices[asset].rolling(55, min_periods=27).max().shift(1).reindex(window)
+lower = prices[asset].rolling(20, min_periods=10).min().shift(1).reindex(window)
+entry_points = entries.loc[window, asset].fillna(False).astype(bool)
+exit_points = exits.loc[window, asset].fillna(False).astype(bool)
+fig, ax = plt.subplots(figsize=(10, 4))
+price_line.plot(ax=ax, color="tab:blue", linewidth=1.4, label="SPY price")
+upper.plot(ax=ax, color="tab:green", linestyle="--", linewidth=1.0, label="55-day entry channel")
+lower.plot(ax=ax, color="tab:red", linestyle="--", linewidth=1.0, label="20-day exit channel")
+ax.scatter(entry_points[entry_points].index, price_line.loc[entry_points[entry_points].index], marker="^", color="tab:green", s=45, zorder=3)
+ax.scatter(exit_points[exit_points].index, price_line.loc[exit_points[exit_points].index], marker="v", color="tab:red", s=45, zorder=3)
+ax.set_title("SPY Donchian channels with De-Time-filtered signals")
+ax.set_ylabel("price")
+ax.legend(loc="best")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/03_turtle_donchian_trend_filter/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
 
 ```python
 result.equity.plot(figsize=(10, 4), title="De-Time-filtered Donchian breakout")
@@ -208,6 +237,6 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-![Notebook output cell 6](../../../assets/generated/notebooks/columns/quant-trading/03_turtle_donchian_trend_filter/cell-006-output-01.png)
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/03_turtle_donchian_trend_filter/cell-008-output-01.png" alt="Notebook output cell 8" class="notebook-output-image">
 </div>
 </div>

@@ -131,6 +131,31 @@ pd.DataFrame({
 </div>
 </div>
 
+## Visualization: configured universe coverage
+
+The bar chart makes the tutorial universe breadth visible before any strategy notebook runs.
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [3]</div>
+
+```python
+universe_counts = pd.Series(
+    {name: len(tickers) for name, tickers in DEFAULT_UNIVERSES.items()},
+    name="ticker_count",
+).sort_values()
+ax = universe_counts.plot(kind="barh", figsize=(8, 3.2), title="Configured tutorial universe sizes")
+ax.set_xlabel("ticker count")
+ax.set_ylabel("universe")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/00_quant_trading_column_overview/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
 ## Recommended reading order
 
 1. Real data and De-Time feature factory.
@@ -144,7 +169,7 @@ pd.DataFrame({
 9. Walk-forward validation and audit.
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [3]</div>
+<div class="notebook-input-label">In [4]</div>
 
 ```python
 # Optional dependency installation, run in a shell:

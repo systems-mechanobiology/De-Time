@@ -106,7 +106,12 @@ def _write_image_output(
     notebook_asset_dir.mkdir(parents=True, exist_ok=True)
     image_path = notebook_asset_dir / f"cell-{cell_index:03d}-output-{output_index:02d}.png"
     image_path.write_bytes(base64.b64decode(png_data))
-    return f"![{alt}]({_relative_link(image_path, page_path.parent)})"
+    # MkDocs serves each markdown page as page-name/index.html when directory URLs
+    # are enabled, so raw HTML asset URLs need one more parent hop than markdown
+    # source-relative links.
+    src = html.escape("../" + _relative_link(image_path, page_path.parent), quote=True)
+    alt_text = html.escape(alt, quote=True)
+    return f'<img src="{src}" alt="{alt_text}" class="notebook-output-image">'
 
 
 def _render_output(

@@ -17,6 +17,7 @@ from pathlib import Path
 import os
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -51,6 +52,7 @@ from examples.hot_trends.scoring import article_language_guardrails
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
+plt.rcParams.update({"axes.grid": True})
 
 CACHE_DIR = repo_root / "examples" / "hot_trends" / "cache"
 OUTPUT_DIR = repo_root / "examples" / "hot_trends" / "outputs"
@@ -190,8 +192,8 @@ metadata
     <tr>
       <th>0</th>
       <td>langchain-ai/langchain</td>
-      <td>137396</td>
-      <td>22727</td>
+      <td>137403</td>
+      <td>22730</td>
       <td>582</td>
       <td>2026-05-22T15:39:13Z</td>
       <td>GitHub REST API</td>
@@ -199,16 +201,16 @@ metadata
     <tr>
       <th>3</th>
       <td>browser-use/browser-use</td>
-      <td>95098</td>
+      <td>95101</td>
       <td>10714</td>
-      <td>228</td>
-      <td>2026-05-21T17:15:47Z</td>
+      <td>227</td>
+      <td>2026-05-22T16:59:21Z</td>
       <td>GitHub REST API</td>
     </tr>
     <tr>
       <th>4</th>
       <td>modelcontextprotocol/servers</td>
-      <td>86086</td>
+      <td>86090</td>
       <td>10786</td>
       <td>509</td>
       <td>2026-05-21T18:10:38Z</td>
@@ -217,8 +219,8 @@ metadata
     <tr>
       <th>1</th>
       <td>microsoft/autogen</td>
-      <td>58295</td>
-      <td>8801</td>
+      <td>58298</td>
+      <td>8802</td>
       <td>843</td>
       <td>2026-04-15T11:59:09Z</td>
       <td>GitHub REST API</td>
@@ -226,10 +228,10 @@ metadata
     <tr>
       <th>2</th>
       <td>crewAIInc/crewAI</td>
-      <td>51970</td>
-      <td>7205</td>
+      <td>51973</td>
+      <td>7206</td>
       <td>356</td>
-      <td>2026-05-22T15:50:25Z</td>
+      <td>2026-05-22T16:22:32Z</td>
       <td>GitHub REST API</td>
     </tr>
   </tbody>
@@ -616,10 +618,34 @@ daily.head(20)
 </div>
 </div>
 
-## 5. Decompose star velocity if enough days exist
+## Visualization: GitHub star velocity
+
+The rolling star-velocity chart turns raw stargazer timestamps into a comparable attention signal.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [6]</div>
+
+```python
+star_velocity = daily.copy()
+star_velocity["date"] = pd.to_datetime(star_velocity["date"])
+velocity_pivot = star_velocity.pivot_table(index="date", columns="repo", values="count", aggfunc="sum").fillna(0).sort_index()
+ax = velocity_pivot.rolling(7, min_periods=1).mean().plot(figsize=(11, 4), title="7-day average GitHub star velocity")
+ax.set_ylabel("stars/day")
+ax.set_xlabel("date")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/04_github_ai_agent_star_velocity/cell-012-output-01.png" alt="Notebook output cell 12" class="notebook-output-image">
+</div>
+</div>
+
+## 5. Decompose star velocity if enough days exist
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [7]</div>
 
 ```python
 coverage = source_audit_table(daily, value_col="count", entity_col="repo", time_col="date")
@@ -723,8 +749,44 @@ coverage
 </div>
 </div>
 
+## Visualization: GitHub coverage and residual events
+
+Coverage bars show whether decomposition is defensible; the event plot highlights unusually large residual days when available.
+
 <div class="notebook-cell">
-<div class="notebook-input-label">In [7]</div>
+<div class="notebook-input-label">In [8]</div>
+
+```python
+coverage_plot = coverage.sort_values("observations")
+fig, axes = plt.subplots(1, 2, figsize=(12, 4.5))
+coverage_plot.plot(kind="barh", x="series", y="observations", ax=axes[0], color="tab:blue", legend=False, title="Observed stargazer days")
+axes[0].axvline(14, color="tab:red", linestyle="--", linewidth=1.0)
+axes[0].set_ylabel("")
+if events.empty:
+    axes[1].axis("off")
+    axes[1].set_title("No residual events until coverage threshold is met")
+else:
+    event_plot = events.copy()
+    event_plot["date"] = pd.to_datetime(event_plot["date"])
+    repo_order = coverage_plot["series"].tolist()
+    event_plot["repo_code"] = pd.Categorical(event_plot["repo"], categories=repo_order, ordered=True).codes
+    sc = axes[1].scatter(event_plot["date"], event_plot["repo_code"], s=50 + event_plot["abs_residual_z"] * 35, c=event_plot["residual_z"], cmap="RdBu_r")
+    axes[1].set_yticks(range(len(repo_order)))
+    axes[1].set_yticklabels(repo_order)
+    axes[1].set_title("Residual star-velocity events")
+    fig.colorbar(sc, ax=axes[1], label="residual z")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/04_github_ai_agent_star_velocity/cell-016-output-01.png" alt="Notebook output cell 16" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [9]</div>
 
 ```python
 summary
@@ -829,7 +891,7 @@ summary
 ## 6. Article-safe interpretation
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [8]</div>
+<div class="notebook-input-label">In [10]</div>
 
 ```python
 guardrails = article_language_guardrails()
@@ -895,7 +957,7 @@ guardrails
 </div>
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [9]</div>
+<div class="notebook-input-label">In [11]</div>
 
 ```python
 save_table(metadata, "04_github_repo_metadata")

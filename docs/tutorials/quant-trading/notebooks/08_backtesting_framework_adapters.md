@@ -130,8 +130,33 @@ pandas_result.stats_frame()
 </div>
 </div>
 
+## Visualization: pandas baseline diagnostics
+
+The pandas baseline now shows both risk and signal density before optional framework adapters are introduced.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [3]</div>
+
+```python
+drawdown = pandas_result.equity / pandas_result.equity.cummax() - 1.0
+signal_counts = pd.DataFrame({"entries": entries.sum(), "exits": exits.sum()})
+fig, axes = plt.subplots(1, 2, figsize=(11, 4))
+drawdown.plot(ax=axes[0], color="tab:red", title="Pandas baseline drawdown")
+signal_counts.plot(kind="bar", ax=axes[1], title="Signal counts by asset")
+axes[0].set_ylabel("drawdown")
+axes[1].set_ylabel("count")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/08_backtesting_framework_adapters/cell-006-output-01.png" alt="Notebook output cell 6" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
 
 ```python
 from quant_trading.frameworks import (
@@ -187,7 +212,7 @@ pd.DataFrame({"template": [path.relative_to(ROOT).as_posix() for path in templat
 </div>
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [4]</div>
+<div class="notebook-input-label">In [5]</div>
 
 ```python
 # Optional examples after installing the relevant packages:

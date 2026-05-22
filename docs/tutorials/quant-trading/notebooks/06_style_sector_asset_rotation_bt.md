@@ -78,19 +78,19 @@ result.stats_frame()
   <tbody>
     <tr>
       <th>total_return</th>
-      <td>1.418749</td>
+      <td>1.441311</td>
     </tr>
     <tr>
       <th>cagr</th>
-      <td>0.088950</td>
+      <td>0.089926</td>
     </tr>
     <tr>
       <th>volatility</th>
-      <td>0.125759</td>
+      <td>0.125760</td>
     </tr>
     <tr>
       <th>sharpe</th>
-      <td>0.740762</td>
+      <td>0.747884</td>
     </tr>
     <tr>
       <th>max_drawdown</th>
@@ -98,19 +98,19 @@ result.stats_frame()
     </tr>
     <tr>
       <th>calmar</th>
-      <td>0.459403</td>
+      <td>0.464444</td>
     </tr>
     <tr>
       <th>hit_rate</th>
-      <td>0.496172</td>
+      <td>0.496937</td>
     </tr>
     <tr>
       <th>average_turnover</th>
-      <td>0.064707</td>
+      <td>0.065008</td>
     </tr>
     <tr>
       <th>average_gross_exposure</th>
-      <td>0.852037</td>
+      <td>0.853225</td>
     </tr>
     <tr>
       <th>fee_bps</th>
@@ -143,21 +143,21 @@ weights.tail().style.format("{:.2%}")
 <div class="notebook-html-output">
 <style type="text/css">
 </style>
-<table id="T_9ac4f">
+<table id="T_eee67">
   <thead>
     <tr>
-      <th class="index_name level0" >Ticker</th>
-      <th id="T_9ac4f_level0_col0" class="col_heading level0 col0" >XLK</th>
-      <th id="T_9ac4f_level0_col1" class="col_heading level0 col1" >XLF</th>
-      <th id="T_9ac4f_level0_col2" class="col_heading level0 col2" >XLE</th>
-      <th id="T_9ac4f_level0_col3" class="col_heading level0 col3" >XLV</th>
-      <th id="T_9ac4f_level0_col4" class="col_heading level0 col4" >XLY</th>
-      <th id="T_9ac4f_level0_col5" class="col_heading level0 col5" >XLP</th>
-      <th id="T_9ac4f_level0_col6" class="col_heading level0 col6" >XLI</th>
-      <th id="T_9ac4f_level0_col7" class="col_heading level0 col7" >XLU</th>
-      <th id="T_9ac4f_level0_col8" class="col_heading level0 col8" >XLB</th>
-      <th id="T_9ac4f_level0_col9" class="col_heading level0 col9" >XLRE</th>
-      <th id="T_9ac4f_level0_col10" class="col_heading level0 col10" >XLC</th>
+      <th class="blank level0" >&nbsp;</th>
+      <th id="T_eee67_level0_col0" class="col_heading level0 col0" >XLK</th>
+      <th id="T_eee67_level0_col1" class="col_heading level0 col1" >XLF</th>
+      <th id="T_eee67_level0_col2" class="col_heading level0 col2" >XLE</th>
+      <th id="T_eee67_level0_col3" class="col_heading level0 col3" >XLV</th>
+      <th id="T_eee67_level0_col4" class="col_heading level0 col4" >XLY</th>
+      <th id="T_eee67_level0_col5" class="col_heading level0 col5" >XLP</th>
+      <th id="T_eee67_level0_col6" class="col_heading level0 col6" >XLI</th>
+      <th id="T_eee67_level0_col7" class="col_heading level0 col7" >XLU</th>
+      <th id="T_eee67_level0_col8" class="col_heading level0 col8" >XLB</th>
+      <th id="T_eee67_level0_col9" class="col_heading level0 col9" >XLRE</th>
+      <th id="T_eee67_level0_col10" class="col_heading level0 col10" >XLC</th>
     </tr>
     <tr>
       <th class="index_name level0" >Date</th>
@@ -176,74 +176,74 @@ weights.tail().style.format("{:.2%}")
   </thead>
   <tbody>
     <tr>
-      <th id="T_9ac4f_level0_row0" class="row_heading level0 row0" >2026-05-18 00:00:00</th>
-      <td id="T_9ac4f_row0_col0" class="data row0 col0" >0.00%</td>
-      <td id="T_9ac4f_row0_col1" class="data row0 col1" >0.00%</td>
-      <td id="T_9ac4f_row0_col2" class="data row0 col2" >36.84%</td>
-      <td id="T_9ac4f_row0_col3" class="data row0 col3" >0.00%</td>
-      <td id="T_9ac4f_row0_col4" class="data row0 col4" >0.00%</td>
-      <td id="T_9ac4f_row0_col5" class="data row0 col5" >0.00%</td>
-      <td id="T_9ac4f_row0_col6" class="data row0 col6" >0.00%</td>
-      <td id="T_9ac4f_row0_col7" class="data row0 col7" >36.84%</td>
-      <td id="T_9ac4f_row0_col8" class="data row0 col8" >36.84%</td>
-      <td id="T_9ac4f_row0_col9" class="data row0 col9" >0.00%</td>
-      <td id="T_9ac4f_row0_col10" class="data row0 col10" >0.00%</td>
+      <th id="T_eee67_level0_row0" class="row_heading level0 row0" >2026-05-18 00:00:00</th>
+      <td id="T_eee67_row0_col0" class="data row0 col0" >0.00%</td>
+      <td id="T_eee67_row0_col1" class="data row0 col1" >0.00%</td>
+      <td id="T_eee67_row0_col2" class="data row0 col2" >36.84%</td>
+      <td id="T_eee67_row0_col3" class="data row0 col3" >0.00%</td>
+      <td id="T_eee67_row0_col4" class="data row0 col4" >0.00%</td>
+      <td id="T_eee67_row0_col5" class="data row0 col5" >0.00%</td>
+      <td id="T_eee67_row0_col6" class="data row0 col6" >0.00%</td>
+      <td id="T_eee67_row0_col7" class="data row0 col7" >36.84%</td>
+      <td id="T_eee67_row0_col8" class="data row0 col8" >36.84%</td>
+      <td id="T_eee67_row0_col9" class="data row0 col9" >0.00%</td>
+      <td id="T_eee67_row0_col10" class="data row0 col10" >0.00%</td>
     </tr>
     <tr>
-      <th id="T_9ac4f_level0_row1" class="row_heading level0 row1" >2026-05-19 00:00:00</th>
-      <td id="T_9ac4f_row1_col0" class="data row1 col0" >0.00%</td>
-      <td id="T_9ac4f_row1_col1" class="data row1 col1" >0.00%</td>
-      <td id="T_9ac4f_row1_col2" class="data row1 col2" >37.01%</td>
-      <td id="T_9ac4f_row1_col3" class="data row1 col3" >0.00%</td>
-      <td id="T_9ac4f_row1_col4" class="data row1 col4" >0.00%</td>
-      <td id="T_9ac4f_row1_col5" class="data row1 col5" >0.00%</td>
-      <td id="T_9ac4f_row1_col6" class="data row1 col6" >0.00%</td>
-      <td id="T_9ac4f_row1_col7" class="data row1 col7" >37.01%</td>
-      <td id="T_9ac4f_row1_col8" class="data row1 col8" >37.01%</td>
-      <td id="T_9ac4f_row1_col9" class="data row1 col9" >0.00%</td>
-      <td id="T_9ac4f_row1_col10" class="data row1 col10" >0.00%</td>
+      <th id="T_eee67_level0_row1" class="row_heading level0 row1" >2026-05-19 00:00:00</th>
+      <td id="T_eee67_row1_col0" class="data row1 col0" >0.00%</td>
+      <td id="T_eee67_row1_col1" class="data row1 col1" >0.00%</td>
+      <td id="T_eee67_row1_col2" class="data row1 col2" >37.01%</td>
+      <td id="T_eee67_row1_col3" class="data row1 col3" >0.00%</td>
+      <td id="T_eee67_row1_col4" class="data row1 col4" >0.00%</td>
+      <td id="T_eee67_row1_col5" class="data row1 col5" >0.00%</td>
+      <td id="T_eee67_row1_col6" class="data row1 col6" >0.00%</td>
+      <td id="T_eee67_row1_col7" class="data row1 col7" >37.01%</td>
+      <td id="T_eee67_row1_col8" class="data row1 col8" >37.01%</td>
+      <td id="T_eee67_row1_col9" class="data row1 col9" >0.00%</td>
+      <td id="T_eee67_row1_col10" class="data row1 col10" >0.00%</td>
     </tr>
     <tr>
-      <th id="T_9ac4f_level0_row2" class="row_heading level0 row2" >2026-05-20 00:00:00</th>
-      <td id="T_9ac4f_row2_col0" class="data row2 col0" >0.00%</td>
-      <td id="T_9ac4f_row2_col1" class="data row2 col1" >0.00%</td>
-      <td id="T_9ac4f_row2_col2" class="data row2 col2" >36.98%</td>
-      <td id="T_9ac4f_row2_col3" class="data row2 col3" >0.00%</td>
-      <td id="T_9ac4f_row2_col4" class="data row2 col4" >0.00%</td>
-      <td id="T_9ac4f_row2_col5" class="data row2 col5" >0.00%</td>
-      <td id="T_9ac4f_row2_col6" class="data row2 col6" >0.00%</td>
-      <td id="T_9ac4f_row2_col7" class="data row2 col7" >36.98%</td>
-      <td id="T_9ac4f_row2_col8" class="data row2 col8" >36.98%</td>
-      <td id="T_9ac4f_row2_col9" class="data row2 col9" >0.00%</td>
-      <td id="T_9ac4f_row2_col10" class="data row2 col10" >0.00%</td>
+      <th id="T_eee67_level0_row2" class="row_heading level0 row2" >2026-05-20 00:00:00</th>
+      <td id="T_eee67_row2_col0" class="data row2 col0" >0.00%</td>
+      <td id="T_eee67_row2_col1" class="data row2 col1" >0.00%</td>
+      <td id="T_eee67_row2_col2" class="data row2 col2" >36.98%</td>
+      <td id="T_eee67_row2_col3" class="data row2 col3" >0.00%</td>
+      <td id="T_eee67_row2_col4" class="data row2 col4" >0.00%</td>
+      <td id="T_eee67_row2_col5" class="data row2 col5" >0.00%</td>
+      <td id="T_eee67_row2_col6" class="data row2 col6" >0.00%</td>
+      <td id="T_eee67_row2_col7" class="data row2 col7" >36.98%</td>
+      <td id="T_eee67_row2_col8" class="data row2 col8" >36.98%</td>
+      <td id="T_eee67_row2_col9" class="data row2 col9" >0.00%</td>
+      <td id="T_eee67_row2_col10" class="data row2 col10" >0.00%</td>
     </tr>
     <tr>
-      <th id="T_9ac4f_level0_row3" class="row_heading level0 row3" >2026-05-21 00:00:00</th>
-      <td id="T_9ac4f_row3_col0" class="data row3 col0" >0.00%</td>
-      <td id="T_9ac4f_row3_col1" class="data row3 col1" >0.00%</td>
-      <td id="T_9ac4f_row3_col2" class="data row3 col2" >37.04%</td>
-      <td id="T_9ac4f_row3_col3" class="data row3 col3" >0.00%</td>
-      <td id="T_9ac4f_row3_col4" class="data row3 col4" >0.00%</td>
-      <td id="T_9ac4f_row3_col5" class="data row3 col5" >0.00%</td>
-      <td id="T_9ac4f_row3_col6" class="data row3 col6" >0.00%</td>
-      <td id="T_9ac4f_row3_col7" class="data row3 col7" >37.04%</td>
-      <td id="T_9ac4f_row3_col8" class="data row3 col8" >37.04%</td>
-      <td id="T_9ac4f_row3_col9" class="data row3 col9" >0.00%</td>
-      <td id="T_9ac4f_row3_col10" class="data row3 col10" >0.00%</td>
+      <th id="T_eee67_level0_row3" class="row_heading level0 row3" >2026-05-21 00:00:00</th>
+      <td id="T_eee67_row3_col0" class="data row3 col0" >0.00%</td>
+      <td id="T_eee67_row3_col1" class="data row3 col1" >0.00%</td>
+      <td id="T_eee67_row3_col2" class="data row3 col2" >37.04%</td>
+      <td id="T_eee67_row3_col3" class="data row3 col3" >0.00%</td>
+      <td id="T_eee67_row3_col4" class="data row3 col4" >0.00%</td>
+      <td id="T_eee67_row3_col5" class="data row3 col5" >0.00%</td>
+      <td id="T_eee67_row3_col6" class="data row3 col6" >0.00%</td>
+      <td id="T_eee67_row3_col7" class="data row3 col7" >37.04%</td>
+      <td id="T_eee67_row3_col8" class="data row3 col8" >37.04%</td>
+      <td id="T_eee67_row3_col9" class="data row3 col9" >0.00%</td>
+      <td id="T_eee67_row3_col10" class="data row3 col10" >0.00%</td>
     </tr>
     <tr>
-      <th id="T_9ac4f_level0_row4" class="row_heading level0 row4" >2026-05-22 00:00:00</th>
-      <td id="T_9ac4f_row4_col0" class="data row4 col0" >0.00%</td>
-      <td id="T_9ac4f_row4_col1" class="data row4 col1" >0.00%</td>
-      <td id="T_9ac4f_row4_col2" class="data row4 col2" >37.04%</td>
-      <td id="T_9ac4f_row4_col3" class="data row4 col3" >0.00%</td>
-      <td id="T_9ac4f_row4_col4" class="data row4 col4" >0.00%</td>
-      <td id="T_9ac4f_row4_col5" class="data row4 col5" >0.00%</td>
-      <td id="T_9ac4f_row4_col6" class="data row4 col6" >0.00%</td>
-      <td id="T_9ac4f_row4_col7" class="data row4 col7" >37.04%</td>
-      <td id="T_9ac4f_row4_col8" class="data row4 col8" >37.04%</td>
-      <td id="T_9ac4f_row4_col9" class="data row4 col9" >0.00%</td>
-      <td id="T_9ac4f_row4_col10" class="data row4 col10" >0.00%</td>
+      <th id="T_eee67_level0_row4" class="row_heading level0 row4" >2026-05-22 00:00:00</th>
+      <td id="T_eee67_row4_col0" class="data row4 col0" >0.00%</td>
+      <td id="T_eee67_row4_col1" class="data row4 col1" >0.00%</td>
+      <td id="T_eee67_row4_col2" class="data row4 col2" >37.04%</td>
+      <td id="T_eee67_row4_col3" class="data row4 col3" >0.00%</td>
+      <td id="T_eee67_row4_col4" class="data row4 col4" >0.00%</td>
+      <td id="T_eee67_row4_col5" class="data row4 col5" >0.00%</td>
+      <td id="T_eee67_row4_col6" class="data row4 col6" >0.00%</td>
+      <td id="T_eee67_row4_col7" class="data row4 col7" >37.04%</td>
+      <td id="T_eee67_row4_col8" class="data row4 col8" >37.04%</td>
+      <td id="T_eee67_row4_col9" class="data row4 col9" >0.00%</td>
+      <td id="T_eee67_row4_col10" class="data row4 col10" >0.00%</td>
     </tr>
   </tbody>
 </table>
@@ -252,10 +252,35 @@ weights.tail().style.format("{:.2%}")
 </div>
 </div>
 
-## Optional: bt adapter
+## Visualization: sector rotation diagnostics
+
+Equity, allocation, and gross exposure are shown together for the sector-rotation variant.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [4]</div>
+
+```python
+fig, axes = plt.subplots(3, 1, figsize=(10, 7), sharex=True)
+result.equity.plot(ax=axes[0], title="Sector rotation equity curve")
+weights.tail(504).plot.area(ax=axes[1], title="Recent sector target exposures", linewidth=0.0)
+weights.abs().sum(axis=1).rolling(21, min_periods=1).mean().tail(504).plot(ax=axes[2], color="tab:orange", title="21-day average gross exposure")
+axes[0].set_ylabel("equity")
+axes[1].set_ylabel("weight")
+axes[2].set_ylabel("gross exposure")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/06_style_sector_asset_rotation_bt/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
+## Optional: bt adapter
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
 
 ```python
 from quant_trading.frameworks import run_bt_target_weights

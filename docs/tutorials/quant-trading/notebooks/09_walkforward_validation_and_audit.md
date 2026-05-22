@@ -116,8 +116,32 @@ audit
 </div>
 </div>
 
+## Visualization: validation data audit
+
+The audit chart verifies that the validation notebook is working with real, sufficiently covered market data.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [3]</div>
+
+```python
+audit_view = audit.set_index("ticker")[["observations", "missing_ratio"]]
+fig, axes = plt.subplots(1, 2, figsize=(10, 3.4))
+audit_view["observations"].sort_values().plot(kind="barh", ax=axes[0], color="tab:blue", title="Observation count")
+audit_view["missing_ratio"].sort_values().plot(kind="barh", ax=axes[1], color="tab:orange", title="Missing ratio")
+for ax in axes:
+    ax.set_ylabel("")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/09_walkforward_validation_and_audit/cell-006-output-01.png" alt="Notebook output cell 6" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
 
 ```python
 features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
@@ -206,8 +230,35 @@ result.stats_frame()
 </div>
 </div>
 
+## Visualization: walk-forward coverage and risk
+
+Feature availability, equity, and drawdown are plotted as direct validation artifacts.
+
 <div class="notebook-cell">
-<div class="notebook-input-label">In [4]</div>
+<div class="notebook-input-label">In [5]</div>
+
+```python
+feature_coverage = features["trend_slope"].notna().mean(axis=1)
+drawdown = result.equity / result.equity.cummax() - 1.0
+fig, axes = plt.subplots(3, 1, figsize=(10, 7), sharex=True)
+feature_coverage.plot(ax=axes[0], color="tab:green", title="Walk-forward feature coverage")
+result.equity.plot(ax=axes[1], title="Validation equity curve")
+drawdown.plot(ax=axes[2], color="tab:red", title="Validation drawdown")
+axes[0].set_ylabel("share available")
+axes[1].set_ylabel("equity")
+axes[2].set_ylabel("drawdown")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/09_walkforward_validation_and_audit/cell-009-output-01.png" alt="Notebook output cell 9" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [6]</div>
 
 ```python
 validation_summary = pd.DataFrame({

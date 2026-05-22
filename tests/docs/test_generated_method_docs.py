@@ -63,10 +63,15 @@ def test_column_notebooks_are_rendered_with_inline_outputs() -> None:
         assert "Rendered notebook transcript" in page
         assert "notebook-cell" in page
         assert "notebook-output" in page
+        assert "image/png" in page
+        assert '<img src="../../../../assets/generated/notebooks/columns/' in page
+        assert "Visualization:" in page
         assert "```python" in page
 
     asset_root = ROOT / "docs" / "assets" / "generated" / "notebooks" / "columns"
     assert asset_root.is_dir()
+    assert len(list((asset_root / "quant-trading").glob("**/*.png"))) >= 20
+    assert len(list((asset_root / "hot-trend-lab").glob("**/*.png"))) >= 18
 
 
 def test_rendered_column_notebooks_do_not_expose_local_paths() -> None:

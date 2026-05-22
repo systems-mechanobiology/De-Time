@@ -130,8 +130,37 @@ result.stats_frame()
 </div>
 </div>
 
+## Visualization: SPY signal overlay
+
+Entries and exits are drawn on recent SPY prices to make the trend-pullback timing rule inspectable.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [3]</div>
+
+```python
+asset = "SPY"
+window = prices.index[-504:]
+price_line = prices.loc[window, asset]
+entry_points = entries.loc[window, asset].fillna(False).astype(bool)
+exit_points = exits.loc[window, asset].fillna(False).astype(bool)
+fig, ax = plt.subplots(figsize=(10, 4))
+price_line.plot(ax=ax, color="tab:blue", linewidth=1.5, title="SPY trend-pullback entries and exits")
+ax.scatter(entry_points[entry_points].index, price_line.loc[entry_points[entry_points].index], marker="^", color="tab:green", s=45, label="entry", zorder=3)
+ax.scatter(exit_points[exit_points].index, price_line.loc[exit_points[exit_points].index], marker="v", color="tab:red", s=45, label="exit", zorder=3)
+ax.set_ylabel("price")
+ax.legend(loc="best")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/02_single_asset_timing_vectorbt/cell-006-output-01.png" alt="Notebook output cell 6" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
 
 ```python
 ax = result.equity.plot(figsize=(10, 4), title="Trend-pullback timing equity curve")
@@ -141,7 +170,31 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-![Notebook output cell 5](../../../assets/generated/notebooks/columns/quant-trading/02_single_asset_timing_vectorbt/cell-005-output-01.png)
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/02_single_asset_timing_vectorbt/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
+## Visualization: drawdown and trading intensity
+
+The equity curve is paired with underwater drawdown and turnover to reveal risk and implementation pressure.
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
+
+```python
+drawdown = result.equity / result.equity.cummax() - 1.0
+fig, axes = plt.subplots(2, 1, figsize=(10, 5.2), sharex=True)
+drawdown.plot(ax=axes[0], color="tab:red", title="Trend-pullback underwater drawdown")
+result.turnover.rolling(21, min_periods=1).mean().plot(ax=axes[1], color="tab:orange", title="21-day average turnover")
+axes[0].set_ylabel("drawdown")
+axes[1].set_ylabel("turnover")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/02_single_asset_timing_vectorbt/cell-009-output-01.png" alt="Notebook output cell 9" class="notebook-output-image">
 </div>
 </div>
 
@@ -150,7 +203,7 @@ plt.show()
 Install vectorbt first if needed. The same entry/exit matrices can be passed to `Portfolio.from_signals` through the adapter.
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [4]</div>
+<div class="notebook-input-label">In [6]</div>
 
 ```python
 from quant_trading.frameworks import run_vectorbt_from_signals

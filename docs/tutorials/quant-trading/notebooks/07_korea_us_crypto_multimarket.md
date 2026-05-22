@@ -185,7 +185,7 @@ regime.tail()
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Ticker</th>
+      <th></th>
       <th>005930.KS</th>
       <th>000660.KS</th>
       <th>035420.KS</th>
@@ -263,8 +263,37 @@ regime.tail()
 </div>
 </div>
 
+## Visualization: residual-stress regime map
+
+The heatmap shows when each asset passes or fails the residual-stress filter across markets.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [4]</div>
+
+```python
+recent_regime = regime.tail(252).astype(float).T
+fig, ax = plt.subplots(figsize=(10, 3.8))
+im = ax.imshow(recent_regime.to_numpy(), aspect="auto", cmap="Greens", vmin=0, vmax=1)
+ax.set_yticks(range(len(recent_regime.index)))
+ax.set_yticklabels(recent_regime.index)
+tick_step = max(1, len(recent_regime.columns) // 8)
+xticks = list(range(0, len(recent_regime.columns), tick_step))
+ax.set_xticks(xticks)
+ax.set_xticklabels([str(recent_regime.columns[i].date()) if hasattr(recent_regime.columns[i], "date") else str(recent_regime.columns[i])[:10] for i in xticks], rotation=45, ha="right")
+ax.set_title("Recent residual-stress regime filter")
+fig.colorbar(im, ax=ax, label="passes filter")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/07_korea_us_crypto_multimarket/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
 
 ```python
 normalized = prices / prices.iloc[0]
@@ -274,7 +303,35 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-![Notebook output cell 6](../../../assets/generated/notebooks/columns/quant-trading/07_korea_us_crypto_multimarket/cell-006-output-01.png)
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/07_korea_us_crypto_multimarket/cell-008-output-01.png" alt="Notebook output cell 8" class="notebook-output-image">
+</div>
+</div>
+
+## Visualization: cross-market return correlation
+
+The correlation heatmap makes the Korea, US, and crypto alignment assumptions visible.
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [6]</div>
+
+```python
+correlation = prices.pct_change().replace([np.inf, -np.inf], np.nan).dropna(how="all").corr()
+fig, ax = plt.subplots(figsize=(6.5, 5.5))
+absmax = max(float(np.nanmax(np.abs(correlation.to_numpy()))), 1e-9)
+im = ax.imshow(correlation.to_numpy(), cmap="RdBu_r", vmin=-absmax, vmax=absmax)
+ax.set_xticks(range(len(correlation.columns)))
+ax.set_xticklabels(correlation.columns, rotation=45, ha="right")
+ax.set_yticks(range(len(correlation.index)))
+ax.set_yticklabels(correlation.index)
+ax.set_title("Daily return correlation across markets")
+fig.colorbar(im, ax=ax, label="correlation")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/07_korea_us_crypto_multimarket/cell-010-output-01.png" alt="Notebook output cell 10" class="notebook-output-image">
 </div>
 </div>
 

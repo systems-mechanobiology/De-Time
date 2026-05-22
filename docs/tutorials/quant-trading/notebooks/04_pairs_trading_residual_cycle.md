@@ -225,6 +225,33 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-![Notebook output cell 6](../../../assets/generated/notebooks/columns/quant-trading/04_pairs_trading_residual_cycle/cell-006-output-01.png)
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/04_pairs_trading_residual_cycle/cell-006-output-01.png" alt="Notebook output cell 6" class="notebook-output-image">
+</div>
+</div>
+
+## Visualization: spread residual bands and weights
+
+Residual bands show where the pair is stretched; target weights show how the backtest responds.
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
+
+```python
+fig, axes = plt.subplots(3, 1, figsize=(10, 7), sharex=False)
+spread_frame[["transformed_price", "trend"]].plot(ax=axes[0], title="KO/PEP spread and De-Time trend")
+spread_frame["residual_z"].plot(ax=axes[1], color="tab:red", title="KO/PEP residual z-score")
+for level, style in [(1.5, "--"), (-1.5, "--"), (0.25, ":"), (-0.25, ":")]:
+    axes[1].axhline(level, color="0.35", linestyle=style, linewidth=0.8)
+weights.tail(504).plot(ax=axes[2], title="KO/PEP target weights")
+axes[0].set_xlabel("")
+axes[1].set_xlabel("")
+axes[2].set_ylabel("weight")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/04_pairs_trading_residual_cycle/cell-008-output-01.png" alt="Notebook output cell 8" class="notebook-output-image">
 </div>
 </div>

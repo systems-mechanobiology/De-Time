@@ -17,6 +17,7 @@ from pathlib import Path
 import os
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -51,6 +52,7 @@ from examples.hot_trends.scoring import article_language_guardrails
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
+plt.rcParams.update({"axes.grid": True})
 
 CACHE_DIR = repo_root / "examples" / "hot_trends" / "cache"
 OUTPUT_DIR = repo_root / "examples" / "hot_trends" / "outputs"
@@ -462,31 +464,31 @@ log.tail(20)
   </thead>
   <tbody>
     <tr>
-      <th>130</th>
+      <th>180</th>
       <td>2026-05-22</td>
       <td>meta-llama/Llama-3.1-8B-Instruct</td>
       <td>text-generation</td>
       <td>10815581</td>
-      <td>5874</td>
+      <td>5873</td>
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>131</th>
+      <th>181</th>
       <td>2026-05-22</td>
       <td>hexgrad/Kokoro-82M</td>
       <td>text-to-speech</td>
       <td>10756374</td>
-      <td>6190</td>
+      <td>6191</td>
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>132</th>
+      <th>182</th>
       <td>2026-05-22</td>
       <td>argmaxinc/whisperkit-coreml</td>
       <td>automatic-speech-recognition</td>
@@ -498,7 +500,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>133</th>
+      <th>183</th>
       <td>2026-05-22</td>
       <td>pyannote/wespeaker-voxceleb-resnet34-LM</td>
       <td>None</td>
@@ -510,7 +512,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>134</th>
+      <th>184</th>
       <td>2026-05-22</td>
       <td>google/gemma-4-31B-it</td>
       <td>image-text-to-text</td>
@@ -522,19 +524,19 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>135</th>
+      <th>185</th>
       <td>2026-05-22</td>
       <td>pyannote/speaker-diarization-3.1</td>
       <td>automatic-speech-recognition</td>
       <td>10263344</td>
-      <td>1920</td>
+      <td>1921</td>
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>136</th>
+      <th>186</th>
       <td>2026-05-22</td>
       <td>Qwen/Qwen2.5-3B-Instruct</td>
       <td>text-generation</td>
@@ -546,7 +548,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>137</th>
+      <th>187</th>
       <td>2026-05-22</td>
       <td>Qwen/Qwen3-4B</td>
       <td>text-generation</td>
@@ -558,7 +560,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>138</th>
+      <th>188</th>
       <td>2026-05-22</td>
       <td>facebook/opt-125m</td>
       <td>text-generation</td>
@@ -570,7 +572,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>139</th>
+      <th>189</th>
       <td>2026-05-22</td>
       <td>google/gemma-4-26B-A4B-it</td>
       <td>image-text-to-text</td>
@@ -582,7 +584,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>140</th>
+      <th>190</th>
       <td>2026-05-22</td>
       <td>pyannote/segmentation-3.0</td>
       <td>voice-activity-detection</td>
@@ -594,7 +596,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>141</th>
+      <th>191</th>
       <td>2026-05-22</td>
       <td>BAAI/bge-base-en-v1.5</td>
       <td>feature-extraction</td>
@@ -606,7 +608,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>142</th>
+      <th>192</th>
       <td>2026-05-22</td>
       <td>coqui/XTTS-v2</td>
       <td>text-to-speech</td>
@@ -618,7 +620,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>143</th>
+      <th>193</th>
       <td>2026-05-22</td>
       <td>intfloat/multilingual-e5-small</td>
       <td>sentence-similarity</td>
@@ -630,7 +632,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>144</th>
+      <th>194</th>
       <td>2026-05-22</td>
       <td>Falconsai/nsfw_image_detection</td>
       <td>image-classification</td>
@@ -642,7 +644,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>145</th>
+      <th>195</th>
       <td>2026-05-22</td>
       <td>Qwen/Qwen3.5-4B</td>
       <td>image-text-to-text</td>
@@ -654,7 +656,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>146</th>
+      <th>196</th>
       <td>2026-05-22</td>
       <td>meta-llama/Llama-3.2-1B-Instruct</td>
       <td>text-generation</td>
@@ -666,7 +668,7 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>147</th>
+      <th>197</th>
       <td>2026-05-22</td>
       <td>openai/gpt-oss-20b</td>
       <td>text-generation</td>
@@ -678,19 +680,19 @@ log.tail(20)
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>148</th>
+      <th>198</th>
       <td>2026-05-22</td>
       <td>Qwen/Qwen3.5-9B</td>
       <td>image-text-to-text</td>
       <td>7968791</td>
-      <td>1468</td>
+      <td>1470</td>
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
       <td>live_public_api_no_synthetic_fallback</td>
     </tr>
     <tr>
-      <th>149</th>
+      <th>199</th>
       <td>2026-05-22</td>
       <td>facebook/contriever</td>
       <td>None</td>
@@ -1064,10 +1066,49 @@ snapshot_rank[["model_id", "pipeline_tag", "downloads", "likes", "last_modified"
 </div>
 </div>
 
-## 7. Guardrails
+## Visualization: Hugging Face snapshot status
+
+When repeated snapshots are not yet deep enough for decomposition, the notebook still shows real snapshot depth and current model attention.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [8]</div>
+
+```python
+if not components.empty and "series" in summary.columns:
+    top_models = summary["series"].head(4).tolist()
+    fig, axes = plt.subplots(len(top_models), 2, figsize=(11, max(3.0, 2.4 * len(top_models))), squeeze=False)
+    for row, model_id in enumerate(top_models):
+        panel = components.loc[components["series"].eq(model_id)].sort_values("date").copy()
+        panel["date"] = pd.to_datetime(panel["date"])
+        axes[row, 0].plot(panel["date"], panel["observed"], label="observed", linewidth=1.6)
+        axes[row, 0].plot(panel["date"], panel["trend"], label="trend", linewidth=1.8)
+        axes[row, 0].set_title(model_id)
+        axes[row, 1].bar(panel["date"], panel["residual"], color=np.where(panel["residual"] >= 0, "tab:red", "tab:blue"))
+        axes[row, 1].set_title("residual")
+    axes[0, 0].legend(loc="best")
+else:
+    snapshot_depth = series_log.groupby("model_id")["snapshot_date"].nunique().sort_values(ascending=False).head(20)
+    top_downloads = snapshot_rank.dropna(subset=["downloads"]).head(15).sort_values("downloads")
+    fig, axes = plt.subplots(1, 2, figsize=(12, 5))
+    snapshot_depth.sort_values().plot(kind="barh", ax=axes[0], color="tab:blue", title="Distinct snapshot dates per model")
+    axes[0].axvline(4, color="tab:red", linestyle="--", linewidth=1.0, label="decomposition threshold")
+    axes[0].legend(loc="lower right")
+    top_downloads.plot(kind="barh", x="model_id", y="downloads", ax=axes[1], color="tab:green", legend=False, title="Top current downloads")
+    axes[1].set_ylabel("")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/03_huggingface_open_model_pulse/cell-016-output-01.png" alt="Notebook output cell 16" class="notebook-output-image">
+</div>
+</div>
+
+## 7. Guardrails
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [9]</div>
 
 ```python
 guardrails = article_language_guardrails()
@@ -1133,7 +1174,7 @@ guardrails
 </div>
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [9]</div>
+<div class="notebook-input-label">In [10]</div>
 
 ```python
 save_table(snapshot_audit, "03_hf_snapshot_audit")

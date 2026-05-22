@@ -17,6 +17,7 @@ from pathlib import Path
 import os
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -51,6 +52,7 @@ from examples.hot_trends.scoring import article_language_guardrails
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
+plt.rcParams.update({"axes.grid": True})
 
 CACHE_DIR = repo_root / "examples" / "hot_trends" / "cache"
 OUTPUT_DIR = repo_root / "examples" / "hot_trends" / "outputs"
@@ -290,12 +292,34 @@ priority
 </div>
 </div>
 
+## Visualization: column priority score
+
+The priority bar chart makes the editorial launch order explicit.
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
+
+```python
+priority_plot = priority.assign(priority_score=len(priority) + 1 - priority["rank"]).sort_values("priority_score")
+ax = priority_plot.plot(kind="barh", x="case", y="priority_score", figsize=(9, 3.8), legend=False, title="Column launch priority")
+ax.set_xlabel("priority score")
+ax.set_ylabel("")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/00_hot_trend_lab_overview/cell-008-output-01.png" alt="Notebook output cell 8" class="notebook-output-image">
+</div>
+</div>
+
 ## 3. De-Time output contract
 
 Each notebook exports the same table types: source audit, component summary, residual events, and publication guardrails.
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [4]</div>
+<div class="notebook-input-label">In [5]</div>
 
 ```python
 output_contract = pd.DataFrame([
@@ -360,10 +384,49 @@ output_contract
 </div>
 </div>
 
+## Visualization: output readiness matrix
+
+The readiness matrix checks whether each case has produced its key real-data output files.
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [6]</div>
+
+```python
+expected_outputs = pd.DataFrame([
+    {"case": "arXiv category pulse", "audit": "01_arxiv_category_audit.csv", "summary_or_priority": "01_arxiv_category_priority.csv", "events": "01_arxiv_category_residual_events.csv", "guardrails_or_context": "01_arxiv_category_guardrails.csv"},
+    {"case": "AI agent research pulse", "audit": "02_arxiv_agent_topic_audit.csv", "summary_or_priority": "02_arxiv_agent_topic_priority.csv", "events": "02_arxiv_agent_topic_residual_events.csv", "guardrails_or_context": "02_arxiv_agent_article_outline.csv"},
+    {"case": "Hugging Face open-model pulse", "audit": "03_hf_snapshot_audit.csv", "summary_or_priority": "03_hf_decomposition_or_collection_status.csv", "events": "03_hf_residual_events.csv", "guardrails_or_context": "03_hf_guardrails.csv"},
+    {"case": "GitHub AI-agent star velocity", "audit": "04_github_stargazer_coverage.csv", "summary_or_priority": "04_github_decomposition_or_collection_status.csv", "events": "04_github_residual_events.csv", "guardrails_or_context": "04_github_guardrails.csv"},
+    {"case": "Wikimedia attention decay", "audit": "05_wikipedia_attention_audit.csv", "summary_or_priority": "05_wikipedia_attention_summary.csv", "events": "05_wikipedia_attention_events.csv", "guardrails_or_context": "05_wikipedia_guardrails.csv"},
+    {"case": "Crypto and stablecoin liquidity pulse", "audit": "06_crypto_price_audit.csv", "summary_or_priority": "06_crypto_price_summary.csv", "events": "06_crypto_price_residual_events.csv", "guardrails_or_context": "06_defillama_stablecoin_context.csv"},
+    {"case": "AI infrastructure market pulse", "audit": "07_ai_infra_market_audit.csv", "summary_or_priority": "07_ai_infra_component_summary.csv", "events": "07_ai_infra_residual_events.csv", "guardrails_or_context": "07_ai_infra_guardrails.csv"},
+])
+availability = expected_outputs.set_index("case").apply(lambda col: col.map(lambda filename: (OUTPUT_DIR / filename).exists())).astype(int)
+fig, ax = plt.subplots(figsize=(10, 4.5))
+im = ax.imshow(availability.to_numpy(), cmap="Greens", vmin=0, vmax=1, aspect="auto")
+ax.set_xticks(range(len(availability.columns)))
+ax.set_xticklabels(availability.columns, rotation=30, ha="right")
+ax.set_yticks(range(len(availability.index)))
+ax.set_yticklabels(availability.index)
+for y in range(availability.shape[0]):
+    for x in range(availability.shape[1]):
+        ax.text(x, y, str(int(availability.iloc[y, x])), ha="center", va="center", color="black")
+ax.set_title("Hot Trend Lab output readiness")
+fig.colorbar(im, ax=ax, label="file exists")
+plt.tight_layout()
+plt.show()
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/00_hot_trend_lab_overview/cell-012-output-01.png" alt="Notebook output cell 12" class="notebook-output-image">
+</div>
+</div>
+
 ## 4. Language guardrails
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [5]</div>
+<div class="notebook-input-label">In [7]</div>
 
 ```python
 article_language_guardrails()
@@ -428,7 +491,7 @@ article_language_guardrails()
 </div>
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [6]</div>
+<div class="notebook-input-label">In [8]</div>
 
 ```python
 save_table(registry, "00_source_registry")
