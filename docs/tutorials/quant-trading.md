@@ -74,20 +74,22 @@ to derive practical trading features:
 
 ## Notebook series
 
-The GitHub-rendered notebooks live in `examples/notebooks/quant_trading/`.
+The pages below render the notebook code and captured outputs directly in the
+documentation. The original executable notebooks remain in
+`examples/notebooks/quant_trading/`.
 
-| Notebook | Topic | Main asset class |
+| Rendered page | Topic | Main asset class |
 |---|---|---|
-| `00_quant_trading_column_overview.ipynb` | column roadmap and setup | all |
-| `01_real_market_data_and_detime_features.ipynb` | real data download and feature factory | US, Korea, crypto |
-| `02_single_asset_timing_vectorbt.ipynb` | trend pullback and residual timing | SPY / QQQ |
-| `03_turtle_donchian_trend_filter.ipynb` | Turtle/Donchian trend filter | ETFs |
-| `04_pairs_trading_residual_cycle.ipynb` | spread decomposition for pairs | US equities |
-| `05_cross_sectional_factor_selection.ipynb` | decomposition alpha features | US stocks |
-| `06_style_sector_asset_rotation_bt.ipynb` | style/sector ETF rotation | ETFs |
-| `07_korea_us_crypto_multimarket.ipynb` | multi-market cycle and regime ideas | Korea, US, crypto |
-| `08_backtesting_framework_adapters.ipynb` | framework adapters | all |
-| `09_walkforward_validation_and_audit.ipynb` | validation and audit protocol | all |
+| [00 quant trading column overview](quant-trading/notebooks/00_quant_trading_column_overview.md) | column roadmap and setup | all |
+| [01 real market data and De-Time features](quant-trading/notebooks/01_real_market_data_and_detime_features.md) | real data download and feature factory | US, Korea, crypto |
+| [02 single-asset timing with vectorbt](quant-trading/notebooks/02_single_asset_timing_vectorbt.md) | trend pullback and residual timing | SPY / QQQ |
+| [03 Turtle Donchian trend filter](quant-trading/notebooks/03_turtle_donchian_trend_filter.md) | Turtle/Donchian trend filter | ETFs |
+| [04 pairs trading residual cycle](quant-trading/notebooks/04_pairs_trading_residual_cycle.md) | spread decomposition for pairs | US equities |
+| [05 cross-sectional factor selection](quant-trading/notebooks/05_cross_sectional_factor_selection.md) | decomposition alpha features | US stocks |
+| [06 style and sector rotation](quant-trading/notebooks/06_style_sector_asset_rotation_bt.md) | style/sector ETF rotation | ETFs |
+| [07 Korea, US, and crypto multimarket](quant-trading/notebooks/07_korea_us_crypto_multimarket.md) | multi-market cycle and regime ideas | Korea, US, crypto |
+| [08 backtesting framework adapters](quant-trading/notebooks/08_backtesting_framework_adapters.md) | framework adapters | all |
+| [09 walk-forward validation and audit](quant-trading/notebooks/09_walkforward_validation_and_audit.md) | validation and audit protocol | all |
 
 ## Install the optional tutorial dependencies
 

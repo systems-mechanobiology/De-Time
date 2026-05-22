@@ -56,3 +56,6 @@ write_framework_templates("examples/quant_trading/templates")
 These event-driven frameworks require careful calendar, bundle, and execution
 setup. Keep De-Time feature generation outside the event loop unless you are
 explicitly modeling the cost and latency of online recomputation.
+
+Rendered notebook transcript with code and output:
+[08 backtesting framework adapters](notebooks/08_backtesting_framework_adapters.md)

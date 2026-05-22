@@ -13,3 +13,10 @@ class DeTimeSignalStrategy(bt.Strategy):
             self.buy(size=self.params.stake)
         elif sig <= 0 and self.position:
             self.sell(size=self.params.stake)
+
+# cerebro = bt.Cerebro()
+# cerebro.addstrategy(DeTimeSignalStrategy)
+# cerebro.adddata(DeTimeSignalData(dataname=your_ohlcv_with_detime_signal))
+# cerebro.broker.setcash(100000.0)
+# cerebro.broker.setcommission(commission=0.0005)
+# result = cerebro.run()

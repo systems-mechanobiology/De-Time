@@ -15,9 +15,9 @@ Neither source proves model quality or production usage. They measure public att
 | `season` | release-week or weekday cadence |
 | `residual` | launch spike, benchmark news, controversy, or model replacement |
 
-Notebook:
+Rendered notebook transcript with code and output:
 
-`examples/notebooks/hot_trends/03_huggingface_open_model_pulse.ipynb`
+[03 Hugging Face open-model pulse](notebooks/03_huggingface_open_model_pulse.md)
 
 ## GitHub developer pulse
 
@@ -27,9 +27,9 @@ Notebook:
 | `season` | weekly open-source activity rhythm |
 | `residual` | launch, funding announcement, Hacker News burst, or demo release |
 
-Notebook:
+Rendered notebook transcript with code and output:
 
-`examples/notebooks/hot_trends/04_github_ai_agent_star_velocity.ipynb`
+[04 GitHub AI-agent star velocity](notebooks/04_github_ai_agent_star_velocity.md)
 
 ## Editorial rule
 

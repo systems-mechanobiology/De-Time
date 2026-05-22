@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Iterable, Mapping, Sequence
 import json
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -37,13 +38,27 @@ class SourceRecord:
     notes: str = ""
 
 
-def _read_url(url: str, *, timeout: int = 30, headers: Mapping[str, str] | None = None) -> bytes:
+def _read_url(
+    url: str,
+    *,
+    timeout: int = 30,
+    headers: Mapping[str, str] | None = None,
+    retries: int = 0,
+    retry_sleep: float = 5.0,
+) -> bytes:
     request = urllib.request.Request(url, headers=dict(headers or {}))
-    try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
-            return response.read()
-    except Exception as exc:  # pragma: no cover - network dependent
-        raise HotTrendDataError(f"Could not fetch real data from {url}: {exc}") from exc
+    transient_http_codes = {429, 500, 502, 503, 504}
+    for attempt in range(int(retries) + 1):
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                return response.read()
+        except Exception as exc:  # pragma: no cover - network dependent
+            status = exc.code if isinstance(exc, urllib.error.HTTPError) else None
+            if attempt < int(retries) and status in transient_http_codes:
+                time.sleep(float(retry_sleep) * (attempt + 1))
+                continue
+            raise HotTrendDataError(f"Could not fetch real data from {url}: {exc}") from exc
+    raise HotTrendDataError(f"Could not fetch real data from {url}")
 
 
 def _read_json(url: str, *, timeout: int = 30, headers: Mapping[str, str] | None = None):
@@ -74,12 +89,18 @@ def arxiv_count(search_query: str, *, start_date: str, end_date: str, sleep_seco
     params = {
         "search_query": dated_query,
         "start": 0,
-        "max_results": 0,
+        "max_results": 1,
         "sortBy": "submittedDate",
         "sortOrder": "ascending",
     }
     url = ARXIV_API + "?" + urllib.parse.urlencode(params)
-    raw = _read_url(url)
+    raw = _read_url(
+        url,
+        headers={"User-Agent": "De-Time-Hot-Trend-Lab/0.1"},
+        timeout=45,
+        retries=5,
+        retry_sleep=max(30.0, float(sleep_seconds)),
+    )
     if sleep_seconds:
         time.sleep(float(sleep_seconds))
     try:

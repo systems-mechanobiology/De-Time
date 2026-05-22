@@ -69,18 +69,20 @@ The point is not to claim prediction. The point is to force every viral topic in
 
 ## Notebook series
 
-The executable notebooks live in `examples/notebooks/hot_trends/`.
+The pages below render the notebook code and captured outputs directly in the
+documentation. The original executable notebooks remain in
+`examples/notebooks/hot_trends/`.
 
-| Notebook | Topic | Primary source |
+| Rendered page | Topic | Primary source |
 |---|---|---|
-| `00_hot_trend_lab_overview.ipynb` | column roadmap and setup | source registry |
-| `01_arxiv_category_pulse.ipynb` | research output by field | arXiv API |
-| `02_arxiv_agent_research_pulse.ipynb` | AI agent / coding-agent paper pulse | arXiv API |
-| `03_huggingface_open_model_pulse.ipynb` | open-model download and like snapshots | Hugging Face Hub API |
-| `04_github_ai_agent_star_velocity.ipynb` | developer attention and star velocity | GitHub REST API |
-| `05_wikipedia_attention_hype_decay.ipynb` | public attention cycles | Wikimedia Analytics API |
-| `06_crypto_stablecoin_liquidity_pulse.ipynb` | crypto liquidity and stablecoin supply | DeFiLlama / CoinGecko / market data |
-| `07_ai_infrastructure_market_pulse.ipynb` | AI infrastructure market proxies | Yahoo Finance through `yfinance` |
+| [00 Hot Trend Lab overview](hot-trend-lab/notebooks/00_hot_trend_lab_overview.md) | column roadmap and setup | source registry |
+| [01 arXiv category pulse](hot-trend-lab/notebooks/01_arxiv_category_pulse.md) | research output by field | arXiv API |
+| [02 arXiv agent research pulse](hot-trend-lab/notebooks/02_arxiv_agent_research_pulse.md) | AI agent / coding-agent paper pulse | arXiv API |
+| [03 Hugging Face open-model pulse](hot-trend-lab/notebooks/03_huggingface_open_model_pulse.md) | open-model download and like snapshots | Hugging Face Hub API |
+| [04 GitHub AI-agent star velocity](hot-trend-lab/notebooks/04_github_ai_agent_star_velocity.md) | developer attention and star velocity | GitHub REST API |
+| [05 Wikipedia attention hype decay](hot-trend-lab/notebooks/05_wikipedia_attention_hype_decay.md) | public attention cycles | Wikimedia Analytics API |
+| [06 crypto stablecoin liquidity pulse](hot-trend-lab/notebooks/06_crypto_stablecoin_liquidity_pulse.md) | crypto liquidity and stablecoin supply | DeFiLlama / CoinGecko / market data |
+| [07 AI infrastructure market pulse](hot-trend-lab/notebooks/07_ai_infrastructure_market_pulse.md) | AI infrastructure market proxies | Yahoo Finance through `yfinance` |
 
 ## Install optional dependencies
 

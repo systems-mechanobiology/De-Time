@@ -44,6 +44,9 @@ print(audit)
 The audit report records the first and last timestamps, observation count,
 missing ratio, and price range for each asset.
 
+Rendered notebook transcript with code and output:
+[01 real market data and De-Time features](notebooks/01_real_market_data_and_detime_features.md)
+
 ## Production replacement
 
 For production research, replace the tutorial source with a licensed data vendor

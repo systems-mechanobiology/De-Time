@@ -16,3 +16,6 @@ tmp/
 .venv/
 .python-version
 *.egg-info/
+examples/hot_trends/cache/
+examples/hot_trends/outputs/
+examples/quant_trading/data/cache/

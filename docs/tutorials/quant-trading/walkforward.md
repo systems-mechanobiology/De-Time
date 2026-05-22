@@ -41,3 +41,6 @@ features = walkforward_decompose(
 Notebook results are educational examples. A production-grade benchmark should
 add official data sources, broker-aware execution assumptions, multiple seeds or
 bootstrap intervals where relevant, and full experiment manifests.
+
+Rendered notebook transcript with code and output:
+[09 walk-forward validation and audit](notebooks/09_walkforward_validation_and_audit.md)

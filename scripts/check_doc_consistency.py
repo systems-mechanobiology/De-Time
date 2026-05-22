@@ -71,8 +71,40 @@ REQUIRED_PATTERNS: dict[str, list[str]] = {
     "docs/tutorials/visual-univariate.md": ["$env:PYTHONPATH='src'", "python examples/visual_univariate_walkthrough.py"],
     "docs/tutorials/visual-multivariate.md": ["$env:PYTHONPATH='src'", "python examples/visual_multivariate_walkthrough.py"],
     "docs/tutorials/visual-comparison.md": ["$env:PYTHONPATH='src'", "python examples/visual_method_comparison.py"],
-    "docs/tutorials/quant-trading.md": ["examples/notebooks/quant_trading/", "examples/quant_trading/requirements.txt"],
-    "docs/tutorials/hot-trend-lab.md": ["examples/notebooks/hot_trends/", "synthetic fallback data"],
+    "docs/tutorials/quant-trading.md": [
+        "examples/notebooks/quant_trading/",
+        "examples/quant_trading/requirements.txt",
+        "captured outputs directly",
+        "quant-trading/notebooks/01_real_market_data_and_detime_features.md",
+    ],
+    "docs/tutorials/hot-trend-lab.md": [
+        "examples/notebooks/hot_trends/",
+        "synthetic fallback data",
+        "captured outputs directly",
+        "hot-trend-lab/notebooks/01_arxiv_category_pulse.md",
+    ],
+    "docs/tutorials/quant-trading/notebooks/01_real_market_data_and_detime_features.md": [
+        "Rendered notebook transcript",
+        "notebook-cell",
+        "notebook-output",
+        "```python",
+    ],
+    "docs/tutorials/quant-trading/notebooks/index.md": [
+        "Quant Trading Notebook Outputs",
+        "code cells, stdout, tables",
+        "01_real_market_data_and_detime_features.md",
+    ],
+    "docs/tutorials/hot-trend-lab/notebooks/03_huggingface_open_model_pulse.md": [
+        "Rendered notebook transcript",
+        "notebook-cell",
+        "notebook-output",
+        "```python",
+    ],
+    "docs/tutorials/hot-trend-lab/notebooks/index.md": [
+        "Hot Trend Lab Notebook Outputs",
+        "code cells, stdout, tables",
+        "01_arxiv_category_pulse.md",
+    ],
     "docs/tutorials/hot-trend-lab/data-sources.md": ["Source registry", "artificial fallback series"],
 }
 

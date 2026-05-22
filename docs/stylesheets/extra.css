@@ -1721,6 +1721,63 @@ footer,
   box-shadow: none !important;
 }
 
+.notebook-transcript-note {
+  margin-top: 0.8rem;
+}
+
+.notebook-cell {
+  margin: 1.25rem 0 1.8rem;
+  padding: 1rem;
+  border: 1px solid rgba(142, 197, 255, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.notebook-input-label,
+.notebook-output-label {
+  margin-bottom: 0.55rem;
+  color: var(--dt-muted-strong);
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.notebook-output {
+  overflow-x: auto;
+}
+
+.notebook-output .notebook-output-label + pre,
+.notebook-html-output,
+.notebook-svg-output {
+  margin-top: 0.4rem;
+}
+
+.notebook-html-output {
+  overflow-x: auto;
+}
+
+.notebook-html-output table,
+.notebook-output table {
+  min-width: 560px;
+  margin: 0.4rem 0 0.2rem;
+  font-size: 0.88rem;
+}
+
+.notebook-output img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.6rem 0 0;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.notebook-error-label {
+  color: #fca5a5;
+}
+
 .download-grid {
   display: grid;
   gap: 0.6rem;

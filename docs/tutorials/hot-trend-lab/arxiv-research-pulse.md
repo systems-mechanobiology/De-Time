@@ -35,10 +35,10 @@ arXiv is the strongest starting point for this column because it turns AI resear
 
 ## Notebook
 
-Use:
+Use the rendered notebook transcript with code and output:
 
-`examples/notebooks/hot_trends/01_arxiv_category_pulse.ipynb`
+[01 arXiv category pulse](notebooks/01_arxiv_category_pulse.md)
 
 For query-based agent topics, use:
 
-`examples/notebooks/hot_trends/02_arxiv_agent_research_pulse.ipynb`
+[02 arXiv agent research pulse](notebooks/02_arxiv_agent_research_pulse.md)

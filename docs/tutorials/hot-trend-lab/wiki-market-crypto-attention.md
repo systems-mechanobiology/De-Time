@@ -6,25 +6,25 @@ This section keeps the high-traffic topics but adds strict source and language b
 
 Wikimedia pageviews are useful for public attention cycles. They are not evidence of technical correctness or market adoption.
 
-Notebook:
+Rendered notebook transcript with code and output:
 
-`examples/notebooks/hot_trends/05_wikipedia_attention_hype_decay.ipynb`
+[05 Wikipedia attention hype decay](notebooks/05_wikipedia_attention_hype_decay.md)
 
 ## Crypto and stablecoin liquidity
 
 The crypto notebook uses public APIs to separate price movement, stablecoin-liquidity change, and residual shocks. It is descriptive and not investment advice.
 
-Notebook:
+Rendered notebook transcript with code and output:
 
-`examples/notebooks/hot_trends/06_crypto_stablecoin_liquidity_pulse.ipynb`
+[06 crypto stablecoin liquidity pulse](notebooks/06_crypto_stablecoin_liquidity_pulse.md)
 
 ## AI infrastructure market pulse
 
 The AI infrastructure notebook uses public market-price proxies for AI infrastructure names. It does not claim to measure audited revenue, capex, or valuation unless those official data are explicitly supplied.
 
-Notebook:
+Rendered notebook transcript with code and output:
 
-`examples/notebooks/hot_trends/07_ai_infrastructure_market_pulse.ipynb`
+[07 AI infrastructure market pulse](notebooks/07_ai_infrastructure_market_pulse.md)
 
 ## Safe wording
 
