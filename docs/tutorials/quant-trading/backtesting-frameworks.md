@@ -44,8 +44,7 @@ result = run_bt_target_weights(prices, target_weights)
 
 ## Backtrader and Zipline-Reloaded
 
-The column writes template files rather than forcing these frameworks into every
-notebook environment:
+The column provides template files for these framework-specific workflows:
 
 ```python
 from examples.quant_trading.frameworks import write_framework_templates

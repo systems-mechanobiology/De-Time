@@ -29,7 +29,7 @@ def save_backtest_artifacts(result, output_dir: str | Path, *, prefix: str = "st
 
 
 def markdown_metric_report(stats: Mapping[str, float], *, title: str = "De-Time Quant Strategy Report") -> str:
-    lines = [f"# {title}", "", "This report is generated from tutorial code and is not investment advice.", "", "## Metrics", ""]
+    lines = [f"# {title}", "", "This report is generated from the tutorial research pipeline.", "", "## Metrics", ""]
     for key, value in stats.items():
         try:
             lines.append(f"- **{key}**: {float(value):.6g}")

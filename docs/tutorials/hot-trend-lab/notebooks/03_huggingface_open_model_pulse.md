@@ -7,7 +7,7 @@
 
 This notebook tracks real Hugging Face model metadata snapshots. A single snapshot is a cross-sectional table; repeated snapshots become a time series.
 
-No synthetic fallback is used. If the Hub API is unavailable, the notebook stops.
+Data source: Hugging Face Hub API, with a snapshot audit table recorded below.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -38,7 +38,7 @@ from examples.hot_trends.decomposition import (
     editorial_priority,
     residual_event_table,
 )
-from examples.hot_trends.scoring import article_language_guardrails
+from examples.hot_trends.scoring import article_publication_phrasing
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
@@ -109,7 +109,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>1</th>
@@ -121,7 +121,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>2</th>
@@ -133,7 +133,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>3</th>
@@ -145,7 +145,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>4</th>
@@ -157,7 +157,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>5</th>
@@ -169,7 +169,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>6</th>
@@ -181,7 +181,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>7</th>
@@ -193,7 +193,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>8</th>
@@ -205,7 +205,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>9</th>
@@ -217,7 +217,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>10</th>
@@ -229,7 +229,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>11</th>
@@ -241,7 +241,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>12</th>
@@ -253,7 +253,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>13</th>
@@ -265,7 +265,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>14</th>
@@ -277,7 +277,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>15</th>
@@ -289,7 +289,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>16</th>
@@ -301,7 +301,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>17</th>
@@ -313,7 +313,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>18</th>
@@ -325,7 +325,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>19</th>
@@ -337,7 +337,7 @@ snapshot.head(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
   </tbody>
 </table>
@@ -408,7 +408,7 @@ snapshot_audit
 
 ## 3. Append snapshot to a real local log
 
-The log is real only because each row comes from the API. It may contain just one snapshot on first run; collect daily or weekly to decompose adoption momentum.
+Each row records a Hugging Face API snapshot. It may contain just one snapshot on first run; collect daily or weekly snapshots to decompose adoption momentum.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [4]</div>
@@ -462,7 +462,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>231</th>
@@ -474,7 +474,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>232</th>
@@ -486,7 +486,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>233</th>
@@ -498,7 +498,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>234</th>
@@ -510,7 +510,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>235</th>
@@ -522,7 +522,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>236</th>
@@ -534,7 +534,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>237</th>
@@ -546,7 +546,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>238</th>
@@ -558,7 +558,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>239</th>
@@ -570,7 +570,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>240</th>
@@ -582,7 +582,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>241</th>
@@ -594,7 +594,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>242</th>
@@ -606,7 +606,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>243</th>
@@ -618,7 +618,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>244</th>
@@ -630,7 +630,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>245</th>
@@ -642,7 +642,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>246</th>
@@ -654,7 +654,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>247</th>
@@ -666,7 +666,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>248</th>
@@ -678,7 +678,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>249</th>
@@ -690,7 +690,7 @@ log.tail(20)
       <td>None</td>
       <td>False</td>
       <td>Hugging Face Hub API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
   </tbody>
 </table>
@@ -709,7 +709,7 @@ log["snapshot_date"] = pd.to_datetime(log["snapshot_date"])
 log["downloads"] = pd.to_numeric(log["downloads"], errors="coerce")
 series_log = log.dropna(subset=["model_id", "downloads"]).sort_values(["model_id", "snapshot_date"])
 # Hugging Face downloads are a snapshot metric rather than a guaranteed cumulative counter.
-# Use the observed download level from repeated real snapshots instead of fabricating a delta.
+# Use repeated observed download levels to estimate the latest delta.
 ready_models = series_log.groupby("model_id")["snapshot_date"].nunique().loc[lambda s: s >= 4].index.tolist()
 ready_models[:10], len(ready_models)
 ```
@@ -724,7 +724,7 @@ ready_models[:10], len(ready_models)
 
 ## 5. Decompose only if repeated real snapshots exist
 
-This check prevents a fake time series. On first run, the notebook exports the snapshot and tells the reader to collect more real snapshots.
+The notebook starts decomposition after enough dated snapshots are available. On first run, it exports the snapshot and asks the reader to collect more dated snapshots.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [6]</div>
@@ -783,7 +783,7 @@ summary
 
 ## 6. Snapshot ranking for immediate publication
 
-This is cross-sectional, not decomposed. It is still useful as a real source table.
+This cross-sectional snapshot provides a current source table; decomposition requires repeated snapshots.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [7]</div>
@@ -1100,8 +1100,8 @@ plt.show()
 <div class="notebook-input-label">In [9]</div>
 
 ```python
-guardrails = article_language_guardrails()
-guardrails
+phrasing = article_publication_phrasing()
+phrasing
 ```
 
 <div class="gallery-out notebook-output">
@@ -1125,8 +1125,8 @@ guardrails
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>unsafe</th>
-      <th>safer</th>
+      <th>draft_claim</th>
+      <th>evidence_based_phrasing</th>
     </tr>
   </thead>
   <tbody>
@@ -1171,7 +1171,7 @@ save_table(snapshot_rank, "03_hf_snapshot_rank")
 save_table(summary, "03_hf_decomposition_or_collection_status")
 if not events.empty:
     save_table(events, "03_hf_residual_events")
-save_table(guardrails, "03_hf_guardrails")
+save_table(phrasing, "03_hf_publication_phrasing")
 ```
 
 <div class="gallery-out notebook-output">
@@ -1180,7 +1180,7 @@ save_table(guardrails, "03_hf_guardrails")
 saved: examples/hot_trends/outputs/03_hf_snapshot_audit.csv
 saved: examples/hot_trends/outputs/03_hf_snapshot_rank.csv
 saved: examples/hot_trends/outputs/03_hf_decomposition_or_collection_status.csv
-saved: examples/hot_trends/outputs/03_hf_guardrails.csv
+saved: examples/hot_trends/outputs/03_hf_publication_phrasing.csv
 ```
 </div>
 </div>

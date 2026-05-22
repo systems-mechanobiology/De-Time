@@ -23,11 +23,11 @@ This tutorial column shows how to use De-Time as a real-data decomposition layer
   </div>
 </div>
 
-## Real-data policy
+## Public Data Sources
 
-The Hot Trend Lab uses real public data fetched at runtime. It does **not** generate synthetic fallback data. If a source cannot be reached, the notebooks raise an explicit data error and stop.
+The Hot Trend Lab fetches public data at runtime and records source coverage, freshness, query context, and measurement limits for each notebook.
 
-This matters because the column is meant for overseas readers who may reuse the notebooks as a public-data workflow. A table is publishable only when its source, access date, query, and interpretation limits are visible.
+The column is meant for overseas readers who may reuse the notebooks as a public-data workflow. Each table presents source, access date, query, and interpretation limits.
 
 ## Why this column belongs in De-Time
 
@@ -40,14 +40,14 @@ A fast-moving public topic usually mixes three signals:
 | `residual` | shock outside the smooth pattern | a model release, policy event, ETF-flow break, or media burst |
 | `meta` | reproducibility context | source URL, query, period, method, access date |
 
-The point is not to claim prediction. The point is to force every viral topic into the same interpretable result contract before writing the narrative.
+The column puts each viral topic into the same interpretable result contract before writing the narrative.
 
 ## Column map
 
 <div class="info-grid">
   <a class="info-card" href="data-sources/">
     <h3>Real Data Sources</h3>
-    <p>Source registry, API rules, access-date discipline, and no-synthetic-data policy.</p>
+    <p>Source registry, API rules, access-date discipline, and measurement limits.</p>
   </a>
   <a class="info-card" href="arxiv-research-pulse/">
     <h3>arXiv Research Pulse</h3>
@@ -97,6 +97,8 @@ Then open:
 jupyter lab examples/notebooks/hot_trends
 ```
 
-## Important boundary
+## Research Scope
 
-This is a research and documentation column. It is not investment advice, not a leaderboard, and not a claim that attention metrics equal adoption or quality.
+Use this column to analyze public attention, research activity, open-source
+activity, liquidity, and market-proxy time series. Adoption, quality, valuation,
+and investment decisions require external evidence.

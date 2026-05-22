@@ -1,8 +1,7 @@
-# Quant Trading Data: Real Market Inputs Only
+# Quant Trading Data: Sources and Validation
 
-The quant trading column uses real market data downloaded at runtime. The data
-loader in `examples/quant_trading/data.py` has one central rule: if real data is
-not available, raise an error rather than invent prices.
+The quant trading column downloads market data at runtime and validates the
+returned tables before feature and signal examples are computed.
 
 ## Default source
 

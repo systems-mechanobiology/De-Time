@@ -69,11 +69,11 @@ quantitative trading research. The core idea is simple:
   </div>
 </div>
 
-## Real-data policy
+## Market Data Sources
 
-The column uses real market data downloaded at runtime through `yfinance`.
-It does not create artificial price data. If the vendor request fails, the
-notebook stops with a data error instead of silently replacing market data.
+The column downloads market data at runtime through `yfinance`, validates the
+returned tables, and records the ticker universe, date window, and data source
+used by each notebook.
 The example universes include US large-cap stocks, US style and sector ETFs,
 Korean equities using `.KS` / `.KQ` symbols, and crypto pairs such as
 `BTC-USD` and `ETH-USD`.
@@ -101,7 +101,7 @@ to derive practical trading features:
 <div class="info-grid">
   <a class="info-card" href="data/">
     <h3>Real Data and Universes</h3>
-    <p>US, Korea, ETF, and crypto market data loading with explicit validation and no artificial fallback.</p>
+    <p>US, Korea, ETF, and crypto market data loading with source and table validation.</p>
   </a>
   <a class="info-card" href="strategy-map/">
     <h3>Strategy Map</h3>
@@ -113,7 +113,7 @@ to derive practical trading features:
   </a>
   <a class="info-card" href="walkforward/">
     <h3>Walk-Forward Validation</h3>
-    <p>How to avoid full-sample decomposition leakage, unrealistic costs, and hidden benchmark reduction.</p>
+    <p>Walk-forward alignment, transaction costs, and benchmark reporting.</p>
   </a>
 </div>
 
@@ -134,7 +134,7 @@ documentation. The original executable notebooks remain in
 | [06 style and sector rotation](quant-trading/notebooks/06_style_sector_asset_rotation_bt.md) | style/sector ETF rotation | ETFs |
 | [07 Korea, US, and crypto multimarket](quant-trading/notebooks/07_korea_us_crypto_multimarket.md) | multi-market cycle and regime ideas | Korea, US, crypto |
 | [08 backtesting framework adapters](quant-trading/notebooks/08_backtesting_framework_adapters.md) | framework adapters | all |
-| [09 walk-forward validation and audit](quant-trading/notebooks/09_walkforward_validation_and_audit.md) | validation and audit protocol | all |
+| [09 walk-forward validation](quant-trading/notebooks/09_walkforward_validation_and_audit.md) | validation and reporting protocol | all |
 
 <div class="quant-notebook-grid">
   <a href="notebooks/00_quant_trading_column_overview/">
@@ -202,8 +202,8 @@ Then open:
 jupyter lab examples/notebooks/quant_trading
 ```
 
-## Important boundary
+## Research Scope
 
-This is a research tutorial, not investment advice. The examples are intended
-to help readers understand how decomposition features can be transformed into
-signals. They do not claim live-trading profitability.
+Use these examples to understand how decomposition features can become research
+signals. Live-trading evaluation requires point-in-time data, realistic costs,
+execution modeling, risk controls, and independent validation.

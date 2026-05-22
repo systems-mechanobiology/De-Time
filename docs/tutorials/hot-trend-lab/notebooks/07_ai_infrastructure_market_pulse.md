@@ -5,9 +5,9 @@
   <strong>Rendered notebook transcript.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/07_ai_infrastructure_market_pulse.ipynb"><code>examples/notebooks/hot_trends/07_ai_infrastructure_market_pulse.ipynb</code></a> and includes code cells plus captured outputs from the committed notebook.
 </div>
 
-This notebook uses real public market-price data as a proxy for market attention around AI infrastructure. It does not claim to measure audited revenue, capex, or valuation.
+This notebook uses public market-price data as a proxy for market attention around AI infrastructure. Revenue, capex, and valuation require separate official data.
 
-No synthetic fallback is used. If market data cannot be fetched, the notebook stops.
+Market prices are downloaded through yfinance and summarized with a source audit table.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -38,7 +38,7 @@ from examples.hot_trends.decomposition import (
     editorial_priority,
     residual_event_table,
 )
-from examples.hot_trends.scoring import article_language_guardrails
+from examples.hot_trends.scoring import article_publication_phrasing
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
@@ -1121,8 +1121,8 @@ plt.show()
 <div class="notebook-input-label">In [10]</div>
 
 ```python
-guardrails = article_language_guardrails()
-guardrails
+phrasing = article_publication_phrasing()
+phrasing
 ```
 
 <div class="gallery-out notebook-output">
@@ -1146,8 +1146,8 @@ guardrails
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>unsafe</th>
-      <th>safer</th>
+      <th>draft_claim</th>
+      <th>evidence_based_phrasing</th>
     </tr>
   </thead>
   <tbody>
@@ -1191,7 +1191,7 @@ save_table(audit, "07_ai_infra_market_audit")
 save_table(summary, "07_ai_infra_component_summary")
 save_table(returns, "07_ai_infra_return_proxy")
 save_table(events, "07_ai_infra_residual_events")
-save_table(guardrails, "07_ai_infra_guardrails")
+save_table(phrasing, "07_ai_infra_publication_phrasing")
 ```
 
 <div class="gallery-out notebook-output">
@@ -1201,7 +1201,7 @@ saved: examples/hot_trends/outputs/07_ai_infra_market_audit.csv
 saved: examples/hot_trends/outputs/07_ai_infra_component_summary.csv
 saved: examples/hot_trends/outputs/07_ai_infra_return_proxy.csv
 saved: examples/hot_trends/outputs/07_ai_infra_residual_events.csv
-saved: examples/hot_trends/outputs/07_ai_infra_guardrails.csv
+saved: examples/hot_trends/outputs/07_ai_infra_publication_phrasing.csv
 ```
 </div>
 </div>

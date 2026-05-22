@@ -5,9 +5,9 @@
   <strong>Rendered notebook transcript.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/00_hot_trend_lab_overview.ipynb"><code>examples/notebooks/hot_trends/00_hot_trend_lab_overview.ipynb</code></a> and includes code cells plus captured outputs from the committed notebook.
 </div>
 
-This notebook is the executable entry point for the Hot Trend Lab column. It verifies the source registry, the real-data policy, the De-Time component contract, and the editorial scoring logic.
+This notebook is the executable entry point for the Hot Trend Lab column. It reviews the source registry, the De-Time component contract, and the publication scoring logic.
 
-The column does not use synthetic fallback data. Every case notebook fetches real public data at runtime or stops with an explicit error.
+Each case notebook fetches real public data at runtime and records the source, coverage window, and measurement limits.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -38,7 +38,7 @@ from examples.hot_trends.decomposition import (
     editorial_priority,
     residual_event_table,
 )
-from examples.hot_trends.scoring import article_language_guardrails
+from examples.hot_trends.scoring import article_publication_phrasing
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
@@ -58,7 +58,7 @@ def save_table(df, name):
 
 ## 1. Source registry
 
-The source registry is the minimum evidence object for this column. It tells readers what is being measured and what not to overclaim.
+The source registry is the evidence object for this column. It tells readers what is being measured and how to interpret each signal.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [2]</div>
@@ -92,9 +92,9 @@ registry
       <th>source</th>
       <th>endpoint</th>
       <th>notebooks</th>
-      <th>real_data_policy</th>
+      <th>source_context</th>
       <th>freshness</th>
-      <th>caveat</th>
+      <th>interpretation_scope</th>
     </tr>
   </thead>
   <tbody>
@@ -103,7 +103,7 @@ registry
       <td>arXiv API</td>
       <td>https://export.arxiv.org/api/query</td>
       <td>01,02</td>
-      <td>live public API; no synthetic fallback</td>
+      <td>live public API</td>
       <td>weekly/monthly</td>
       <td>preprints are not peer-reviewed; cross-listing...</td>
     </tr>
@@ -114,7 +114,7 @@ registry
       <td>00,01</td>
       <td>official public stats page</td>
       <td>monthly</td>
-      <td>global totals, not category-level time series</td>
+      <td>global totals are separate from category-level time series</td>
     </tr>
     <tr>
       <th>2</th>
@@ -123,7 +123,7 @@ registry
       <td>03</td>
       <td>live public API; repeated snapshots needed for...</td>
       <td>daily/weekly</td>
-      <td>downloads and likes are adoption proxies</td>
+      <td>downloads and likes are public adoption proxies</td>
     </tr>
     <tr>
       <th>3</th>
@@ -132,7 +132,7 @@ registry
       <td>04</td>
       <td>live public API; token recommended</td>
       <td>weekly</td>
-      <td>stars are attention, not usage</td>
+      <td>stars are public repository-interest signals</td>
     </tr>
     <tr>
       <th>4</th>
@@ -141,7 +141,7 @@ registry
       <td>05</td>
       <td>live public API</td>
       <td>daily/weekly</td>
-      <td>pageviews are attention, not importance</td>
+      <td>pageviews reflect public attention during the selected period</td>
     </tr>
     <tr>
       <th>5</th>
@@ -305,7 +305,7 @@ plt.show()
 
 ## 3. De-Time output contract
 
-Each notebook exports the same table types: source audit, component summary, residual events, and publication guardrails.
+Each notebook exports the same table types: source audit, component summary, residual events, and publication phrasing.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [5]</div>
@@ -315,7 +315,7 @@ output_contract = pd.DataFrame([
     {"table": "source_audit", "purpose": "proves the table came from a real source and records coverage"},
     {"table": "component_summary", "purpose": "trend slope, cycle strength, residual shock score"},
     {"table": "residual_events", "purpose": "event-like deviations for article hooks"},
-    {"table": "language_guardrails", "purpose": "safe wording for public posts"},
+    {"table": "publication_phrasing", "purpose": "evidence-based publication phrasing"},
 ])
 output_contract
 ```
@@ -363,8 +363,8 @@ output_contract
     </tr>
     <tr>
       <th>3</th>
-      <td>language_guardrails</td>
-      <td>safe wording for public posts</td>
+      <td>publication_phrasing</td>
+      <td>evidence-based publication phrasing</td>
     </tr>
   </tbody>
 </table>
@@ -382,13 +382,13 @@ The readiness matrix checks whether each case has produced its key real-data out
 
 ```python
 expected_outputs = pd.DataFrame([
-    {"case": "arXiv category pulse", "audit": "01_arxiv_category_audit.csv", "summary_or_priority": "01_arxiv_category_priority.csv", "events": "01_arxiv_category_residual_events.csv", "guardrails_or_context": "01_arxiv_category_guardrails.csv"},
-    {"case": "AI agent research pulse", "audit": "02_arxiv_agent_topic_audit.csv", "summary_or_priority": "02_arxiv_agent_topic_priority.csv", "events": "02_arxiv_agent_topic_residual_events.csv", "guardrails_or_context": "02_arxiv_agent_article_outline.csv"},
-    {"case": "Hugging Face open-model pulse", "audit": "03_hf_snapshot_audit.csv", "summary_or_priority": "03_hf_decomposition_or_collection_status.csv", "events": "03_hf_residual_events.csv", "guardrails_or_context": "03_hf_guardrails.csv"},
-    {"case": "GitHub AI-agent star velocity", "audit": "04_github_stargazer_coverage.csv", "summary_or_priority": "04_github_decomposition_or_collection_status.csv", "events": "04_github_residual_events.csv", "guardrails_or_context": "04_github_guardrails.csv"},
-    {"case": "Wikimedia attention decay", "audit": "05_wikipedia_attention_audit.csv", "summary_or_priority": "05_wikipedia_attention_summary.csv", "events": "05_wikipedia_attention_events.csv", "guardrails_or_context": "05_wikipedia_guardrails.csv"},
-    {"case": "Crypto and stablecoin liquidity pulse", "audit": "06_crypto_price_audit.csv", "summary_or_priority": "06_crypto_price_summary.csv", "events": "06_crypto_price_residual_events.csv", "guardrails_or_context": "06_defillama_stablecoin_context.csv"},
-    {"case": "AI infrastructure market pulse", "audit": "07_ai_infra_market_audit.csv", "summary_or_priority": "07_ai_infra_component_summary.csv", "events": "07_ai_infra_residual_events.csv", "guardrails_or_context": "07_ai_infra_guardrails.csv"},
+    {"case": "arXiv category pulse", "audit": "01_arxiv_category_audit.csv", "summary_or_priority": "01_arxiv_category_priority.csv", "events": "01_arxiv_category_residual_events.csv", "phrasing_or_context": "01_arxiv_category_publication_phrasing.csv"},
+    {"case": "AI agent research pulse", "audit": "02_arxiv_agent_topic_audit.csv", "summary_or_priority": "02_arxiv_agent_topic_priority.csv", "events": "02_arxiv_agent_topic_residual_events.csv", "phrasing_or_context": "02_arxiv_agent_article_outline.csv"},
+    {"case": "Hugging Face open-model pulse", "audit": "03_hf_snapshot_audit.csv", "summary_or_priority": "03_hf_decomposition_or_collection_status.csv", "events": "03_hf_residual_events.csv", "phrasing_or_context": "03_hf_publication_phrasing.csv"},
+    {"case": "GitHub AI-agent star velocity", "audit": "04_github_stargazer_coverage.csv", "summary_or_priority": "04_github_decomposition_or_collection_status.csv", "events": "04_github_residual_events.csv", "phrasing_or_context": "04_github_publication_phrasing.csv"},
+    {"case": "Wikimedia attention decay", "audit": "05_wikipedia_attention_audit.csv", "summary_or_priority": "05_wikipedia_attention_summary.csv", "events": "05_wikipedia_attention_events.csv", "phrasing_or_context": "05_wikipedia_publication_phrasing.csv"},
+    {"case": "Crypto and stablecoin liquidity pulse", "audit": "06_crypto_price_audit.csv", "summary_or_priority": "06_crypto_price_summary.csv", "events": "06_crypto_price_residual_events.csv", "phrasing_or_context": "06_defillama_stablecoin_context.csv"},
+    {"case": "AI infrastructure market pulse", "audit": "07_ai_infra_market_audit.csv", "summary_or_priority": "07_ai_infra_component_summary.csv", "events": "07_ai_infra_residual_events.csv", "phrasing_or_context": "07_ai_infra_publication_phrasing.csv"},
 ])
 availability = expected_outputs.set_index("case").apply(lambda col: col.map(lambda filename: (OUTPUT_DIR / filename).exists())).astype(int)
 fig, ax = plt.subplots(figsize=(10, 4.5))
@@ -412,13 +412,13 @@ plt.show()
 </div>
 </div>
 
-## 4. Language guardrails
+## 4. Language phrasing
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [7]</div>
 
 ```python
-article_language_guardrails()
+article_publication_phrasing()
 ```
 
 <div class="gallery-out notebook-output">
@@ -442,8 +442,8 @@ article_language_guardrails()
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>unsafe</th>
-      <th>safer</th>
+      <th>draft_claim</th>
+      <th>evidence_based_phrasing</th>
     </tr>
   </thead>
   <tbody>
@@ -486,7 +486,7 @@ article_language_guardrails()
 save_table(registry, "00_source_registry")
 save_table(priority, "00_hot_trend_priority")
 save_table(output_contract, "00_output_contract")
-save_table(article_language_guardrails(), "00_language_guardrails")
+save_table(article_publication_phrasing(), "00_publication_phrasing")
 ```
 
 <div class="gallery-out notebook-output">
@@ -495,7 +495,7 @@ save_table(article_language_guardrails(), "00_language_guardrails")
 saved: examples/hot_trends/outputs/00_source_registry.csv
 saved: examples/hot_trends/outputs/00_hot_trend_priority.csv
 saved: examples/hot_trends/outputs/00_output_contract.csv
-saved: examples/hot_trends/outputs/00_language_guardrails.csv
+saved: examples/hot_trends/outputs/00_publication_phrasing.csv
 ```
 </div>
 </div>

@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-"""Real-market data loaders for the De-Time quant trading tutorial column.
+"""Market data loaders for the De-Time quant trading tutorial column.
 
-The column deliberately does not generate artificial price series. When market
-or network data is unavailable, these functions raise an explicit error instead
-of silently fabricating prices.
+The loaders download price tables through yfinance, validate the returned
+series, and attach source metadata for the tutorial notebooks.
 """
 
 from dataclasses import dataclass

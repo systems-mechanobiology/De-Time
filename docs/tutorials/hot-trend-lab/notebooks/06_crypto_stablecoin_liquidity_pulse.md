@@ -5,14 +5,14 @@
   <strong>Rendered notebook transcript.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/06_crypto_stablecoin_liquidity_pulse.ipynb"><code>examples/notebooks/hot_trends/06_crypto_stablecoin_liquidity_pulse.ipynb</code></a> and includes code cells plus captured outputs from the committed notebook.
 </div>
 
-This notebook uses real public crypto and DeFi data. It is descriptive and not investment advice.
+This notebook uses public crypto-market and DeFi liquidity data to describe recent market structure.
 
 Sources:
 
 - CoinGecko market chart for BTC/ETH price history;
 - DeFiLlama stablecoin data for liquidity context.
 
-No synthetic fallback is used.
+Data sources are recorded in the source audit table.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -43,7 +43,7 @@ from examples.hot_trends.decomposition import (
     editorial_priority,
     residual_event_table,
 )
-from examples.hot_trends.scoring import article_language_guardrails
+from examples.hot_trends.scoring import article_publication_phrasing
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
@@ -108,7 +108,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>111560.356938</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>1</th>
@@ -116,7 +116,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>107216.668569</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>2</th>
@@ -124,7 +124,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>107831.363744</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>3</th>
@@ -132,7 +132,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>108861.810377</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>4</th>
@@ -140,7 +140,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>109377.715133</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>5</th>
@@ -148,7 +148,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>109068.456949</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>6</th>
@@ -156,7 +156,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>107838.184311</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>7</th>
@@ -164,7 +164,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>105745.416604</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>8</th>
@@ -172,7 +172,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>104010.919562</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>9</th>
@@ -180,7 +180,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>104687.507429</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>10</th>
@@ -188,7 +188,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>105710.005938</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>11</th>
@@ -196,7 +196,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>105884.742632</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>12</th>
@@ -204,7 +204,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>105434.477451</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>13</th>
@@ -212,7 +212,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>104812.918219</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>14</th>
@@ -220,7 +220,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>101650.738755</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>15</th>
@@ -228,7 +228,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>104409.749680</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>16</th>
@@ -236,7 +236,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>105681.454614</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>17</th>
@@ -244,7 +244,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>105692.247407</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>18</th>
@@ -252,7 +252,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>110261.574859</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>19</th>
@@ -260,7 +260,7 @@ prices.head(20)
       <td>bitcoin</td>
       <td>110212.732521</td>
       <td>CoinGecko API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
   </tbody>
 </table>
@@ -748,7 +748,7 @@ events
 
 ## 5. Fetch stablecoin context from DeFiLlama
 
-This cell may require schema adjustment if the DeFiLlama stablecoin endpoint changes. It fails explicitly rather than using a fake table.
+This cell reads the DeFiLlama stablecoin endpoint schema and records the table used for the liquidity summary.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [7]</div>
@@ -919,14 +919,14 @@ plt.show()
 </div>
 </div>
 
-## 6. Publication guardrails
+## 6. Publication phrasing
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [9]</div>
 
 ```python
-guardrails = article_language_guardrails()
-guardrails
+phrasing = article_publication_phrasing()
+phrasing
 ```
 
 <div class="gallery-out notebook-output">
@@ -950,8 +950,8 @@ guardrails
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>unsafe</th>
-      <th>safer</th>
+      <th>draft_claim</th>
+      <th>evidence_based_phrasing</th>
     </tr>
   </thead>
   <tbody>
@@ -995,7 +995,7 @@ save_table(audit, "06_crypto_price_audit")
 save_table(summary, "06_crypto_price_summary")
 save_table(events, "06_crypto_price_residual_events")
 save_table(stable_chains, "06_defillama_stablecoin_context")
-save_table(guardrails, "06_crypto_guardrails")
+save_table(phrasing, "06_crypto_publication_phrasing")
 ```
 
 <div class="gallery-out notebook-output">
@@ -1005,7 +1005,7 @@ saved: examples/hot_trends/outputs/06_crypto_price_audit.csv
 saved: examples/hot_trends/outputs/06_crypto_price_summary.csv
 saved: examples/hot_trends/outputs/06_crypto_price_residual_events.csv
 saved: examples/hot_trends/outputs/06_defillama_stablecoin_context.csv
-saved: examples/hot_trends/outputs/06_crypto_guardrails.csv
+saved: examples/hot_trends/outputs/06_crypto_publication_phrasing.csv
 ```
 </div>
 </div>

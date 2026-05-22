@@ -49,11 +49,10 @@ def decompose_one_series(
     use_log_price: bool = True,
     z_window: int = 63,
 ) -> pd.DataFrame:
-    """Decompose one real price series and return component-derived features.
+    """Decompose one price series and return component-derived features.
 
-    The input is expected to be real market data. The function does not fabricate
-    missing observations; it only forward/backward fills sparse vendor gaps after
-    the original download has been validated.
+    Sparse vendor gaps are forward/backward filled after the original download
+    has been validated.
     """
 
     s = pd.Series(price).dropna().astype(float).sort_index()

@@ -22,4 +22,4 @@ python examples/workflow_comparisons/compare_specialist_glue_vs_detime.py
 
 The comparison focuses on software workflow properties: shared config/result
 objects, CLI and artifact behavior, method metadata, schemas, and automation
-support. It is not a leaderboard.
+support.

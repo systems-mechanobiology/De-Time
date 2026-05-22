@@ -2,7 +2,8 @@
 
 These notebooks are the executable companion for `docs/tutorials/hot-trend-lab.md`.
 
-They use real public data fetched at runtime. They do not generate synthetic fallback time series. If a source is unavailable, the notebook raises `HotTrendDataError` or the relevant vendor error.
+They fetch public data at runtime from the source named inside each notebook and
+record coverage, freshness, and measurement limits.
 
 Install optional dependencies:
 

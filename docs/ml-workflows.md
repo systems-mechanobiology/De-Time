@@ -1,8 +1,8 @@
 # ML Workflows
 
-De-Time is not a forecasting framework and it does not claim a new
-decomposition algorithm. Its relevance to machine learning comes from the
-workflow layer around decomposition.
+De-Time provides a workflow layer around decomposition for machine-learning
+pipelines. It wraps decomposition methods with a shared configuration contract,
+result object, and CLI/Python surface.
 
 ## Where it fits in ML pipelines
 

@@ -20,17 +20,18 @@ def test_generated_method_matrix_and_config_reference_exist() -> None:
     assert '"method": "MSSA"' in config
 
 
-def test_notebook_gallery_is_committed_with_outputs() -> None:
+def test_notebook_gallery_assets_are_committed() -> None:
     notebook_path = ROOT / "examples" / "notebooks" / "de_time_method_gallery.ipynb"
     page = (ROOT / "docs" / "notebook-gallery.md").read_text(encoding="utf-8")
     notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
     asset_dir = ROOT / "docs" / "assets" / "generated" / "notebooks" / "method-gallery"
 
     assert "de_time_method_gallery.ipynb" in page
-    assert "Out:" in page
+    assert "method-card-grid" in page
     assert "gallery-note" in page
     assert "Download Python source code" in page
-    assert "assets/generated/notebooks/method-gallery/ssa.png" in page
+    assert 'href="../gallery/ssa/"' in page
+    assert "GABOR_CLUSTER" in page
     assert (asset_dir / "ssa.png").is_file()
     assert (asset_dir / "de_time_method_gallery.ipynb").is_file()
     assert (asset_dir / "de_time_method_gallery.py").is_file()
@@ -102,3 +103,59 @@ def test_column_notebooks_do_not_render_path_bootstrap() -> None:
             text = path.read_text(encoding="utf-8")
             for fragment in banned_fragments:
                 assert fragment not in text, f"{path} exposes notebook path bootstrap fragment {fragment}"
+
+
+def test_column_notebooks_use_neutral_source_language() -> None:
+    roots = [
+        ROOT / "examples" / "notebooks" / "quant_trading",
+        ROOT / "examples" / "notebooks" / "hot_trends",
+        ROOT / "docs" / "tutorials" / "quant-trading",
+        ROOT / "docs" / "tutorials" / "hot-trend-lab",
+    ]
+    banned_fragments = [
+        "synthetic fallback",
+        "artificial fallback",
+        "artificial price generator",
+        "fake table",
+        "fake time series",
+        "fabricating",
+        "live_public_api_no_synthetic_fallback",
+        "real only because",
+        "no synthetic",
+        "no artificial",
+        "price fabrication",
+        "does not use synthetic",
+        "does not generate synthetic",
+        "do not create synthetic",
+        "does not claim",
+        "stops with an explicit error",
+        "stops with a data error",
+        "fails explicitly rather than",
+        "intentionally stops",
+        "most common mistakes",
+        "defensible",
+        "language guardrails",
+        "publication guardrails",
+        "unsafe",
+        "safer",
+        "not truth or importance",
+        "not investment advice",
+        "not a leaderboard",
+        "not a claim",
+        "not to claim",
+        "not production-adoption",
+        "not research quality",
+        "what is not allowed",
+        "what not to overclaim",
+    ]
+
+    for root in roots:
+        candidates = (
+            sorted(root.glob("*.ipynb"))
+            + sorted(root.glob("*.md"))
+            + sorted(root.glob("**/*.md"))
+        )
+        for path in candidates:
+            text = path.read_text(encoding="utf-8").lower()
+            for fragment in banned_fragments:
+                assert fragment not in text, f"{path} uses defensive source wording: {fragment}"

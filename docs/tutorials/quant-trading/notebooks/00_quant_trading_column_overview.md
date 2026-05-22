@@ -5,9 +5,9 @@
   <strong>Rendered notebook transcript.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/00_quant_trading_column_overview.ipynb"><code>examples/notebooks/quant_trading/00_quant_trading_column_overview.ipynb</code></a> and includes code cells plus captured outputs from the committed notebook.
 </div>
 
-This notebook introduces the column. The column is designed for quant traders who want to use time-series decomposition as a feature layer rather than a black-box trading rule.
+This notebook introduces the column for quant traders who want to use time-series decomposition as a feature layer for trading research.
 
-**Data policy:** every market-data notebook downloads real market data at runtime through `yfinance`. No artificial price generator is used. If data cannot be downloaded or validated, the loader raises an error.
+**Data sources:** each market-data notebook downloads prices at runtime through `yfinance`, validates the returned table, and records the source window used in the examples.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>

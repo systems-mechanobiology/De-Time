@@ -1,34 +1,39 @@
 # Hot Trend Lab Data Sources
 
-The column uses live public data only. No notebook fabricates a replacement series when a source is unavailable.
+The column uses public data sources fetched by the notebooks and records source
+coverage in the registry below.
 
 ## Source registry
 
-| Source | What it measures | Notebook use | Freshness rule | Main caveat |
+| Source | What it measures | Notebook use | Freshness rule | Interpretation scope |
 |---|---|---|---|---|
 | arXiv API | preprint counts and metadata | category pulse, agent research pulse | refresh weekly or monthly | preprints are not peer-reviewed; cross-listing can double count |
-| Hugging Face Hub API | model metadata, downloads, likes | open-model pulse | collect daily or weekly snapshots | one snapshot is not a time series; downloads are an adoption proxy |
+| Hugging Face Hub API | model metadata, downloads, likes | open-model pulse | collect daily or weekly snapshots | repeated snapshots support time-series analysis; downloads are a public adoption proxy |
 | GitHub REST API | repo metadata and stargazer timestamps | developer attention | collect weekly; use token for high-volume pulls | stars are attention, not production usage |
-| Wikimedia Analytics API | article pageviews | public attention and hype decay | refresh daily or weekly | pageviews reflect attention, not correctness or importance |
+| Wikimedia Analytics API | article pageviews | public attention and hype decay | refresh daily or weekly | pageviews reflect public attention during the selected period |
 | DeFiLlama stablecoin API | stablecoin supply and chain distribution | crypto liquidity pulse | refresh daily or weekly | endpoint structure can change; verify before publication |
 | CoinGecko API | crypto price and market data | crypto pulse | refresh per run | rate limits and plan limits apply |
 | Yahoo Finance through `yfinance` | public market prices | AI infrastructure market pulse | refresh per run | tutorial-grade source; use a licensed point-in-time vendor for production |
 
-## What counts as real data
+## Source table requirements
 
-A table counts as real data only if it is derived from one of the public sources above or from a clearly documented replacement source. The notebook must record:
+Tables should be derived from one of the public sources above or from a clearly
+documented replacement source. The notebook must record:
 
 - source name;
 - URL or API endpoint;
 - access date;
 - query parameters;
 - time range;
-- data-quality caveat.
+- data-quality and interpretation-scope notes.
 
-## What is not allowed
+## Source snapshot rules
 
-The Hot Trend Lab notebooks do not use artificial fallback series, simulated prices, random counts, or placeholder snapshots. If a source fails, the notebook should fail loudly so the reader does not confuse a demo with evidence.
+Each table should be tied to a named source, query context, access date, and
+time range. Cached files are treated as source snapshots and should carry the
+same provenance fields as freshly fetched data.
 
 ## Caching policy
 
-A cache is allowed only after a real source has been fetched. Cache files should be treated as source snapshots and should include an access date in the filename or metadata.
+Cache files represent fetched source snapshots and should include an access date
+in the filename or metadata.

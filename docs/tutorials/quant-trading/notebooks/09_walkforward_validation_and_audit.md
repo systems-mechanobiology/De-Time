@@ -5,7 +5,7 @@
   <strong>Rendered notebook transcript.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/09_walkforward_validation_and_audit.ipynb"><code>examples/notebooks/quant_trading/09_walkforward_validation_and_audit.ipynb</code></a> and includes code cells plus captured outputs from the committed notebook.
 </div>
 
-This notebook is the audit notebook. It highlights the most common mistakes: full-sample decomposition, same-bar fills, no costs, unreported failures, and hidden data problems.
+This notebook reviews walk-forward alignment, fill timing, transaction costs, failure reporting, and data coverage.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -112,7 +112,7 @@ audit
 
 ## Visualization: validation data audit
 
-The audit chart verifies that the validation notebook is working with real, sufficiently covered market data.
+The audit chart summarizes coverage and missingness for the validation data.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [3]</div>

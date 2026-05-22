@@ -13,7 +13,7 @@ Use it for articles such as:
 - Is `cs.CL` still rising after the LLM boom?
 - Are biology and finance categories showing durable AI-adjacent growth?
 
-Data source: arXiv API. No synthetic fallback.
+Data source: arXiv API.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -44,7 +44,7 @@ from examples.hot_trends.decomposition import (
     editorial_priority,
     residual_event_table,
 )
-from examples.hot_trends.scoring import article_language_guardrails
+from examples.hot_trends.scoring import article_publication_phrasing
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
@@ -215,7 +215,7 @@ counts.head(16)
       <td>2485</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>1</th>
@@ -225,7 +225,7 @@ counts.head(16)
       <td>3761</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>2</th>
@@ -235,7 +235,7 @@ counts.head(16)
       <td>3406</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>3</th>
@@ -245,7 +245,7 @@ counts.head(16)
       <td>3031</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>4</th>
@@ -255,7 +255,7 @@ counts.head(16)
       <td>4805</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>5</th>
@@ -265,7 +265,7 @@ counts.head(16)
       <td>3949</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>6</th>
@@ -275,7 +275,7 @@ counts.head(16)
       <td>3474</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>7</th>
@@ -285,7 +285,7 @@ counts.head(16)
       <td>3825</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>8</th>
@@ -295,7 +295,7 @@ counts.head(16)
       <td>4260</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>9</th>
@@ -305,7 +305,7 @@ counts.head(16)
       <td>4844</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>10</th>
@@ -315,7 +315,7 @@ counts.head(16)
       <td>3919</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>11</th>
@@ -325,7 +325,7 @@ counts.head(16)
       <td>3374</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>12</th>
@@ -335,7 +335,7 @@ counts.head(16)
       <td>4201</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>13</th>
@@ -345,7 +345,7 @@ counts.head(16)
       <td>4448</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>14</th>
@@ -355,7 +355,7 @@ counts.head(16)
       <td>5018</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>15</th>
@@ -365,7 +365,7 @@ counts.head(16)
       <td>4784</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
   </tbody>
 </table>
@@ -1016,7 +1016,7 @@ plt.show()
 
 ## 6. Top residual events
 
-These rows are article hooks. They do not prove causality; they mark months that do not fit the smooth trend/cycle baseline.
+These rows are article hooks. Causal interpretation requires additional evidence; the rows mark months that do not fit the smooth trend/cycle baseline.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [9]</div>
@@ -1346,8 +1346,8 @@ plt.show()
 <div class="notebook-input-label">In [11]</div>
 
 ```python
-guardrails = article_language_guardrails()
-guardrails
+phrasing = article_publication_phrasing()
+phrasing
 ```
 
 <div class="gallery-out notebook-output">
@@ -1371,8 +1371,8 @@ guardrails
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>unsafe</th>
-      <th>safer</th>
+      <th>draft_claim</th>
+      <th>evidence_based_phrasing</th>
     </tr>
   </thead>
   <tbody>
@@ -1416,7 +1416,7 @@ save_table(watchlist, "01_arxiv_category_watchlist")
 save_table(audit, "01_arxiv_category_audit")
 save_table(priority, "01_arxiv_category_priority")
 save_table(events, "01_arxiv_category_residual_events")
-save_table(guardrails, "01_arxiv_category_guardrails")
+save_table(phrasing, "01_arxiv_category_publication_phrasing")
 ```
 
 <div class="gallery-out notebook-output">
@@ -1426,7 +1426,7 @@ saved: examples/hot_trends/outputs/01_arxiv_category_watchlist.csv
 saved: examples/hot_trends/outputs/01_arxiv_category_audit.csv
 saved: examples/hot_trends/outputs/01_arxiv_category_priority.csv
 saved: examples/hot_trends/outputs/01_arxiv_category_residual_events.csv
-saved: examples/hot_trends/outputs/01_arxiv_category_guardrails.csv
+saved: examples/hot_trends/outputs/01_arxiv_category_publication_phrasing.csv
 ```
 </div>
 </div>

@@ -7,7 +7,7 @@
 
 This notebook uses real GitHub API data to track developer attention for AI-agent and developer-tool repositories.
 
-Stars are an attention proxy, not production adoption. No synthetic fallback is used.
+Stars are a public repository-interest signal for the selected period.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -38,7 +38,7 @@ from examples.hot_trends.decomposition import (
     editorial_priority,
     residual_event_table,
 )
-from examples.hot_trends.scoring import article_language_guardrails
+from examples.hot_trends.scoring import article_publication_phrasing
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
@@ -281,7 +281,7 @@ stars.head(20)
       <td>2022-10-25T15:45:15Z</td>
       <td>JohnShahawy</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>1</th>
@@ -289,7 +289,7 @@ stars.head(20)
       <td>2022-10-25T16:47:34Z</td>
       <td>davidtsong</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>2</th>
@@ -297,7 +297,7 @@ stars.head(20)
       <td>2022-10-25T16:50:28Z</td>
       <td>salomartin</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>3</th>
@@ -305,7 +305,7 @@ stars.head(20)
       <td>2022-10-25T16:57:12Z</td>
       <td>sjwhitmore</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>4</th>
@@ -313,7 +313,7 @@ stars.head(20)
       <td>2022-10-25T17:00:55Z</td>
       <td>achuthasubhash</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>5</th>
@@ -321,7 +321,7 @@ stars.head(20)
       <td>2022-10-25T17:06:38Z</td>
       <td>Agrover112</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>6</th>
@@ -329,7 +329,7 @@ stars.head(20)
       <td>2022-10-25T17:14:31Z</td>
       <td>gemasphi</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>7</th>
@@ -337,7 +337,7 @@ stars.head(20)
       <td>2022-10-25T17:15:00Z</td>
       <td>robinsingh1</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>8</th>
@@ -345,7 +345,7 @@ stars.head(20)
       <td>2022-10-25T17:17:23Z</td>
       <td>jvmncs</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>9</th>
@@ -353,7 +353,7 @@ stars.head(20)
       <td>2022-10-25T17:25:58Z</td>
       <td>vvonchain</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>10</th>
@@ -361,7 +361,7 @@ stars.head(20)
       <td>2022-10-25T17:28:58Z</td>
       <td>dhnanjay</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>11</th>
@@ -369,7 +369,7 @@ stars.head(20)
       <td>2022-10-25T17:43:55Z</td>
       <td>igorbrigadir</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>12</th>
@@ -377,7 +377,7 @@ stars.head(20)
       <td>2022-10-25T17:44:25Z</td>
       <td>rahular</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>13</th>
@@ -385,7 +385,7 @@ stars.head(20)
       <td>2022-10-25T17:47:37Z</td>
       <td>JadenGeller</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>14</th>
@@ -393,7 +393,7 @@ stars.head(20)
       <td>2022-10-25T17:48:45Z</td>
       <td>tkersey</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>15</th>
@@ -401,7 +401,7 @@ stars.head(20)
       <td>2022-10-25T17:54:09Z</td>
       <td>Banguiskode</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>16</th>
@@ -409,7 +409,7 @@ stars.head(20)
       <td>2022-10-25T17:59:06Z</td>
       <td>stanleyjacob</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>17</th>
@@ -417,7 +417,7 @@ stars.head(20)
       <td>2022-10-25T18:05:13Z</td>
       <td>orban</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>18</th>
@@ -425,7 +425,7 @@ stars.head(20)
       <td>2022-10-25T18:34:33Z</td>
       <td>mgorenstein</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>19</th>
@@ -433,7 +433,7 @@ stars.head(20)
       <td>2022-10-25T18:37:24Z</td>
       <td>odagayev</td>
       <td>GitHub REST API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
   </tbody>
 </table>
@@ -740,7 +740,7 @@ coverage
 
 ## Visualization: GitHub coverage and residual events
 
-Coverage bars show whether decomposition is defensible; the event plot highlights unusually large residual days when available.
+Coverage bars show whether there is enough stargazer history for decomposition; the event plot highlights unusually large residual days when available.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [8]</div>
@@ -883,8 +883,8 @@ summary
 <div class="notebook-input-label">In [10]</div>
 
 ```python
-guardrails = article_language_guardrails()
-guardrails
+phrasing = article_publication_phrasing()
+phrasing
 ```
 
 <div class="gallery-out notebook-output">
@@ -908,8 +908,8 @@ guardrails
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>unsafe</th>
-      <th>safer</th>
+      <th>draft_claim</th>
+      <th>evidence_based_phrasing</th>
     </tr>
   </thead>
   <tbody>
@@ -955,7 +955,7 @@ save_table(daily, "04_github_star_velocity_daily")
 save_table(summary, "04_github_decomposition_or_collection_status")
 if not events.empty:
     save_table(events, "04_github_residual_events")
-save_table(guardrails, "04_github_guardrails")
+save_table(phrasing, "04_github_publication_phrasing")
 ```
 
 <div class="gallery-out notebook-output">
@@ -966,7 +966,7 @@ saved: examples/hot_trends/outputs/04_github_stargazer_coverage.csv
 saved: examples/hot_trends/outputs/04_github_star_velocity_daily.csv
 saved: examples/hot_trends/outputs/04_github_decomposition_or_collection_status.csv
 saved: examples/hot_trends/outputs/04_github_residual_events.csv
-saved: examples/hot_trends/outputs/04_github_guardrails.csv
+saved: examples/hot_trends/outputs/04_github_publication_phrasing.csv
 ```
 </div>
 </div>

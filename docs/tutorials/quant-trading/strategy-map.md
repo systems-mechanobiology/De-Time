@@ -1,8 +1,7 @@
 # Strategy Map: Where Trend, Cycle, and Residual Help
 
-De-Time is not a trading strategy by itself. It is a feature layer. The column
-shows how decomposition outputs can be routed into common quantitative strategy
-families.
+De-Time serves as a feature layer for strategy research. The column shows how
+decomposition outputs can be routed into common quantitative strategy families.
 
 | Strategy family | Classical version | De-Time feature use | Tutorial |
 |---|---|---|---|
@@ -48,5 +47,5 @@ weights = pair_trading_weights(
 )
 ```
 
-Before using this in research, decompose the spread walk-forward and use the
-spread residual only when the spread trend is not drifting strongly.
+For research use, decompose the spread walk-forward and use the spread residual
+with a trend-drift screen.

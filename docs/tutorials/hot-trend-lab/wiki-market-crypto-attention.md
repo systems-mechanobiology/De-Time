@@ -1,10 +1,12 @@
 # Public Attention, Markets, and Crypto
 
-This section keeps the high-traffic topics but adds strict source and language boundaries.
+This section keeps the high-traffic topics and ties each one to source context
+and publication phrasing.
 
 ## Wikimedia attention
 
-Wikimedia pageviews are useful for public attention cycles. They are not evidence of technical correctness or market adoption.
+Wikimedia pageviews measure public attention cycles during the selected period
+and are interpreted alongside source context.
 
 Rendered notebook transcript with code and output:
 
@@ -12,7 +14,8 @@ Rendered notebook transcript with code and output:
 
 ## Crypto and stablecoin liquidity
 
-The crypto notebook uses public APIs to separate price movement, stablecoin-liquidity change, and residual shocks. It is descriptive and not investment advice.
+The crypto notebook uses public APIs to separate price movement,
+stablecoin-liquidity change, and residual shocks for market-structure analysis.
 
 Rendered notebook transcript with code and output:
 
@@ -20,15 +23,17 @@ Rendered notebook transcript with code and output:
 
 ## AI infrastructure market pulse
 
-The AI infrastructure notebook uses public market-price proxies for AI infrastructure names. It does not claim to measure audited revenue, capex, or valuation unless those official data are explicitly supplied.
+The AI infrastructure notebook uses public market-price proxies for AI
+infrastructure names. Audited revenue, capex, and valuation analysis require
+official financial data.
 
 Rendered notebook transcript with code and output:
 
 [07 AI infrastructure market pulse](notebooks/07_ai_infrastructure_market_pulse.md)
 
-## Safe wording
+## Publication phrasing
 
-| Unsafe wording | Safer wording |
+| Draft claim | Evidence-based phrasing |
 |---|---|
 | This residual predicts price. | This residual marks an event-like deviation from the decomposition baseline. |
 | Downloads prove model quality. | Downloads are a public adoption proxy. |

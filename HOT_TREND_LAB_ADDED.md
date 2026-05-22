@@ -17,11 +17,10 @@ Paper-writing materials:
 
 - The original `submission/` directory has been moved out of the main repo package and placed in a separate paper-writing archive, per request.
 
-Data policy:
+Data sources:
 
-- The Hot Trend Lab uses real public data fetched at runtime.
-- No synthetic fallback data is generated.
-- If a live source is unavailable, the notebook stops with an explicit error.
+- The Hot Trend Lab fetches public data at runtime.
+- Each notebook records source coverage, freshness, query context, and measurement limits.
 
 Local checks performed in this packaging environment:
 

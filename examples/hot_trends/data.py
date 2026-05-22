@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-"""Real public-data loaders for the Hot Trend Lab.
+"""Public-data loaders for the Hot Trend Lab.
 
-The module deliberately has no artificial data generator. If a source is
-unavailable, functions raise HotTrendDataError instead of producing a synthetic
-series.
+The module fetches named public sources, validates returned tables, and reports
+source failures as HotTrendDataError.
 """
 
 from dataclasses import dataclass
@@ -141,7 +140,7 @@ def build_arxiv_monthly_counts(
                     "count": count,
                     "source": "arXiv API",
                     "access_date": date.today().isoformat(),
-                    "data_quality": "live_public_api_no_synthetic_fallback",
+                    "data_quality": "public_api_snapshot",
                 }
             )
     if not rows:
@@ -174,7 +173,7 @@ def fetch_huggingface_models(*, limit: int = 50, sort: str = "downloads", direct
                 "last_modified": item.get("lastModified"),
                 "private": item.get("private"),
                 "source": "Hugging Face Hub API",
-                "data_quality": "live_public_api_no_synthetic_fallback",
+                "data_quality": "public_api_snapshot",
             }
         )
     out = pd.DataFrame(rows)
@@ -231,7 +230,7 @@ def fetch_github_stargazers(repo: str, *, pages: int = 5, token: str | None = No
                         "starred_at": item.get("starred_at"),
                         "login": user.get("login") if isinstance(user, dict) else None,
                         "source": "GitHub REST API",
-                        "data_quality": "live_public_api_no_synthetic_fallback",
+                        "data_quality": "public_api_snapshot",
                     }
                 )
     if not rows:
@@ -271,7 +270,7 @@ def fetch_wikipedia_pageviews(
                 "views": item.get("views"),
                 "project": project,
                 "source": "Wikimedia Analytics API",
-                "data_quality": "live_public_api_no_synthetic_fallback",
+                "data_quality": "public_api_snapshot",
             }
         )
     return pd.DataFrame(rows)
@@ -301,7 +300,7 @@ def fetch_coingecko_market_chart(coin_id: str, *, vs_currency: str = "usd", days
     prices["date"] = pd.to_datetime(prices["timestamp_ms"], unit="ms").dt.date.astype(str)
     prices["coin_id"] = coin_id
     prices["source"] = "CoinGecko API"
-    prices["data_quality"] = "live_public_api_no_synthetic_fallback"
+    prices["data_quality"] = "public_api_snapshot"
     return prices[["date", "coin_id", "price", "source", "data_quality"]]
 
 

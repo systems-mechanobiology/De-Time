@@ -3,9 +3,9 @@
 This directory contains the example code behind the documentation page
 `docs/tutorials/quant-trading.md`.
 
-The column is designed for international quant readers. It uses real market data
-through `yfinance` by default and raises an explicit error if the data vendor is
-unavailable. It does not create artificial price data.
+The column is designed for international quant readers. It downloads market
+data through `yfinance` by default, validates returned tables, and records the
+ticker universe, date window, and data source used by each notebook.
 
 ## Quick start
 

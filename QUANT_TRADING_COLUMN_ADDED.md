@@ -13,11 +13,11 @@ Added directories:
 - `examples/notebooks/quant_trading/`
 - `examples/quant_trading/`
 
-Data policy:
+Market data sources:
 
-- The notebooks use real market data downloaded at runtime through `yfinance`.
-- No artificial price-series fallback is provided.
-- If the data vendor is unavailable, `MarketDataError` is raised.
+- The notebooks download market data at runtime through `yfinance`.
+- Returned tables are validated before feature and signal examples are computed.
+- Data-source failures are reported as `MarketDataError`.
 
 Local checks performed:
 

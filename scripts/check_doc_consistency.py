@@ -79,7 +79,7 @@ REQUIRED_PATTERNS: dict[str, list[str]] = {
     ],
     "docs/tutorials/hot-trend-lab.md": [
         "examples/notebooks/hot_trends/",
-        "synthetic fallback data",
+        "source coverage, freshness, query context",
         "captured outputs directly",
         "hot-trend-lab/notebooks/01_arxiv_category_pulse.md",
     ],
@@ -105,7 +105,7 @@ REQUIRED_PATTERNS: dict[str, list[str]] = {
         "code cells, stdout, tables",
         "01_arxiv_category_pulse.md",
     ],
-    "docs/tutorials/hot-trend-lab/data-sources.md": ["Source registry", "artificial fallback series"],
+    "docs/tutorials/hot-trend-lab/data-sources.md": ["Source registry", "Source snapshot rules"],
 }
 
 PUBLIC_DOCS = [

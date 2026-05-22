@@ -5,7 +5,8 @@ This section tracks two public proxies for technical momentum:
 1. Hugging Face model metadata snapshots;
 2. GitHub repository stargazer timestamps and star velocity.
 
-Neither source proves model quality or production usage. They measure public attention and adoption proxies.
+These sources measure public attention and adoption proxies. Model quality and
+production usage require benchmark, deployment, and usage evidence.
 
 ## Hugging Face model pulse
 
@@ -31,6 +32,7 @@ Rendered notebook transcript with code and output:
 
 [04 GitHub AI-agent star velocity](notebooks/04_github_ai_agent_star_velocity.md)
 
-## Editorial rule
+## Publication phrasing
 
-Use these sources as attention proxies. Do not write that a repository is technically superior just because its residual shock is large.
+A large residual shock should be described as repository attention rather than
+technical superiority.

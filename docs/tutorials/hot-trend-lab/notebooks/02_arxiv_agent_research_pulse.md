@@ -16,7 +16,7 @@ Good first topics:
 - mechanistic interpretability;
 - AI for science.
 
-Data source: arXiv API. No synthetic fallback.
+Data source: arXiv API.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -47,7 +47,7 @@ from examples.hot_trends.decomposition import (
     editorial_priority,
     residual_event_table,
 )
-from examples.hot_trends.scoring import article_language_guardrails
+from examples.hot_trends.scoring import article_publication_phrasing
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
@@ -205,7 +205,7 @@ counts.head(12)
       <td>65</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>1</th>
@@ -215,7 +215,7 @@ counts.head(12)
       <td>112</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>2</th>
@@ -225,7 +225,7 @@ counts.head(12)
       <td>91</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>3</th>
@@ -235,7 +235,7 @@ counts.head(12)
       <td>115</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>4</th>
@@ -245,7 +245,7 @@ counts.head(12)
       <td>173</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>5</th>
@@ -255,7 +255,7 @@ counts.head(12)
       <td>150</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>6</th>
@@ -265,7 +265,7 @@ counts.head(12)
       <td>131</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>7</th>
@@ -275,7 +275,7 @@ counts.head(12)
       <td>163</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>8</th>
@@ -285,7 +285,7 @@ counts.head(12)
       <td>158</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>9</th>
@@ -295,7 +295,7 @@ counts.head(12)
       <td>206</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>10</th>
@@ -305,7 +305,7 @@ counts.head(12)
       <td>162</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>11</th>
@@ -315,7 +315,7 @@ counts.head(12)
       <td>172</td>
       <td>arXiv API</td>
       <td>2026-05-22</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
   </tbody>
 </table>
@@ -1131,7 +1131,7 @@ outline = pd.DataFrame([
     {"section": "Question", "content": "Which agent-related research topic is accelerating?"},
     {"section": "Source", "content": "arXiv API counts by query and submitted month."},
     {"section": "De-Time table", "content": "trend slope, cycle strength, residual shock rank."},
-    {"section": "Caveat", "content": "arXiv counts measure preprint volume, not research quality or adoption."},
+    {"section": "Interpretation scope", "content": "arXiv counts measure preprint volume; quality and adoption require separate evidence."},
 ])
 outline
 ```
@@ -1179,7 +1179,7 @@ outline
     </tr>
     <tr>
       <th>3</th>
-      <td>Caveat</td>
+      <td>Interpretation scope</td>
       <td>arXiv counts measure preprint volume, not rese...</td>
     </tr>
   </tbody>

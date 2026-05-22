@@ -5,9 +5,9 @@
   <strong>Rendered notebook transcript.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/05_wikipedia_attention_hype_decay.ipynb"><code>examples/notebooks/hot_trends/05_wikipedia_attention_hype_decay.ipynb</code></a> and includes code cells plus captured outputs from the committed notebook.
 </div>
 
-This notebook uses real Wikimedia Analytics API pageviews to measure public attention cycles. Pageviews are attention, not truth or importance.
+This notebook uses Wikimedia Analytics API pageviews to measure public attention cycles. Pageviews are interpreted as public-attention signals.
 
-No synthetic fallback is used.
+Data sources are recorded in the source audit table.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -38,7 +38,7 @@ from examples.hot_trends.decomposition import (
     editorial_priority,
     residual_event_table,
 )
-from examples.hot_trends.scoring import article_language_guardrails
+from examples.hot_trends.scoring import article_publication_phrasing
 
 pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
@@ -181,7 +181,7 @@ views.head(20)
       <td>9447</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>1</th>
@@ -190,7 +190,7 @@ views.head(20)
       <td>10777</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>2</th>
@@ -199,7 +199,7 @@ views.head(20)
       <td>10148</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>3</th>
@@ -208,7 +208,7 @@ views.head(20)
       <td>9172</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>4</th>
@@ -217,7 +217,7 @@ views.head(20)
       <td>8865</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>5</th>
@@ -226,7 +226,7 @@ views.head(20)
       <td>11022</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>6</th>
@@ -235,7 +235,7 @@ views.head(20)
       <td>12419</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>7</th>
@@ -244,7 +244,7 @@ views.head(20)
       <td>12421</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>8</th>
@@ -253,7 +253,7 @@ views.head(20)
       <td>12147</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>9</th>
@@ -262,7 +262,7 @@ views.head(20)
       <td>11222</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>10</th>
@@ -271,7 +271,7 @@ views.head(20)
       <td>8817</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>11</th>
@@ -280,7 +280,7 @@ views.head(20)
       <td>9058</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>12</th>
@@ -289,7 +289,7 @@ views.head(20)
       <td>13942</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>13</th>
@@ -298,7 +298,7 @@ views.head(20)
       <td>12763</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>14</th>
@@ -307,7 +307,7 @@ views.head(20)
       <td>13336</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>15</th>
@@ -316,7 +316,7 @@ views.head(20)
       <td>13364</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>16</th>
@@ -325,7 +325,7 @@ views.head(20)
       <td>11866</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>17</th>
@@ -334,7 +334,7 @@ views.head(20)
       <td>9003</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>18</th>
@@ -343,7 +343,7 @@ views.head(20)
       <td>9598</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
     <tr>
       <th>19</th>
@@ -352,7 +352,7 @@ views.head(20)
       <td>11688</td>
       <td>en.wikipedia.org</td>
       <td>Wikimedia Analytics API</td>
-      <td>live_public_api_no_synthetic_fallback</td>
+      <td>public_api_snapshot</td>
     </tr>
   </tbody>
 </table>
@@ -1141,7 +1141,7 @@ save_table(audit, "05_wikipedia_attention_audit")
 save_table(summary, "05_wikipedia_attention_summary")
 save_table(events, "05_wikipedia_attention_events")
 save_table(decay, "05_wikipedia_hype_decay")
-save_table(article_language_guardrails(), "05_wikipedia_guardrails")
+save_table(article_publication_phrasing(), "05_wikipedia_publication_phrasing")
 ```
 
 <div class="gallery-out notebook-output">
@@ -1151,7 +1151,7 @@ saved: examples/hot_trends/outputs/05_wikipedia_attention_audit.csv
 saved: examples/hot_trends/outputs/05_wikipedia_attention_summary.csv
 saved: examples/hot_trends/outputs/05_wikipedia_attention_events.csv
 saved: examples/hot_trends/outputs/05_wikipedia_hype_decay.csv
-saved: examples/hot_trends/outputs/05_wikipedia_guardrails.csv
+saved: examples/hot_trends/outputs/05_wikipedia_publication_phrasing.csv
 ```
 </div>
 </div>

@@ -5,7 +5,7 @@
   <strong>Rendered notebook transcript.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/01_real_market_data_and_detime_features.ipynb"><code>examples/notebooks/quant_trading/01_real_market_data_and_detime_features.ipynb</code></a> and includes code cells plus captured outputs from the committed notebook.
 </div>
 
-This notebook downloads real close prices, audits them, and computes walk-forward De-Time features. It intentionally stops if real market data is not available.
+This notebook downloads close prices, validates source coverage, and computes walk-forward De-Time features.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -435,7 +435,7 @@ plt.show()
 
 ## Walk-forward feature factory
 
-This step recomputes De-Time on rolling historical windows and keeps only the last row of each window. This avoids full-sample decomposition leakage.
+This step recomputes De-Time on rolling historical windows and keeps only the last row of each window. The resulting feature rows use only data available within each rolling window.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [8]</div>
