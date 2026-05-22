@@ -1,0 +1,8 @@
+strategy_family,classical_signal,detime_component,signal_rule,best_tutorial,main_risk
+Trend following,Moving average / Donchian breakout,trend,Trade only when trend_slope confirms breakout,03_turtle_donchian_trend_filter.ipynb,Trend reversal and crowded momentum
+Trend pullback,Buy dip in uptrend,trend + residual,Long when trend_slope > 0 and residual_z is negative,02_single_asset_timing_vectorbt.ipynb,A downtrend can make residual dips persist
+Residual mean reversion,Price z-score,residual,Mean-revert residual_z rather than raw price,02_single_asset_timing_vectorbt.ipynb,Residual distribution drift
+Pairs trading,Spread z-score,spread trend + residual,Trade spread residual only when spread trend is stable,04_pairs_trading_residual_cycle.ipynb,Cointegration or borrow regime breaks
+Cross-sectional alpha,Momentum / technical factor,trend + season + residual,"Rank trend_strength, negative residual_z, and season_slope",05_cross_sectional_factor_selection.ipynb,Data mining and sector concentration
+Style and sector rotation,ETF momentum rank,trend + cycle,Top-N decomposition score with volatility targeting,06_style_sector_asset_rotation_bt.ipynb,High turnover and regime whipsaw
+Crypto regime filter,Volatility / MA filter,trend + residual stress,Trade only when trend is positive and residual_abs_z is moderate,07_korea_us_crypto_multimarket.ipynb,24/7 liquidity and exchange-specific risks

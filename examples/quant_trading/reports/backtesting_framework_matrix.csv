@@ -1,0 +1,8 @@
+framework,best_use,tutorial_status,adapter_file,notes
+pandas vectorized baseline,fast transparent research checks,included,examples/quant_trading/backtest.py,No optional dependency; useful for explaining signal logic.
+vectorbt,multi-asset signal matrices and parameter grids,adapter included,examples/quant_trading/frameworks.py,Uses Portfolio.from_signals when installed.
+backtesting.py,single-asset strategy class teaching,adapter included,examples/quant_trading/frameworks.py,Takes OHLCV plus precomputed De-Time side signal.
+bt,target-weight ETF and portfolio rotation,adapter included,examples/quant_trading/frameworks.py,Uses WeighTarget and daily rebalance.
+Backtrader,event-driven orders and feeds,template included,examples/quant_trading/frameworks.py,Template writes a PandasData line for detime_signal.
+Zipline-Reloaded,calendar-safe professional factor research,template included,examples/quant_trading/frameworks.py,Signals should be precomputed and aligned to bundles/calendar.
+QuantStats,tear sheets and risk reports,adapter included,examples/quant_trading/frameworks.py,Generates HTML reports when installed.

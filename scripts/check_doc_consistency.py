@@ -71,6 +71,9 @@ REQUIRED_PATTERNS: dict[str, list[str]] = {
     "docs/tutorials/visual-univariate.md": ["$env:PYTHONPATH='src'", "python examples/visual_univariate_walkthrough.py"],
     "docs/tutorials/visual-multivariate.md": ["$env:PYTHONPATH='src'", "python examples/visual_multivariate_walkthrough.py"],
     "docs/tutorials/visual-comparison.md": ["$env:PYTHONPATH='src'", "python examples/visual_method_comparison.py"],
+    "docs/tutorials/quant-trading.md": ["examples/notebooks/quant_trading/", "examples/quant_trading/requirements.txt"],
+    "docs/tutorials/hot-trend-lab.md": ["examples/notebooks/hot_trends/", "synthetic fallback data"],
+    "docs/tutorials/hot-trend-lab/data-sources.md": ["Source registry", "artificial fallback series"],
 }
 
 PUBLIC_DOCS = [
@@ -83,6 +86,9 @@ PUBLIC_DOCS = [
     "docs/method-matrix.md",
     "docs/config-reference.md",
     "docs/notebook-gallery.md",
+    "docs/tutorials/quant-trading.md",
+    "docs/tutorials/hot-trend-lab.md",
+    "docs/tutorials/hot-trend-lab/data-sources.md",
     "docs/api.md",
 ]
 
@@ -109,6 +115,12 @@ POSIX_ONLY_VISUAL_BANS = {
     ],
     "docs/tutorials/visual-comparison.md": [
         "PYTHONPATH=src python3",
+    ],
+}
+
+NEW_COLUMN_LINK_BANS = {
+    "docs/tutorials/hot-trend-lab.md": [
+        'href="hot-trend-lab/',
     ],
 }
 
@@ -148,10 +160,17 @@ def main() -> int:
 
     for relative_path, patterns in BANNED_PATTERNS.items():
         path = ROOT / relative_path
+        if relative_path.startswith("submission/") and not path.exists():
+            # Manuscript/submission materials may be distributed separately from
+            # the documentation repository. Skip these paper-only checks when
+            # the submission bundle is intentionally absent.
+            continue
         failures.extend(_check_patterns(path, patterns, expect_present=False))
 
     for relative_path, patterns in REQUIRED_PATTERNS.items():
         path = ROOT / relative_path
+        if relative_path.startswith("submission/") and not path.exists():
+            continue
         failures.extend(_check_patterns(path, patterns, expect_present=True))
 
     for relative_path in PUBLIC_DOCS:
@@ -163,6 +182,10 @@ def main() -> int:
         failures.extend(_check_patterns(path, patterns, expect_present=False))
 
     for relative_path, patterns in POSIX_ONLY_VISUAL_BANS.items():
+        path = ROOT / relative_path
+        failures.extend(_check_patterns(path, patterns, expect_present=False))
+
+    for relative_path, patterns in NEW_COLUMN_LINK_BANS.items():
         path = ROOT / relative_path
         failures.extend(_check_patterns(path, patterns, expect_present=False))
 

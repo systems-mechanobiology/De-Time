@@ -10,6 +10,7 @@ theme:
   custom_dir: docs/overrides
   favicon: assets/brand/detime-logo-square.svg
 extra_css:
+  - stylesheets/brand.css
   - stylesheets/extra.css
 nav:
   - Install: install.md
@@ -23,6 +24,19 @@ nav:
       - Univariate Tutorial: tutorials/univariate.md
       - Multivariate Tutorial: tutorials/multivariate.md
       - CLI Guide: tutorials/cli-and-profiling.md
+  - Quant Trading:
+      - Overview: tutorials/quant-trading.md
+      - Real Data and Universes: tutorials/quant-trading/data.md
+      - Strategy Map: tutorials/quant-trading/strategy-map.md
+      - Backtesting Frameworks: tutorials/quant-trading/backtesting-frameworks.md
+      - Walk-Forward Validation: tutorials/quant-trading/walkforward.md
+  - Hot Trend Lab:
+      - Overview: tutorials/hot-trend-lab.md
+      - Real Data Sources: tutorials/hot-trend-lab/data-sources.md
+      - arXiv Research Pulse: tutorials/hot-trend-lab/arxiv-research-pulse.md
+      - Open Models and Developer Attention: tutorials/hot-trend-lab/open-model-and-developer-attention.md
+      - Public Attention, Markets, and Crypto: tutorials/hot-trend-lab/wiki-market-crypto-attention.md
+      - Release Calendar: tutorials/hot-trend-lab/release-calendar.md
   - API:
       - API Overview: api.md
       - Config Reference: config-reference.md

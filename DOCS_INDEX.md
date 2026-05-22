@@ -35,6 +35,10 @@ This file is a compact documentation map for agents and contributors.
   - inline method gallery with code, outputs, figures, and notebook downloads
 - `docs/tutorials/univariate.md`
   - first runnable workflow tutorial with published outputs
+- `docs/tutorials/quant-trading.md`
+  - real-market-data tutorial column for decomposition features, strategy maps, backtesting adapters, and walk-forward validation
+- `docs/tutorials/hot-trend-lab.md`
+  - real-public-data tutorial column for research, open-model, developer-attention, market, and crypto trend decomposition
 - `docs/api.md`
   - public package surface in the top-nav `API` group
 - `docs/machine-api.md`
@@ -54,6 +58,10 @@ This file is a compact documentation map for agents and contributors.
 - `examples/profile_and_cli.py`
 - `examples/notebooks/de_time_method_gallery.ipynb`
   - plotted beginner gallery for retained decomposition methods
+- `examples/quant_trading/`
+  - real-data quant trading utilities and smoke checks
+- `examples/hot_trends/`
+  - public-source loaders and editorial guardrails for the Hot Trend Lab column
 
 ## Best next files for agents
 

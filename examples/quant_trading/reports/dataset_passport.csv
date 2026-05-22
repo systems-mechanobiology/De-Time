@@ -1,0 +1,5 @@
+dataset_name,source,access_method,asset_class,example_symbols,license_note,where_used,artificial_price_data_used
+Yahoo Finance US equities,Yahoo Finance via yfinance,yf.download,US equities,AAPL MSFT NVDA SPY QQQ,Use for research/education; verify vendor terms for publication or production,Notebooks 01-06,no
+Yahoo Finance Korea equities,Yahoo Finance via yfinance,yf.download,Korea equities,005930.KS 000660.KS 035420.KS,Use for research/education; verify vendor terms and local exchange conventions,Notebook 07,no
+Yahoo Finance crypto pairs,Yahoo Finance via yfinance,yf.download,Crypto spot proxies,BTC-USD ETH-USD SOL-USD,Use for research/education; verify exchange-specific data before production,Notebook 07,no
+Licensed vendor CSV,User-provided,CSV ingestion extension point,Any,vendor-specific,"Document license, point-in-time rules, and adjustment policy",Production extension,no

@@ -76,6 +76,19 @@ multichannel decomposition workflows.
   </a>
 </div>
 
+## New Columns
+
+<div class="info-grid">
+  <a class="info-card" href="tutorials/quant-trading/">
+    <h3>Quant Trading Column</h3>
+    <p>Real market data, decomposition features, strategy maps, backtesting adapters, and walk-forward validation.</p>
+  </a>
+  <a class="info-card" href="tutorials/hot-trend-lab/">
+    <h3>Hot Trend Lab</h3>
+    <p>Real public-data trend and cycle decomposition for research, open models, developer attention, markets, and crypto.</p>
+  </a>
+</div>
+
 ## Core Reference
 
 <div class="info-grid">

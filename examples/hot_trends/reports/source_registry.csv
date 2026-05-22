@@ -1,0 +1,9 @@
+source,endpoint,notebooks,real_data_policy,freshness,caveat
+arXiv API,https://export.arxiv.org/api/query,"01,02",live public API; no synthetic fallback,weekly/monthly,preprints are not peer-reviewed; cross-listing can double count
+arXiv monthly submissions,https://arxiv.org/show_monthly_submissions,"00,01",official public stats page,monthly,"global totals, not category-level time series"
+Hugging Face Hub API,https://huggingface.co/api/models,03,live public API; repeated snapshots needed for time series,daily/weekly,downloads and likes are adoption proxies
+GitHub REST API,https://api.github.com/repos/{owner}/{repo}/stargazers,04,live public API; token recommended,weekly,"stars are attention, not usage"
+Wikimedia Analytics API,https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/...,05,live public API,daily/weekly,"pageviews are attention, not importance"
+DeFiLlama stablecoin API,https://stablecoins.llama.fi/stablecoins?includePrices=true,06,live public API,daily/weekly,API schema should be checked before publication
+CoinGecko API,https://api.coingecko.com/api/v3/coins/{id}/market_chart,06,live public API,per run,rate limits and plan limits apply
+Yahoo Finance via yfinance,yfinance.download,07,live public market data via yfinance; no price fabrication,per run,tutorial-grade source; use licensed vendor for production

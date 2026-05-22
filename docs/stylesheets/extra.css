@@ -120,6 +120,7 @@ pre code, .highlight code {
 }
 
 table {
+  max-width: 100%;
   border-color: var(--dt-border) !important;
   background: rgba(255, 255, 255, 0.035);
 }
@@ -1372,6 +1373,16 @@ footer,
 
   .window-actions {
     display: none;
+  }
+
+  .bs-docs-section table,
+  .col-md-9 table,
+  .col-md-12 table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 

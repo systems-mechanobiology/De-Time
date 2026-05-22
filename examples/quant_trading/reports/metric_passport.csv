@@ -1,0 +1,7 @@
+metric_name,formula_or_definition,direction,implementation_file,primary_or_secondary,known_failure_modes
+Total return,final equity - 1,higher is better,examples/quant_trading/backtest.py,secondary,Can hide path risk and leverage.
+CAGR,annualized compounded return,higher is better,examples/quant_trading/backtest.py,primary,Unstable on short samples.
+Volatility,annualized standard deviation of returns,context-dependent,examples/quant_trading/backtest.py,secondary,Understates tail risk.
+Sharpe,annualized mean return divided by annualized volatility,higher is better,examples/quant_trading/backtest.py,primary,Sensitive to non-normal returns and stale prices.
+Max drawdown,minimum equity / running max - 1,less negative is better,examples/quant_trading/backtest.py,primary,Path-dependent and sample-window-dependent.
+Turnover,sum absolute target-weight changes,lower is better,examples/quant_trading/backtest.py,primary cost metric,Depends on rebalance convention.

@@ -1,0 +1,19 @@
+# Optional dependencies for the De-Time quant trading tutorial column.
+# Install these in addition to the De-Time editable or GitHub install.
+yfinance>=0.2.54
+jupyterlab>=4
+ipykernel>=6
+nbformat>=5.10
+nbclient>=0.10
+matplotlib>=3.7
+pandas>=2.0
+numpy>=1.24
+# Backtesting/reporting adapters; install selectively if needed.
+vectorbt>=0.26
+backtesting>=0.3.3
+bt>=1.0.0
+backtrader>=1.9.78
+quantstats>=0.0.62
+empyrical>=0.5.5
+# Zipline-Reloaded is optional and often requires environment-specific setup.
+# zipline-reloaded>=3.0

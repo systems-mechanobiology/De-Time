@@ -1,0 +1,13 @@
+default_research_costs:
+  us_equity:
+    fee_bps: 1.0
+    slippage_bps: 2.0
+  korea_equity:
+    fee_bps: 5.0
+    slippage_bps: 5.0
+  crypto_spot:
+    fee_bps: 10.0
+    slippage_bps: 5.0
+notes:
+  - Costs are placeholders for tutorial research only.
+  - Replace them with broker, exchange, borrow, financing, FX, and tax-aware assumptions before production use.

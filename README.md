@@ -26,6 +26,8 @@ Fast entry points:
 
 - [Documentation site](https://systems-mechanobiology.github.io/De-Time/)
 - [Inline method gallery](https://systems-mechanobiology.github.io/De-Time/notebook-gallery/)
+- [Quant Trading column](https://systems-mechanobiology.github.io/De-Time/tutorials/quant-trading/)
+- [Hot Trend Lab](https://systems-mechanobiology.github.io/De-Time/tutorials/hot-trend-lab/)
 - [Beginner notebook method gallery](examples/notebooks/de_time_method_gallery.ipynb)
 - [Cross-package comparison](docs/comparisons.md)
 - [Method comparison matrix](docs/method-matrix.md)
@@ -202,6 +204,8 @@ Core docs:
 - Methods overview: <https://systems-mechanobiology.github.io/De-Time/methods/>
 - Notebook gallery: <https://systems-mechanobiology.github.io/De-Time/notebook-gallery/>
 - Tutorials: <https://systems-mechanobiology.github.io/De-Time/tutorials/univariate/>
+- Quant Trading column: <https://systems-mechanobiology.github.io/De-Time/tutorials/quant-trading/>
+- Hot Trend Lab: <https://systems-mechanobiology.github.io/De-Time/tutorials/hot-trend-lab/>
 - API: <https://systems-mechanobiology.github.io/De-Time/api/>
 
 Reference and review:

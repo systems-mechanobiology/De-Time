@@ -1,0 +1,55 @@
+us_large_cap:
+  - AAPL
+  - MSFT
+  - NVDA
+  - AMZN
+  - META
+  - GOOGL
+  - TSLA
+  - JPM
+  - XOM
+  - UNH
+us_style_etfs:
+  - SPY
+  - QQQ
+  - IWM
+  - DIA
+  - MTUM
+  - QUAL
+  - VLUE
+  - USMV
+  - IVE
+  - IVW
+us_sector_etfs:
+  - XLK
+  - XLF
+  - XLE
+  - XLV
+  - XLY
+  - XLP
+  - XLI
+  - XLU
+  - XLB
+  - XLRE
+  - XLC
+korea_large_cap:
+  - 005930.KS
+  - 000660.KS
+  - 035420.KS
+  - 035720.KS
+  - 051910.KS
+  - 005380.KS
+  - 000270.KS
+  - 068270.KS
+  - 005490.KS
+  - 105560.KS
+  - 012450.KS
+  - 373220.KS
+crypto_large_cap:
+  - BTC-USD
+  - ETH-USD
+  - SOL-USD
+  - BNB-USD
+  - XRP-USD
+  - ADA-USD
+  - DOGE-USD

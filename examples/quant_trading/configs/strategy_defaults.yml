@@ -1,0 +1,24 @@
+decomposition:
+  method: STL
+  period: 63
+  train_window: 252
+  step: 21
+  backend: auto
+signals:
+  trend_pullback:
+    residual_entry_z: -1.0
+    residual_exit_z: 0.25
+    min_trend_slope: 0.0
+  turtle_donchian:
+    entry_window: 55
+    exit_window: 20
+    use_trend_filter: true
+  pairs:
+    lookback: 120
+    entry_z: 1.5
+    exit_z: 0.25
+  rotation:
+    top_n: 3
+    bottom_n: 0
+    long_short: false
+    vol_target: 0.15
