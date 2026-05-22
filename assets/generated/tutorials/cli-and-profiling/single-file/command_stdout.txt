@@ -1,2 +1,2 @@
 Running SSA on examples/data/example_series.csv...
-Done. Results saved to /home/runner/work/De-time.design/De-time.design/docs/assets/generated/tutorials/cli-and-profiling/single-file
+Done. Results saved to docs/assets/generated/tutorials/cli-and-profiling/single-file

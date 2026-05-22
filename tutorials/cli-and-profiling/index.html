@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <meta name="author" content="Zipeng Wu">
-        <link rel="canonical" href="index.html">
+        <link rel="canonical" href="https://systems-mechanobiology.github.io/De-Time/tutorials/cli-and-profiling/">
         <link rel="shortcut icon" href="../../img/favicon.ico">
         <title>CLI Guide - De-Time</title>
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -22,14 +22,13 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
    
-  <link rel="stylesheet" href="../../stylesheets/extra.css%3Fv=5.css">
 
     </head>
 
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="../../index.html">De-Time</a>
+                <a class="navbar-brand" href="../..">De-Time</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -40,167 +39,146 @@
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
                             <li class="nav-item">
-                                <a href="../../index.html" class="nav-link">Home</a>
+                                <a href="../../install/" class="nav-link">Install</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../../quickstart/" class="nav-link">Quickstart</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="index.html#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Start</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../install/index.html" class="dropdown-item">Install</a>
+    <a href="../../methods/" class="dropdown-item">Methods & Chooser</a>
 </li>
                                     
 <li>
-    <a href="../../quickstart/index.html" class="dropdown-item">Quickstart</a>
+    <a href="../../method-matrix/" class="dropdown-item">Method Matrix</a>
+</li>
+                                    
+<li>
+    <a href="../../method-references/" class="dropdown-item">Method References</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="index.html#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Methods</a>
+                                <a href="#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Tutorials</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../methods/index.html" class="dropdown-item">Methods & Chooser</a>
+    <a href="../../notebook-gallery/" class="dropdown-item">Notebook Gallery</a>
 </li>
                                     
 <li>
-    <a href="../../method-matrix/index.html" class="dropdown-item">Method Matrix</a>
+    <a href="../univariate/" class="dropdown-item">Univariate Tutorial</a>
 </li>
                                     
 <li>
-    <a href="../../method-references/index.html" class="dropdown-item">Method References</a>
+    <a href="../multivariate/" class="dropdown-item">Multivariate Tutorial</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">CLI Guide</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="index.html#" class="nav-link dropdown-toggle active" aria-current="page" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Workflows</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Quant Trading</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../notebook-gallery/index.html" class="dropdown-item">Notebook Gallery</a>
+    <a href="../quant-trading/" class="dropdown-item">Overview</a>
 </li>
                                     
 <li>
-    <a href="../univariate/index.html" class="dropdown-item">Univariate Tutorial</a>
+    <a href="../quant-trading/data/" class="dropdown-item">Real Data and Universes</a>
 </li>
                                     
 <li>
-    <a href="../multivariate/index.html" class="dropdown-item">Multivariate Tutorial</a>
+    <a href="../quant-trading/strategy-map/" class="dropdown-item">Strategy Map</a>
 </li>
                                     
 <li>
-    <a href="index.html" class="dropdown-item active" aria-current="page">CLI Guide</a>
+    <a href="../quant-trading/backtesting-frameworks/" class="dropdown-item">Backtesting Frameworks</a>
+</li>
+                                    
+<li>
+    <a href="../quant-trading/walkforward/" class="dropdown-item">Walk-Forward Validation</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="index.html#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Gallery</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Hot Trend Lab</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../gallery/ssa/index.html" class="dropdown-item">SSA</a>
+    <a href="../hot-trend-lab/" class="dropdown-item">Overview</a>
 </li>
                                     
 <li>
-    <a href="../../gallery/std/index.html" class="dropdown-item">STD</a>
+    <a href="../hot-trend-lab/data-sources/" class="dropdown-item">Real Data Sources</a>
 </li>
                                     
 <li>
-    <a href="../../gallery/stdr/index.html" class="dropdown-item">STDR</a>
+    <a href="../hot-trend-lab/arxiv-research-pulse/" class="dropdown-item">arXiv Research Pulse</a>
 </li>
                                     
 <li>
-    <a href="../../gallery/mssa/index.html" class="dropdown-item">MSSA</a>
+    <a href="../hot-trend-lab/open-model-and-developer-attention/" class="dropdown-item">Open Models and Developer Attention</a>
 </li>
                                     
 <li>
-    <a href="../../gallery/stl/index.html" class="dropdown-item">STL</a>
+    <a href="../hot-trend-lab/wiki-market-crypto-attention/" class="dropdown-item">Public Attention, Markets, and Crypto</a>
 </li>
                                     
 <li>
-    <a href="../../gallery/mstl/index.html" class="dropdown-item">MSTL</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/robust-stl/index.html" class="dropdown-item">ROBUST_STL</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/emd/index.html" class="dropdown-item">EMD</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/ceemdan/index.html" class="dropdown-item">CEEMDAN</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/vmd/index.html" class="dropdown-item">VMD</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/wavelet/index.html" class="dropdown-item">WAVELET</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/ma-baseline/index.html" class="dropdown-item">MA_BASELINE</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/mvmd/index.html" class="dropdown-item">MVMD</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/memd/index.html" class="dropdown-item">MEMD</a>
-</li>
-                                    
-<li>
-    <a href="../../gallery/gabor-cluster/index.html" class="dropdown-item">GABOR_CLUSTER</a>
+    <a href="../hot-trend-lab/release-calendar/" class="dropdown-item">Release Calendar</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="index.html#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Reference</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">API</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../api/index.html" class="dropdown-item">API Overview</a>
+    <a href="../../api/" class="dropdown-item">API Overview</a>
 </li>
                                     
 <li>
-    <a href="../../config-reference/index.html" class="dropdown-item">Config Reference</a>
+    <a href="../../config-reference/" class="dropdown-item">Config Reference</a>
 </li>
                                     
 <li>
-    <a href="../../machine-api/index.html" class="dropdown-item">Machine API</a>
+    <a href="../../machine-api/" class="dropdown-item">Machine API</a>
 </li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="index.html#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">Project</a>
                                 <ul class="dropdown-menu">
                                     
 <li>
-    <a href="../../comparisons/index.html" class="dropdown-item">Compare Alternatives</a>
+    <a href="../../comparisons/" class="dropdown-item">Compare Alternatives</a>
 </li>
                                     
 <li>
-    <a href="../../reproducibility/index.html" class="dropdown-item">Reproducibility</a>
+    <a href="../../reproducibility/" class="dropdown-item">Reproducibility</a>
 </li>
                                     
 <li>
-    <a href="../../architecture/index.html" class="dropdown-item">Architecture</a>
+    <a href="../../architecture/" class="dropdown-item">Architecture</a>
 </li>
                                     
 <li>
-    <a href="../../migration/index.html" class="dropdown-item">Migration from `tsdecomp`</a>
+    <a href="../../migration/" class="dropdown-item">Migration from `tsdecomp`</a>
 </li>
                                     
 <li>
-    <a href="../../contributing/index.html" class="dropdown-item">Contributing</a>
+    <a href="../../contributing/" class="dropdown-item">Contributing</a>
 </li>
                                     
 <li>
-    <a href="../../citation/index.html" class="dropdown-item">Citation / Release Notes</a>
+    <a href="../../citation/" class="dropdown-item">Citation / Release Notes</a>
 </li>
                                 </ul>
                             </li>
@@ -208,22 +186,23 @@
 
                     <ul class="nav navbar-nav ms-md-auto">
                         <li class="nav-item">
-                            <a href="index.html#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../multivariate/index.html" class="nav-link">
+                                <a rel="prev" href="../multivariate/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../../gallery/ssa/index.html" class="nav-link">
+                                <a rel="next" href="../quant-trading/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="https://github.com/systems-mechanobiology/De-Time" class="nav-link">systems-mechanobiology/De-Time</a>
+                                <a href="https://github.com/systems-mechanobiology/De-Time/edit/master/docs/tutorials/cli-and-profiling.md" class="nav-link">Edit on systems-mechanobiology/De-Time
+                                    </a>
                             </li>
                     </ul>
                 </div>
@@ -243,29 +222,29 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-bs-level="1"><a href="index.html#tutorial-cli-and-profiling" class="nav-link">Tutorial: CLI and profiling</a>
+            <li class="nav-item" data-bs-level="1"><a href="#tutorial-cli-and-profiling" class="nav-link">Tutorial: CLI and profiling</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-bs-level="2"><a href="index.html#single-file-run" class="nav-link">Single-file run</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-bs-level="2"><a href="index.html#multivariate-run" class="nav-link">Multivariate run</a>
+            <li class="nav-item" data-bs-level="2"><a href="#single-file-run" class="nav-link">Single-file run</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="index.html#batch-processing" class="nav-link">Batch processing</a>
+            <li class="nav-item" data-bs-level="2"><a href="#multivariate-run" class="nav-link">Multivariate run</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="index.html#runtime-profiling" class="nav-link">Runtime profiling</a>
+            <li class="nav-item" data-bs-level="2"><a href="#batch-processing" class="nav-link">Batch processing</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="index.html#backend-selection-and-saved-reports" class="nav-link">Backend selection and saved reports</a>
+            <li class="nav-item" data-bs-level="2"><a href="#runtime-profiling" class="nav-link">Runtime profiling</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-bs-level="2"><a href="index.html#machine-facing-helpers" class="nav-link">Machine-facing helpers</a>
+            <li class="nav-item" data-bs-level="2"><a href="#backend-selection-and-saved-reports" class="nav-link">Backend selection and saved reports</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#machine-facing-helpers" class="nav-link">Machine-facing helpers</a>
               <ul class="nav flex-column">
               </ul>
             </li>

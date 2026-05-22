@@ -1,5 +1,5 @@
 Wrote:
-/home/runner/work/De-time.design/De-time.design/docs/assets/generated/tutorials/visual-multivariate/mssa_multivariate.png
-/home/runner/work/De-time.design/De-time.design/docs/assets/generated/tutorials/visual-multivariate/std_channelwise_multivariate.png
-/home/runner/work/De-time.design/De-time.design/docs/assets/generated/tutorials/visual-multivariate/channel0_trend_overlay.png
-/home/runner/work/De-time.design/De-time.design/docs/assets/generated/tutorials/visual-multivariate/multivariate_summary.csv
+docs/assets/generated/tutorials/visual-multivariate/mssa_multivariate.png
+docs/assets/generated/tutorials/visual-multivariate/std_channelwise_multivariate.png
+docs/assets/generated/tutorials/visual-multivariate/channel0_trend_overlay.png
+docs/assets/generated/tutorials/visual-multivariate/multivariate_summary.csv

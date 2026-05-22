@@ -1,0 +1,8 @@
+package,primary_scope,unified_config_object,unified_result_object,machine_readable_catalog,batch_cli,profiling_path,multivariate_support,maturity_labeling,compact_output,mcp_tool_surface
+De-Time,workflow-oriented decomposition layer,yes,yes,yes,yes,yes,yes,explicit,yes,yes
+statsmodels,classical decomposition and modeling,no,partial,no,no,no,limited,implicit,no,no
+PyEMD,EMD-family toolkit,no,no,no,no,no,family-specific,family-specific,no,no
+PyWavelets,wavelet toolkit,no,no,no,no,no,transform-specific,family-specific,no,no
+PySDKit,signal decomposition toolkit,partial,partial,no,limited,no,yes,less explicit,no,no
+SSALib,SSA specialist toolkit,SSA-specific,SSA-specific,no,no,no,no,focused,no,no
+sktime,broad time-series ecosystem,no,no,no,no,no,partial,ecosystem-level,no,no

@@ -120,6 +120,7 @@ pre code, .highlight code {
 }
 
 table {
+  max-width: 100%;
   border-color: var(--dt-border) !important;
   background: rgba(255, 255, 255, 0.035);
 }
@@ -135,7 +136,7 @@ th {
 }
 
 .navbar {
-  min-height: 74px;
+  min-height: 72px;
   margin-bottom: 0;
   border: 0;
   border-bottom: 1px solid var(--dt-border);
@@ -144,37 +145,33 @@ th {
 }
 
 .navbar .container {
-  width: 100%;
-  max-width: none;
-  min-height: 74px;
-  padding-right: clamp(1.5rem, 4vw, 4rem);
-  padding-left: clamp(1.5rem, 4vw, 4rem);
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  width: min(1280px, calc(100% - 32px));
+  min-height: 72px;
+  padding-right: 0;
+  padding-left: 0;
 }
 
-.navbar.navbar-dark .navbar-brand,
-.navbar.navbar-dark .navbar-nav .nav-link {
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
   color: var(--dt-muted-strong) !important;
   text-shadow: none;
 }
 
-.navbar.navbar-dark .navbar-brand {
+.navbar-default .navbar-brand {
   display: inline-flex;
   width: auto;
-  min-width: 154px;
-  height: 74px;
+  min-width: 158px;
+  height: 72px;
   align-items: center;
   gap: 0.65rem;
   padding-top: 0;
   padding-bottom: 0;
   color: var(--dt-white) !important;
-  font-size: 1.08rem;
+  font-size: 1.06rem;
   font-weight: 800;
 }
 
-.navbar.navbar-dark .navbar-brand::before {
+.navbar-default .navbar-brand::before {
   content: "";
   width: 34px;
   height: 34px;
@@ -184,44 +181,22 @@ th {
   box-shadow: 0 0 0 1px rgba(142, 197, 255, 0.22), 0 12px 28px rgba(31, 79, 255, 0.24);
 }
 
-.navbar.navbar-dark .navbar-nav .nav-link {
-  min-height: 74px;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
-  font-size: 1rem;
-  font-weight: 680;
+.navbar-default .navbar-nav > li > a {
+  min-height: 72px;
+  padding: 26px 12px 24px;
+  font-size: 0.88rem;
+  font-weight: 650;
   letter-spacing: 0;
   white-space: nowrap;
 }
 
-.navbar.navbar-dark .navbar-nav .nav-link:hover,
-.navbar.navbar-dark .navbar-nav .active,
-.navbar.navbar-dark .navbar-nav .active:hover {
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover {
   color: var(--dt-white) !important;
   background: transparent !important;
 }
 
-#navbar-collapse {
-  align-items: center;
-}
-
-#navbar-collapse > .navbar-nav:first-child {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 0.18rem;
-  flex-wrap: nowrap;
-}
-
-#navbar-collapse > .navbar-nav:first-child > li {
-  display: flex;
-  align-items: center;
-  min-height: 74px;
-}
-
-#navbar-collapse > .navbar-nav.ml-auto,
 .navbar-nav.navbar-right {
   display: none !important;
 }
@@ -479,7 +454,6 @@ li:has(> a[href*="/edit/"]) {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  -webkit-text-fill-color: transparent;
 }
 
 .hero-kicker {
@@ -1288,25 +1262,9 @@ li:has(> a[href*="/edit/"]) {
   min-height: 0;
   overflow: hidden;
   padding: 0;
-  background: linear-gradient(160deg, rgba(30, 35, 55, 0.6), rgba(10, 15, 25, 0.95)) !important;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 16px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
-.showcase-card img {
-  display: block;
-  width: 88%;
-  height: 220px;
-  margin: 1.5rem auto 0;
-  object-fit: cover;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background: #11131e;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
-  transition: transform 300ms ease;
-}
-
+.showcase-card img,
 .visual-card img {
   display: block;
   width: 100%;
@@ -1316,16 +1274,7 @@ li:has(> a[href*="/edit/"]) {
   background: var(--dt-white);
 }
 
-.showcase-card:hover img {
-  transform: translateY(-4px) scale(1.02);
-}
-
-.showcase-card-body {
-  padding: 1.5rem;
-  position: relative;
-  z-index: 2;
-}
-
+.showcase-card-body,
 .visual-card-body {
   padding: 1rem;
 }
@@ -1369,7 +1318,7 @@ footer,
 }
 
 @media (max-width: 860px) {
-  .navbar.navbar-dark .navbar-brand {
+  .navbar-default .navbar-brand {
     height: 56px;
   }
 
@@ -1426,12 +1375,14 @@ footer,
     display: none;
   }
 
-  .showcase-card {
-    min-height: 0;
-  }
-
-  .showcase-card img {
-    width: 88%;
+  .bs-docs-section table,
+  .col-md-9 table,
+  .col-md-12 table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 

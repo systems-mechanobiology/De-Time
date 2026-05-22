@@ -33,8 +33,8 @@
       ]
     },
     "quality_metrics": {
-      "trend_l2_norm": 1.9063577838380703,
-      "season_l2_norm": 3.093593122083122,
+      "trend_l2_norm": 1.9063577838380708,
+      "season_l2_norm": 3.0935931220831225,
       "residual_l2_norm": 1.5700924586837752e-16,
       "residual_ratio": 4.3207978136340286e-17
     },

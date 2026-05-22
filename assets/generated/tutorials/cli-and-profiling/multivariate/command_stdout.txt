@@ -1,2 +1,2 @@
 Running MSSA on examples/data/example_multivariate.csv...
-Done. Results saved to /home/runner/work/De-time.design/De-time.design/docs/assets/generated/tutorials/cli-and-profiling/multivariate
+Done. Results saved to docs/assets/generated/tutorials/cli-and-profiling/multivariate

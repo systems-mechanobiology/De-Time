@@ -1,6 +1,6 @@
 {
   "encoding": "cl100k_base",
-  "generated_at": "2026-05-19T11:24:08.425582+00:00",
+  "generated_at": "2026-04-14T22:07:11.509822+00:00",
   "package_version": "0.1.1",
   "rows": [
     {
@@ -10,25 +10,25 @@
       "mode": "full",
       "relative_to_full": 1.0,
       "scenario": "univariate-short",
-      "tokens": 3139
+      "tokens": 3138
     },
     {
       "channels": 1,
       "encoding": "cl100k_base",
       "length": 64,
       "mode": "summary",
-      "relative_to_full": 0.1494,
+      "relative_to_full": 0.1501,
       "scenario": "univariate-short",
-      "tokens": 469
+      "tokens": 471
     },
     {
       "channels": 1,
       "encoding": "cl100k_base",
       "length": 64,
       "mode": "meta",
-      "relative_to_full": 0.0468,
+      "relative_to_full": 0.0472,
       "scenario": "univariate-short",
-      "tokens": 147
+      "tokens": 148
     },
     {
       "channels": 1,
@@ -37,7 +37,7 @@
       "mode": "full",
       "relative_to_full": 1.0,
       "scenario": "univariate-medium",
-      "tokens": 13032
+      "tokens": 13030
     },
     {
       "channels": 1,
@@ -71,9 +71,9 @@
       "encoding": "cl100k_base",
       "length": 1024,
       "mode": "summary",
-      "relative_to_full": 0.0094,
+      "relative_to_full": 0.0095,
       "scenario": "univariate-long",
-      "tokens": 493
+      "tokens": 494
     },
     {
       "channels": 1,
@@ -91,7 +91,7 @@
       "mode": "full",
       "relative_to_full": 1.0,
       "scenario": "multivariate-short",
-      "tokens": 10717
+      "tokens": 10711
     },
     {
       "channels": 3,
@@ -118,7 +118,7 @@
       "mode": "full",
       "relative_to_full": 1.0,
       "scenario": "multivariate-medium",
-      "tokens": 46625
+      "tokens": 46619
     },
     {
       "channels": 3,
@@ -145,7 +145,7 @@
       "mode": "full",
       "relative_to_full": 1.0,
       "scenario": "multivariate-long",
-      "tokens": 187880
+      "tokens": 187883
     },
     {
       "channels": 3,
@@ -154,7 +154,7 @@
       "mode": "summary",
       "relative_to_full": 0.0028,
       "scenario": "multivariate-long",
-      "tokens": 531
+      "tokens": 532
     },
     {
       "channels": 3,

@@ -203,7 +203,7 @@
       "specialist_deeper_strength": "broader signal-decomposition toolkit with optional multivariate backends"
     }
   ],
-  "generated_at": "2026-05-19T11:24:05.652587+00:00",
+  "generated_at": "2026-04-14T22:07:10.282587+00:00",
   "install_matrix": [
     {
       "api_docs": "yes",
@@ -298,5 +298,5 @@
     }
   ],
   "release_target_version": "0.1.1",
-  "runtime_snapshot_csv": "docs/assets/generated/evidence/performance_snapshot.csv"
+  "runtime_snapshot_csv": "docs\\assets\\generated\\evidence\\performance_snapshot.csv"
 }
