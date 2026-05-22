@@ -324,7 +324,19 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-ai-agent-topic-trend-shock-scatter" class="nav-link">Visualization: AI-agent topic trend shock scatter</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-ai-agent-topic-component-panels" class="nav-link">Visualization: AI-agent topic component panels</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#6-event-like-months" class="nav-link">6. Event-like months</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-ai-agent-topic-residual-heatmap" class="nav-link">Visualization: AI-agent topic residual heatmap</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -364,6 +376,7 @@
 import os
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -398,6 +411,7 @@ from examples.hot_trends.scoring import article_language_guardrails
 
 pd.set_option(&quot;display.max_columns&quot;, 80)
 pd.set_option(&quot;display.max_rows&quot;, 80)
+plt.rcParams.update({&quot;axes.grid&quot;: True})
 
 CACHE_DIR = repo_root / &quot;examples&quot; / &quot;hot_trends&quot; / &quot;cache&quot;
 OUTPUT_DIR = repo_root / &quot;examples&quot; / &quot;hot_trends&quot; / &quot;outputs&quot;
@@ -1076,9 +1090,74 @@ priority
 </div>
 </div>
 
-<h2 id="6-event-like-months">6. Event-like months</h2>
+<h2 id="visualization-ai-agent-topic-trend-shock-scatter">Visualization: AI-agent topic trend shock scatter</h2>
+<p>The scatter compares trend slope, shock magnitude, and cycle strength in the editorial priority table.</p>
 <div class="notebook-cell">
 <div class="notebook-input-label">In [7]</div>
+
+
+<pre><code class="language-python">scatter_frame = priority.dropna(subset=[&quot;trend_slope_per_step&quot;, &quot;max_abs_residual_z&quot;]).copy()
+fig, ax = plt.subplots(figsize=(7.5, 4.8))
+sizes = 80 + scatter_frame[&quot;cycle_strength_proxy&quot;].fillna(0).clip(lower=0) * 260
+sc = ax.scatter(
+    scatter_frame[&quot;trend_slope_per_step&quot;],
+    scatter_frame[&quot;max_abs_residual_z&quot;],
+    s=sizes,
+    c=scatter_frame[&quot;editorial_priority_score&quot;],
+    cmap=&quot;viridis&quot;,
+)
+for _, row in scatter_frame.head(8).iterrows():
+    ax.annotate(str(row[&quot;series&quot;]), (row[&quot;trend_slope_per_step&quot;], row[&quot;max_abs_residual_z&quot;]), fontsize=8, xytext=(4, 4), textcoords=&quot;offset points&quot;)
+ax.axvline(0, color=&quot;0.45&quot;, linewidth=0.8)
+ax.set_xlabel(&quot;trend slope per step&quot;)
+ax.set_ylabel(&quot;max absolute residual z&quot;)
+ax.set_title(&quot;Trend slope versus residual shock&quot;)
+fig.colorbar(sc, ax=ax, label=&quot;editorial priority score&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/02_arxiv_agent_research_pulse/cell-014-output-01.png" alt="Notebook output cell 14" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="visualization-ai-agent-topic-component-panels">Visualization: AI-agent topic component panels</h2>
+<p>Observed and trend lines plus residual bars turn the component table into an inspectable trend narrative.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [8]</div>
+
+
+<pre><code class="language-python">top_entities = priority[&quot;series&quot;].head(4).tolist()
+fig, axes = plt.subplots(len(top_entities), 2, figsize=(11, max(3.0, 2.4 * len(top_entities))), squeeze=False)
+for row, entity in enumerate(top_entities):
+    panel = components.loc[components[&quot;series&quot;].eq(entity)].sort_values(&quot;month&quot;).copy()
+    panel[&quot;month&quot;] = pd.to_datetime(panel[&quot;month&quot;])
+    axes[row, 0].plot(panel[&quot;month&quot;], panel[&quot;observed&quot;], label=&quot;observed&quot;, linewidth=1.6)
+    axes[row, 0].plot(panel[&quot;month&quot;], panel[&quot;trend&quot;], label=&quot;trend&quot;, linewidth=1.8)
+    axes[row, 0].set_title(str(entity))
+    axes[row, 1].bar(panel[&quot;month&quot;], panel[&quot;residual&quot;], color=np.where(panel[&quot;residual&quot;] &gt;= 0, &quot;tab:red&quot;, &quot;tab:blue&quot;), width=20)
+    axes[row, 1].set_title(&quot;residual&quot;)
+    axes[row, 0].set_ylabel(&quot;transformed count&quot;)
+    axes[row, 1].set_ylabel(&quot;residual&quot;)
+axes[0, 0].legend(loc=&quot;best&quot;)
+plt.suptitle(&quot;AI-agent topic observed/trend/residual panels&quot;, y=1.01)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/02_arxiv_agent_research_pulse/cell-016-output-01.png" alt="Notebook output cell 16" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="6-event-like-months">6. Event-like months</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [9]</div>
 
 
 <pre><code class="language-python">events = residual_event_table(components, entity_col=&quot;series&quot;, time_col=&quot;month&quot;, top_n=20)
@@ -1366,9 +1445,42 @@ events
 </div>
 </div>
 
+<h2 id="visualization-ai-agent-topic-residual-heatmap">Visualization: AI-agent topic residual heatmap</h2>
+<p>The heatmap shows where residual shocks cluster across entities and time.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [10]</div>
+
+
+<pre><code class="language-python">residual_grid = components.copy()
+residual_grid[&quot;residual_z&quot;] = residual_grid.groupby(&quot;series&quot;)[&quot;residual&quot;].transform(lambda s: (s - s.median()) / (1.4826 * (s - s.median()).abs().median() + 1e-12))
+heat = residual_grid.pivot_table(index=&quot;series&quot;, columns=&quot;month&quot;, values=&quot;residual_z&quot;, aggfunc=&quot;mean&quot;)
+heat = heat.reindex(priority[&quot;series&quot;].tolist()).dropna(how=&quot;all&quot;)
+values = heat.to_numpy(dtype=float)
+absmax = float(np.nanmax(np.abs(values))) if np.isfinite(values).any() else 1.0
+fig, ax = plt.subplots(figsize=(11, 4.5))
+im = ax.imshow(values, aspect=&quot;auto&quot;, cmap=&quot;RdBu_r&quot;, vmin=-absmax, vmax=absmax)
+ax.set_yticks(range(len(heat.index)))
+ax.set_yticklabels(heat.index)
+tick_step = max(1, len(heat.columns) // 8)
+xticks = list(range(0, len(heat.columns), tick_step))
+ax.set_xticks(xticks)
+ax.set_xticklabels([pd.to_datetime(heat.columns[i]).strftime(&quot;%Y-%m&quot;) for i in xticks], rotation=45, ha=&quot;right&quot;)
+ax.set_title(&quot;AI-agent topic residual z-score heatmap&quot;)
+fig.colorbar(im, ax=ax, label=&quot;robust residual z&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/02_arxiv_agent_research_pulse/cell-020-output-01.png" alt="Notebook output cell 20" class="notebook-output-image">
+</div>
+</div>
+
 <h2 id="7-article-outline-template">7. Article outline template</h2>
 <div class="notebook-cell">
-<div class="notebook-input-label">In [8]</div>
+<div class="notebook-input-label">In [11]</div>
 
 
 <pre><code class="language-python">outline = pd.DataFrame([
@@ -1435,7 +1547,7 @@ outline
 </div>
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [9]</div>
+<div class="notebook-input-label">In [12]</div>
 
 
 <pre><code class="language-python">save_table(audit, &quot;02_arxiv_agent_topic_audit&quot;)

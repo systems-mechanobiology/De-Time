@@ -304,6 +304,14 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#single-asset-timing-with-trend-pullbacks-and-vectorbt" class="nav-link">Single-Asset Timing with Trend Pullbacks and vectorbt</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-spy-signal-overlay" class="nav-link">Visualization: SPY signal overlay</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-drawdown-and-trading-intensity" class="nav-link">Visualization: drawdown and trading intensity</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#optional-vectorbt-adapter" class="nav-link">Optional: vectorbt adapter</a>
               <ul class="nav flex-column">
               </ul>
@@ -447,8 +455,36 @@ result.stats_frame()
 </div>
 </div>
 
+<h2 id="visualization-spy-signal-overlay">Visualization: SPY signal overlay</h2>
+<p>Entries and exits are drawn on recent SPY prices to make the trend-pullback timing rule inspectable.</p>
 <div class="notebook-cell">
 <div class="notebook-input-label">In [3]</div>
+
+
+<pre><code class="language-python">asset = &quot;SPY&quot;
+window = prices.index[-504:]
+price_line = prices.loc[window, asset]
+entry_points = entries.loc[window, asset].fillna(False).astype(bool)
+exit_points = exits.loc[window, asset].fillna(False).astype(bool)
+fig, ax = plt.subplots(figsize=(10, 4))
+price_line.plot(ax=ax, color=&quot;tab:blue&quot;, linewidth=1.5, title=&quot;SPY trend-pullback entries and exits&quot;)
+ax.scatter(entry_points[entry_points].index, price_line.loc[entry_points[entry_points].index], marker=&quot;^&quot;, color=&quot;tab:green&quot;, s=45, label=&quot;entry&quot;, zorder=3)
+ax.scatter(exit_points[exit_points].index, price_line.loc[exit_points[exit_points].index], marker=&quot;v&quot;, color=&quot;tab:red&quot;, s=45, label=&quot;exit&quot;, zorder=3)
+ax.set_ylabel(&quot;price&quot;)
+ax.legend(loc=&quot;best&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/02_single_asset_timing_vectorbt/cell-006-output-01.png" alt="Notebook output cell 6" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
 
 
 <pre><code class="language-python">ax = result.equity.plot(figsize=(10, 4), title=&quot;Trend-pullback timing equity curve&quot;)
@@ -459,14 +495,37 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-![Notebook output cell 5](../../../assets/generated/notebooks/columns/quant-trading/02_single_asset_timing_vectorbt/cell-005-output-01.png)
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/02_single_asset_timing_vectorbt/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="visualization-drawdown-and-trading-intensity">Visualization: drawdown and trading intensity</h2>
+<p>The equity curve is paired with underwater drawdown and turnover to reveal risk and implementation pressure.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
+
+
+<pre><code class="language-python">drawdown = result.equity / result.equity.cummax() - 1.0
+fig, axes = plt.subplots(2, 1, figsize=(10, 5.2), sharex=True)
+drawdown.plot(ax=axes[0], color=&quot;tab:red&quot;, title=&quot;Trend-pullback underwater drawdown&quot;)
+result.turnover.rolling(21, min_periods=1).mean().plot(ax=axes[1], color=&quot;tab:orange&quot;, title=&quot;21-day average turnover&quot;)
+axes[0].set_ylabel(&quot;drawdown&quot;)
+axes[1].set_ylabel(&quot;turnover&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/02_single_asset_timing_vectorbt/cell-009-output-01.png" alt="Notebook output cell 9" class="notebook-output-image">
 </div>
 </div>
 
 <h2 id="optional-vectorbt-adapter">Optional: vectorbt adapter</h2>
 <p>Install vectorbt first if needed. The same entry/exit matrices can be passed to <code>Portfolio.from_signals</code> through the adapter.</p>
 <div class="notebook-cell">
-<div class="notebook-input-label">In [4]</div>
+<div class="notebook-input-label">In [6]</div>
 
 
 <pre><code class="language-python">from quant_trading.frameworks import run_vectorbt_from_signals

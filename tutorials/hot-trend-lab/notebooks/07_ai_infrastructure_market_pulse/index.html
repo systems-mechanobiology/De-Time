@@ -316,11 +316,23 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-ai-infrastructure-price-trend-index" class="nav-link">Visualization: AI infrastructure price trend index</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#4-cross-sectional-ai-infrastructure-table" class="nav-link">4. Cross-sectional AI infrastructure table</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-return-versus-trend-slope" class="nav-link">Visualization: return versus trend slope</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#5-residual-events" class="nav-link">5. Residual events</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-ai-infrastructure-residual-heatmap" class="nav-link">Visualization: AI infrastructure residual heatmap</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -351,6 +363,7 @@
 import os
 import sys
 
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
@@ -385,6 +398,7 @@ from examples.hot_trends.scoring import article_language_guardrails
 
 pd.set_option(&quot;display.max_columns&quot;, 80)
 pd.set_option(&quot;display.max_rows&quot;, 80)
+plt.rcParams.update({&quot;axes.grid&quot;: True})
 
 CACHE_DIR = repo_root / &quot;examples&quot; / &quot;hot_trends&quot; / &quot;cache&quot;
 OUTPUT_DIR = repo_root / &quot;examples&quot; / &quot;hot_trends&quot; / &quot;outputs&quot;
@@ -623,7 +637,7 @@ audit
       <td>600</td>
       <td>0.0</td>
       <td>78.209999</td>
-      <td>470.299988</td>
+      <td>471.299988</td>
     </tr>
     <tr>
       <th>1</th>
@@ -642,7 +656,7 @@ audit
       <td>2026-05-22 00:00:00</td>
       <td>600</td>
       <td>0.0</td>
-      <td>102.365158</td>
+      <td>102.365150</td>
       <td>439.790009</td>
     </tr>
     <tr>
@@ -662,7 +676,7 @@ audit
       <td>2026-05-22 00:00:00</td>
       <td>600</td>
       <td>0.0</td>
-      <td>341.787872</td>
+      <td>341.787811</td>
       <td>788.148987</td>
     </tr>
     <tr>
@@ -672,8 +686,8 @@ audit
       <td>2026-05-22 00:00:00</td>
       <td>600</td>
       <td>0.0</td>
-      <td>351.105774</td>
-      <td>538.658569</td>
+      <td>351.105804</td>
+      <td>538.658508</td>
     </tr>
     <tr>
       <th>6</th>
@@ -682,7 +696,7 @@ audit
       <td>2026-05-22 00:00:00</td>
       <td>600</td>
       <td>0.0</td>
-      <td>47.539936</td>
+      <td>47.539940</td>
       <td>235.740005</td>
     </tr>
     <tr>
@@ -757,11 +771,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>3.055940</td>
+      <td>3.055991</td>
       <td>0.002033</td>
-      <td>-0.515521</td>
-      <td>0.492221</td>
-      <td>31.531357</td>
+      <td>-0.515595</td>
+      <td>0.492244</td>
+      <td>31.540915</td>
       <td>MA_BASELINE</td>
       <td>1.000</td>
       <td>1.000</td>
@@ -774,11 +788,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>2.996481</td>
+      <td>2.996443</td>
       <td>0.001351</td>
-      <td>-1.894500</td>
-      <td>0.500785</td>
-      <td>39.031779</td>
+      <td>-1.894482</td>
+      <td>0.500768</td>
+      <td>39.001780</td>
       <td>MA_BASELINE</td>
       <td>0.625</td>
       <td>0.500</td>
@@ -791,11 +805,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>2.711011</td>
+      <td>2.711069</td>
       <td>0.001477</td>
-      <td>-0.731154</td>
-      <td>0.425073</td>
-      <td>30.558266</td>
+      <td>-0.731277</td>
+      <td>0.425100</td>
+      <td>30.599126</td>
       <td>MA_BASELINE</td>
       <td>0.750</td>
       <td>0.875</td>
@@ -808,11 +822,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>3.038077</td>
+      <td>3.037986</td>
       <td>0.001532</td>
-      <td>-1.560344</td>
-      <td>0.528286</td>
-      <td>30.540196</td>
+      <td>-1.560134</td>
+      <td>0.528247</td>
+      <td>30.484039</td>
       <td>MA_BASELINE</td>
       <td>0.875</td>
       <td>0.750</td>
@@ -825,11 +839,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>3.277518</td>
+      <td>3.277511</td>
       <td>0.000695</td>
-      <td>-8.994485</td>
-      <td>0.545147</td>
-      <td>34.014586</td>
+      <td>-8.994404</td>
+      <td>0.545144</td>
+      <td>34.010437</td>
       <td>MA_BASELINE</td>
       <td>0.500</td>
       <td>0.375</td>
@@ -842,11 +856,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>2.824453</td>
+      <td>2.824370</td>
       <td>0.000536</td>
-      <td>-12.696403</td>
-      <td>0.480041</td>
-      <td>38.471005</td>
+      <td>-12.698220</td>
+      <td>0.480006</td>
+      <td>38.400467</td>
       <td>MA_BASELINE</td>
       <td>0.250</td>
       <td>0.250</td>
@@ -859,11 +873,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>3.058538</td>
+      <td>3.058482</td>
       <td>0.000199</td>
-      <td>-28.802148</td>
-      <td>0.536890</td>
-      <td>38.798773</td>
+      <td>-28.798652</td>
+      <td>0.536867</td>
+      <td>38.792631</td>
       <td>MA_BASELINE</td>
       <td>0.125</td>
       <td>0.125</td>
@@ -876,11 +890,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>2.974027</td>
+      <td>2.974061</td>
       <td>0.000667</td>
-      <td>-1.836608</td>
-      <td>0.521787</td>
-      <td>29.811574</td>
+      <td>-1.836555</td>
+      <td>0.521802</td>
+      <td>29.831083</td>
       <td>MA_BASELINE</td>
       <td>0.375</td>
       <td>0.625</td>
@@ -894,9 +908,39 @@ summary
 </div>
 </div>
 
-<h2 id="4-cross-sectional-ai-infrastructure-table">4. Cross-sectional AI infrastructure table</h2>
+<h2 id="visualization-ai-infrastructure-price-trend-index">Visualization: AI infrastructure price trend index</h2>
+<p>Observed and trend components are exponentiated into comparable index levels for the leading tickers.</p>
 <div class="notebook-cell">
 <div class="notebook-input-label">In [5]</div>
+
+
+<pre><code class="language-python">top_tickers = summary[&quot;ticker&quot;].head(6).tolist()
+fig, ax = plt.subplots(figsize=(11, 4.5))
+for ticker in top_tickers:
+    panel = components.loc[components[&quot;ticker&quot;].eq(ticker)].sort_values(&quot;date&quot;).copy()
+    panel[&quot;date&quot;] = pd.to_datetime(panel[&quot;date&quot;])
+    base = float(panel[&quot;observed&quot;].iloc[0])
+    observed_index = np.exp(panel[&quot;observed&quot;] - base)
+    trend_index = np.exp(panel[&quot;trend&quot;] - base)
+    ax.plot(panel[&quot;date&quot;], observed_index, linewidth=1.0, alpha=0.35)
+    ax.plot(panel[&quot;date&quot;], trend_index, linewidth=1.8, label=ticker)
+ax.set_title(&quot;AI infrastructure observed and trend index&quot;)
+ax.set_ylabel(&quot;index, first observation = 1&quot;)
+ax.legend(ncol=3, loc=&quot;best&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/07_ai_infrastructure_market_pulse/cell-010-output-01.png" alt="Notebook output cell 10" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="4-cross-sectional-ai-infrastructure-table">4. Cross-sectional AI infrastructure table</h2>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [6]</div>
 
 
 <pre><code class="language-python">latest = prices.sort_values(&quot;date&quot;).groupby(&quot;ticker&quot;).tail(1).rename(columns={&quot;price&quot;: &quot;latest_price&quot;})
@@ -940,65 +984,65 @@ returns.sort_values(&quot;total_return_proxy&quot;, ascending=False)
       <th>6</th>
       <td>2026-05-22</td>
       <td>NVDA</td>
-      <td>216.990005</td>
+      <td>217.789902</td>
       <td>48.138573</td>
-      <td>3.507612</td>
+      <td>3.524228</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2026-05-22</td>
       <td>AVGO</td>
-      <td>412.519989</td>
-      <td>105.914230</td>
-      <td>2.894850</td>
+      <td>413.859894</td>
+      <td>105.914246</td>
+      <td>2.907500</td>
     </tr>
     <tr>
       <th>5</th>
       <td>2026-05-22</td>
       <td>AMD</td>
-      <td>470.299988</td>
+      <td>471.299988</td>
       <td>138.580002</td>
-      <td>2.393707</td>
+      <td>2.400924</td>
     </tr>
     <tr>
       <th>0</th>
       <td>2026-05-22</td>
       <td>GOOGL</td>
-      <td>386.700012</td>
+      <td>385.790009</td>
       <td>137.037384</td>
-      <td>1.821858</td>
+      <td>1.815217</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2026-05-22</td>
       <td>AMZN</td>
-      <td>269.119995</td>
+      <td>267.730011</td>
       <td>149.929993</td>
-      <td>0.794971</td>
+      <td>0.785700</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2026-05-22</td>
       <td>META</td>
-      <td>609.140076</td>
+      <td>608.900024</td>
       <td>343.593658</td>
-      <td>0.772850</td>
+      <td>0.772152</td>
     </tr>
     <tr>
       <th>7</th>
       <td>2026-05-22</td>
       <td>TSLA</td>
-      <td>430.350006</td>
+      <td>427.890015</td>
       <td>248.419998</td>
-      <td>0.732348</td>
+      <td>0.722446</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2026-05-22</td>
       <td>MSFT</td>
-      <td>420.320099</td>
+      <td>418.859985</td>
       <td>363.801483</td>
-      <td>0.155356</td>
+      <td>0.151342</td>
     </tr>
   </tbody>
 </table>
@@ -1007,9 +1051,43 @@ returns.sort_values(&quot;total_return_proxy&quot;, ascending=False)
 </div>
 </div>
 
+<h2 id="visualization-return-versus-trend-slope">Visualization: return versus trend slope</h2>
+<p>The scatter compares simple market return with the De-Time trend slope and residual shock size.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [7]</div>
+
+
+<pre><code class="language-python">scatter_data = returns.merge(summary[[&quot;ticker&quot;, &quot;trend_slope_per_step&quot;, &quot;max_abs_residual_z&quot;, &quot;editorial_priority_score&quot;]], on=&quot;ticker&quot;, how=&quot;left&quot;)
+fig, ax = plt.subplots(figsize=(7.2, 4.8))
+sc = ax.scatter(
+    scatter_data[&quot;total_return_proxy&quot;],
+    scatter_data[&quot;trend_slope_per_step&quot;],
+    s=80 + scatter_data[&quot;max_abs_residual_z&quot;].fillna(0) * 35,
+    c=scatter_data[&quot;editorial_priority_score&quot;],
+    cmap=&quot;viridis&quot;,
+)
+for _, row in scatter_data.iterrows():
+    ax.annotate(str(row[&quot;ticker&quot;]), (row[&quot;total_return_proxy&quot;], row[&quot;trend_slope_per_step&quot;]), fontsize=8, xytext=(4, 4), textcoords=&quot;offset points&quot;)
+ax.axvline(0, color=&quot;0.45&quot;, linewidth=0.8)
+ax.axhline(0, color=&quot;0.45&quot;, linewidth=0.8)
+ax.set_xlabel(&quot;total return proxy&quot;)
+ax.set_ylabel(&quot;trend slope per step&quot;)
+ax.set_title(&quot;AI infrastructure return versus De-Time trend slope&quot;)
+fig.colorbar(sc, ax=ax, label=&quot;editorial priority score&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/07_ai_infrastructure_market_pulse/cell-014-output-01.png" alt="Notebook output cell 14" class="notebook-output-image">
+</div>
+</div>
+
 <h2 id="5-residual-events">5. Residual events</h2>
 <div class="notebook-cell">
-<div class="notebook-input-label">In [6]</div>
+<div class="notebook-input-label">In [8]</div>
 
 
 <pre><code class="language-python">events = residual_event_table(components, entity_col=&quot;ticker&quot;, time_col=&quot;date&quot;, top_n=25)
@@ -1054,36 +1132,36 @@ events
       <th>0</th>
       <td>2026-05-22</td>
       <td>GOOGL</td>
-      <td>5.957649</td>
-      <td>2.996481</td>
-      <td>0.040953</td>
-      <td>2.920216</td>
-      <td>39.031779</td>
-      <td>39.031779</td>
+      <td>5.955293</td>
+      <td>2.996443</td>
+      <td>0.040876</td>
+      <td>2.917974</td>
+      <td>39.001780</td>
+      <td>39.001780</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2026-05-22</td>
       <td>MSFT</td>
-      <td>6.041017</td>
-      <td>3.058538</td>
-      <td>0.042084</td>
-      <td>2.940395</td>
-      <td>38.798773</td>
-      <td>38.798773</td>
+      <td>6.037537</td>
+      <td>3.058482</td>
+      <td>0.041970</td>
+      <td>2.937084</td>
+      <td>38.792631</td>
+      <td>38.792631</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2026-05-22</td>
       <td>AMZN</td>
-      <td>5.595157</td>
-      <td>2.824453</td>
-      <td>0.033841</td>
-      <td>2.736863</td>
-      <td>38.471005</td>
-      <td>38.471005</td>
+      <td>5.589979</td>
+      <td>2.824370</td>
+      <td>0.033673</td>
+      <td>2.731936</td>
+      <td>38.400467</td>
+      <td>38.400467</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1091,11 +1169,11 @@ events
       <td>2026-05-21</td>
       <td>GOOGL</td>
       <td>5.960129</td>
-      <td>3.087908</td>
-      <td>0.038738</td>
-      <td>2.833483</td>
-      <td>37.868763</td>
-      <td>37.868763</td>
+      <td>3.087870</td>
+      <td>0.038742</td>
+      <td>2.833516</td>
+      <td>37.869267</td>
+      <td>37.869267</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1103,11 +1181,11 @@ events
       <td>2026-05-21</td>
       <td>MSFT</td>
       <td>6.038086</td>
-      <td>3.152553</td>
-      <td>0.042164</td>
-      <td>2.843369</td>
-      <td>37.517770</td>
-      <td>37.517770</td>
+      <td>3.152498</td>
+      <td>0.042170</td>
+      <td>2.843417</td>
+      <td>37.554791</td>
+      <td>37.554791</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1116,10 +1194,10 @@ events
       <td>MSFT</td>
       <td>5.896608</td>
       <td>3.028852</td>
-      <td>0.032674</td>
-      <td>2.835083</td>
-      <td>37.408376</td>
-      <td>37.408376</td>
+      <td>0.032678</td>
+      <td>2.835078</td>
+      <td>37.444586</td>
+      <td>37.444586</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1127,11 +1205,11 @@ events
       <td>2026-05-21</td>
       <td>AMZN</td>
       <td>5.592702</td>
-      <td>2.910156</td>
-      <td>0.032487</td>
-      <td>2.650059</td>
-      <td>37.245601</td>
-      <td>37.245601</td>
+      <td>2.910074</td>
+      <td>0.032497</td>
+      <td>2.650132</td>
+      <td>37.245677</td>
+      <td>37.245677</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1139,11 +1217,11 @@ events
       <td>2026-05-20</td>
       <td>GOOGL</td>
       <td>5.963348</td>
-      <td>3.178730</td>
-      <td>0.035726</td>
-      <td>2.748892</td>
-      <td>36.734463</td>
-      <td>36.734463</td>
+      <td>3.178693</td>
+      <td>0.035731</td>
+      <td>2.748925</td>
+      <td>36.734967</td>
+      <td>36.734967</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1151,11 +1229,11 @@ events
       <td>2026-05-20</td>
       <td>MSFT</td>
       <td>6.040612</td>
-      <td>3.246482</td>
-      <td>0.042981</td>
-      <td>2.751148</td>
-      <td>36.300218</td>
-      <td>36.300218</td>
+      <td>3.246427</td>
+      <td>0.042988</td>
+      <td>2.751197</td>
+      <td>36.336061</td>
+      <td>36.336061</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1164,10 +1242,10 @@ events
       <td>MSFT</td>
       <td>5.895880</td>
       <td>3.123838</td>
-      <td>0.029364</td>
-      <td>2.742678</td>
-      <td>36.188387</td>
-      <td>36.188387</td>
+      <td>0.029370</td>
+      <td>2.742671</td>
+      <td>36.223391</td>
+      <td>36.223391</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1175,11 +1253,11 @@ events
       <td>2026-05-20</td>
       <td>AMZN</td>
       <td>5.579768</td>
-      <td>2.995313</td>
-      <td>0.033692</td>
-      <td>2.550763</td>
-      <td>35.843838</td>
-      <td>35.843838</td>
+      <td>2.995231</td>
+      <td>0.033702</td>
+      <td>2.550835</td>
+      <td>35.843953</td>
+      <td>35.843953</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1187,11 +1265,11 @@ events
       <td>2026-05-19</td>
       <td>GOOGL</td>
       <td>5.960129</td>
-      <td>3.269266</td>
-      <td>0.038816</td>
-      <td>2.652047</td>
-      <td>35.435858</td>
-      <td>35.435858</td>
+      <td>3.269229</td>
+      <td>0.038820</td>
+      <td>2.652080</td>
+      <td>35.436361</td>
+      <td>35.436361</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1199,11 +1277,11 @@ events
       <td>2026-05-19</td>
       <td>MSFT</td>
       <td>6.031929</td>
-      <td>3.340436</td>
-      <td>0.042939</td>
-      <td>2.648555</td>
-      <td>34.945714</td>
-      <td>34.945714</td>
+      <td>3.340381</td>
+      <td>0.042945</td>
+      <td>2.648604</td>
+      <td>34.980246</td>
+      <td>34.980246</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1212,10 +1290,10 @@ events
       <td>MSFT</td>
       <td>5.888677</td>
       <td>3.218775</td>
-      <td>0.030650</td>
-      <td>2.639252</td>
-      <td>34.822889</td>
-      <td>34.822889</td>
+      <td>0.030656</td>
+      <td>2.639245</td>
+      <td>34.856571</td>
+      <td>34.856571</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1223,11 +1301,11 @@ events
       <td>2026-05-18</td>
       <td>GOOGL</td>
       <td>5.983785</td>
-      <td>3.359577</td>
-      <td>0.042633</td>
-      <td>2.581575</td>
-      <td>34.490894</td>
-      <td>34.490894</td>
+      <td>3.359539</td>
+      <td>0.042638</td>
+      <td>2.581608</td>
+      <td>34.491398</td>
+      <td>34.491398</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1235,23 +1313,23 @@ events
       <td>2026-05-19</td>
       <td>AMZN</td>
       <td>5.558140</td>
-      <td>3.080397</td>
-      <td>0.036494</td>
-      <td>2.441249</td>
-      <td>34.297838</td>
-      <td>34.297838</td>
+      <td>3.080315</td>
+      <td>0.036504</td>
+      <td>2.441321</td>
+      <td>34.297998</td>
+      <td>34.297998</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
       <th>16</th>
       <td>2026-05-22</td>
       <td>META</td>
-      <td>6.412048</td>
-      <td>3.277518</td>
-      <td>0.040049</td>
-      <td>3.094482</td>
-      <td>34.014586</td>
-      <td>34.014586</td>
+      <td>6.411654</td>
+      <td>3.277511</td>
+      <td>0.040036</td>
+      <td>3.094107</td>
+      <td>34.010437</td>
+      <td>34.010437</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1259,11 +1337,11 @@ events
       <td>2026-05-18</td>
       <td>MSFT</td>
       <td>6.046484</td>
-      <td>3.434414</td>
-      <td>0.043553</td>
-      <td>2.568517</td>
-      <td>33.889002</td>
-      <td>33.889002</td>
+      <td>3.434359</td>
+      <td>0.043560</td>
+      <td>2.568566</td>
+      <td>33.922511</td>
+      <td>33.922511</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1272,10 +1350,10 @@ events
       <td>AMZN</td>
       <td>5.010168</td>
       <td>2.574437</td>
-      <td>0.028638</td>
-      <td>2.407093</td>
-      <td>33.815665</td>
-      <td>33.815665</td>
+      <td>0.028645</td>
+      <td>2.407086</td>
+      <td>33.814719</td>
+      <td>33.814719</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1284,10 +1362,10 @@ events
       <td>MSFT</td>
       <td>5.888160</td>
       <td>3.313688</td>
-      <td>0.032796</td>
-      <td>2.541676</td>
-      <td>33.534632</td>
-      <td>33.534632</td>
+      <td>0.032803</td>
+      <td>2.541669</td>
+      <td>33.567069</td>
+      <td>33.567069</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1295,11 +1373,11 @@ events
       <td>2026-05-18</td>
       <td>AMZN</td>
       <td>5.579201</td>
-      <td>3.165254</td>
-      <td>0.040395</td>
-      <td>2.373552</td>
-      <td>33.342172</td>
-      <td>33.342172</td>
+      <td>3.165172</td>
+      <td>0.040405</td>
+      <td>2.373624</td>
+      <td>33.342359</td>
+      <td>33.342359</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1307,11 +1385,11 @@ events
       <td>2026-05-15</td>
       <td>GOOGL</td>
       <td>5.983382</td>
-      <td>3.449974</td>
-      <td>0.040446</td>
-      <td>2.492962</td>
-      <td>33.302662</td>
-      <td>33.302662</td>
+      <td>3.449937</td>
+      <td>0.040450</td>
+      <td>2.492995</td>
+      <td>33.303165</td>
+      <td>33.303165</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1319,11 +1397,11 @@ events
       <td>2026-05-21</td>
       <td>META</td>
       <td>6.409155</td>
-      <td>3.379381</td>
-      <td>0.038099</td>
-      <td>2.991674</td>
-      <td>32.881628</td>
-      <td>32.881628</td>
+      <td>3.379375</td>
+      <td>0.038100</td>
+      <td>2.991680</td>
+      <td>32.881675</td>
+      <td>32.881675</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1331,23 +1409,23 @@ events
       <td>2026-05-15</td>
       <td>MSFT</td>
       <td>6.042652</td>
-      <td>3.528218</td>
-      <td>0.044396</td>
-      <td>2.470038</td>
-      <td>32.588817</td>
-      <td>32.588817</td>
+      <td>3.528163</td>
+      <td>0.044403</td>
+      <td>2.470086</td>
+      <td>32.621069</td>
+      <td>32.621069</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
       <th>24</th>
-      <td>2024-01-03</td>
-      <td>AMZN</td>
-      <td>5.000383</td>
-      <td>2.655912</td>
-      <td>0.031053</td>
-      <td>2.313418</td>
-      <td>32.493258</td>
-      <td>32.493258</td>
+      <td>2024-01-08</td>
+      <td>MSFT</td>
+      <td>5.906856</td>
+      <td>3.408970</td>
+      <td>0.035795</td>
+      <td>2.462090</td>
+      <td>32.515395</td>
+      <td>32.515395</td>
       <td>MA_BASELINE</td>
     </tr>
   </tbody>
@@ -1357,9 +1435,44 @@ events
 </div>
 </div>
 
+<h2 id="visualization-ai-infrastructure-residual-heatmap">Visualization: AI infrastructure residual heatmap</h2>
+<p>The residual heatmap shows when market-price deviations cluster across tickers.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [9]</div>
+
+
+<pre><code class="language-python">residual_grid = components.copy()
+residual_grid[&quot;residual_z&quot;] = residual_grid.groupby(&quot;ticker&quot;)[&quot;residual&quot;].transform(lambda s: (s - s.median()) / (1.4826 * (s - s.median()).abs().median() + 1e-12))
+heat = residual_grid.pivot_table(index=&quot;ticker&quot;, columns=&quot;date&quot;, values=&quot;residual_z&quot;, aggfunc=&quot;mean&quot;).reindex(summary[&quot;ticker&quot;].tolist()).dropna(how=&quot;all&quot;)
+heat = heat.T
+heat.index = pd.to_datetime(heat.index)
+heat = heat.resample(&quot;W&quot;).mean().T
+values = heat.to_numpy(dtype=float)
+absmax = float(np.nanmax(np.abs(values))) if np.isfinite(values).any() else 1.0
+fig, ax = plt.subplots(figsize=(11, 4.8))
+im = ax.imshow(values, aspect=&quot;auto&quot;, cmap=&quot;RdBu_r&quot;, vmin=-absmax, vmax=absmax)
+ax.set_yticks(range(len(heat.index)))
+ax.set_yticklabels(heat.index)
+tick_step = max(1, len(heat.columns) // 8)
+xticks = list(range(0, len(heat.columns), tick_step))
+ax.set_xticks(xticks)
+ax.set_xticklabels([heat.columns[i].strftime(&quot;%Y-%m-%d&quot;) for i in xticks], rotation=45, ha=&quot;right&quot;)
+ax.set_title(&quot;Weekly AI infrastructure residual z-score heatmap&quot;)
+fig.colorbar(im, ax=ax, label=&quot;robust residual z&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/hot-trend-lab/07_ai_infrastructure_market_pulse/cell-018-output-01.png" alt="Notebook output cell 18" class="notebook-output-image">
+</div>
+</div>
+
 <h2 id="6-guardrails">6. Guardrails</h2>
 <div class="notebook-cell">
-<div class="notebook-input-label">In [7]</div>
+<div class="notebook-input-label">In [10]</div>
 
 
 <pre><code class="language-python">guardrails = article_language_guardrails()
@@ -1426,7 +1539,7 @@ guardrails
 </div>
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [8]</div>
+<div class="notebook-input-label">In [11]</div>
 
 
 <pre><code class="language-python">save_table(audit, &quot;07_ai_infra_market_audit&quot;)

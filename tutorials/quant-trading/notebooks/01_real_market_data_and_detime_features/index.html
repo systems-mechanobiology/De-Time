@@ -304,11 +304,23 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#real-market-data-and-de-time-feature-factory" class="nav-link">Real Market Data and De-Time Feature Factory</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-data-audit-coverage" class="nav-link">Visualization: data audit coverage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#decompose-one-asset-first" class="nav-link">Decompose one asset first</a>
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-aapl-decomposition-diagnostics" class="nav-link">Visualization: AAPL decomposition diagnostics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#walk-forward-feature-factory" class="nav-link">Walk-forward feature factory</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-latest-walk-forward-features" class="nav-link">Visualization: latest walk-forward features</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -395,7 +407,7 @@ prices.tail()
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Ticker</th>
+      <th></th>
       <th>AAPL</th>
       <th>MSFT</th>
       <th>NVDA</th>
@@ -590,10 +602,35 @@ audit
 </div>
 </div>
 
+<h2 id="visualization-data-audit-coverage">Visualization: data audit coverage</h2>
+<p>This chart exposes the real-data coverage and missingness before decomposition starts.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
+
+
+<pre><code class="language-python">audit_plot = audit.set_index(&quot;ticker&quot;)[[&quot;observations&quot;, &quot;missing_ratio&quot;]].copy()
+fig, axes = plt.subplots(1, 2, figsize=(10, 3.4))
+audit_plot[&quot;observations&quot;].sort_values().plot(kind=&quot;barh&quot;, ax=axes[0], color=&quot;tab:blue&quot;, title=&quot;Observation count&quot;)
+audit_plot[&quot;missing_ratio&quot;].sort_values().plot(kind=&quot;barh&quot;, ax=axes[1], color=&quot;tab:orange&quot;, title=&quot;Missing ratio&quot;)
+axes[0].set_xlabel(&quot;rows&quot;)
+axes[1].set_xlabel(&quot;fraction&quot;)
+for ax in axes:
+    ax.set_ylabel(&quot;&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/01_real_market_data_and_detime_features/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
 <h2 id="decompose-one-asset-first">Decompose one asset first</h2>
 <p>The output frame includes the original price, transformed price, trend, cycle/seasonal component, residual, and standardized features.</p>
 <div class="notebook-cell">
-<div class="notebook-input-label">In [4]</div>
+<div class="notebook-input-label">In [5]</div>
 
 
 <pre><code class="language-python">frame = decompose_one_series(prices[&quot;AAPL&quot;], method=&quot;STL&quot;, period=63)
@@ -693,7 +730,7 @@ frame[[&quot;price&quot;, &quot;trend&quot;, &quot;season&quot;, &quot;residual&
 </div>
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [5]</div>
+<div class="notebook-input-label">In [6]</div>
 
 
 <pre><code class="language-python">ax = frame[[&quot;transformed_price&quot;, &quot;trend&quot;]].plot(figsize=(10, 4), title=&quot;AAPL log price and De-Time trend&quot;)
@@ -704,14 +741,40 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-![Notebook output cell 8](../../../assets/generated/notebooks/columns/quant-trading/01_real_market_data_and_detime_features/cell-008-output-01.png)
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/01_real_market_data_and_detime_features/cell-010-output-01.png" alt="Notebook output cell 10" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="visualization-aapl-decomposition-diagnostics">Visualization: AAPL decomposition diagnostics</h2>
+<p>The diagnostic view separates trend gap, seasonal z-score, and residual z-score so the signal ingredients are visible.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [7]</div>
+
+
+<pre><code class="language-python">fig, axes = plt.subplots(3, 1, figsize=(10, 6), sharex=True)
+frame[&quot;trend_gap&quot;].plot(ax=axes[0], color=&quot;tab:purple&quot;, title=&quot;AAPL transformed price minus trend&quot;)
+frame[&quot;season_z&quot;].plot(ax=axes[1], color=&quot;tab:green&quot;, title=&quot;AAPL seasonal z-score&quot;)
+frame[&quot;residual_z&quot;].plot(ax=axes[2], color=&quot;tab:red&quot;, title=&quot;AAPL residual z-score&quot;)
+for ax in axes[1:]:
+    ax.axhline(2.0, color=&quot;0.35&quot;, linestyle=&quot;--&quot;, linewidth=0.8)
+    ax.axhline(-2.0, color=&quot;0.35&quot;, linestyle=&quot;--&quot;, linewidth=0.8)
+for ax in axes:
+    ax.set_xlabel(&quot;&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/01_real_market_data_and_detime_features/cell-012-output-01.png" alt="Notebook output cell 12" class="notebook-output-image">
 </div>
 </div>
 
 <h2 id="walk-forward-feature-factory">Walk-forward feature factory</h2>
 <p>This step recomputes De-Time on rolling historical windows and keeps only the last row of each window. This avoids full-sample decomposition leakage.</p>
 <div class="notebook-cell">
-<div class="notebook-input-label">In [6]</div>
+<div class="notebook-input-label">In [8]</div>
 
 
 <pre><code class="language-python">features = walkforward_decompose(
@@ -762,7 +825,7 @@ feature_table.tail()
       <th colspan="3" halign="left">trend_strength</th>
     </tr>
     <tr>
-      <th>Ticker</th>
+      <th></th>
       <th>AAPL</th>
       <th>MSFT</th>
       <th>NVDA</th>
@@ -936,6 +999,29 @@ feature_table.tail()
 <p>5 rows × 39 columns</p>
 </div>
 </div>
+</div>
+</div>
+
+<h2 id="visualization-latest-walk-forward-features">Visualization: latest walk-forward features</h2>
+<p>The latest feature snapshot shows how trend strength, residual state, and reconstruction error differ across assets.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [9]</div>
+
+
+<pre><code class="language-python">latest_feature_slice = feature_table.dropna(how=&quot;all&quot;).iloc[-1].unstack(0)
+metric_cols = [&quot;trend_strength&quot;, &quot;residual_z&quot;, &quot;reconstruction_error&quot;]
+fig, axes = plt.subplots(1, len(metric_cols), figsize=(11, 3.4))
+for ax, metric in zip(axes, metric_cols):
+    latest_feature_slice[metric].sort_values().plot(kind=&quot;barh&quot;, ax=ax, title=metric)
+    ax.set_ylabel(&quot;&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/01_real_market_data_and_detime_features/cell-016-output-01.png" alt="Notebook output cell 16" class="notebook-output-image">
 </div>
 </div></div>
             </div>

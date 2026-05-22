@@ -308,6 +308,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-configured-universe-coverage" class="nav-link">Visualization: configured universe coverage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#recommended-reading-order" class="nav-link">Recommended reading order</a>
               <ul class="nav flex-column">
               </ul>
@@ -450,6 +454,30 @@ from quant_trading.backtest import backtest_weights, backtest_long_short_signals
 </div>
 </div>
 
+<h2 id="visualization-configured-universe-coverage">Visualization: configured universe coverage</h2>
+<p>The bar chart makes the tutorial universe breadth visible before any strategy notebook runs.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [3]</div>
+
+
+<pre><code class="language-python">universe_counts = pd.Series(
+    {name: len(tickers) for name, tickers in DEFAULT_UNIVERSES.items()},
+    name=&quot;ticker_count&quot;,
+).sort_values()
+ax = universe_counts.plot(kind=&quot;barh&quot;, figsize=(8, 3.2), title=&quot;Configured tutorial universe sizes&quot;)
+ax.set_xlabel(&quot;ticker count&quot;)
+ax.set_ylabel(&quot;universe&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/00_quant_trading_column_overview/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+</div>
+</div>
+
 <h2 id="recommended-reading-order">Recommended reading order</h2>
 <ol>
 <li>Real data and De-Time feature factory.</li>
@@ -463,7 +491,7 @@ from quant_trading.backtest import backtest_weights, backtest_long_short_signals
 <li>Walk-forward validation and audit.</li>
 </ol>
 <div class="notebook-cell">
-<div class="notebook-input-label">In [3]</div>
+<div class="notebook-input-label">In [4]</div>
 
 
 <pre><code class="language-python"># Optional dependency installation, run in a shell:

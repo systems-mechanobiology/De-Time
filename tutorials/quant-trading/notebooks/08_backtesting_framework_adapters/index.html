@@ -304,6 +304,10 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#backtesting-framework-adapters" class="nav-link">Backtesting Framework Adapters</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-pandas-baseline-diagnostics" class="nav-link">Visualization: pandas baseline diagnostics</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -443,8 +447,32 @@ pandas_result.stats_frame()
 </div>
 </div>
 
+<h2 id="visualization-pandas-baseline-diagnostics">Visualization: pandas baseline diagnostics</h2>
+<p>The pandas baseline now shows both risk and signal density before optional framework adapters are introduced.</p>
 <div class="notebook-cell">
 <div class="notebook-input-label">In [3]</div>
+
+
+<pre><code class="language-python">drawdown = pandas_result.equity / pandas_result.equity.cummax() - 1.0
+signal_counts = pd.DataFrame({&quot;entries&quot;: entries.sum(), &quot;exits&quot;: exits.sum()})
+fig, axes = plt.subplots(1, 2, figsize=(11, 4))
+drawdown.plot(ax=axes[0], color=&quot;tab:red&quot;, title=&quot;Pandas baseline drawdown&quot;)
+signal_counts.plot(kind=&quot;bar&quot;, ax=axes[1], title=&quot;Signal counts by asset&quot;)
+axes[0].set_ylabel(&quot;drawdown&quot;)
+axes[1].set_ylabel(&quot;count&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/08_backtesting_framework_adapters/cell-006-output-01.png" alt="Notebook output cell 6" class="notebook-output-image">
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [4]</div>
 
 
 <pre><code class="language-python">from quant_trading.frameworks import (
@@ -501,7 +529,7 @@ pd.DataFrame({&quot;template&quot;: [path.relative_to(ROOT).as_posix() for path 
 </div>
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [4]</div>
+<div class="notebook-input-label">In [5]</div>
 
 
 <pre><code class="language-python"># Optional examples after installing the relevant packages:

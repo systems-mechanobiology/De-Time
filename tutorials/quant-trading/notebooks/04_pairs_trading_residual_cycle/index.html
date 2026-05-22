@@ -304,6 +304,10 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#pairs-trading-with-spread-residual-and-cycle-analysis" class="nav-link">Pairs Trading with Spread Residual and Cycle Analysis</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#visualization-spread-residual-bands-and-weights" class="nav-link">Visualization: spread residual bands and weights</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -540,7 +544,33 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-![Notebook output cell 6](../../../assets/generated/notebooks/columns/quant-trading/04_pairs_trading_residual_cycle/cell-006-output-01.png)
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/04_pairs_trading_residual_cycle/cell-006-output-01.png" alt="Notebook output cell 6" class="notebook-output-image">
+</div>
+</div>
+
+<h2 id="visualization-spread-residual-bands-and-weights">Visualization: spread residual bands and weights</h2>
+<p>Residual bands show where the pair is stretched; target weights show how the backtest responds.</p>
+<div class="notebook-cell">
+<div class="notebook-input-label">In [5]</div>
+
+
+<pre><code class="language-python">fig, axes = plt.subplots(3, 1, figsize=(10, 7), sharex=False)
+spread_frame[[&quot;transformed_price&quot;, &quot;trend&quot;]].plot(ax=axes[0], title=&quot;KO/PEP spread and De-Time trend&quot;)
+spread_frame[&quot;residual_z&quot;].plot(ax=axes[1], color=&quot;tab:red&quot;, title=&quot;KO/PEP residual z-score&quot;)
+for level, style in [(1.5, &quot;--&quot;), (-1.5, &quot;--&quot;), (0.25, &quot;:&quot;), (-0.25, &quot;:&quot;)]:
+    axes[1].axhline(level, color=&quot;0.35&quot;, linestyle=style, linewidth=0.8)
+weights.tail(504).plot(ax=axes[2], title=&quot;KO/PEP target weights&quot;)
+axes[0].set_xlabel(&quot;&quot;)
+axes[1].set_xlabel(&quot;&quot;)
+axes[2].set_ylabel(&quot;weight&quot;)
+plt.tight_layout()
+plt.show()
+</code></pre>
+
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">image/png</div>
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/04_pairs_trading_residual_cycle/cell-008-output-01.png" alt="Notebook output cell 8" class="notebook-output-image">
 </div>
 </div></div>
             </div>
