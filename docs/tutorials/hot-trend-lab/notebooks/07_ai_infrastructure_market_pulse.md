@@ -15,20 +15,10 @@ No synthetic fallback is used. If market data cannot be fetched, the notebook st
 ```python
 from pathlib import Path
 import os
-import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-# Prefer the checkout when this notebook is run inside the repository.
-repo_root = Path.cwd()
-for candidate in [Path.cwd(), Path.cwd().parent, Path.cwd().parent.parent, Path.cwd().parent.parent.parent]:
-    if (candidate / "src" / "detime").exists():
-        repo_root = candidate
-        break
-sys.path.insert(0, str(repo_root / "src"))
-sys.path.insert(0, str(repo_root))
 
 from examples.hot_trends.data import (
     HotTrendDataError,
@@ -54,16 +44,15 @@ pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
 plt.rcParams.update({"axes.grid": True})
 
-CACHE_DIR = repo_root / "examples" / "hot_trends" / "cache"
-OUTPUT_DIR = repo_root / "examples" / "hot_trends" / "outputs"
+CACHE_DIR = Path("examples/hot_trends/cache")
+OUTPUT_DIR = Path("examples/hot_trends/outputs")
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def save_table(df, name):
     path = OUTPUT_DIR / f"{name}.csv"
     df.to_csv(path, index=False)
-    relative_path = path.relative_to(repo_root).as_posix()
-    print(f"saved: {relative_path}")
+    print(f"saved: {path.as_posix()}")
 ```
 </div>
 
@@ -290,7 +279,7 @@ audit
       <td>600</td>
       <td>0.0</td>
       <td>78.209999</td>
-      <td>471.299988</td>
+      <td>468.660004</td>
     </tr>
     <tr>
       <th>1</th>
@@ -319,7 +308,7 @@ audit
       <td>2026-05-22 00:00:00</td>
       <td>600</td>
       <td>0.0</td>
-      <td>130.322891</td>
+      <td>130.322876</td>
       <td>402.619995</td>
     </tr>
     <tr>
@@ -340,7 +329,7 @@ audit
       <td>600</td>
       <td>0.0</td>
       <td>351.105804</td>
-      <td>538.658508</td>
+      <td>538.658569</td>
     </tr>
     <tr>
       <th>6</th>
@@ -424,11 +413,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>3.055991</td>
+      <td>3.055930</td>
       <td>0.002033</td>
-      <td>-0.515595</td>
-      <td>0.492244</td>
-      <td>31.540915</td>
+      <td>-0.515508</td>
+      <td>0.492217</td>
+      <td>31.525257</td>
       <td>MA_BASELINE</td>
       <td>1.000</td>
       <td>1.000</td>
@@ -441,11 +430,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>2.996443</td>
+      <td>2.996389</td>
       <td>0.001351</td>
-      <td>-1.894482</td>
-      <td>0.500768</td>
-      <td>39.001780</td>
+      <td>-1.894456</td>
+      <td>0.500745</td>
+      <td>38.958102</td>
       <td>MA_BASELINE</td>
       <td>0.625</td>
       <td>0.500</td>
@@ -458,11 +447,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>2.711069</td>
+      <td>2.710921</td>
       <td>0.001477</td>
-      <td>-0.731277</td>
-      <td>0.425100</td>
-      <td>30.599126</td>
+      <td>-0.730965</td>
+      <td>0.425031</td>
+      <td>30.495657</td>
       <td>MA_BASELINE</td>
       <td>0.750</td>
       <td>0.875</td>
@@ -475,11 +464,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>3.037986</td>
+      <td>3.037998</td>
       <td>0.001532</td>
-      <td>-1.560134</td>
-      <td>0.528247</td>
-      <td>30.484039</td>
+      <td>-1.560162</td>
+      <td>0.528252</td>
+      <td>30.491361</td>
       <td>MA_BASELINE</td>
       <td>0.875</td>
       <td>0.750</td>
@@ -492,11 +481,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>3.277511</td>
+      <td>3.277545</td>
       <td>0.000695</td>
-      <td>-8.994404</td>
-      <td>0.545144</td>
-      <td>34.010437</td>
+      <td>-8.994832</td>
+      <td>0.545158</td>
+      <td>34.032693</td>
       <td>MA_BASELINE</td>
       <td>0.500</td>
       <td>0.375</td>
@@ -509,11 +498,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>2.824370</td>
+      <td>2.824356</td>
       <td>0.000536</td>
-      <td>-12.698220</td>
-      <td>0.480006</td>
-      <td>38.400467</td>
+      <td>-12.698540</td>
+      <td>0.480000</td>
+      <td>38.387741</td>
       <td>MA_BASELINE</td>
       <td>0.250</td>
       <td>0.250</td>
@@ -526,11 +515,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>3.058482</td>
+      <td>3.058485</td>
       <td>0.000199</td>
-      <td>-28.798652</td>
-      <td>0.536867</td>
-      <td>38.792631</td>
+      <td>-28.798835</td>
+      <td>0.536869</td>
+      <td>38.792557</td>
       <td>MA_BASELINE</td>
       <td>0.125</td>
       <td>0.125</td>
@@ -543,11 +532,11 @@ summary
       <td>600</td>
       <td>2024-01-02 00:00:00</td>
       <td>2026-05-22 00:00:00</td>
-      <td>2.974061</td>
+      <td>2.973972</td>
       <td>0.000667</td>
-      <td>-1.836555</td>
-      <td>0.521802</td>
-      <td>29.831083</td>
+      <td>-1.836695</td>
+      <td>0.521761</td>
+      <td>29.779490</td>
       <td>MA_BASELINE</td>
       <td>0.375</td>
       <td>0.625</td>
@@ -638,65 +627,65 @@ returns.sort_values("total_return_proxy", ascending=False)
       <th>6</th>
       <td>2026-05-22</td>
       <td>NVDA</td>
-      <td>217.789902</td>
-      <td>48.138573</td>
-      <td>3.524228</td>
+      <td>215.770004</td>
+      <td>48.138569</td>
+      <td>3.482269</td>
     </tr>
     <tr>
       <th>3</th>
       <td>2026-05-22</td>
       <td>AVGO</td>
-      <td>413.859894</td>
-      <td>105.914246</td>
-      <td>2.907500</td>
+      <td>412.281189</td>
+      <td>105.914238</td>
+      <td>2.892595</td>
     </tr>
     <tr>
       <th>5</th>
       <td>2026-05-22</td>
       <td>AMD</td>
-      <td>471.299988</td>
+      <td>468.660004</td>
       <td>138.580002</td>
-      <td>2.400924</td>
+      <td>2.381873</td>
     </tr>
     <tr>
       <th>0</th>
       <td>2026-05-22</td>
       <td>GOOGL</td>
-      <td>385.790009</td>
-      <td>137.037384</td>
-      <td>1.815217</td>
+      <td>384.470001</td>
+      <td>137.037399</td>
+      <td>1.805584</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2026-05-22</td>
       <td>AMZN</td>
-      <td>267.730011</td>
+      <td>267.480011</td>
       <td>149.929993</td>
-      <td>0.785700</td>
+      <td>0.784033</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2026-05-22</td>
       <td>META</td>
-      <td>608.900024</td>
-      <td>343.593658</td>
-      <td>0.772152</td>
+      <td>610.179993</td>
+      <td>343.593628</td>
+      <td>0.775877</td>
     </tr>
     <tr>
       <th>7</th>
       <td>2026-05-22</td>
       <td>TSLA</td>
-      <td>427.890015</td>
+      <td>428.209991</td>
       <td>248.419998</td>
-      <td>0.722446</td>
+      <td>0.723734</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2026-05-22</td>
       <td>MSFT</td>
-      <td>418.859985</td>
-      <td>363.801483</td>
-      <td>0.151342</td>
+      <td>418.934998</td>
+      <td>363.801453</td>
+      <td>0.151548</td>
     </tr>
   </tbody>
 </table>
@@ -787,36 +776,36 @@ events
       <th>0</th>
       <td>2026-05-22</td>
       <td>GOOGL</td>
-      <td>5.955293</td>
-      <td>2.996443</td>
-      <td>0.040876</td>
-      <td>2.917974</td>
-      <td>39.001780</td>
-      <td>39.001780</td>
+      <td>5.951866</td>
+      <td>2.996389</td>
+      <td>0.040764</td>
+      <td>2.914713</td>
+      <td>38.958102</td>
+      <td>38.958102</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
       <th>1</th>
       <td>2026-05-22</td>
       <td>MSFT</td>
-      <td>6.037537</td>
-      <td>3.058482</td>
-      <td>0.041970</td>
-      <td>2.937084</td>
-      <td>38.792631</td>
-      <td>38.792631</td>
+      <td>6.037716</td>
+      <td>3.058485</td>
+      <td>0.041976</td>
+      <td>2.937254</td>
+      <td>38.792557</td>
+      <td>38.792557</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
       <th>2</th>
       <td>2026-05-22</td>
       <td>AMZN</td>
-      <td>5.589979</td>
-      <td>2.824370</td>
-      <td>0.033673</td>
-      <td>2.731936</td>
-      <td>38.400467</td>
-      <td>38.400467</td>
+      <td>5.589045</td>
+      <td>2.824356</td>
+      <td>0.033642</td>
+      <td>2.731047</td>
+      <td>38.387741</td>
+      <td>38.387741</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -824,11 +813,11 @@ events
       <td>2026-05-21</td>
       <td>GOOGL</td>
       <td>5.960129</td>
-      <td>3.087870</td>
-      <td>0.038742</td>
-      <td>2.833516</td>
-      <td>37.869267</td>
-      <td>37.869267</td>
+      <td>3.087816</td>
+      <td>0.038749</td>
+      <td>2.833564</td>
+      <td>37.869965</td>
+      <td>37.869965</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -836,11 +825,11 @@ events
       <td>2026-05-21</td>
       <td>MSFT</td>
       <td>6.038086</td>
-      <td>3.152498</td>
+      <td>3.152501</td>
       <td>0.042170</td>
-      <td>2.843417</td>
-      <td>37.554791</td>
-      <td>37.554791</td>
+      <td>2.843415</td>
+      <td>37.552506</td>
+      <td>37.552506</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -851,8 +840,8 @@ events
       <td>3.028852</td>
       <td>0.032678</td>
       <td>2.835078</td>
-      <td>37.444586</td>
-      <td>37.444586</td>
+      <td>37.442343</td>
+      <td>37.442343</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -860,11 +849,11 @@ events
       <td>2026-05-21</td>
       <td>AMZN</td>
       <td>5.592702</td>
-      <td>2.910074</td>
-      <td>0.032497</td>
-      <td>2.650132</td>
-      <td>37.245677</td>
-      <td>37.245677</td>
+      <td>2.910059</td>
+      <td>0.032498</td>
+      <td>2.650145</td>
+      <td>37.245690</td>
+      <td>37.245690</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -872,11 +861,11 @@ events
       <td>2026-05-20</td>
       <td>GOOGL</td>
       <td>5.963348</td>
-      <td>3.178693</td>
-      <td>0.035731</td>
-      <td>2.748925</td>
-      <td>36.734967</td>
-      <td>36.734967</td>
+      <td>3.178638</td>
+      <td>0.035737</td>
+      <td>2.748972</td>
+      <td>36.735665</td>
+      <td>36.735665</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -884,11 +873,11 @@ events
       <td>2026-05-20</td>
       <td>MSFT</td>
       <td>6.040612</td>
-      <td>3.246427</td>
+      <td>3.246430</td>
       <td>0.042988</td>
-      <td>2.751197</td>
-      <td>36.336061</td>
-      <td>36.336061</td>
+      <td>2.751195</td>
+      <td>36.333850</td>
+      <td>36.333850</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -898,9 +887,9 @@ events
       <td>5.895880</td>
       <td>3.123838</td>
       <td>0.029370</td>
-      <td>2.742671</td>
-      <td>36.223391</td>
-      <td>36.223391</td>
+      <td>2.742672</td>
+      <td>36.221224</td>
+      <td>36.221224</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -908,11 +897,11 @@ events
       <td>2026-05-20</td>
       <td>AMZN</td>
       <td>5.579768</td>
-      <td>2.995231</td>
-      <td>0.033702</td>
-      <td>2.550835</td>
-      <td>35.843953</td>
-      <td>35.843953</td>
+      <td>2.995216</td>
+      <td>0.033704</td>
+      <td>2.550848</td>
+      <td>35.843974</td>
+      <td>35.843974</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -920,11 +909,11 @@ events
       <td>2026-05-19</td>
       <td>GOOGL</td>
       <td>5.960129</td>
-      <td>3.269229</td>
-      <td>0.038820</td>
-      <td>2.652080</td>
-      <td>35.436361</td>
-      <td>35.436361</td>
+      <td>3.269174</td>
+      <td>0.038827</td>
+      <td>2.652128</td>
+      <td>35.437061</td>
+      <td>35.437061</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -932,11 +921,11 @@ events
       <td>2026-05-19</td>
       <td>MSFT</td>
       <td>6.031929</td>
-      <td>3.340381</td>
+      <td>3.340383</td>
       <td>0.042945</td>
-      <td>2.648604</td>
-      <td>34.980246</td>
-      <td>34.980246</td>
+      <td>2.648601</td>
+      <td>34.978115</td>
+      <td>34.978115</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -947,8 +936,8 @@ events
       <td>3.218775</td>
       <td>0.030656</td>
       <td>2.639245</td>
-      <td>34.856571</td>
-      <td>34.856571</td>
+      <td>34.854485</td>
+      <td>34.854485</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -956,11 +945,11 @@ events
       <td>2026-05-18</td>
       <td>GOOGL</td>
       <td>5.983785</td>
-      <td>3.359539</td>
-      <td>0.042638</td>
-      <td>2.581608</td>
-      <td>34.491398</td>
-      <td>34.491398</td>
+      <td>3.359485</td>
+      <td>0.042644</td>
+      <td>2.581656</td>
+      <td>34.492098</td>
+      <td>34.492098</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -968,23 +957,23 @@ events
       <td>2026-05-19</td>
       <td>AMZN</td>
       <td>5.558140</td>
-      <td>3.080315</td>
-      <td>0.036504</td>
-      <td>2.441321</td>
-      <td>34.297998</td>
-      <td>34.297998</td>
+      <td>3.080300</td>
+      <td>0.036506</td>
+      <td>2.441334</td>
+      <td>34.298027</td>
+      <td>34.298027</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
       <th>16</th>
       <td>2026-05-22</td>
       <td>META</td>
-      <td>6.411654</td>
-      <td>3.277511</td>
-      <td>0.040036</td>
-      <td>3.094107</td>
-      <td>34.010437</td>
-      <td>34.010437</td>
+      <td>6.413754</td>
+      <td>3.277545</td>
+      <td>0.040105</td>
+      <td>3.096105</td>
+      <td>34.032693</td>
+      <td>34.032693</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -992,11 +981,11 @@ events
       <td>2026-05-18</td>
       <td>MSFT</td>
       <td>6.046484</td>
-      <td>3.434359</td>
+      <td>3.434362</td>
       <td>0.043560</td>
-      <td>2.568566</td>
-      <td>33.922511</td>
-      <td>33.922511</td>
+      <td>2.568563</td>
+      <td>33.920444</td>
+      <td>33.920444</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1005,10 +994,10 @@ events
       <td>AMZN</td>
       <td>5.010168</td>
       <td>2.574437</td>
-      <td>0.028645</td>
-      <td>2.407086</td>
-      <td>33.814719</td>
-      <td>33.814719</td>
+      <td>0.028646</td>
+      <td>2.407085</td>
+      <td>33.814548</td>
+      <td>33.814548</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1017,10 +1006,10 @@ events
       <td>MSFT</td>
       <td>5.888160</td>
       <td>3.313688</td>
-      <td>0.032803</td>
-      <td>2.541669</td>
-      <td>33.567069</td>
-      <td>33.567069</td>
+      <td>0.032802</td>
+      <td>2.541670</td>
+      <td>33.565058</td>
+      <td>33.565058</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1028,11 +1017,11 @@ events
       <td>2026-05-18</td>
       <td>AMZN</td>
       <td>5.579201</td>
-      <td>3.165172</td>
-      <td>0.040405</td>
-      <td>2.373624</td>
-      <td>33.342359</td>
-      <td>33.342359</td>
+      <td>3.165157</td>
+      <td>0.040406</td>
+      <td>2.373637</td>
+      <td>33.342393</td>
+      <td>33.342393</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1040,11 +1029,11 @@ events
       <td>2026-05-15</td>
       <td>GOOGL</td>
       <td>5.983382</td>
-      <td>3.449937</td>
-      <td>0.040450</td>
-      <td>2.492995</td>
-      <td>33.303165</td>
-      <td>33.303165</td>
+      <td>3.449882</td>
+      <td>0.040457</td>
+      <td>2.493043</td>
+      <td>33.303866</td>
+      <td>33.303866</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1052,11 +1041,11 @@ events
       <td>2026-05-21</td>
       <td>META</td>
       <td>6.409155</td>
-      <td>3.379375</td>
-      <td>0.038100</td>
-      <td>2.991680</td>
-      <td>32.881675</td>
-      <td>32.881675</td>
+      <td>3.379409</td>
+      <td>0.038096</td>
+      <td>2.991651</td>
+      <td>32.881577</td>
+      <td>32.881577</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1064,11 +1053,11 @@ events
       <td>2026-05-15</td>
       <td>MSFT</td>
       <td>6.042652</td>
-      <td>3.528163</td>
+      <td>3.528166</td>
       <td>0.044403</td>
-      <td>2.470086</td>
-      <td>32.621069</td>
-      <td>32.621069</td>
+      <td>2.470084</td>
+      <td>32.619080</td>
+      <td>32.619080</td>
       <td>MA_BASELINE</td>
     </tr>
     <tr>
@@ -1078,9 +1067,9 @@ events
       <td>5.906856</td>
       <td>3.408970</td>
       <td>0.035795</td>
-      <td>2.462090</td>
-      <td>32.515395</td>
-      <td>32.515395</td>
+      <td>2.462091</td>
+      <td>32.513452</td>
+      <td>32.513452</td>
       <td>MA_BASELINE</td>
     </tr>
   </tbody>

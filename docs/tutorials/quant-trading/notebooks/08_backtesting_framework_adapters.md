@@ -12,22 +12,14 @@ This notebook summarizes how De-Time signals can be routed into existing Python 
 
 ```python
 from pathlib import Path
-import sys
-
-ROOT = Path.cwd()
-while ROOT != ROOT.parent and not (ROOT / "pyproject.toml").exists():
-    ROOT = ROOT.parent
-for path in [ROOT / "src", ROOT / "examples"]:
-    if str(path) not in sys.path:
-        sys.path.insert(0, str(path))
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from quant_trading.data import fetch_yahoo_prices, fetch_yahoo_ohlcv, data_audit_report, DEFAULT_UNIVERSES
-from quant_trading.features import decompose_one_series, walkforward_decompose, build_feature_table
-from quant_trading.signals import (
+from examples.quant_trading.data import fetch_yahoo_prices, fetch_yahoo_ohlcv, data_audit_report, DEFAULT_UNIVERSES
+from examples.quant_trading.features import decompose_one_series, walkforward_decompose, build_feature_table
+from examples.quant_trading.signals import (
     trend_pullback_signals,
     residual_mean_reversion_signals,
     turtle_donchian_signals,
@@ -35,7 +27,9 @@ from quant_trading.signals import (
     cross_sectional_rotation_weights,
     residual_stress_filter,
 )
-from quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
+from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
+
+DATA_CACHE = Path("examples/quant_trading/data/cache")
 ```
 </div>
 
@@ -43,7 +37,7 @@ from quant_trading.backtest import backtest_weights, backtest_long_short_signals
 <div class="notebook-input-label">In [2]</div>
 
 ```python
-prices = fetch_yahoo_prices(["SPY", "QQQ"], start="2018-01-01", cache_dir=ROOT / "examples" / "quant_trading" / "data" / "cache")
+prices = fetch_yahoo_prices(["SPY", "QQQ"], start="2018-01-01", cache_dir=DATA_CACHE)
 features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
 entries, exits = turtle_donchian_signals(prices, features)
 pandas_result = backtest_long_short_signals(prices, entries, exits)
@@ -159,7 +153,7 @@ plt.show()
 <div class="notebook-input-label">In [4]</div>
 
 ```python
-from quant_trading.frameworks import (
+from examples.quant_trading.frameworks import (
     run_vectorbt_from_signals,
     run_bt_target_weights,
     run_backtestingpy_signal,
@@ -167,8 +161,8 @@ from quant_trading.frameworks import (
     quantstats_html_report,
 )
 
-template_paths = write_framework_templates(ROOT / "examples" / "quant_trading" / "templates")
-pd.DataFrame({"template": [path.relative_to(ROOT).as_posix() for path in template_paths]})
+template_paths = write_framework_templates(Path("examples/quant_trading/templates"))
+pd.DataFrame({"template": [path.as_posix() for path in template_paths]})
 ```
 
 <div class="gallery-out notebook-output">
@@ -217,6 +211,6 @@ pd.DataFrame({"template": [path.relative_to(ROOT).as_posix() for path in templat
 ```python
 # Optional examples after installing the relevant packages:
 # vectorbt_portfolio = run_vectorbt_from_signals(prices, entries, exits)
-# quantstats_html_report(pandas_result.returns, ROOT / "examples" / "quant_trading" / "reports" / "tear_sheet.html")
+# quantstats_html_report(pandas_result.returns, Path("examples/quant_trading/reports/tear_sheet.html"))
 ```
 </div>

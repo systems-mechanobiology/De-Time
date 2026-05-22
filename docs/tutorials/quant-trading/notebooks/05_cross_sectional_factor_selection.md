@@ -12,22 +12,14 @@ This notebook turns De-Time features into cross-sectional alpha candidates. The 
 
 ```python
 from pathlib import Path
-import sys
-
-ROOT = Path.cwd()
-while ROOT != ROOT.parent and not (ROOT / "pyproject.toml").exists():
-    ROOT = ROOT.parent
-for path in [ROOT / "src", ROOT / "examples"]:
-    if str(path) not in sys.path:
-        sys.path.insert(0, str(path))
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from quant_trading.data import fetch_yahoo_prices, fetch_yahoo_ohlcv, data_audit_report, DEFAULT_UNIVERSES
-from quant_trading.features import decompose_one_series, walkforward_decompose, build_feature_table
-from quant_trading.signals import (
+from examples.quant_trading.data import fetch_yahoo_prices, fetch_yahoo_ohlcv, data_audit_report, DEFAULT_UNIVERSES
+from examples.quant_trading.features import decompose_one_series, walkforward_decompose, build_feature_table
+from examples.quant_trading.signals import (
     trend_pullback_signals,
     residual_mean_reversion_signals,
     turtle_donchian_signals,
@@ -35,7 +27,9 @@ from quant_trading.signals import (
     cross_sectional_rotation_weights,
     residual_stress_filter,
 )
-from quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
+from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
+
+DATA_CACHE = Path("examples/quant_trading/data/cache")
 ```
 </div>
 
@@ -44,7 +38,7 @@ from quant_trading.backtest import backtest_weights, backtest_long_short_signals
 
 ```python
 universe = DEFAULT_UNIVERSES["us_large_cap"][:10]
-prices = fetch_yahoo_prices(universe, start="2017-01-01", cache_dir=ROOT / "examples" / "quant_trading" / "data" / "cache")
+prices = fetch_yahoo_prices(universe, start="2017-01-01", cache_dir=DATA_CACHE)
 features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
 weights = cross_sectional_rotation_weights(prices, features, top_n=3, vol_target=0.15)
 result = backtest_weights(prices, weights, fee_bps=1.0, slippage_bps=3.0)

@@ -15,20 +15,10 @@ Stars are an attention proxy, not production adoption. No synthetic fallback is 
 ```python
 from pathlib import Path
 import os
-import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-# Prefer the checkout when this notebook is run inside the repository.
-repo_root = Path.cwd()
-for candidate in [Path.cwd(), Path.cwd().parent, Path.cwd().parent.parent, Path.cwd().parent.parent.parent]:
-    if (candidate / "src" / "detime").exists():
-        repo_root = candidate
-        break
-sys.path.insert(0, str(repo_root / "src"))
-sys.path.insert(0, str(repo_root))
 
 from examples.hot_trends.data import (
     HotTrendDataError,
@@ -54,16 +44,15 @@ pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
 plt.rcParams.update({"axes.grid": True})
 
-CACHE_DIR = repo_root / "examples" / "hot_trends" / "cache"
-OUTPUT_DIR = repo_root / "examples" / "hot_trends" / "outputs"
+CACHE_DIR = Path("examples/hot_trends/cache")
+OUTPUT_DIR = Path("examples/hot_trends/outputs")
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def save_table(df, name):
     path = OUTPUT_DIR / f"{name}.csv"
     df.to_csv(path, index=False)
-    relative_path = path.relative_to(repo_root).as_posix()
-    print(f"saved: {relative_path}")
+    print(f"saved: {path.as_posix()}")
 ```
 </div>
 
@@ -192,26 +181,26 @@ metadata
     <tr>
       <th>0</th>
       <td>langchain-ai/langchain</td>
-      <td>137403</td>
+      <td>137407</td>
       <td>22730</td>
       <td>582</td>
-      <td>2026-05-22T15:39:13Z</td>
+      <td>2026-05-22T18:30:27Z</td>
       <td>GitHub REST API</td>
     </tr>
     <tr>
       <th>3</th>
       <td>browser-use/browser-use</td>
-      <td>95101</td>
+      <td>95116</td>
       <td>10714</td>
       <td>227</td>
-      <td>2026-05-22T16:59:21Z</td>
+      <td>2026-05-22T18:54:53Z</td>
       <td>GitHub REST API</td>
     </tr>
     <tr>
       <th>4</th>
       <td>modelcontextprotocol/servers</td>
-      <td>86090</td>
-      <td>10786</td>
+      <td>86091</td>
+      <td>10787</td>
       <td>509</td>
       <td>2026-05-21T18:10:38Z</td>
       <td>GitHub REST API</td>
@@ -219,19 +208,19 @@ metadata
     <tr>
       <th>1</th>
       <td>microsoft/autogen</td>
-      <td>58298</td>
+      <td>58296</td>
       <td>8802</td>
-      <td>843</td>
+      <td>845</td>
       <td>2026-04-15T11:59:09Z</td>
       <td>GitHub REST API</td>
     </tr>
     <tr>
       <th>2</th>
       <td>crewAIInc/crewAI</td>
-      <td>51973</td>
-      <td>7206</td>
-      <td>356</td>
-      <td>2026-05-22T16:22:32Z</td>
+      <td>51975</td>
+      <td>7205</td>
+      <td>354</td>
+      <td>2026-05-22T18:36:45Z</td>
       <td>GitHub REST API</td>
     </tr>
   </tbody>

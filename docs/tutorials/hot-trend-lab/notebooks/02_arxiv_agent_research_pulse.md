@@ -24,20 +24,10 @@ Data source: arXiv API. No synthetic fallback.
 ```python
 from pathlib import Path
 import os
-import sys
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-
-# Prefer the checkout when this notebook is run inside the repository.
-repo_root = Path.cwd()
-for candidate in [Path.cwd(), Path.cwd().parent, Path.cwd().parent.parent, Path.cwd().parent.parent.parent]:
-    if (candidate / "src" / "detime").exists():
-        repo_root = candidate
-        break
-sys.path.insert(0, str(repo_root / "src"))
-sys.path.insert(0, str(repo_root))
 
 from examples.hot_trends.data import (
     HotTrendDataError,
@@ -63,16 +53,15 @@ pd.set_option("display.max_columns", 80)
 pd.set_option("display.max_rows", 80)
 plt.rcParams.update({"axes.grid": True})
 
-CACHE_DIR = repo_root / "examples" / "hot_trends" / "cache"
-OUTPUT_DIR = repo_root / "examples" / "hot_trends" / "outputs"
+CACHE_DIR = Path("examples/hot_trends/cache")
+OUTPUT_DIR = Path("examples/hot_trends/outputs")
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 def save_table(df, name):
     path = OUTPUT_DIR / f"{name}.csv"
     df.to_csv(path, index=False)
-    relative_path = path.relative_to(repo_root).as_posix()
-    print(f"saved: {relative_path}")
+    print(f"saved: {path.as_posix()}")
 ```
 </div>
 
