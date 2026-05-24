@@ -7,6 +7,8 @@
 
 Classical Turtle-style breakout systems enter when price breaks above a prior high and exit on a lower-channel break. De-Time adds a trend confirmation layer so the breakout must agree with the decomposed trend.
 
+**Default decomposition:** `ROBUST_STL` with a 63-trading-day period, computed walk-forward where signals are backtested.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
@@ -30,6 +32,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -38,7 +42,7 @@ DATA_CACHE = Path("examples/quant_trading/data/cache")
 
 ```python
 prices = fetch_yahoo_prices(["SPY", "QQQ", "IWM", "DIA"], start="2016-01-01", cache_dir=DATA_CACHE)
-features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
+features = walkforward_decompose(prices, method=QUANT_METHOD, period=QUANT_PERIOD, train_window=252, step=21)
 entries, exits = turtle_donchian_signals(prices, features, entry_window=55, exit_window=20, use_trend_filter=True)
 result = backtest_long_short_signals(prices, entries, exits, fee_bps=1.0, slippage_bps=2.0)
 result.stats_frame()
@@ -71,39 +75,39 @@ result.stats_frame()
   <tbody>
     <tr>
       <th>total_return</th>
-      <td>0.932556</td>
+      <td>1.049485</td>
     </tr>
     <tr>
       <th>cagr</th>
-      <td>0.065627</td>
+      <td>0.071684</td>
     </tr>
     <tr>
       <th>volatility</th>
-      <td>0.097210</td>
+      <td>0.096409</td>
     </tr>
     <tr>
       <th>sharpe</th>
-      <td>0.702664</td>
+      <td>0.766505</td>
     </tr>
     <tr>
       <th>max_drawdown</th>
-      <td>-0.147851</td>
+      <td>-0.163652</td>
     </tr>
     <tr>
       <th>calmar</th>
-      <td>0.443876</td>
+      <td>0.438026</td>
     </tr>
     <tr>
       <th>hit_rate</th>
-      <td>0.307044</td>
+      <td>0.303982</td>
     </tr>
     <tr>
       <th>average_turnover</th>
-      <td>0.046899</td>
+      <td>0.046069</td>
     </tr>
     <tr>
       <th>average_gross_exposure</th>
-      <td>0.545942</td>
+      <td>0.541730</td>
     </tr>
     <tr>
       <th>fee_bps</th>
@@ -162,22 +166,22 @@ pd.DataFrame({
   <tbody>
     <tr>
       <th>SPY</th>
-      <td>390</td>
+      <td>394</td>
       <td>180</td>
     </tr>
     <tr>
       <th>QQQ</th>
-      <td>370</td>
+      <td>369</td>
       <td>185</td>
     </tr>
     <tr>
       <th>IWM</th>
-      <td>176</td>
+      <td>171</td>
       <td>212</td>
     </tr>
     <tr>
       <th>DIA</th>
-      <td>298</td>
+      <td>309</td>
       <td>180</td>
     </tr>
   </tbody>

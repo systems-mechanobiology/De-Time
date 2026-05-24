@@ -9,6 +9,8 @@ This notebook asks whether De-Time factor candidates improve a cross-sectional r
 
 The output is a baseline comparison, not a standalone success claim. Read the tables for the sample window, parameters, after-cost metrics, turnover, and whether the result clears equal-weight, benchmark, momentum-only, and random top-N checks.
 
+**Default decomposition:** `ROBUST_STL` with a 63-trading-day period, computed walk-forward where signals are backtested.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
@@ -32,6 +34,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -46,7 +50,7 @@ fee_bps = 1.0
 slippage_bps = 3.0
 
 prices = fetch_yahoo_prices(universe, start=start_date, cache_dir=DATA_CACHE)
-features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
+features = walkforward_decompose(prices, method=QUANT_METHOD, period=QUANT_PERIOD, train_window=252, step=21)
 weights = cross_sectional_rotation_weights(prices, features, top_n=top_n, vol_target=0.15)
 result = backtest_weights(prices, weights, fee_bps=fee_bps, slippage_bps=slippage_bps)
 
@@ -140,12 +144,12 @@ comparison[metric_cols]
   <tbody>
     <tr>
       <th>detime_rotation</th>
-      <td>4.418421</td>
-      <td>0.197740</td>
-      <td>0.157338</td>
-      <td>1.225659</td>
-      <td>-0.287963</td>
-      <td>0.040126</td>
+      <td>3.726616</td>
+      <td>0.180397</td>
+      <td>0.158956</td>
+      <td>1.123136</td>
+      <td>-0.216619</td>
+      <td>0.040977</td>
       <td>1.0</td>
       <td>3.0</td>
       <td>2017-01-03</td>
@@ -268,9 +272,9 @@ weights.tail(10)
     <tr>
       <th>0</th>
       <td>Do De-Time factor candidates beat simple basel...</td>
-      <td>1.225659</td>
+      <td>1.123136</td>
       <td>1.305883</td>
-      <td>0.19774</td>
+      <td>0.180397</td>
       <td>0.420312</td>
       <td>inconclusive_or_failed</td>
       <td>No factor claim unless the strategy beats equa...</td>
@@ -327,133 +331,133 @@ weights.tail(10)
   <tbody>
     <tr>
       <th>2026-05-11</th>
+      <td>0.307970</td>
+      <td>0.0</td>
+      <td>0.307970</td>
+      <td>0.30797</td>
+      <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
       <td>0.000000</td>
       <td>0.0</td>
-      <td>0.219794</td>
-      <td>0.219794</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.219794</td>
-      <td>0.000000</td>
     </tr>
     <tr>
       <th>2026-05-12</th>
+      <td>0.312143</td>
+      <td>0.0</td>
+      <td>0.312143</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.220982</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.312143</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.220982</td>
-      <td>0.220982</td>
     </tr>
     <tr>
       <th>2026-05-13</th>
+      <td>0.311622</td>
+      <td>0.0</td>
+      <td>0.311622</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.219663</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.311622</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.219663</td>
-      <td>0.219663</td>
     </tr>
     <tr>
       <th>2026-05-14</th>
+      <td>0.314277</td>
+      <td>0.0</td>
+      <td>0.314277</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.218319</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.314277</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.218319</td>
-      <td>0.218319</td>
     </tr>
     <tr>
       <th>2026-05-15</th>
+      <td>0.307119</td>
+      <td>0.0</td>
+      <td>0.307119</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.217989</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.307119</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.217989</td>
-      <td>0.217989</td>
     </tr>
     <tr>
       <th>2026-05-18</th>
+      <td>0.306632</td>
+      <td>0.0</td>
+      <td>0.306632</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.221092</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.306632</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.221092</td>
-      <td>0.221092</td>
     </tr>
     <tr>
       <th>2026-05-19</th>
+      <td>0.305367</td>
+      <td>0.0</td>
+      <td>0.305367</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.223324</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.305367</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.223324</td>
-      <td>0.223324</td>
     </tr>
     <tr>
       <th>2026-05-20</th>
+      <td>0.301766</td>
+      <td>0.0</td>
+      <td>0.301766</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.221390</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.301766</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.221390</td>
-      <td>0.221390</td>
     </tr>
     <tr>
       <th>2026-05-21</th>
+      <td>0.303194</td>
+      <td>0.0</td>
+      <td>0.303194</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.222153</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.303194</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.222153</td>
-      <td>0.222153</td>
     </tr>
     <tr>
       <th>2026-05-22</th>
+      <td>0.310931</td>
+      <td>0.0</td>
+      <td>0.310931</td>
+      <td>0.00000</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.226533</td>
       <td>0.0</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.310931</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.226533</td>
-      <td>0.226533</td>
     </tr>
   </tbody>
 </table>

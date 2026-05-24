@@ -7,6 +7,8 @@
 
 Pairs trading usually starts with a spread z-score. De-Time can help separate spread trend drift from residual mean reversion. A spread that trends persistently is often a broken relative-value trade, not a cheap entry.
 
+**Default decomposition:** `ROBUST_STL` with a 63-trading-day period, computed walk-forward where signals are backtested.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
@@ -30,6 +32,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -128,7 +132,7 @@ result.stats_frame()
 
 ```python
 spread = np.log(pair_prices["KO"]) - np.log(pair_prices["PEP"])
-spread_frame = decompose_one_series(spread.add(100.0), method="STL", period=63, use_log_price=False)
+spread_frame = decompose_one_series(spread.add(100.0), method=QUANT_METHOD, period=QUANT_PERIOD, use_log_price=False)
 spread_frame[["transformed_price", "trend", "residual", "residual_z"]].tail()
 ```
 
@@ -170,37 +174,37 @@ spread_frame[["transformed_price", "trend", "residual", "residual_z"]].tail()
     <tr>
       <th>2026-05-18</th>
       <td>99.392566</td>
-      <td>99.328071</td>
-      <td>0.016120</td>
-      <td>1.401474</td>
+      <td>99.299185</td>
+      <td>-0.000544</td>
+      <td>0.132783</td>
     </tr>
     <tr>
       <th>2026-05-19</th>
       <td>99.392644</td>
-      <td>99.329103</td>
-      <td>0.022717</td>
-      <td>1.769487</td>
+      <td>99.299255</td>
+      <td>-0.000599</td>
+      <td>0.050232</td>
     </tr>
     <tr>
       <th>2026-05-20</th>
       <td>99.395326</td>
-      <td>99.330141</td>
-      <td>0.029684</td>
-      <td>2.133987</td>
+      <td>99.299325</td>
+      <td>0.146865</td>
+      <td>6.573691</td>
     </tr>
     <tr>
       <th>2026-05-21</th>
       <td>99.393607</td>
-      <td>99.331185</td>
-      <td>0.025161</td>
-      <td>1.775436</td>
+      <td>99.299395</td>
+      <td>0.133593</td>
+      <td>4.711388</td>
     </tr>
     <tr>
       <th>2026-05-22</th>
       <td>99.391160</td>
-      <td>99.332235</td>
-      <td>0.027908</td>
-      <td>1.902002</td>
+      <td>99.299465</td>
+      <td>0.007093</td>
+      <td>0.095920</td>
     </tr>
   </tbody>
 </table>

@@ -9,6 +9,8 @@ This notebook checks the validation path before discussing a strategy result. It
 
 Timeline: feature timestamp -> signal date -> execution date -> return date. A result that breaks that order is rejected.
 
+**Default decomposition:** `ROBUST_STL` with a 63-trading-day period, computed walk-forward where signals are backtested.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
@@ -32,6 +34,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -140,7 +144,7 @@ plt.show()
 <div class="notebook-input-label">In [4]</div>
 
 ```python
-features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
+features = walkforward_decompose(prices, method=QUANT_METHOD, period=QUANT_PERIOD, train_window=252, step=21)
 entries, exits = trend_pullback_signals(prices, features)
 fee_bps = 1.0
 slippage_bps = 2.0
@@ -190,15 +194,15 @@ comparison
   <tbody>
     <tr>
       <th>trend_pullback_validation</th>
-      <td>0.237548</td>
-      <td>0.020775</td>
-      <td>0.145564</td>
-      <td>0.214458</td>
-      <td>-0.394659</td>
-      <td>0.052641</td>
-      <td>0.222818</td>
-      <td>0.023864</td>
-      <td>0.397397</td>
+      <td>1.218108</td>
+      <td>0.079890</td>
+      <td>0.108177</td>
+      <td>0.764549</td>
+      <td>-0.187552</td>
+      <td>0.425962</td>
+      <td>0.218606</td>
+      <td>0.014293</td>
+      <td>0.389357</td>
       <td>1.0</td>
       <td>2.0</td>
       <td>252.0</td>

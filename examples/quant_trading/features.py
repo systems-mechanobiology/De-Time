@@ -42,7 +42,7 @@ def _default_params(method: str, period: int) -> dict[str, Any]:
 def decompose_one_series(
     price: pd.Series,
     *,
-    method: str = "STL",
+    method: str = "ROBUST_STL",
     period: int = 63,
     params: Mapping[str, Any] | None = None,
     backend: str = "auto",
@@ -109,7 +109,7 @@ def _last_feature_row(frame: pd.DataFrame) -> dict[str, float]:
 def walkforward_decompose(
     prices: pd.DataFrame,
     *,
-    method: str = "STL",
+    method: str = "ROBUST_STL",
     period: int = 63,
     params: Mapping[str, Any] | None = None,
     backend: str = "auto",

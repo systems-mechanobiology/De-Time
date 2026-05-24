@@ -7,6 +7,8 @@
 
 This notebook downloads close prices, validates source coverage, and computes walk-forward De-Time features.
 
+**Default decomposition:** `ROBUST_STL` with a 63-trading-day period, computed walk-forward where signals are backtested.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
@@ -30,6 +32,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -296,7 +300,7 @@ The output frame includes the original price, transformed price, trend, cycle/se
 <div class="notebook-input-label">In [5]</div>
 
 ```python
-frame = decompose_one_series(prices["AAPL"], method="STL", period=63)
+frame = decompose_one_series(prices["AAPL"], method=QUANT_METHOD, period=QUANT_PERIOD)
 frame[["price", "trend", "season", "residual", "trend_slope", "residual_z"]].tail()
 ```
 
@@ -342,47 +346,47 @@ frame[["price", "trend", "season", "residual", "trend_slope", "residual_z"]].tai
     <tr>
       <th>2026-05-18</th>
       <td>297.839996</td>
-      <td>5.646727</td>
-      <td>0.019480</td>
-      <td>0.030349</td>
-      <td>0.001765</td>
-      <td>1.583226</td>
+      <td>5.639450</td>
+      <td>0.023087</td>
+      <td>0.034020</td>
+      <td>0.001500</td>
+      <td>1.382637</td>
     </tr>
     <tr>
       <th>2026-05-19</th>
       <td>298.970001</td>
-      <td>5.648524</td>
-      <td>0.024441</td>
-      <td>0.027379</td>
-      <td>0.001776</td>
-      <td>1.413101</td>
+      <td>5.640976</td>
+      <td>0.030051</td>
+      <td>0.029316</td>
+      <td>0.001509</td>
+      <td>1.191345</td>
     </tr>
     <tr>
       <th>2026-05-20</th>
       <td>302.250000</td>
-      <td>5.650331</td>
-      <td>0.026464</td>
-      <td>0.034460</td>
-      <td>0.001786</td>
-      <td>1.644990</td>
+      <td>5.642511</td>
+      <td>0.045121</td>
+      <td>0.023623</td>
+      <td>0.001518</td>
+      <td>0.983008</td>
     </tr>
     <tr>
       <th>2026-05-21</th>
       <td>304.989990</td>
-      <td>5.652148</td>
-      <td>0.027196</td>
-      <td>0.040935</td>
-      <td>0.001796</td>
-      <td>1.847474</td>
+      <td>5.644053</td>
+      <td>0.056853</td>
+      <td>0.019372</td>
+      <td>0.001526</td>
+      <td>0.826964</td>
     </tr>
     <tr>
       <th>2026-05-22</th>
       <td>311.364990</td>
-      <td>5.653975</td>
-      <td>0.034810</td>
-      <td>0.052181</td>
-      <td>0.001807</td>
-      <td>2.231897</td>
+      <td>5.645604</td>
+      <td>0.088072</td>
+      <td>0.007290</td>
+      <td>0.001534</td>
+      <td>0.387310</td>
     </tr>
   </tbody>
 </table>
@@ -443,8 +447,8 @@ This step recomputes De-Time on rolling historical windows and keeps only the la
 ```python
 features = walkforward_decompose(
     prices[["AAPL", "MSFT", "NVDA"]],
-    method="STL",
-    period=63,
+    method=QUANT_METHOD,
+    period=QUANT_PERIOD,
     train_window=252,
     step=21,
 )
@@ -545,21 +549,21 @@ feature_table.tail()
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.010219</td>
-      <td>0.018871</td>
-      <td>0.023964</td>
-      <td>1.064182</td>
+      <td>0.000256</td>
+      <td>0.00078</td>
+      <td>-0.001438</td>
+      <td>0.305554</td>
       <td>...</td>
-      <td>5.234949</td>
-      <td>0.081935</td>
-      <td>0.054285</td>
-      <td>0.055588</td>
-      <td>-0.000111</td>
-      <td>0.000007</td>
-      <td>0.000577</td>
-      <td>-0.010247</td>
-      <td>0.000508</td>
-      <td>0.024121</td>
+      <td>5.241956</td>
+      <td>0.086529</td>
+      <td>0.101892</td>
+      <td>0.048582</td>
+      <td>-0.000326</td>
+      <td>-0.001566</td>
+      <td>0.000648</td>
+      <td>-0.030100</td>
+      <td>-0.114828</td>
+      <td>0.027096</td>
     </tr>
     <tr>
       <th>2026-05-19</th>
@@ -569,21 +573,21 @@ feature_table.tail()
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.010219</td>
-      <td>0.018871</td>
-      <td>0.023964</td>
-      <td>1.064182</td>
+      <td>0.000256</td>
+      <td>0.00078</td>
+      <td>-0.001438</td>
+      <td>0.305554</td>
       <td>...</td>
-      <td>5.234949</td>
-      <td>0.081935</td>
-      <td>0.054285</td>
-      <td>0.055588</td>
-      <td>-0.000111</td>
-      <td>0.000007</td>
-      <td>0.000577</td>
-      <td>-0.010353</td>
-      <td>0.000503</td>
-      <td>0.024483</td>
+      <td>5.241956</td>
+      <td>0.086529</td>
+      <td>0.101892</td>
+      <td>0.048582</td>
+      <td>-0.000326</td>
+      <td>-0.001566</td>
+      <td>0.000648</td>
+      <td>-0.030411</td>
+      <td>-0.113615</td>
+      <td>0.027503</td>
     </tr>
     <tr>
       <th>2026-05-20</th>
@@ -593,21 +597,21 @@ feature_table.tail()
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.010219</td>
-      <td>0.018871</td>
-      <td>0.023964</td>
-      <td>1.064182</td>
+      <td>0.000256</td>
+      <td>0.00078</td>
+      <td>-0.001438</td>
+      <td>0.305554</td>
       <td>...</td>
-      <td>5.234949</td>
-      <td>0.081935</td>
-      <td>0.054285</td>
-      <td>0.055588</td>
-      <td>-0.000111</td>
-      <td>0.000007</td>
-      <td>0.000577</td>
-      <td>-0.010284</td>
+      <td>5.241956</td>
+      <td>0.086529</td>
+      <td>0.101892</td>
+      <td>0.048582</td>
+      <td>-0.000326</td>
+      <td>-0.001566</td>
       <td>0.000648</td>
-      <td>0.027802</td>
+      <td>-0.030211</td>
+      <td>-0.146418</td>
+      <td>0.031231</td>
     </tr>
     <tr>
       <th>2026-05-21</th>
@@ -617,21 +621,21 @@ feature_table.tail()
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.010219</td>
-      <td>0.018871</td>
-      <td>0.023964</td>
-      <td>1.064182</td>
+      <td>0.000256</td>
+      <td>0.00078</td>
+      <td>-0.001438</td>
+      <td>0.305554</td>
       <td>...</td>
-      <td>5.234949</td>
-      <td>0.081935</td>
-      <td>0.054285</td>
-      <td>0.055588</td>
-      <td>-0.000111</td>
-      <td>0.000007</td>
-      <td>0.000577</td>
-      <td>-0.012432</td>
-      <td>0.000680</td>
-      <td>0.027151</td>
+      <td>5.241956</td>
+      <td>0.086529</td>
+      <td>0.101892</td>
+      <td>0.048582</td>
+      <td>-0.000326</td>
+      <td>-0.001566</td>
+      <td>0.000648</td>
+      <td>-0.036519</td>
+      <td>-0.153841</td>
+      <td>0.030500</td>
     </tr>
     <tr>
       <th>2026-05-22</th>
@@ -641,21 +645,21 @@ feature_table.tail()
       <td>0.0</td>
       <td>0.0</td>
       <td>0.0</td>
-      <td>0.010219</td>
-      <td>0.018871</td>
-      <td>0.023964</td>
-      <td>1.064182</td>
+      <td>0.000256</td>
+      <td>0.00078</td>
+      <td>-0.001438</td>
+      <td>0.305554</td>
       <td>...</td>
-      <td>5.234949</td>
-      <td>0.081935</td>
-      <td>0.054285</td>
-      <td>0.055588</td>
-      <td>-0.000111</td>
-      <td>0.000007</td>
-      <td>0.000577</td>
-      <td>-0.011613</td>
-      <td>0.000681</td>
-      <td>0.026915</td>
+      <td>5.241956</td>
+      <td>0.086529</td>
+      <td>0.101892</td>
+      <td>0.048582</td>
+      <td>-0.000326</td>
+      <td>-0.001566</td>
+      <td>0.000648</td>
+      <td>-0.034113</td>
+      <td>-0.153861</td>
+      <td>0.030235</td>
     </tr>
   </tbody>
 </table>

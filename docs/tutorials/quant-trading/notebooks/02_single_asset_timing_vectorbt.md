@@ -7,6 +7,8 @@
 
 This notebook builds a single-asset timing signal: trade long when the trend is positive and the residual is temporarily cheap. It runs through a transparent pandas backtest first and then shows how to route the same signal to vectorbt.
 
+**Default decomposition:** `ROBUST_STL` with a 63-trading-day period, computed walk-forward where signals are backtested.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
@@ -30,6 +32,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -38,7 +42,7 @@ DATA_CACHE = Path("examples/quant_trading/data/cache")
 
 ```python
 prices = fetch_yahoo_prices(["SPY", "QQQ"], start="2016-01-01", cache_dir=DATA_CACHE)
-features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
+features = walkforward_decompose(prices, method=QUANT_METHOD, period=QUANT_PERIOD, train_window=252, step=21)
 entries, exits = trend_pullback_signals(prices, features, residual_entry_z=-1.0, residual_exit_z=0.25)
 result = backtest_long_short_signals(prices, entries, exits, fee_bps=1.0, slippage_bps=2.0)
 result.stats_frame()
@@ -71,39 +75,39 @@ result.stats_frame()
   <tbody>
     <tr>
       <th>total_return</th>
-      <td>0.579944</td>
+      <td>1.026423</td>
     </tr>
     <tr>
       <th>cagr</th>
-      <td>0.045116</td>
+      <td>0.070515</td>
     </tr>
     <tr>
       <th>volatility</th>
-      <td>0.130780</td>
+      <td>0.094885</td>
     </tr>
     <tr>
       <th>sharpe</th>
-      <td>0.402986</td>
+      <td>0.765487</td>
     </tr>
     <tr>
       <th>max_drawdown</th>
-      <td>-0.308406</td>
+      <td>-0.187552</td>
     </tr>
     <tr>
       <th>calmar</th>
-      <td>0.146288</td>
+      <td>0.375973</td>
     </tr>
     <tr>
       <th>hit_rate</th>
-      <td>0.173047</td>
+      <td>0.176876</td>
     </tr>
     <tr>
       <th>average_turnover</th>
-      <td>0.019142</td>
+      <td>0.009954</td>
     </tr>
     <tr>
       <th>average_gross_exposure</th>
-      <td>0.305513</td>
+      <td>0.308959</td>
     </tr>
     <tr>
       <th>fee_bps</th>

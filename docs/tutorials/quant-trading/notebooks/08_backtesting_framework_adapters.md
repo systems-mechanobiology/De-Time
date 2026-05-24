@@ -7,6 +7,8 @@
 
 This notebook summarizes how De-Time signals can be routed into existing Python backtesting and reporting frameworks. The transparent pandas backtester should be used first to verify alignment and costs.
 
+**Default decomposition:** `ROBUST_STL` with a 63-trading-day period, computed walk-forward where signals are backtested.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
@@ -30,6 +32,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -38,7 +42,7 @@ DATA_CACHE = Path("examples/quant_trading/data/cache")
 
 ```python
 prices = fetch_yahoo_prices(["SPY", "QQQ"], start="2018-01-01", cache_dir=DATA_CACHE)
-features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
+features = walkforward_decompose(prices, method=QUANT_METHOD, period=QUANT_PERIOD, train_window=252, step=21)
 entries, exits = turtle_donchian_signals(prices, features)
 pandas_result = backtest_long_short_signals(prices, entries, exits)
 pandas_result.stats_frame()
@@ -71,39 +75,39 @@ pandas_result.stats_frame()
   <tbody>
     <tr>
       <th>total_return</th>
-      <td>0.664135</td>
+      <td>0.750564</td>
     </tr>
     <tr>
       <th>cagr</th>
-      <td>0.062746</td>
+      <td>0.069195</td>
     </tr>
     <tr>
       <th>volatility</th>
-      <td>0.094077</td>
+      <td>0.094201</td>
     </tr>
     <tr>
       <th>sharpe</th>
-      <td>0.694118</td>
+      <td>0.757550</td>
     </tr>
     <tr>
       <th>max_drawdown</th>
-      <td>-0.141222</td>
+      <td>-0.146767</td>
     </tr>
     <tr>
       <th>calmar</th>
-      <td>0.444307</td>
+      <td>0.471459</td>
     </tr>
     <tr>
       <th>hit_rate</th>
-      <td>0.255571</td>
+      <td>0.253201</td>
     </tr>
     <tr>
       <th>average_turnover</th>
-      <td>0.030820</td>
+      <td>0.029872</td>
     </tr>
     <tr>
       <th>average_gross_exposure</th>
-      <td>0.457089</td>
+      <td>0.449976</td>
     </tr>
     <tr>
       <th>fee_bps</th>

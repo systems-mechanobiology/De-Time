@@ -29,7 +29,7 @@ The chart or table should make this ordering visible when a result is discussed.
 ```python
 features = walkforward_decompose(
     prices,
-    method="STL",
+    method="ROBUST_STL",
     period=63,
     train_window=252,
     step=21,

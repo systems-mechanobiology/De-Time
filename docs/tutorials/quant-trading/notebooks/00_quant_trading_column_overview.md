@@ -32,6 +32,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -44,8 +46,82 @@ De-Time returns `trend`, `season`, and `residual` under a common result contract
 - `residual` controls deviation, pullback, mean reversion, and risk stress;
 - reconstruction error helps decide when the decomposition is unreliable.
 
+## Default decomposition choice
+
+The Quant notebooks use `ROBUST_STL` as the default market-data decomposition. It keeps the same trend/season/residual contract as STL but is less sensitive to one-off market shocks and edge effects. Use `STL`, `SSA`, or `WAVELET` as sensitivity checks when the research question is specifically about method choice.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [2]</div>
+
+```python
+pd.DataFrame([
+    {"method": "MA_BASELINE", "role": "quick diagnostic", "why_not_default": "too smooth for market shocks and edge effects"},
+    {"method": "STL", "role": "seasonal baseline", "why_not_default": "shock-sensitive in equity and crypto windows"},
+    {"method": QUANT_METHOD, "role": "column default", "why_not_default": "selected for robust trend/residual features"},
+    {"method": "SSA", "role": "sensitivity check", "why_not_default": "can change the signal definition and needs separate validation"},
+])
+```
+
+<div class="gallery-out notebook-output">
+<div class="notebook-output-label">text/html</div>
+<div class="notebook-html-output">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>method</th>
+      <th>role</th>
+      <th>why_not_default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>MA_BASELINE</td>
+      <td>quick diagnostic</td>
+      <td>too smooth for market shocks and edge effects</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>STL</td>
+      <td>seasonal baseline</td>
+      <td>shock-sensitive in equity and crypto windows</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ROBUST_STL</td>
+      <td>column default</td>
+      <td>selected for robust trend/residual features</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>SSA</td>
+      <td>sensitivity check</td>
+      <td>can change the signal definition and needs sep...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<div class="notebook-cell">
+<div class="notebook-input-label">In [3]</div>
 
 ```python
 pd.DataFrame({
@@ -130,7 +206,7 @@ pd.DataFrame({
 The bar chart makes the tutorial universe breadth visible before any strategy notebook runs.
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [3]</div>
+<div class="notebook-input-label">In [4]</div>
 
 ```python
 universe_counts = pd.Series(
@@ -146,7 +222,7 @@ plt.show()
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">image/png</div>
-<img src="../../../../assets/generated/notebooks/columns/quant-trading/00_quant_trading_column_overview/cell-007-output-01.png" alt="Notebook output cell 7" class="notebook-output-image">
+<img src="../../../../assets/generated/notebooks/columns/quant-trading/00_quant_trading_column_overview/cell-009-output-01.png" alt="Notebook output cell 9" class="notebook-output-image">
 </div>
 </div>
 
@@ -163,7 +239,7 @@ plt.show()
 9. Walk-forward validation and audit.
 
 <div class="notebook-cell">
-<div class="notebook-input-label">In [4]</div>
+<div class="notebook-input-label">In [5]</div>
 
 ```python
 # Optional dependency installation, run in a shell:

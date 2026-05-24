@@ -7,6 +7,8 @@
 
 This notebook combines Korean equities, US ETFs, and crypto pairs. The purpose is to show how De-Time features can support cross-market timing and regime research. Crypto is traded 24/7, while equity markets have exchange calendars; production research must treat calendars separately.
 
+**Default decomposition:** `ROBUST_STL` with a 63-trading-day period, computed walk-forward where signals are backtested.
+
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
@@ -30,6 +32,8 @@ from examples.quant_trading.signals import (
 from examples.quant_trading.backtest import backtest_weights, backtest_long_short_signals, summarize_returns
 
 DATA_CACHE = Path("examples/quant_trading/data/cache")
+QUANT_METHOD = "ROBUST_STL"
+QUANT_PERIOD = 63
 ```
 </div>
 
@@ -154,7 +158,7 @@ data_audit_report(prices)
 <div class="notebook-input-label">In [3]</div>
 
 ```python
-features = walkforward_decompose(prices, method="STL", period=63, train_window=252, step=21)
+features = walkforward_decompose(prices, method=QUANT_METHOD, period=QUANT_PERIOD, train_window=252, step=21)
 regime = residual_stress_filter(prices, features, max_abs_residual_z=3.0, require_positive_trend=False)
 regime.tail()
 ```

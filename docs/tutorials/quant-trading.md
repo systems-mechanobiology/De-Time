@@ -6,6 +6,11 @@ decomposition features, test a baseline, test a strategy, report the boundary,
 then route the signal into a backtesting framework only after the alignment is
 understood.
 
+The Quant examples use `ROBUST_STL` as the default decomposition method. It keeps
+the trend/season/residual contract readable while reducing the edge and shock
+sensitivity that makes simple moving-average-style decomposition unsuitable for
+market prices.
+
 <div class="pipeline-panel">
   <div class="pipeline-flow">
     <div class="pipeline-step">
@@ -56,7 +61,10 @@ written as validation findings, not wrapped as strategy success.
 
 Raw prices mix structures that should not all trigger the same action. De-Time
 returns a common `DecompResult` with `trend`, `season`, `residual`,
-method-specific `components`, and `meta`.
+method-specific `components`, and `meta`. `ROBUST_STL` is the default in this
+column because equity and crypto series often contain shocks, gaps, and
+month-end effects that should be treated as residual stress rather than pulled
+into the smooth trend.
 
 | Component | Research interpretation | Example signal use |
 |---|---|---|

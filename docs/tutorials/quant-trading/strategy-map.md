@@ -27,7 +27,7 @@ unusable.
 ## Example: trend pullback
 
 ```python
-features = walkforward_decompose(prices, method="STL", period=63)
+features = walkforward_decompose(prices, method="ROBUST_STL", period=63)
 entries, exits = trend_pullback_signals(
     prices,
     features,
@@ -36,6 +36,10 @@ entries, exits = trend_pullback_signals(
     min_trend_slope=0.0,
 )
 ```
+
+In the notebooks this call is routed through `ROBUST_STL`, which is the default
+for market-price examples. Use plain `STL` or faster baselines for sensitivity
+checks, not as the headline decomposition.
 
 ## Example: pair spread residual
 
