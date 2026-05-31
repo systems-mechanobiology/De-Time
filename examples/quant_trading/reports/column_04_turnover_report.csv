@@ -1,0 +1,9 @@
+strategy,average_turnover,median_turnover,max_turnover,average_gross_exposure
+classic_donchian_55_20,0.020833333333333332,0.0,1.0,0.3878968253968254
+classic_donchian_20_10,0.040674603174603176,0.0,1.0,0.4742063492063492
+classic_turtle_55_20_atr_cap,0.020833333333333332,0.0,1.0,0.3878968253968254
+classic_volatility_breakout_20,0.06646825396825397,0.0,1.0,0.5168650793650794
+detime_donchian_55_20_trend_cycle_volume,0.003968253968253968,0.0,1.0,0.0625
+detime_donchian_20_10_trend_cycle_volume,0.00992063492063492,0.0,1.0,0.09623015873015874
+detime_turtle_55_20_volume_shock,0.003968253968253968,0.0,1.0,0.0625
+detime_breakout_trend_volume_no_cycle_ablation,0.007936507936507936,0.0,1.0,0.15178571428571427

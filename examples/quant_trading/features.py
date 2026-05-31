@@ -1,177 +1,217 @@
 from __future__ import annotations
 
-"""Feature engineering from De-Time trend, cycle, and residual components."""
+"""Compatibility facade for the quant-trading feature factory.
 
-from typing import Any, Mapping
+The revised first two columns use ``decomposition_features.py`` as the main
+implementation. This module keeps the old import path alive for existing
+notebooks and adds small wrappers for OHLCV input and legacy helper names.
+"""
+
+from typing import Mapping, Sequence
 
 import numpy as np
 import pandas as pd
 
-from detime import DecompositionConfig, decompose
+from . import decomposition_features as _df
+from .decomposition_features import (  # noqa: F401
+    DeTimeFeatureError,
+    PeriodEstimate,
+    build_feature_table,
+    combine_price_volume_features,
+    default_decomposition_params,
+    feature_coverage_report,
+    prefix_feature_dict,
+    rolling_zscore,
+    walkforward_decompose,
+    walkforward_price_volume_features,
+)
 
 
-class DeTimeFeatureError(RuntimeError):
-    """Raised when De-Time feature extraction cannot complete."""
+def estimate_dominant_period(
+    series: pd.Series,
+    *,
+    candidates: Sequence[int] = (21, 42, 63, 126, 252),
+    transform: str = "log",
+    use_log: bool | None = None,
+    detrend_window: int = 126,
+) -> int:
+    """Return the selected period as an integer for notebook ergonomics."""
+
+    if use_log is None:
+        use_log = transform.lower() == "log"
+    return int(_df.estimate_dominant_period(series, candidates=candidates, use_log=bool(use_log), detrend_window=detrend_window).period)
 
 
-def rolling_zscore(x: pd.Series | pd.DataFrame, window: int = 63) -> pd.Series | pd.DataFrame:
-    """Rolling z-score with stable small-denominator handling."""
+def period_score_table(
+    series: pd.Series,
+    *,
+    candidates: Sequence[int] = (21, 42, 63, 126, 252),
+    transform: str = "log",
+) -> pd.DataFrame:
+    """Score a small period candidate set for audit tables."""
 
-    mu = x.rolling(window, min_periods=max(5, window // 4)).mean()
-    sd = x.rolling(window, min_periods=max(5, window // 4)).std(ddof=0)
-    return (x - mu) / (sd + 1e-12)
+    rows = []
+    for p in candidates:
+        try:
+            est = _df.estimate_dominant_period(series, candidates=(int(p),), use_log=(transform.lower() == "log"))
+            score = est.score
+        except Exception:
+            score = np.nan
+        rows.append({"period": int(p), "score": float(score) if np.isfinite(score) else np.nan})
+    out = pd.DataFrame(rows)
+    if not out.empty:
+        out["selected"] = out["score"] == out["score"].max()
+    return out
 
 
-def _default_params(method: str, period: int) -> dict[str, Any]:
-    method = method.upper()
-    if method in {"STL", "ROBUST_STL", "STD", "STDR"}:
-        return {"period": int(period)}
-    if method == "MSTL":
-        return {"periods": [int(period), int(period * 2)]}
-    if method == "SSA":
-        return {"window": max(int(period * 2), 20), "rank": 6, "primary_period": int(period)}
-    if method == "WAVELET":
-        return {"wavelet": "db4", "level": 3}
-    if method in {"EMD", "CEEMDAN"}:
-        return {"primary_period": int(period)}
-    if method == "VMD":
-        return {"K": 4, "alpha": 2000.0, "primary_period": int(period)}
-    return {"period": int(period)}
+def select_period(series: pd.Series, *, candidates: Sequence[int] = (21, 42, 63, 126), transform: str = "log") -> int:
+    return estimate_dominant_period(series, candidates=candidates, transform=transform)
 
 
 def decompose_one_series(
-    price: pd.Series,
+    series: pd.Series,
     *,
-    method: str = "ROBUST_STL",
-    period: int = 63,
-    params: Mapping[str, Any] | None = None,
-    backend: str = "auto",
-    use_log_price: bool = True,
+    method: str = "STL",
+    period: int | str = 63,
+    period_candidates: Sequence[int] = (21, 42, 63, 126, 252),
+    transform: str = "log",
+    use_log: bool | None = None,
     z_window: int = 63,
+    value_name: str = "value",
+    **kwargs,
 ) -> pd.DataFrame:
-    """Decompose one price series and return component-derived features.
+    """Decompose one series with a ``transform`` argument kept for notebooks."""
 
-    Sparse vendor gaps are forward/backward filled after the original download
-    has been validated.
-    """
-
-    s = pd.Series(price).dropna().astype(float).sort_index()
-    if s.empty:
-        raise DeTimeFeatureError("Cannot decompose an empty price series.")
-    if (s <= 0).any() and use_log_price:
-        raise DeTimeFeatureError("Log-price decomposition requires strictly positive prices.")
-
-    y = np.log(s) if use_log_price else s.copy()
-    cfg = DecompositionConfig(
-        method=method.upper(),
-        params=dict(params) if params is not None else _default_params(method, period),
-        backend=backend,  # type: ignore[arg-type]
+    s = pd.Series(series).astype(float)
+    if transform.lower() == "log1p":
+        s = np.log1p(s.clip(lower=0))
+        actual_use_log = False
+    elif use_log is not None:
+        actual_use_log = bool(use_log)
+    else:
+        actual_use_log = transform.lower() == "log"
+    frame = _df.decompose_one_series(
+        s,
+        method=method,
+        period=period,
+        period_candidates=period_candidates,
+        use_log=actual_use_log,
+        z_window=z_window,
+        value_name=value_name,
+        **kwargs,
     )
-    result = decompose(y.to_numpy(dtype=float), cfg)
-    trend = pd.Series(np.asarray(result.trend, dtype=float).reshape(-1), index=s.index, name="trend")
-    season = pd.Series(np.asarray(result.season, dtype=float).reshape(-1), index=s.index, name="season")
-    residual = pd.Series(np.asarray(result.residual, dtype=float).reshape(-1), index=s.index, name="residual")
-    reconstructed = trend + season + residual
-
-    frame = pd.DataFrame(
-        {
-            "price": s,
-            "transformed_price": y,
-            "trend": trend,
-            "season": season,
-            "residual": residual,
-            "reconstructed": reconstructed,
-        },
-        index=s.index,
-    )
-    frame["trend_slope"] = frame["trend"].diff(5) / 5.0
-    frame["trend_gap"] = frame["transformed_price"] - frame["trend"]
-    frame["season_z"] = rolling_zscore(frame["season"], z_window)
-    frame["season_slope"] = frame["season"].diff(3) / 3.0
-    frame["residual_z"] = rolling_zscore(frame["residual"], z_window)
-    frame["residual_abs_z"] = frame["residual_z"].abs()
-    frame["reconstruction_error"] = (frame["transformed_price"] - frame["reconstructed"]).abs()
-    frame.attrs["detime_meta"] = dict(result.meta)
-    frame.attrs["method"] = method.upper()
-    frame.attrs["period"] = int(period)
+    if "cycle" in frame and "season" not in frame:
+        frame["season"] = frame["cycle"]
     return frame
 
 
-def _last_feature_row(frame: pd.DataFrame) -> dict[str, float]:
-    cols = [
-        "trend", "season", "residual", "trend_slope", "trend_gap", "season_z", "season_slope",
-        "residual_z", "residual_abs_z", "reconstruction_error",
-    ]
-    last = frame[cols].iloc[-1]
-    return {str(k): float(v) for k, v in last.items() if np.isfinite(float(v))}
-
-
-def walkforward_decompose(
-    prices: pd.DataFrame,
+def walkforward_decompose_ohlcv(
+    ohlcv: Mapping[str, pd.DataFrame] | pd.DataFrame,
     *,
-    method: str = "ROBUST_STL",
-    period: int = 63,
-    params: Mapping[str, Any] | None = None,
+    method: str = "STL",
+    period: int | str = 63,
+    period_candidates: Sequence[int] = (21, 42, 63, 126, 252),
     backend: str = "auto",
     train_window: int = 252,
     step: int = 21,
-    min_window: int | None = None,
-    use_log_price: bool = True,
     z_window: int = 63,
 ) -> dict[str, pd.DataFrame]:
-    """Walk-forward De-Time feature factory for a price panel.
+    """Build walk-forward price+volume features from OHLCV input."""
 
-    Only the last feature row of each training window is written to the feature
-    panel, then forward-filled until the next recomputation date. This avoids the
-    common look-ahead error of decomposing the full sample before backtesting.
-    """
+    if isinstance(ohlcv, Mapping):
+        if "Close" not in ohlcv:
+            raise DeTimeFeatureError("OHLCV field-panel dictionary must contain a Close panel.")
+        prices = ohlcv["Close"].sort_index().replace([np.inf, -np.inf], np.nan).ffill().bfill()
+        volumes = ohlcv.get("Volume")
+        if volumes is not None:
+            volumes = volumes.reindex(index=prices.index, columns=prices.columns).replace([np.inf, -np.inf], np.nan).ffill().bfill()
+    else:
+        if "Close" not in ohlcv.columns:
+            raise DeTimeFeatureError("OHLCV table must contain a Close column.")
+        asset = str(ohlcv.attrs.get("symbol", "asset"))
+        prices = ohlcv[["Close"]].rename(columns={"Close": asset})
+        volumes = ohlcv[["Volume"]].rename(columns={"Volume": asset}) if "Volume" in ohlcv.columns else None
 
-    if prices.empty:
-        raise DeTimeFeatureError("prices is empty")
-    clean = prices.sort_index().replace([np.inf, -np.inf], np.nan).ffill().bfill()
-    train_window = int(train_window)
-    step = int(step)
-    if train_window < 40:
-        raise ValueError("train_window should be at least 40 observations.")
-    min_window = int(min_window or max(40, train_window // 2))
-
-    feature_names = [
-        "trend", "season", "residual", "trend_slope", "trend_gap", "season_z", "season_slope",
-        "residual_z", "residual_abs_z", "reconstruction_error",
-    ]
-    panels = {name: pd.DataFrame(index=clean.index, columns=clean.columns, dtype=float) for name in feature_names}
-
-    start_end = max(train_window, min_window)
-    for end in range(start_end, len(clean) + 1, step):
-        window = clean.iloc[max(0, end - train_window):end]
-        stamp = clean.index[end - 1]
-        for col in clean.columns:
-            s = window[col].dropna()
-            if len(s) < min_window:
-                continue
-            frame = decompose_one_series(
-                s,
-                method=method,
-                period=period,
-                params=params,
-                backend=backend,
-                use_log_price=use_log_price,
-                z_window=z_window,
-            )
-            row = _last_feature_row(frame)
-            for name, value in row.items():
-                if name in panels:
-                    panels[name].loc[stamp, col] = value
-
-    return {name: panel.ffill() for name, panel in panels.items()}
+    features = walkforward_price_volume_features(
+        prices,
+        volumes,
+        method=method,
+        period=period,
+        period_candidates=period_candidates,
+        backend=backend,
+        train_window=train_window,
+        step=step,
+        z_window=z_window,
+    )
+    # Legacy notebooks used ``season_*`` names; the revised factory uses ``cycle_*``.
+    if "cycle" in features and "season" not in features:
+        features["season"] = features["cycle"]
+    if "cycle_slope" in features and "season_slope" not in features:
+        features["season_slope"] = features["cycle_slope"]
+    if "cycle_z" in features and "season_z" not in features:
+        features["season_z"] = features["cycle_z"]
+    return features
 
 
-def build_feature_table(prices: pd.DataFrame, features: dict[str, pd.DataFrame]) -> pd.DataFrame:
-    """Create a column MultiIndex feature table: feature x ticker."""
+walkforward_decompose_price_volume = walkforward_decompose_ohlcv
 
-    aligned = {name: frame.reindex_like(prices) for name, frame in features.items()}
-    aligned["return_1d"] = prices.pct_change().reindex_like(prices)
-    aligned["realized_vol_20"] = aligned["return_1d"].rolling(20, min_periods=10).std(ddof=0) * np.sqrt(252)
-    if "trend_slope" in aligned:
-        aligned["trend_strength"] = aligned["trend_slope"] / (aligned["realized_vol_20"] / np.sqrt(252) + 1e-12)
-    return pd.concat(aligned, axis=1).sort_index(axis=1)
+
+def decompose_ohlcv(
+    ohlcv: pd.DataFrame,
+    *,
+    method: str = "STL",
+    period: int | str = 63,
+    z_window: int = 63,
+) -> pd.DataFrame:
+    """Single-window close+volume decomposition, returned as one table."""
+
+    features = walkforward_decompose_ohlcv(
+        ohlcv,
+        method=method,
+        period=period,
+        train_window=max(40, min(len(ohlcv), 252)),
+        step=max(1, len(ohlcv)),
+        z_window=z_window,
+    )
+    prices = ohlcv[["Close"]]
+    aligned = {name: frame.reindex(index=prices.index).ffill() for name, frame in features.items()}
+    return pd.concat({name: frame.iloc[:, 0] for name, frame in aligned.items()}, axis=1)
+
+
+def latest_feature_snapshot(features: Mapping[str, pd.DataFrame], *, tail: int = 1) -> pd.DataFrame:
+    """Return a tidy snapshot from the latest feature rows."""
+
+    rows: list[dict[str, object]] = []
+    for name, frame in features.items():
+        recent = frame.tail(int(tail))
+        for dt, row in recent.iterrows():
+            for asset, value in row.items():
+                rows.append({"date": dt, "asset": asset, "feature": name, "value": value})
+    return pd.DataFrame(rows)
+
+
+feature_snapshot = latest_feature_snapshot
+
+
+def feature_signal_map() -> pd.DataFrame:
+    """Document how decomposition features feed strategy logic."""
+
+    return pd.DataFrame(
+        [
+            {"feature": "trend_slope", "role": "trend direction", "used_by": "trend, dual-MA, MACD, residual reversion filter, breakout filter"},
+            {"feature": "trend_strength", "role": "trend reliability", "used_by": "trend following and breakout confirmation"},
+            {"feature": "cycle_slope", "role": "entry timing", "used_by": "cycle confirmation, residual mean reversion, breakout entries"},
+            {"feature": "cycle_position", "role": "cycle overextension", "used_by": "cycle-adjusted residual bands"},
+            {"feature": "residual_z", "role": "pullback / overextension", "used_by": "pullback, RSI/Bollinger rewrite, residual bands and risk filters"},
+            {"feature": "residual_abs_z", "role": "stress and overextension", "used_by": "breakout overextension cap and decomposition risk mask"},
+            {"feature": "volume_trend_slope", "role": "participation", "used_by": "volume confirmation for trend and breakout"},
+            {"feature": "volume_residual_z", "role": "abnormal volume", "used_by": "breakout confirmation and weak-volume residual-reversion filter"},
+        ]
+    )
+
+
+def build_strategy_feature_panel(prices: pd.DataFrame, features: Mapping[str, pd.DataFrame]) -> pd.DataFrame:
+    return build_feature_table(prices, dict(features))
+
+
+__all__ = [name for name in globals() if not name.startswith("_")]

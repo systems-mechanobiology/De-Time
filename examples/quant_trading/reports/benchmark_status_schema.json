@@ -1,0 +1,9 @@
+{
+  "datasets_expected": "integer",
+  "datasets_completed": "integer",
+  "baselines_expected": "integer",
+  "baselines_completed": "integer",
+  "strategies_expected": "integer",
+  "strategies_completed": "integer",
+  "safe_for_primary_claims": "boolean"
+}

@@ -5,13 +5,10 @@ These pages render the Quant Trading notebooks as documentation pages, including
 
 | Page | Source notebook |
 |---|---|
-| [De-Time Quant Trading Column Overview](00_quant_trading_column_overview.md) | `00_quant_trading_column_overview.ipynb` |
-| [Real Market Data and De-Time Feature Factory](01_real_market_data_and_detime_features.md) | `01_real_market_data_and_detime_features.ipynb` |
-| [Single-Asset Timing with Trend Pullbacks and vectorbt](02_single_asset_timing_vectorbt.md) | `02_single_asset_timing_vectorbt.ipynb` |
-| [Turtle / Donchian Breakout with a De-Time Trend Filter](03_turtle_donchian_trend_filter.md) | `03_turtle_donchian_trend_filter.ipynb` |
-| [Pairs Trading with Spread Residual and Cycle Analysis](04_pairs_trading_residual_cycle.md) | `04_pairs_trading_residual_cycle.ipynb` |
-| [Cross-Sectional De-Time Factor Selection](05_cross_sectional_factor_selection.md) | `05_cross_sectional_factor_selection.ipynb` |
-| [Style and Sector ETF Rotation with bt](06_style_sector_asset_rotation_bt.md) | `06_style_sector_asset_rotation_bt.ipynb` |
-| [Korea, US, and Crypto Multi-Market Decomposition](07_korea_us_crypto_multimarket.md) | `07_korea_us_crypto_multimarket.ipynb` |
-| [Backtesting Framework Adapters](08_backtesting_framework_adapters.md) | `08_backtesting_framework_adapters.ipynb` |
-| [Validation First: Walk-Forward Validation and Audit](09_walkforward_validation_and_audit.md) | `09_walkforward_validation_and_audit.ipynb` |
+| [00 - Decomposition-first quant trading roadmap](00_decomposition_first_quant_trading_roadmap.md) | `00_decomposition_first_quant_trading_roadmap.ipynb` |
+| [Column 01 - Real market data and the De-Time feature factory](01_market_data_and_decomposition_feature_factory.md) | `01_market_data_and_decomposition_feature_factory.ipynb` |
+| [Column 02 - Moving averages and MACD through decomposition](02_decomposition_aware_moving_average_macd.md) | `02_decomposition_aware_moving_average_macd.ipynb` |
+| [Column 03 - Residual mean reversion: RSI, Bollinger and residual bands](03_residual_mean_reversion_rsi_bollinger.md) | `03_residual_mean_reversion_rsi_bollinger.ipynb` |
+| [Column 04 - Donchian and Turtle breakout with De-Time volume confirmation](04_turtle_donchian_breakout_volume_confirmation.md) | `04_turtle_donchian_breakout_volume_confirmation.ipynb` |
+| [Column 05 - Pair spread decomposition and stat-arb](05_pairs_spread_decomposition_stat_arb.md) | `05_pairs_spread_decomposition_stat_arb.ipynb` |
+| [Column 06 - Cross-sectional rotation and portfolio construction](06_cross_sectional_rotation_portfolio.md) | `06_cross_sectional_rotation_portfolio.ipynb` |

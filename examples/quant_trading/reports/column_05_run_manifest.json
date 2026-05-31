@@ -1,0 +1,19 @@
+{
+  "run_id": "quant_tutorial_20260531T181915Z",
+  "timestamp": "2026-05-31T18:19:15.486259+00:00",
+  "command": "python examples/quant_trading/scripts/run_column_05_pairs_spread_decomposition.py",
+  "dataset": "market_ohlcv_pair_spreads",
+  "strategies": [
+    "classic_pair_corr_filtered_zscore",
+    "classic_pair_spread_zscore_120",
+    "detime_spread_residual_z",
+    "detime_spread_cycle_timed",
+    "detime_spread_trend_drift_blocker",
+    "classic_pair_ratio_zscore_120"
+  ],
+  "status": "completed",
+  "failure_reason": null,
+  "result_file": "examples\\quant_trading\\reports\\column_05_strategy_comparison.csv",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0"
+}

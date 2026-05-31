@@ -75,7 +75,7 @@ REQUIRED_PATTERNS: dict[str, list[str]] = {
         "examples/notebooks/quant_trading/",
         "examples/quant_trading/requirements.txt",
         "captured outputs directly",
-        "quant-trading/notebooks/01_real_market_data_and_detime_features.md",
+        "quant-trading/notebooks/01_market_data_and_decomposition_feature_factory.md",
     ],
     "docs/tutorials/hot-trend-lab.md": [
         "examples/notebooks/hot_trends/",
@@ -83,7 +83,7 @@ REQUIRED_PATTERNS: dict[str, list[str]] = {
         "captured outputs directly",
         "hot-trend-lab/notebooks/01_arxiv_category_pulse.md",
     ],
-    "docs/tutorials/quant-trading/notebooks/01_real_market_data_and_detime_features.md": [
+    "docs/tutorials/quant-trading/notebooks/01_market_data_and_decomposition_feature_factory.md": [
         "Rendered notebook transcript",
         "notebook-cell",
         "notebook-output",
@@ -92,7 +92,7 @@ REQUIRED_PATTERNS: dict[str, list[str]] = {
     "docs/tutorials/quant-trading/notebooks/index.md": [
         "Quant Trading Notebook Outputs",
         "code cells, stdout, tables",
-        "01_real_market_data_and_detime_features.md",
+        "01_market_data_and_decomposition_feature_factory.md",
     ],
     "docs/tutorials/hot-trend-lab/notebooks/03_huggingface_open_model_pulse.md": [
         "Rendered notebook transcript",

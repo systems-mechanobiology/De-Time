@@ -1,5 +1,5 @@
-dataset_name,source,access_method,asset_class,example_symbols,license_note,where_used,artificial_price_data_used
-Yahoo Finance US equities,Yahoo Finance via yfinance,yf.download,US equities,AAPL MSFT NVDA SPY QQQ,Use for research/education; verify vendor terms for publication or production,Notebooks 01-06,no
-Yahoo Finance Korea equities,Yahoo Finance via yfinance,yf.download,Korea equities,005930.KS 000660.KS 035420.KS,Use for research/education; verify vendor terms and local exchange conventions,Notebook 07,no
-Yahoo Finance crypto pairs,Yahoo Finance via yfinance,yf.download,Crypto spot proxies,BTC-USD ETH-USD SOL-USD,Use for research/education; verify exchange-specific data before production,Notebook 07,no
-Licensed vendor CSV,User-provided,CSV ingestion extension point,Any,vendor-specific,"Document license, point-in-time rules, and adjustment policy",Production extension,no
+dataset_name,source,access_method,asset_class,example_symbols,license_note,where_used,archived_or_vendor_market_data
+Yahoo Finance live OHLCV,Yahoo Finance via yfinance,yf.download,US equities / ETFs / crypto / Korea equities,AAPL MSFT SPY QQQ BTC-USD 005930.KS,Use for research/education; verify vendor terms for publication or production,Columns 01-06,yes
+Archived GOOG OHLCV sample,Learn-Algorithmic-Trading archive / Yahoo Finance historical export,local CSV,US equity,GOOG,User-provided archive for offline tutorial rendering,Columns 01-02 smoke path,yes
+Licensed vendor CSV,User-provided,CSV ingestion extension point,Any,vendor-specific,"Document license, point-in-time rules, adjustment policy, delistings, borrow, FX, and execution assumptions",Production extension,yes
+Archived FX OHLCV sample,Learn-Algorithmic-Trading archive / Yahoo Finance historical exports,local CSV,FX,AUDUSD=X NZDUSD=X EURUSD=X GBPUSD=X CADUSD=X CHFUSD=X JPYUSD=X,User-provided archive for offline tutorial rendering; volume unavailable/zero,Columns 05-06 smoke and tutorial path,yes

@@ -1,0 +1,24 @@
+{
+  "run_id": "quant_tutorial_20260531T181956Z",
+  "timestamp": "2026-05-31T18:19:56.969361+00:00",
+  "command": "python examples/quant_trading/scripts/run_columns_01_02.py",
+  "dataset": "market_ohlcv",
+  "strategies": [
+    "buy_hold",
+    "detime_macd_12_26_9",
+    "detime_sma_20_100_trend_volume",
+    "detime_trend_slope",
+    "classic_sma_50_120",
+    "classic_momentum_63",
+    "classic_macd_12_26_9",
+    "classic_sma_20_100",
+    "classic_multi_ma_20_50_100",
+    "detime_trend_cycle_volume",
+    "detime_trend_pullback"
+  ],
+  "status": "completed",
+  "failure_reason": null,
+  "result_file": "examples\\quant_trading\\reports\\column_02_strategy_stats.csv",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0"
+}

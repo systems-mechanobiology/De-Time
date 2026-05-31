@@ -1,7 +1,15 @@
 metric_name,formula_or_definition,direction,implementation_file,primary_or_secondary,known_failure_modes
-Total return,final equity - 1,higher is better,examples/quant_trading/backtest.py,secondary,Can hide path risk and leverage.
-CAGR,annualized compounded return,higher is better,examples/quant_trading/backtest.py,primary,Unstable on short samples.
-Volatility,annualized standard deviation of returns,context-dependent,examples/quant_trading/backtest.py,secondary,Understates tail risk.
-Sharpe,annualized mean return divided by annualized volatility,higher is better,examples/quant_trading/backtest.py,primary,Sensitive to non-normal returns and stale prices.
-Max drawdown,minimum equity / running max - 1,less negative is better,examples/quant_trading/backtest.py,primary,Path-dependent and sample-window-dependent.
-Turnover,sum absolute target-weight changes,lower is better,examples/quant_trading/backtest.py,primary cost metric,Depends on rebalance convention.
+Total return,final equity - 1,higher is better,examples/quant_trading/backtest.py,secondary,Can hide path risk and leverage
+CAGR,annualized compounded return,higher is better,examples/quant_trading/backtest.py,primary,Unstable on short samples
+Volatility,annualized standard deviation of returns,context-dependent,examples/quant_trading/backtest.py,secondary,Understates tail risk and autocorrelation
+Sharpe,annualized mean return divided by annualized volatility,higher is better,examples/quant_trading/backtest.py,primary,Sensitive to non-normal returns and stale prices
+Max drawdown,minimum equity / running max - 1,less negative is better,examples/quant_trading/backtest.py,primary,Path-dependent and sample-window-dependent
+Calmar,CAGR divided by absolute max drawdown,higher is better,examples/quant_trading/backtest.py,secondary,Unstable when drawdown is tiny or sample is short
+Hit rate,share of positive daily strategy returns,higher is usually better,examples/quant_trading/backtest.py,secondary,Can be high for poor payoff asymmetry
+Average turnover,mean absolute target-weight change per bar,lower is usually better,examples/quant_trading/backtest.py,primary cost metric,Depends on rebalance convention
+Average gross exposure,mean sum absolute weights,context-dependent,examples/quant_trading/backtest.py,secondary,Does not capture factor or beta exposure
+Feature coverage,non-null feature observations divided by total observations,higher is better,examples/quant_trading/decomposition_features.py,primary audit metric,High coverage does not guarantee decomposition correctness
+Pair spread trend slope,slope of decomposed pair spread trend,closer to zero is preferred for residual pair trades,examples/quant_trading/strategy_pairs.py,primary diagnostic,Low slope does not prove cointegration; structural breaks can be delayed
+Pair return correlation,rolling correlation of pair leg returns,higher is usually preferred for pair eligibility,examples/quant_trading/strategy_pairs.py,secondary diagnostic,Correlation can remain high while hedge spread mean drifts
+Rotation De-Time score,"ranked trend, trend-strength, cycle, residual, volume and stability components",higher ranked assets receive more weight,examples/quant_trading/strategy_rotation.py,primary signal diagnostic,Rank score is relative and can concentrate in one factor/regime
+Volume availability,whether non-zero volume exists for decomposition filters,true enables volume filters,examples/quant_trading/strategy_pairs.py; examples/quant_trading/strategy_rotation.py,audit metric,FX tutorial exports have zero volume; live OHLCV assets usually have usable volume

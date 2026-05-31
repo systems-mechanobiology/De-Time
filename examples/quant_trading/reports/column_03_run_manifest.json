@@ -1,0 +1,21 @@
+{
+  "run_id": "quant_tutorial_20260531T182814Z",
+  "timestamp": "2026-05-31T18:28:14.079892+00:00",
+  "command": "notebook:03_residual_mean_reversion_rsi_bollinger",
+  "dataset": "bundled_real_GOOG",
+  "strategies": [
+    "detime_residual_z_1p0_cycle_volume",
+    "detime_residual_rsi_14",
+    "detime_trend_pullback_residual",
+    "detime_residual_band_1p25z",
+    "classic_rsi_14_reversion",
+    "classic_price_zscore_63_1p5z",
+    "classic_apo_10_40_reversion",
+    "classic_bollinger_20_2z"
+  ],
+  "status": "completed",
+  "failure_reason": null,
+  "result_file": "examples\\quant_trading\\reports\\column_03_strategy_comparison.csv",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0"
+}

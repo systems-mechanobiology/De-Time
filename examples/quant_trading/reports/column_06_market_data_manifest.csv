@@ -1,0 +1,2 @@
+source,tickers,start,end,interval,auto_adjust,archived_or_vendor_market_data,research_note
+Yahoo Finance via yfinance,XLK XLF XLE XLV XLY XLP XLI XLU XLB XLRE XLC,2018-01-01,latest,1d,True,True,Educational source; replace with licensed point-in-time data for formal trading research.

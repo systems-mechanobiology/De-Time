@@ -1,0 +1,15 @@
+{
+  "platform": "Linux-4.4.0-x86_64-with-glibc2.41",
+  "python_version": "3.13.5",
+  "machine": "x86_64",
+  "processor": "",
+  "cpu_count": 56,
+  "hostname": "84f8bd7fc2ca",
+  "disk_free_gb": 8589934591.318,
+  "slurm_job_id": null,
+  "slurm_array_task_id": null,
+  "cuda_visible_devices": null,
+  "nvidia_smi": null,
+  "numpy_version": "2.3.5",
+  "pandas_version": "2.2.3"
+}

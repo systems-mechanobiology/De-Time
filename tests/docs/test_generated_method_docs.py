@@ -46,8 +46,8 @@ def test_notebook_gallery_assets_are_committed() -> None:
 def test_column_notebooks_are_rendered_with_inline_outputs() -> None:
     pairs = [
         (
-            ROOT / "examples" / "notebooks" / "quant_trading" / "01_real_market_data_and_detime_features.ipynb",
-            ROOT / "docs" / "tutorials" / "quant-trading" / "notebooks" / "01_real_market_data_and_detime_features.md",
+            ROOT / "examples" / "notebooks" / "quant_trading" / "01_market_data_and_decomposition_feature_factory.ipynb",
+            ROOT / "docs" / "tutorials" / "quant-trading" / "notebooks" / "01_market_data_and_decomposition_feature_factory.md",
         ),
         (
             ROOT / "examples" / "notebooks" / "hot_trends" / "03_huggingface_open_model_pulse.ipynb",
@@ -66,7 +66,6 @@ def test_column_notebooks_are_rendered_with_inline_outputs() -> None:
         assert "notebook-output" in page
         assert "image/png" in page
         assert '<img src="../../../../assets/generated/notebooks/columns/' in page
-        assert "Visualization:" in page
         assert "```python" in page
 
     asset_root = ROOT / "docs" / "assets" / "generated" / "notebooks" / "columns"

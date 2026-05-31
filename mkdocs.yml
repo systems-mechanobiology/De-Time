@@ -29,43 +29,34 @@ nav:
       - CLI Guide: tutorials/cli-and-profiling.md
       - Quant Trading Column:
           - Overview: tutorials/quant-trading.md
-          - Foundations:
-              - Data Due Diligence: tutorials/quant-trading/data.md
-              - Strategy Selection Map: tutorials/quant-trading/strategy-map.md
-              - Backtesting Adapter Contract: tutorials/quant-trading/backtesting-frameworks.md
-              - Validation First: tutorials/quant-trading/walkforward.md
-          - Case Studies:
-              - 01 Real Market Data and Features: tutorials/quant-trading/notebooks/01_real_market_data_and_detime_features.md
-              - 02 Single-Asset Timing: tutorials/quant-trading/notebooks/02_single_asset_timing_vectorbt.md
-              - 03 Turtle Donchian Trend Filter: tutorials/quant-trading/notebooks/03_turtle_donchian_trend_filter.md
-              - 04 Pairs Trading Residual Cycle: tutorials/quant-trading/notebooks/04_pairs_trading_residual_cycle.md
-              - 05 Cross-Sectional Factor Selection: tutorials/quant-trading/notebooks/05_cross_sectional_factor_selection.md
-              - 06 Style and Sector Rotation: tutorials/quant-trading/notebooks/06_style_sector_asset_rotation_bt.md
-              - 07 Korea, US, and Crypto: tutorials/quant-trading/notebooks/07_korea_us_crypto_multimarket.md
-              - 08 Framework Adapters: tutorials/quant-trading/notebooks/08_backtesting_framework_adapters.md
-              - 09 Walk-Forward Validation: tutorials/quant-trading/notebooks/09_walkforward_validation_and_audit.md
-          - Appendix:
-              - Rendered Notebooks: tutorials/quant-trading/notebooks/index.md
-              - 00 Column Overview: tutorials/quant-trading/notebooks/00_quant_trading_column_overview.md
+          - Rendered Notebooks: tutorials/quant-trading/notebooks/index.md
+          - 00 Roadmap: tutorials/quant-trading/notebooks/00_decomposition_first_quant_trading_roadmap.md
+          - 01 Real Market Data and Feature Factory: tutorials/quant-trading/notebooks/01_market_data_and_decomposition_feature_factory.md
+          - 02 Decomposition-aware MA and MACD: tutorials/quant-trading/notebooks/02_decomposition_aware_moving_average_macd.md
+          - 03 Residual Mean Reversion: tutorials/quant-trading/notebooks/03_residual_mean_reversion_rsi_bollinger.md
+          - 04 Donchian Breakout: tutorials/quant-trading/notebooks/04_turtle_donchian_breakout_volume_confirmation.md
+          - 05 Pair Spread Stat-Arb: tutorials/quant-trading/notebooks/05_pairs_spread_decomposition_stat_arb.md
+          - 06 Cross-Sectional Rotation: tutorials/quant-trading/notebooks/06_cross_sectional_rotation_portfolio.md
+          - Real Data and Universes: tutorials/quant-trading/data.md
+          - Strategy Map: tutorials/quant-trading/strategy-map.md
+          - Backtesting Frameworks: tutorials/quant-trading/backtesting-frameworks.md
+          - Walk-Forward Validation: tutorials/quant-trading/walkforward.md
       - Hot Trend Lab:
           - Overview: tutorials/hot-trend-lab.md
-          - Source Protocol:
-              - Source Cards and Reliability: tutorials/hot-trend-lab/data-sources.md
-              - Publishing Protocol: tutorials/hot-trend-lab/release-calendar.md
-          - Case Studies:
-              - arXiv Research Pulse: tutorials/hot-trend-lab/arxiv-research-pulse.md
-              - Open Models and Developer Attention: tutorials/hot-trend-lab/open-model-and-developer-attention.md
-              - Public Attention, Markets, and Crypto: tutorials/hot-trend-lab/wiki-market-crypto-attention.md
-              - 01 arXiv Category Pulse: tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse.md
-              - 02 arXiv Agent Research Pulse: tutorials/hot-trend-lab/notebooks/02_arxiv_agent_research_pulse.md
-              - 03 Hugging Face Open-Model Pulse: tutorials/hot-trend-lab/notebooks/03_huggingface_open_model_pulse.md
-              - 04 GitHub Star Velocity: tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity.md
-              - 05 Wikipedia Attention Decay: tutorials/hot-trend-lab/notebooks/05_wikipedia_attention_hype_decay.md
-              - 06 Crypto Stablecoin Liquidity: tutorials/hot-trend-lab/notebooks/06_crypto_stablecoin_liquidity_pulse.md
-              - 07 AI Infrastructure Market Pulse: tutorials/hot-trend-lab/notebooks/07_ai_infrastructure_market_pulse.md
-          - Appendix:
-              - Rendered Notebooks: tutorials/hot-trend-lab/notebooks/index.md
-              - 00 Column Overview: tutorials/hot-trend-lab/notebooks/00_hot_trend_lab_overview.md
+          - Rendered Notebooks: tutorials/hot-trend-lab/notebooks/index.md
+          - 00 Column Overview: tutorials/hot-trend-lab/notebooks/00_hot_trend_lab_overview.md
+          - 01 arXiv Category Pulse: tutorials/hot-trend-lab/notebooks/01_arxiv_category_pulse.md
+          - 02 arXiv Agent Research Pulse: tutorials/hot-trend-lab/notebooks/02_arxiv_agent_research_pulse.md
+          - 03 Hugging Face Open-Model Pulse: tutorials/hot-trend-lab/notebooks/03_huggingface_open_model_pulse.md
+          - 04 GitHub Star Velocity: tutorials/hot-trend-lab/notebooks/04_github_ai_agent_star_velocity.md
+          - 05 Wikipedia Attention Decay: tutorials/hot-trend-lab/notebooks/05_wikipedia_attention_hype_decay.md
+          - 06 Crypto Stablecoin Liquidity: tutorials/hot-trend-lab/notebooks/06_crypto_stablecoin_liquidity_pulse.md
+          - 07 AI Infrastructure Market Pulse: tutorials/hot-trend-lab/notebooks/07_ai_infrastructure_market_pulse.md
+          - Real Data Sources: tutorials/hot-trend-lab/data-sources.md
+          - arXiv Research Pulse: tutorials/hot-trend-lab/arxiv-research-pulse.md
+          - Open Models and Developer Attention: tutorials/hot-trend-lab/open-model-and-developer-attention.md
+          - Public Attention, Markets, and Crypto: tutorials/hot-trend-lab/wiki-market-crypto-attention.md
+          - Release Calendar: tutorials/hot-trend-lab/release-calendar.md
   - Gallery:
       - SSA: gallery/ssa.md
       - STD: gallery/std.md

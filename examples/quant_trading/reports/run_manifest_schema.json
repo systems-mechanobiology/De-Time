@@ -1,0 +1,12 @@
+{
+  "run_id": "string",
+  "timestamp": "ISO-8601 string",
+  "command": "string",
+  "dataset": "string",
+  "strategies": ["string"],
+  "status": "completed|failed|timeout|skipped",
+  "failure_reason": "string|null",
+  "result_file": "string|null",
+  "python_version": "string",
+  "platform": "string"
+}

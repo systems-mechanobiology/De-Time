@@ -1,0 +1,2 @@
+source,tickers,start,end,interval,auto_adjust,archived_or_vendor_market_data,research_note
+"Learn-Algorithmic-Trading GOOG Yahoo Finance export, bundled for offline tutorial smoke tests",GOOG,2014-01-02,2018-01-02,1d,True,True,Educational source; replace with licensed point-in-time data for formal trading research.

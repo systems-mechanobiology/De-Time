@@ -1,0 +1,2 @@
+ticker,first_timestamp,last_timestamp,observations,close_missing_ratio,volume_missing_ratio,zero_volume_ratio,min_close,max_close,median_volume
+GOOG,2014-01-02,2018-01-02,1008,0.0,0.0,0.0,491.201416,1077.140015,1624450.0

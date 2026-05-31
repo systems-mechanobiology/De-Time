@@ -1,8 +1,10 @@
 strategy_family,classical_signal,detime_component,signal_rule,best_tutorial,main_risk
-Trend following,Moving average / Donchian breakout,trend,Trade only when trend_slope confirms breakout,03_turtle_donchian_trend_filter.ipynb,Trend reversal and crowded momentum
-Trend pullback,Buy dip in uptrend,trend + residual,Long when trend_slope > 0 and residual_z is negative,02_single_asset_timing_vectorbt.ipynb,A downtrend can make residual dips persist
-Residual mean reversion,Price z-score,residual,Mean-revert residual_z rather than raw price,02_single_asset_timing_vectorbt.ipynb,Residual distribution drift
-Pairs trading,Spread z-score,spread trend + residual,Trade spread residual only when spread trend is stable,04_pairs_trading_residual_cycle.ipynb,Cointegration or borrow regime breaks
-Cross-sectional alpha,Momentum / technical factor,trend + season + residual,"Rank trend_strength, negative residual_z, and season_slope",05_cross_sectional_factor_selection.ipynb,Data mining and sector concentration
-Style and sector rotation,ETF momentum rank,trend + cycle,Top-N decomposition score with volatility targeting,06_style_sector_asset_rotation_bt.ipynb,High turnover and regime whipsaw
-Crypto regime filter,Volatility / MA filter,trend + residual stress,Trade only when trend is positive and residual_abs_z is moderate,07_korea_us_crypto_multimarket.ipynb,24/7 liquidity and exchange-specific risks
+Feature factory,,"price trend, price cycle, price residual, volume trend, volume residual",Walk-forward components from price and volume; record selected period and coverage,01_market_data_and_decomposition_feature_factory.ipynb,Full-sample decomposition leakage
+Trend following,SMA / EMA / dual moving average,trend,Use trend slope/strength and decomposed-trend moving averages instead of raw-price-only averages,02_decomposition_aware_moving_average_macd.ipynb,Whipsaw in sideways regimes
+MACD,Fast EMA minus slow EMA,trend + residual + cycle,Compute MACD on extracted trend and gate with residual/cycle/volume context,02_decomposition_aware_moving_average_macd.ipynb,MACD lag and parameter sensitivity
+Multi-MA alignment,Multiple raw moving averages,multi-horizon trend context,Replace raw MA stack with trend state plus risk and volume masks,02_decomposition_aware_moving_average_macd.ipynb,Over-filtering can reduce participation
+Trend pullback,Buy dip in uptrend,trend + residual + volume,Long when trend is intact and residual is temporarily cheap,02_decomposition_aware_moving_average_macd.ipynb,A downtrend can make residual dips persist
+Residual mean reversion,RSI / Bollinger / price z-score,residual + cycle,Trade residual_z/residual RSI/residual bands rather than raw price z-score; trend and cycle decide whether a dip is tradable,03_residual_mean_reversion_rsi_bollinger.ipynb,Residual distribution drift
+Breakout,Turtle / Donchian,trend + cycle + volume,"Require prior-channel breakout plus trend, cycle, residual-overextension and volume confirmation",04_turtle_donchian_breakout_volume_confirmation.ipynb,False breakouts and crowded momentum
+Pairs trading,Spread z-score,spread trend + spread residual,Trade spread residual only when spread trend is stable,05_pairs_spread_decomposition_stat_arb.ipynb,Cointegration or borrow regime breaks
+Cross-sectional rotation,Momentum rank,trend + cycle + residual + volume,Rank assets by decomposition score with volatility and residual-stress caps,06_cross_sectional_rotation_portfolio.ipynb,Data mining and sector concentration

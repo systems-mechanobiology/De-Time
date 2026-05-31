@@ -1,9 +1,9 @@
 # Backtesting Frameworks for the Quant Trading Column
 
-The notebooks start with a small pandas backtester so readers can inspect
+The notebooks start with a transparent pandas backtester so readers can inspect
 signal alignment, position shifting, transaction costs, turnover, and equity
 construction. The same signals can then be routed to established Python
-backtesting and reporting packages once the adapter preserves those fields.
+backtesting and reporting packages.
 
 | Framework | Column use | Adapter |
 |---|---|---|
@@ -15,19 +15,6 @@ backtesting and reporting packages once the adapter preserves those fields.
 | Zipline-Reloaded | calendar-safe factor research skeleton | template writer |
 | QuantStats | HTML reports and performance tear sheets | `quantstats_html_report` |
 
-## Adapter contract
-
-An adapter is acceptable only if it preserves:
-
-| Field | Requirement |
-|---|---|
-| Feature timestamp | the feature row is known before the signal date |
-| Signal date | the target weight or entry flag is created before execution |
-| Execution date | fills are shifted at least one bar from the signal |
-| Costs | fee, slippage, borrow, FX, and turnover assumptions are explicit |
-| Baseline | the same date range and cost model are available for comparison |
-| Metrics | equity, returns, turnover, costs, drawdown, and parameters are exported |
-
 ## vectorbt
 
 ```python
@@ -36,10 +23,6 @@ from examples.quant_trading.frameworks import run_vectorbt_from_signals
 portfolio = run_vectorbt_from_signals(prices, entries, exits)
 print(portfolio.total_return())
 ```
-
-Parameter grids should be selected inside training folds only. Report the tried
-configuration grid, do not use the final test window for parameter choice, and
-keep failed or dominated configurations in the experiment log.
 
 ## backtesting.py
 
@@ -69,10 +52,9 @@ from examples.quant_trading.frameworks import write_framework_templates
 write_framework_templates("examples/quant_trading/templates")
 ```
 
-These event-driven frameworks require explicit trading calendars, data bundles,
-adjusted-price policy, order timing, commission model, slippage model, and
-delisting treatment. Keep De-Time feature generation outside the event loop
-unless the experiment includes online recomputation latency and cost.
+These event-driven frameworks require careful calendar, bundle, and execution
+setup. Keep De-Time feature generation outside the event loop unless you are
+explicitly modeling the cost and latency of online recomputation.
 
-Rendered notebook transcript with code and output:
-[08 backtesting framework adapters](notebooks/08_backtesting_framework_adapters.md)
+The active six-part column keeps framework adapters as reusable library helpers
+and templates rather than a separate rendered notebook.

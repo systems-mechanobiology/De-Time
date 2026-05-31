@@ -1,0 +1,29 @@
+{
+  "run_id": "quant_tutorial_20260531T181903Z",
+  "timestamp": "2026-05-31T18:19:03.959141+00:00",
+  "command": "python examples/quant_trading/scripts/run_columns_03_04.py",
+  "dataset": "market_ohlcv",
+  "strategies": [
+    "classic_bollinger_20_2z",
+    "detime_residual_band_1p25z",
+    "detime_residual_z_1p0_cycle_volume",
+    "detime_residual_rsi_14",
+    "classic_apo_10_40_reversion",
+    "classic_price_zscore_63_1p5z",
+    "detime_trend_pullback_residual",
+    "classic_rsi_14_reversion",
+    "classic_donchian_55_20",
+    "classic_turtle_55_20_atr_cap",
+    "classic_volatility_breakout_20",
+    "detime_breakout_trend_volume_no_cycle_ablation",
+    "detime_donchian_55_20_trend_cycle_volume",
+    "detime_turtle_55_20_volume_shock",
+    "classic_donchian_20_10",
+    "detime_donchian_20_10_trend_cycle_volume"
+  ],
+  "status": "completed",
+  "failure_reason": null,
+  "result_file": "examples\\quant_trading\\reports\\column_03_04_strategy_comparison.csv",
+  "python_version": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0"
+}

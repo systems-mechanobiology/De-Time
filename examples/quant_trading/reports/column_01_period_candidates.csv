@@ -1,0 +1,10 @@
+ticker,period,score,source
+SPY,126,6.593764839723228,acf_periodogram_candidates
+QQQ,126,7.095616370937293,acf_periodogram_candidates
+AAPL,126,6.890089235106867,acf_periodogram_candidates
+MSFT,126,6.827677323276902,acf_periodogram_candidates
+NVDA,126,4.167513024688413,acf_periodogram_candidates
+XLK,126,8.980123797892887,acf_periodogram_candidates
+XLE,126,7.1307432721134045,acf_periodogram_candidates
+TLT,126,12.261567299249581,acf_periodogram_candidates
+GLD,126,1.565262627621283,acf_periodogram_candidates

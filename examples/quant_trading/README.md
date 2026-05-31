@@ -1,25 +1,91 @@
 # De-Time Quant Trading Column
 
-This directory contains the example code behind the documentation page
-`docs/tutorials/quant-trading.md`.
+This directory contains the decomposition-first quant trading tutorial code. The previous indicator-first column has been replaced by a smaller, clearer six-part curriculum. Columns 01-06 are implemented.
 
-The column is designed for international quant readers. It downloads market
-data through `yfinance` by default, validates returned tables, and records the
-ticker universe, date window, and data source used by each notebook.
+## Implemented now
 
-## Quick start
+1. `01_market_data_and_decomposition_feature_factory.ipynb`
+   Real OHLCV data, dataset audit, period estimation, walk-forward price and volume decomposition, and feature coverage reporting.
+
+2. `02_decomposition_aware_moving_average_macd.ipynb`
+   Classical buy-and-hold, moving-average, MACD, multi-MA and momentum baselines, then De-Time rewrites that use explicit trend, cycle, residual, and volume features.
+
+3. `03_residual_mean_reversion_rsi_bollinger.ipynb`
+   Price z-score, RSI, Bollinger and APO mean-reversion baselines, then De-Time residual mean-reversion variants using residual z-score, residual RSI, residual Bollinger bands, cycle timing and volume filters.
+
+4. `04_turtle_donchian_breakout_volume_confirmation.ipynb`
+   Donchian/Turtle breakout baselines, then De-Time breakout rewrites using trend direction, cycle state, residual overextension caps and volume confirmation.
+
+5. `05_pairs_spread_decomposition_stat_arb.ipynb`
+   Pair ratio/spread z-score baselines, then De-Time spread-residual trading with spread trend-drift control and optional pair volume/news filters.
+
+6. `06_cross_sectional_rotation_portfolio.ipynb`
+   Momentum, multi-MA and inverse-volatility allocation baselines, then De-Time trend/cycle/residual/volume factor scoring and portfolio construction.
+
+## Core modules
+
+- `data.py`: yfinance downloaders, OHLCV panel helpers, and offline real-data GOOG and FX sample loaders for smoke tests.
+- `classic_indicators.py`: SMA, EMA, MACD, RSI, Bollinger, Donchian, momentum, APO.
+- `decomposition_features.py`: walk-forward De-Time feature factory for price and volume.
+- `strategy_baselines.py`: classical strategy weights for trend, mean-reversion and breakout families.
+- `strategy_detime.py`: decomposition-aware trend, residual mean-reversion and breakout recipes.
+- `strategy_pairs.py`: pair spread decomposition, residual-stat-arb and pair diagnostics.
+- `strategy_rotation.py`: cross-sectional rotation, De-Time factor scores and portfolio construction.
+- `validation.py`: common backtest comparison, turnover reporting, and run manifest helpers.
+- `backtest.py`: transparent vectorized research backtester.
+
+## Smoke tests
 
 ```bash
-python -m pip install -e .[dev,docs,notebook]
-python -m pip install -r examples/quant_trading/requirements.txt
-jupyter lab examples/notebooks/quant_trading
+python -m pip install -e .
+export PYTHONPATH="$PWD/src:$PWD/examples:$PYTHONPATH"
+make smoke
 ```
 
-## What is included
+Run only the latest batch:
 
-- `data.py`: real-market data loading and audit helpers.
-- `features.py`: walk-forward De-Time feature factory.
-- `signals.py`: timing, pairs, rotation, and risk-filter signal recipes.
-- `backtest.py`: transparent vectorized research backtester.
-- `frameworks.py`: optional adapters for vectorbt, backtesting.py, bt, Backtrader, Zipline-Reloaded, and QuantStats.
-- `reports/`: strategy maps, framework matrix, and data/metric passports.
+```bash
+make smoke-05-06
+make quant-columns-05-06
+```
+
+Run all implemented columns:
+
+```bash
+make quant-columns-01-06
+```
+
+Columns 01-04 smoke tests use the bundled historical GOOG OHLCV sample. Columns 05-06 smoke tests use bundled historical FX samples. They do not generate artificial prices.
+
+## Live data usage
+
+```bash
+python examples/quant_trading/scripts/download_real_market_data.py \
+  --tickers SPY QQQ AAPL MSFT NVDA XLK XLE TLT GLD \
+  --start 2018-01-01
+
+python examples/quant_trading/scripts/run_column_03_residual_mean_reversion.py \
+  --tickers SPY QQQ AAPL MSFT NVDA XLK XLE TLT GLD \
+  --start 2018-01-01
+
+python examples/quant_trading/scripts/run_column_04_breakout_volume_confirmation.py \
+  --tickers SPY QQQ AAPL MSFT NVDA XLK XLE TLT GLD \
+  --start 2018-01-01
+
+python examples/quant_trading/scripts/run_column_05_pairs_spread_decomposition.py \
+  --tickers KO PEP XOM CVX MA V SPY QQQ \
+  --pairs KO:PEP XOM:CVX MA:V SPY:QQQ \
+  --start 2018-01-01
+
+python examples/quant_trading/scripts/run_column_06_cross_sectional_rotation.py \
+  --tickers XLK XLF XLE XLV XLY XLP XLI XLU XLB XLRE XLC \
+  --start 2018-01-01
+```
+
+```python
+from quant_trading.data import fetch_yahoo_ohlcv
+
+ohlcv = fetch_yahoo_ohlcv("SPY", start="2016-01-01", cache_dir="examples/quant_trading/data/cache")
+```
+
+For production research, replace Yahoo Finance with licensed point-in-time data and document symbol membership, corporate actions, delistings, borrow, funding, FX, and execution assumptions.

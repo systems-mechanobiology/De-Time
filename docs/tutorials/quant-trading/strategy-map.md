@@ -1,78 +1,83 @@
-# Strategy Selection and Falsification Map
+# Strategy Map: From Classic Indicators to Decomposition-Aware Signals
 
-De-Time is a feature layer, not a strategy claim by itself. Each strategy starts
-with a hypothesis, a baseline, and a failure mode that would make the result
-unusable.
+The revised column does not only improve Bollinger bands. It rewrites several
+classic strategy families by asking what each indicator was trying to estimate.
 
-| Strategy family | Hypothesis | Minimum baseline | Failure mode | Tutorial |
-|---|---|---|---|---|
-| Single-asset timing | trend plus residual timing improves entry quality | buy-and-hold and moving-average timing | underperforms after costs or trades too often | [02 single-asset timing](notebooks/02_single_asset_timing_vectorbt.md) |
-| Turtle / Donchian | De-Time trend filter removes weak breakouts | unfiltered Donchian breakout | filter removes winners or adds parameter fragility | [03 Turtle Donchian trend filter](notebooks/03_turtle_donchian_trend_filter.md) |
-| Residual mean reversion | modeled residual is cleaner than price z-score | price z-score mean reversion | residual remains directional or cost-sensitive | [02 single-asset timing](notebooks/02_single_asset_timing_vectorbt.md) |
-| Pairs trading | spread residual helps avoid trend drift | classical spread z-score pair trade | spread trend persists or hedge ratio is unstable | [04 pairs trading residual cycle](notebooks/04_pairs_trading_residual_cycle.md) |
-| Cross-sectional factors | decomposition factor candidates rank assets better than simple momentum | equal-weight, benchmark ETF, momentum-only top-N, random top-N | result depends on mega-cap sample or one regime | [05 cross-sectional factor selection](notebooks/05_cross_sectional_factor_selection.md) |
-| Style / sector rotation | decomposition score improves ETF rotation timing | equal-weight sector basket and momentum rotation | turnover or one sector explains the result | [06 style and sector rotation](notebooks/06_style_sector_asset_rotation_bt.md) |
-| Crypto regime | 24/7 trend and residual stress identify regime changes | buy-and-hold and volatility filter | calendar mismatch or fees erase the signal | [07 Korea, US, and crypto](notebooks/07_korea_us_crypto_multimarket.md) |
-| Risk overlay | residual stress identifies unreliable periods | same strategy without overlay | cuts exposure after losses rather than before them | all strategy notebooks |
+| Strategy family | Classical version | De-Time rewrite | Status |
+|---|---|---|---|
+| Feature layer | raw close and raw volume | walk-forward price + volume decomposition | implemented in Column 01 |
+| Dual moving average | fast SMA > slow SMA on price | fast/slow average on extracted trend, gated by residual and volume | implemented in Column 02 |
+| MACD | fast EMA - slow EMA on price | MACD on extracted trend, gated by cycle, residual and volume | implemented in Column 02 |
+| Multi-MA alignment | several raw moving averages aligned | trend state + residual stress + participation filter | implemented in Column 02 |
+| Trend pullback | buy dip in an uptrend | trend intact + residual cheap + volume confirmation | implemented in Column 02 |
+| RSI / Bollinger / price z-score | overbought/oversold on raw price | residual z-score, residual RSI and residual bands with cycle timing | implemented in Column 03 |
+| Turtle / Donchian | breakout above prior high | breakout + trend + cycle + residual-overextension + volume confirmation | implemented in Column 04 |
+| Pairs trading | spread z-score | decompose spread; trade residual only when spread trend is stable and pair volume/news state is acceptable | implemented Column 05 |
+| Rotation | momentum rank | cross-sectional trend/cycle/residual/volume score with volatility targeting | implemented Column 06 |
 
-## Signal principles
-
-1. Trend sets direction.
-2. Cycle sets timing.
-3. Residual measures deviation from the modeled structure.
-4. Residual spikes and reconstruction error are reliability warnings.
-5. Every signal is computed walk-forward before it is backtested.
-6. A strategy is rejected when it fails its baseline or data gate.
-
-## Component-to-rule checks
-
-| Component | Before using it | After using it |
-|---|---|---|
-| Trend | plot price against walk-forward trend and inspect `trend_slope` | check whether it accepts good trades earlier than a price-only baseline |
-| Cycle | inspect `season_z` or `season_slope` around entries | keep it diagnostic unless it improves a baseline out of sample |
-| Residual | plot residual bands and mark entries/exits | verify that residual deviations mean-revert after costs |
-| Residual stress | compare stress spikes with drawdowns and calendar gaps | use it to shrink exposure or reject periods, not to explain losses after the fact |
-| Reconstruction error | inspect noisy assets before ranking them | penalize unreliable decompositions instead of treating every component as alpha |
-
-## Example: trend pullback
+## Implemented examples
 
 ```python
-features = walkforward_decompose(prices, method="ROBUST_STL", period=63)
-entries, exits = trend_pullback_signals(
-    prices,
-    features,
-    residual_entry_z=-1.0,
-    residual_exit_z=0.25,
-    min_trend_slope=0.0,
+from quant_trading.strategy_baselines import make_classic_baseline_weight_grid
+from quant_trading.strategy_detime import make_detime_trend_weight_grid
+
+classic_trend = make_classic_baseline_weight_grid(prices)
+detime_trend = make_detime_trend_weight_grid(prices, features)
+```
+
+```python
+from quant_trading.strategy_mean_reversion import (
+    make_classic_mean_reversion_weight_grid,
+    make_detime_mean_reversion_weight_grid,
+)
+
+classic_reversion = make_classic_mean_reversion_weight_grid(prices)
+detime_reversion = make_detime_mean_reversion_weight_grid(prices, features)
+```
+
+```python
+from quant_trading.strategy_breakout import (
+    make_classic_breakout_weight_grid,
+    make_detime_breakout_weight_grid,
+)
+
+classic_breakout = make_classic_breakout_weight_grid(ohlcv)
+detime_breakout = make_detime_breakout_weight_grid(ohlcv, features)
+```
+
+Executable notebooks:
+
+- `examples/notebooks/quant_trading/02_decomposition_aware_moving_average_macd.ipynb`
+- `examples/notebooks/quant_trading/03_residual_mean_reversion_rsi_bollinger.ipynb`
+- `examples/notebooks/quant_trading/04_turtle_donchian_breakout_volume_confirmation.ipynb`
+
+
+```python
+from quant_trading.strategy_pairs import (
+    walkforward_pair_spread_features,
+    make_classic_pair_weight_grid,
+    make_detime_pair_weight_grid,
+)
+
+pairs = [("KO", "PEP"), ("XOM", "CVX")]
+spread_features, spread_panel, beta_panel, pair_specs = walkforward_pair_spread_features(prices, pairs)
+classic_pairs = make_classic_pair_weight_grid(prices, pair_specs)
+detime_pairs = make_detime_pair_weight_grid(
+    prices, pair_specs, spread_features, spread_panel=spread_panel, beta_panel=beta_panel
 )
 ```
 
-In the notebooks this call is routed through `ROBUST_STL`, which is the default
-for market-price examples. Use plain `STL` or faster baselines for sensitivity
-checks, not as the headline decomposition.
-
-## Example: pair spread residual
-
 ```python
-spread = np.log(prices["KO"]) - np.log(prices["PEP"])
-spread_panel = pd.DataFrame({"KO_PEP_spread": spread.add(100.0)})
-spread_features = walkforward_decompose(
-    spread_panel,
-    method="ROBUST_STL",
-    period=63,
-    use_log_price=False,
+from quant_trading.strategy_rotation import (
+    make_classic_rotation_weight_grid,
+    make_detime_rotation_weight_grid,
 )
 
-weights = pair_trading_weights(
-    prices["KO"],
-    prices["PEP"],
-    lookback=120,
-    entry_z=1.5,
-    exit_z=0.25,
-    spread_residual_z=spread_features["residual_z"]["KO_PEP_spread"],
-)
+classic_rotation = make_classic_rotation_weight_grid(prices)
+detime_rotation = make_detime_rotation_weight_grid(prices, features)
 ```
 
-Compare this residual version with the classical spread z-score baseline over
-the same dates and costs. A persistent spread trend is a failure warning even if
-individual residual entries look attractive.
+Additional executable notebooks:
+
+- `examples/notebooks/quant_trading/05_pairs_spread_decomposition_stat_arb.ipynb`
+- `examples/notebooks/quant_trading/06_cross_sectional_rotation_portfolio.ipynb`
