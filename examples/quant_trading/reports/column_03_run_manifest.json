@@ -1,6 +1,6 @@
 {
-  "run_id": "quant_tutorial_20260531T182814Z",
-  "timestamp": "2026-05-31T18:28:14.079892+00:00",
+  "run_id": "quant_tutorial_20260601T105145Z",
+  "timestamp": "2026-06-01T10:51:45.721955+00:00",
   "command": "notebook:03_residual_mean_reversion_rsi_bollinger",
   "dataset": "bundled_real_GOOG",
   "strategies": [

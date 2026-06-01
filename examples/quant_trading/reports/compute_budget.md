@@ -11,3 +11,11 @@
 | full_gpu | later neural or automatic-discovery extensions | optional | neural baselines or agentic strategy search | TBD | 8-32 per GPU | 64+ GB | A100 / high-VRAM workstation | TBD | TBD | GPU cluster when needed | future GPU configs |
 
 Columns 01-06 are CPU-oriented. GPU resources are not required unless future work adds neural baselines, large batched inference, or automatic discovery loops.
+
+## Strategy-lab refactor workload
+
+| Stage | Task | Datasets | Strategies | CPU cores | RAM | GPU | Storage | Estimated wall time | Recommended hardware | Script |
+|---|---|---|---|---:|---:|---|---:|---:|---|---|
+| strategy_lab_smoke | GOOG bundled real OHLCV, STL decomposition, trend/reversion/hybrid strategies | 1 | 3 De-Time + 6 baselines | 2-4 | <4 GB | none | <100 MB | <5 min | local CPU | `make strategy-lab` |
+| strategy_lab_live | yfinance OHLCV, STL/SSA methods, trend/reversion/hybrid strategies | 1+ | 3 per method + baselines | 4-8 | 4-16 GB | none | <1 GB | minutes-hours depending on method/step | local CPU or BlueBEAR CPU | `make strategy-lab-live` |
+| strategy_lab_user_csv | user intraday CSV such as 30-min crypto bars | 1 | 3 per method + baselines | 4-16 | depends on bars | none | depends on CSV | profile first | local i7 or BlueBEAR CPU | `python examples/quant_trading/scripts/run_strategy_lab.py --csv ...` |

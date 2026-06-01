@@ -1,18 +1,13 @@
 {
-  "run_id": "quant_tutorial_20260531T181928Z",
-  "timestamp": "2026-05-31T18:19:28.481626+00:00",
+  "run_id": "quant_tutorial_20260601T104606Z",
+  "timestamp": "2026-06-01T10:46:06.758829+00:00",
   "command": "python examples/quant_trading/scripts/run_column_06_cross_sectional_rotation.py",
   "dataset": "market_ohlcv_rotation_universe",
   "strategies": [
-    "detime_rotation_no_voltarget_ablation",
-    "detime_rotation_top_trend_cycle_residual_volume",
-    "detime_rotation_monthly_low_turnover",
-    "classic_momentum_252_21_top",
     "buy_hold_equal_weight",
-    "classic_inverse_vol_equal_weight",
-    "detime_rotation_long_short",
-    "classic_ma_trend_50_200_top",
-    "classic_momentum_63_top"
+    "detime_rotation_top_trend_cycle_residual_volume",
+    "classic_momentum_63_top",
+    "detime_rotation_long_short"
   ],
   "status": "completed",
   "failure_reason": null,

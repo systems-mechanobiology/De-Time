@@ -1,0 +1,2 @@
+source,tickers,start,end,interval,auto_adjust,archived_or_vendor_market_data,research_note
+Learn-Algorithmic-Trading bundled real FX Yahoo Finance exports,AUDUSD=X CADUSD=X CHFUSD=X EURUSD=X GBPUSD=X NZDUSD=X,2014-01-01,latest,1d,True,True,Educational source; replace with licensed point-in-time data for formal trading research.

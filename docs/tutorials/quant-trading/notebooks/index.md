@@ -6,9 +6,13 @@ These pages render the Quant Trading notebooks as documentation pages, including
 | Page | Source notebook |
 |---|---|
 | [00 - Decomposition-first quant trading roadmap](00_decomposition_first_quant_trading_roadmap.md) | `00_decomposition_first_quant_trading_roadmap.ipynb` |
-| [Column 01 - Real market data and the De-Time feature factory](01_market_data_and_decomposition_feature_factory.md) | `01_market_data_and_decomposition_feature_factory.ipynb` |
-| [Column 02 - Moving averages and MACD through decomposition](02_decomposition_aware_moving_average_macd.md) | `02_decomposition_aware_moving_average_macd.ipynb` |
-| [Column 03 - Residual mean reversion: RSI, Bollinger and residual bands](03_residual_mean_reversion_rsi_bollinger.md) | `03_residual_mean_reversion_rsi_bollinger.ipynb` |
-| [Column 04 - Donchian and Turtle breakout with De-Time volume confirmation](04_turtle_donchian_breakout_volume_confirmation.md) | `04_turtle_donchian_breakout_volume_confirmation.ipynb` |
-| [Column 05 - Pair spread decomposition and stat-arb](05_pairs_spread_decomposition_stat_arb.md) | `05_pairs_spread_decomposition_stat_arb.ipynb` |
-| [Column 06 - Cross-sectional rotation and portfolio construction](06_cross_sectional_rotation_portfolio.md) | `06_cross_sectional_rotation_portfolio.ipynb` |
+| [De-Time Strategy Lab 01 — 趋势跟随策略](01_detime_trend_following_strategy_lab.md) | `01_detime_trend_following_strategy_lab.ipynb` |
+| [Column 01 — Real market data and the De-Time feature factory](01_market_data_and_decomposition_feature_factory.md) | `01_market_data_and_decomposition_feature_factory.ipynb` |
+| [Column 02 — Moving averages and MACD through decomposition](02_decomposition_aware_moving_average_macd.md) | `02_decomposition_aware_moving_average_macd.ipynb` |
+| [De-Time Strategy Lab 02 — 震荡恢复 / 残差回归策略](02_detime_oscillation_reversion_strategy_lab.md) | `02_detime_oscillation_reversion_strategy_lab.ipynb` |
+| [De-Time Method-Specific Strategy Variants](03_detime_method_specific_strategy_variants.md) | `03_detime_method_specific_strategy_variants.ipynb` |
+| [Column 03 — Residual mean reversion: RSI, Bollinger and residual bands](03_residual_mean_reversion_rsi_bollinger.md) | `03_residual_mean_reversion_rsi_bollinger.ipynb` |
+| [De-Time Component Pair Trading and Cointegration](04_detime_component_pair_trading_cointegration.md) | `04_detime_component_pair_trading_cointegration.ipynb` |
+| [Column 04 — Donchian and Turtle breakout with De-Time volume confirmation](04_turtle_donchian_breakout_volume_confirmation.md) | `04_turtle_donchian_breakout_volume_confirmation.ipynb` |
+| [Column 05 — Pair spread decomposition and stat-arb](05_pairs_spread_decomposition_stat_arb.md) | `05_pairs_spread_decomposition_stat_arb.ipynb` |
+| [Column 06 — Cross-sectional rotation and portfolio construction](06_cross_sectional_rotation_portfolio.md) | `06_cross_sectional_rotation_portfolio.ipynb` |

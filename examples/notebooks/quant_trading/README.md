@@ -26,3 +26,12 @@ For the current batch only:
 make smoke-05-06
 make quant-columns-05-06
 ```
+
+### Strategy expansion notebooks
+
+```text
+03_detime_method_specific_strategy_variants.ipynb
+04_detime_component_pair_trading_cointegration.ipynb
+```
+
+These notebooks are the recommended next reading after the two strategy-lab notebooks. They show that different decomposition front-ends and horizons create different strategies, and they extend pair trading with component similarity, residual gaps, and cointegration diagnostics.

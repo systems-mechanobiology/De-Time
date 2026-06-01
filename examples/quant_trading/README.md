@@ -89,3 +89,50 @@ ohlcv = fetch_yahoo_ohlcv("SPY", start="2016-01-01", cache_dir="examples/quant_t
 ```
 
 For production research, replace Yahoo Finance with licensed point-in-time data and document symbol membership, corporate actions, delistings, borrow, funding, FX, and execution assumptions.
+
+## Concrete strategy lab
+
+The recommended entry point is now `strategy_lab.py`.  It contains two complete decomposition-based strategy families rather than a loose collection of indicator examples:
+
+- `decomposition_trend_following_signals`: uses `trend_slope` and `trend_strength` to enter trend-following trades, with cycle/residual/volume filters.
+- `decomposition_oscillation_reversion_signals`: trades residual deviation only when the trend is weak; negative residual buys, positive residual sells or shorts.
+
+Run:
+
+```bash
+make strategy-lab
+```
+
+Outputs are written to `examples/quant_trading/reports/strategy_lab/` and include strategy statistics, orders, round-trip trades, run manifest and buy/sell charts.
+
+## Strategy expansion: method-specific variants and component pair trading
+
+The strategy lab now has an additional expansion layer:
+
+```bash
+make strategy-expansion
+```
+
+This runs two English-language tutorial blocks:
+
+1. **Method-specific decomposition strategies**: the same trend-following, residual-reversion, residual-Bollinger, trend-MACD, and trend-crossover logic is run under different decomposition methods and horizons. Each method/period/window combination is treated as a distinct strategy because it produces different trend, cycle, and residual components.
+2. **Component-level pair trading**: pairs are decomposed asset-by-asset, trend/cycle similarity is measured, cointegration and stationarity diagnostics are reported, and residual gaps are traded with a full next-bar backtest.
+
+Main files:
+
+```text
+examples/quant_trading/strategy_method_variants.py
+examples/quant_trading/strategy_component_pairs.py
+examples/quant_trading/scripts/run_strategy_expansion.py
+docs/tutorials/quant-trading/method-specific-strategy-expansion.md
+```
+
+Main outputs:
+
+```text
+examples/quant_trading/reports/strategy_expansion/method_variant_strategy_stats.csv
+examples/quant_trading/reports/strategy_expansion/component_pair_strategy_stats.csv
+examples/quant_trading/reports/strategy_expansion/component_pair_diagnostics.csv
+examples/quant_trading/reports/strategy_expansion/*_orders.csv
+examples/quant_trading/reports/strategy_expansion/*_trades.csv
+```

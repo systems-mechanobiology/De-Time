@@ -1,7 +1,7 @@
-# Quant trading decomposition-first rewrite
+# Quant Trading Decomposition-First Rewrite
 
-This pass replaces the earlier indicator-first quant column with a
-decomposition-first teaching path.
+This pass extends the earlier columns 01-02 rewrite into the current
+decomposition-first quant trading column.
 
 Implemented notebooks:
 
@@ -13,6 +13,13 @@ Implemented notebooks:
 6. `05_pairs_spread_decomposition_stat_arb.ipynb`
 7. `06_cross_sectional_rotation_portfolio.ipynb`
 
+Additional strategy-lab notebooks:
+
+- `01_detime_trend_following_strategy_lab.ipynb`
+- `02_detime_oscillation_reversion_strategy_lab.ipynb`
+- `03_detime_method_specific_strategy_variants.ipynb`
+- `04_detime_component_pair_trading_cointegration.ipynb`
+
 Main implementation files:
 
 - `examples/quant_trading/data.py`
@@ -21,21 +28,26 @@ Main implementation files:
 - `examples/quant_trading/classic_indicators.py`
 - `examples/quant_trading/strategy_baselines.py`
 - `examples/quant_trading/strategy_detime.py`
+- `examples/quant_trading/strategy_lab.py`
+- `examples/quant_trading/strategy_method_variants.py`
+- `examples/quant_trading/strategy_component_pairs.py`
 - `examples/quant_trading/strategy_pairs.py`
 - `examples/quant_trading/strategy_rotation.py`
 - `examples/quant_trading/validation.py`
+
+Runner scripts:
+
 - `examples/quant_trading/scripts/download_real_market_data.py`
 - `examples/quant_trading/scripts/run_columns_01_02.py`
 - `examples/quant_trading/scripts/run_columns_03_04.py`
 - `examples/quant_trading/scripts/run_columns_05_06.py`
+- `examples/quant_trading/scripts/run_strategy_lab.py`
+- `examples/quant_trading/scripts/run_strategy_expansion.py`
 
-Real-data execution command:
+Real-data execution summary:
 
-```bash
-python examples/quant_trading/scripts/download_real_market_data.py \
-  --tickers SPY QQQ AAPL MSFT NVDA XLK XLE TLT GLD \
-  --start 2018-01-01
-python examples/quant_trading/scripts/run_columns_01_02.py
-python examples/quant_trading/scripts/run_columns_03_04.py
-python examples/quant_trading/scripts/run_columns_05_06.py
-```
+- Yahoo Finance OHLCV cache was downloaded for SPY, QQQ, AAPL, MSFT, NVDA, XLK, XLE, TLT, GLD, KO, PEP, XOM, CVX, MA and V.
+- Columns 01-04 were rerun on the downloaded live data panel.
+- Columns 05-06 were rerun on bundled real FX samples.
+- Strategy lab and strategy expansion were rerun on bundled real samples and live SPY/equity-pair data.
+- All quant notebooks were executed and rendered into documentation pages with 31 generated PNG outputs.

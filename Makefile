@@ -1,7 +1,7 @@
 PYTHON ?= python
 export PYTHONPATH := $(CURDIR)/src:$(CURDIR)/examples:$(PYTHONPATH)
 
-.PHONY: setup probe test smoke smoke-03-04 smoke-05-06 quant-columns-01-02 quant-columns-01-02-live quant-columns-03-04 quant-columns-03-04-live quant-columns-05-06 quant-columns-05-06-live quant-columns-01-04 quant-columns-01-06 audit clean-pyc
+.PHONY: setup probe test smoke smoke-03-04 smoke-05-06 strategy-lab strategy-lab-live strategy-expansion strategy-expansion-live quant-columns-01-02 quant-columns-01-02-live quant-columns-03-04 quant-columns-03-04-live quant-columns-05-06 quant-columns-05-06-live quant-columns-01-04 quant-columns-01-06 audit clean-pyc
 
 setup:
 	$(PYTHON) -m pip install -e .
@@ -23,6 +23,19 @@ smoke-03-04: probe
 
 smoke-05-06: probe
 	$(PYTHON) examples/quant_trading/scripts/smoke_quant_columns_05_06.py
+
+
+strategy-lab: probe
+	$(PYTHON) examples/quant_trading/scripts/run_strategy_lab.py --use-bundled-sample --methods STL --period 42 --train-window 180 --step 21 --allow-short-reversion --report-dir examples/quant_trading/reports/strategy_lab
+
+strategy-lab-live: probe
+	$(PYTHON) examples/quant_trading/scripts/run_strategy_lab.py --ticker SPY --start 2018-01-01 --methods STL SSA --period 63 --train-window 252 --step 21 --report-dir examples/quant_trading/reports/strategy_lab_live
+
+strategy-expansion: probe
+	$(PYTHON) examples/quant_trading/scripts/run_strategy_expansion.py --use-bundled-sample --variant-grid custom --methods STL SSA STD --periods 42 --train-window 126 --pair-method STL --pair-period 42 --pair-train-window 126 --step 126 --report-dir examples/quant_trading/reports/strategy_expansion
+
+strategy-expansion-live: probe
+	$(PYTHON) examples/quant_trading/scripts/run_strategy_expansion.py --ticker SPY --start 2018-01-01 --variant-grid default --include-wavelet --pairs KO:PEP XOM:CVX MA:V SPY:QQQ --pair-method STL --pair-period 63 --report-dir examples/quant_trading/reports/strategy_expansion_live
 
 quant-columns-01-02:
 	$(PYTHON) examples/quant_trading/scripts/run_columns_01_02.py --use-bundled-sample

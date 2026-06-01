@@ -5,28 +5,46 @@
   <strong>Rendered notebook transcript.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/00_decomposition_first_quant_trading_roadmap.ipynb"><code>examples/notebooks/quant_trading/00_decomposition_first_quant_trading_roadmap.ipynb</code></a> and includes code cells plus captured outputs from the committed notebook.
 </div>
 
-The revised column is built around one idea: classic technical strategies are mostly rough filters for trend, cycle, residual deviation, and participation. De-Time makes those pieces explicit.
+The revised column is built around one idea: classic technical strategies are mostly rough filters for trend, cycle, residual deviation, and participation. De-Time makes those pieces explicit before the strategy layer.
 
 Implemented in this update:
 
-1. Real market data and feature factory.
+1. Market data and decomposition feature factory.
 2. Decomposition-aware moving average and MACD strategies.
-3. Residual mean reversion, RSI and Bollinger bands.
-4. Turtle/Donchian breakout with volume confirmation.
-5. Pairs trading and spread decomposition.
+3. Residual mean reversion, RSI, Bollinger and APO rewrites.
+4. Turtle/Donchian breakout with trend, cycle, residual and volume gates.
+5. Pair spread decomposition and stat-arb.
 6. Cross-sectional rotation and portfolio construction.
+
+Additional strategy labs:
+
+- two concrete strategy families: trend following and oscillation / residual reversion;
+- method-specific strategy variants across STL, SSA and STD;
+- component-level pair trading with decomposition and cointegration diagnostics.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
 
 ```python
-"examples/notebooks/quant_trading"
+from pathlib import Path
+
+[p.name for p in sorted(Path("examples/notebooks/quant_trading").glob("*.ipynb"))]
 ```
 
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">text/plain</div>
 ```text
-'examples/notebooks/quant_trading'
+['00_decomposition_first_quant_trading_roadmap.ipynb',
+ '01_detime_trend_following_strategy_lab.ipynb',
+ '01_market_data_and_decomposition_feature_factory.ipynb',
+ '02_decomposition_aware_moving_average_macd.ipynb',
+ '02_detime_oscillation_reversion_strategy_lab.ipynb',
+ '03_detime_method_specific_strategy_variants.ipynb',
+ '03_residual_mean_reversion_rsi_bollinger.ipynb',
+ '04_detime_component_pair_trading_cointegration.ipynb',
+ '04_turtle_donchian_breakout_volume_confirmation.ipynb',
+ '05_pairs_spread_decomposition_stat_arb.ipynb',
+ '06_cross_sectional_rotation_portfolio.ipynb']
 ```
 </div>
 </div>

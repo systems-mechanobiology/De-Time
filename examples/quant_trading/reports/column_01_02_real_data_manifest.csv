@@ -1,2 +1,2 @@
 source,tickers,start,end,interval,auto_adjust,archived_or_vendor_market_data,research_note
-Yahoo Finance via yfinance,SPY QQQ AAPL MSFT NVDA XLK XLE TLT GLD,2018-01-01,latest,1d,True,True,Educational source; replace with licensed point-in-time data for formal trading research.
+Yahoo Finance via yfinance,SPY QQQ AAPL MSFT NVDA XLK XLE TLT GLD KO PEP XOM CVX MA V,2018-01-01,latest,1d,True,True,Educational source; replace with licensed point-in-time data for formal trading research.

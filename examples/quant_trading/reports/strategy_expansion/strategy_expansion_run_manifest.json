@@ -1,0 +1,96 @@
+{
+  "single_asset": "GOOG",
+  "single_source": "Learn-Algorithmic-Trading GOOG Yahoo Finance export, bundled for offline tutorial smoke tests",
+  "method_variant_specs": [
+    {
+      "method": "STL",
+      "period": 42,
+      "train_window": 126,
+      "step": 126,
+      "z_window": 63,
+      "label": null,
+      "role": "custom_grid",
+      "name": "STL_p42_tw126_s126"
+    },
+    {
+      "method": "SSA",
+      "period": 42,
+      "train_window": 126,
+      "step": 126,
+      "z_window": 63,
+      "label": null,
+      "role": "custom_grid",
+      "name": "SSA_p42_tw126_s126"
+    },
+    {
+      "method": "STD",
+      "period": 42,
+      "train_window": 126,
+      "step": 126,
+      "z_window": 63,
+      "label": null,
+      "role": "custom_grid",
+      "name": "STD_p42_tw126_s126"
+    }
+  ],
+  "method_variant_completed_strategies": [
+    "detime_STL_p42_tw126_s126_trend_following",
+    "detime_STL_p42_tw126_s126_oscillation_reversion",
+    "detime_STL_p42_tw126_s126_hybrid_regime",
+    "detime_STL_p42_tw126_s126_residual_bollinger",
+    "detime_STL_p42_tw126_s126_trend_macd",
+    "detime_STL_p42_tw126_s126_trend_crossover",
+    "detime_SSA_p42_tw126_s126_trend_following",
+    "detime_SSA_p42_tw126_s126_oscillation_reversion",
+    "detime_SSA_p42_tw126_s126_hybrid_regime",
+    "detime_SSA_p42_tw126_s126_residual_bollinger",
+    "detime_SSA_p42_tw126_s126_trend_macd",
+    "detime_SSA_p42_tw126_s126_trend_crossover",
+    "detime_STD_p42_tw126_s126_trend_following",
+    "detime_STD_p42_tw126_s126_oscillation_reversion",
+    "detime_STD_p42_tw126_s126_hybrid_regime",
+    "detime_STD_p42_tw126_s126_residual_bollinger",
+    "detime_STD_p42_tw126_s126_trend_macd",
+    "detime_STD_p42_tw126_s126_trend_crossover"
+  ],
+  "method_variant_failed": [],
+  "pairs": [
+    "AUDUSD=X:NZDUSD=X",
+    "EURUSD=X:GBPUSD=X",
+    "CADUSD=X:CHFUSD=X"
+  ],
+  "pair_source": "Learn-Algorithmic-Trading bundled real FX Yahoo Finance exports",
+  "pair_config": {
+    "method": "STL",
+    "period": 42,
+    "train_window": 126,
+    "step": 126,
+    "z_window": 63,
+    "hedge_window": 120,
+    "similarity_window": 120,
+    "entry_z": 1.5,
+    "exit_z": 0.25,
+    "min_trend_corr": 0.5,
+    "min_cycle_corr": 0.25,
+    "max_fair_spread_trend_abs": 0.0025,
+    "max_cointegration_pvalue": 0.1,
+    "require_cointegration": false,
+    "allow_short": true,
+    "max_gross": 1.0,
+    "name": "STL_p42_tw126"
+  },
+  "pair_completed_strategies": [
+    "classic_pair_spread_zscore",
+    "detime_STL_p42_tw126_component_residual_gap",
+    "detime_STL_p42_tw126_fair_spread_deviation",
+    "detime_STL_p42_tw126_cointegration_filtered_residual_gap"
+  ],
+  "fee_bps": 5.0,
+  "slippage_bps": 2.0,
+  "execution_model": "signals at bar t, fill at next open when available",
+  "outputs": {
+    "method_variant_stats": "examples\\quant_trading\\reports\\strategy_expansion\\method_variant_strategy_stats.csv",
+    "component_pair_stats": "examples\\quant_trading\\reports\\strategy_expansion\\component_pair_strategy_stats.csv",
+    "component_pair_diagnostics": "examples\\quant_trading\\reports\\strategy_expansion\\component_pair_diagnostics.csv"
+  }
+}

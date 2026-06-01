@@ -56,5 +56,6 @@ These event-driven frameworks require careful calendar, bundle, and execution
 setup. Keep De-Time feature generation outside the event loop unless you are
 explicitly modeling the cost and latency of online recomputation.
 
-The active six-part column keeps framework adapters as reusable library helpers
-and templates rather than a separate rendered notebook.
+The current rendered notebooks exercise the transparent pandas research
+backtester first, then keep these adapters available as extension points for
+framework-specific studies.

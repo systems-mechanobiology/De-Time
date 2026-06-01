@@ -1,0 +1,2 @@
+ticker,first_timestamp,last_timestamp,observations,close_missing_ratio,volume_missing_ratio,zero_volume_ratio,min_close,max_close,median_volume
+SPY,2018-01-02,2026-05-29,2113,0.0,0.0,0.0,204.94488525390625,756.47998046875,72224700.0

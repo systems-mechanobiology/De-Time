@@ -1,0 +1,4 @@
+method,period,train_window,step,z_window,label,role,name
+STL,42,126,126,63,,custom_grid,STL_p42_tw126_s126
+SSA,42,126,126,63,,custom_grid,SSA_p42_tw126_s126
+STD,42,126,126,63,,custom_grid,STD_p42_tw126_s126

@@ -12,3 +12,12 @@ Run the hardware probe before any claim about full feasibility:
 ```bash
 python examples/quant_trading/scripts/system_probe.py
 ```
+
+## Strategy-lab placement
+
+The strategy lab is CPU-first.  It uses classical decomposition, pandas signal generation, and vectorized next-bar backtesting.  GPU is not required.
+
+- Local Mac / laptop: feasible for bundled GOOG sample and small CSV files.
+- i7 workstation: recommended for larger intraday CSVs and method comparisons.
+- BlueBEAR CPU: recommended for long intraday data, many symbols, or many method/period sweeps.
+- A100 / GPU cluster: not recommended unless a later tutorial adds neural models.

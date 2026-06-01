@@ -17,3 +17,6 @@ quantstats>=0.0.62
 empyrical>=0.5.5
 # Zipline-Reloaded is optional and often requires environment-specific setup.
 # zipline-reloaded>=3.0
+
+# Needed for method=WAVELET in the strategy lab.
+PyWavelets>=1.5

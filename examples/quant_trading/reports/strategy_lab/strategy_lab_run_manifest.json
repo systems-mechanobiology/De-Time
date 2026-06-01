@@ -1,0 +1,34 @@
+{
+  "ticker": "GOOG",
+  "source": "Learn-Algorithmic-Trading GOOG Yahoo Finance export, bundled for offline tutorial smoke tests",
+  "methods": [
+    "STL"
+  ],
+  "period": "42",
+  "train_window": 180,
+  "step": 21,
+  "fee_bps": 5.0,
+  "slippage_bps": 2.0,
+  "periods_per_year": 252,
+  "allow_short_trend": false,
+  "allow_short_reversion": true,
+  "execution_model": "signals at bar t, fill at next open when available",
+  "strategies_completed": [
+    "buy_hold",
+    "classic_sma_20_100",
+    "classic_macd_12_26_9",
+    "classic_turtle_55_20",
+    "classic_bollinger_20_2",
+    "classic_rsi_14",
+    "detime_STL_trend_following",
+    "detime_STL_oscillation_reversion",
+    "detime_STL_hybrid_regime"
+  ],
+  "failed_methods": [],
+  "outputs": {
+    "stats": "examples\\quant_trading\\reports\\strategy_lab\\strategy_lab_strategy_stats.csv",
+    "orders": "examples\\quant_trading\\reports\\strategy_lab\\strategy_lab_orders.csv",
+    "trades": "examples\\quant_trading\\reports\\strategy_lab\\strategy_lab_trades.csv",
+    "charts": "examples\\quant_trading\\reports\\strategy_lab\\charts"
+  }
+}
