@@ -11,6 +11,7 @@ Active tutorial sequence:
 | `04_turtle_donchian_breakout_volume_confirmation.ipynb` | implemented | Donchian/Turtle breakout rewritten with trend, cycle, residual-overextension and volume confirmation. |
 | `05_pairs_spread_decomposition_stat_arb.ipynb` | implemented | Pair spread z-score baselines rewritten as residual spread trading with trend-drift and optional volume/news filters. |
 | `06_cross_sectional_rotation_portfolio.ipynb` | implemented | Cross-sectional momentum and allocation baselines rewritten as De-Time factor scores and portfolios. |
+| `07_native_ssa_high_return_low_drawdown_tutorial.ipynb` | implemented | Native SSA dual-trend mean-reversion replay for selected high-return FX and crypto strategies under a 20% drawdown constraint. |
 
 Legacy indicator-first or earlier draft notebooks are preserved in `_legacy/` for reference only.
 
