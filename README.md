@@ -6,6 +6,7 @@ One Python and CLI interface for trend, oscillation, residual, components, and m
 ![Status: Beta](https://img.shields.io/badge/status-beta-1d4ed8.svg)
 [![Release: 0.1.1](https://img.shields.io/badge/release-0.1.1-0f766e.svg)](CHANGELOG.md)
 [![Docs: GitHub Pages](https://img.shields.io/badge/docs-GitHub_Pages-0b5fff.svg)](https://systems-mechanobiology.github.io/DeTime/)
+[![HF Space: DeTime](https://img.shields.io/badge/HF%20Space-DeTime-ffb000.svg)](https://huggingface.co/spaces/Zipeng365/DeTime)
 ![Python: 3.10+](https://img.shields.io/badge/python-3.10%2B-0f766e.svg)
 [![PyPI](https://img.shields.io/pypi/v/de-time.svg)](https://pypi.org/project/de-time/)
 [![Unit tests: 105 passed](https://img.shields.io/badge/unit%20tests-105%20passed-brightgreen.svg)](tests/)
@@ -34,6 +35,7 @@ local development.
 Fast entry points:
 
 - [Documentation site](https://systems-mechanobiology.github.io/DeTime/)
+- [Hugging Face Space mirror](https://huggingface.co/spaces/Zipeng365/DeTime)
 - [Inline method gallery](https://systems-mechanobiology.github.io/DeTime/notebook-gallery/)
 - [Quant Trading column](https://systems-mechanobiology.github.io/DeTime/tutorials/quant-trading/)
 - [Hot Trend Lab](https://systems-mechanobiology.github.io/DeTime/tutorials/hot-trend-lab/)
@@ -259,6 +261,7 @@ compatibility.
 
 Core docs:
 - Homepage: <https://systems-mechanobiology.github.io/DeTime/>
+- Hugging Face Space mirror: <https://huggingface.co/spaces/Zipeng365/DeTime>
 - Install: <https://systems-mechanobiology.github.io/DeTime/install/>
 - Quickstart: <https://systems-mechanobiology.github.io/DeTime/quickstart/>
 - Methods overview: <https://systems-mechanobiology.github.io/DeTime/methods/>

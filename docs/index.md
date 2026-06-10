@@ -1,8 +1,8 @@
 # DeTime
 
-DeTime gives one Python and CLI interface for trend, oscillation, residual,
-method-specific components, and metadata across univariate and aligned
-multichannel decomposition workflows.
+DeTime is a time-series decomposition Python package and CLI workflow layer for
+trend, oscillation, residual, method-specific components, and metadata across
+univariate and aligned multichannel decomposition workflows.
 
 <div class="hero-panel hero-split linear-theme">
   <div class="hero-copy">
@@ -87,6 +87,7 @@ multichannel decomposition workflows.
 <div class="trust-strip">
   <span class="trust-pill">Canonical import: <code>detime</code></span>
   <span class="trust-pill">Distribution: <code>de-time</code></span>
+  <span class="trust-pill">Hugging Face mirror: <a href="https://huggingface.co/spaces/Zipeng365/DeTime">Zipeng365/DeTime</a></span>
   <span class="trust-pill">Flagship methods: SSA / STD / STDR / MSSA</span>
   <span class="trust-pill">Machine-facing schemas and low-token result modes</span>
 </div>
