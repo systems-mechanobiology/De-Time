@@ -24,7 +24,7 @@ from examples.quant_trading.data import fetch_yahoo_ohlcv_panel, market_data_man
 
 
 def parse_args() -> argparse.Namespace:
-    p = argparse.ArgumentParser(description="Download real OHLCV data for De-Time quant tutorials.")
+    p = argparse.ArgumentParser(description="Download real OHLCV data for DeTime quant tutorials.")
     p.add_argument("--tickers", nargs="+", default=["SPY", "QQQ", "AAPL", "MSFT", "NVDA", "XLK", "XLE", "TLT", "GLD"])
     p.add_argument("--start", default="2018-01-01")
     p.add_argument("--end", default=None)

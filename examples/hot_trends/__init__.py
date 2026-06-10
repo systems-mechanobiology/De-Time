@@ -1,4 +1,4 @@
-"""Hot Trend Lab utilities for real-data De-Time tutorials."""
+"""Hot Trend Lab utilities for real-data DeTime tutorials."""
 
 from .data import HotTrendDataError
 from .decomposition import decompose_table, component_summary, residual_event_table

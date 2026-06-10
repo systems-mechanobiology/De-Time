@@ -118,7 +118,7 @@ class DeTimeSignalStrategy(bt.Strategy):
 ZIPLINE_RELOADED_TEMPLATE = """
 from zipline.api import order_target_percent, record, symbol
 
-# Precompute De-Time signals outside Zipline, store them in a calendar-safe
+# Precompute DeTime signals outside Zipline, store them in a calendar-safe
 # bundle/CSV/Pipeline field, and align them to the Zipline trading calendar.
 
 def initialize(context):
@@ -126,7 +126,7 @@ def initialize(context):
 
 
 def handle_data(context, data):
-    sig = 0  # Replace with a date-indexed De-Time signal lookup.
+    sig = 0  # Replace with a date-indexed DeTime signal lookup.
     if sig > 0:
         order_target_percent(context.asset, 1.0)
     elif sig < 0:

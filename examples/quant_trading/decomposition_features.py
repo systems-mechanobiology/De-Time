@@ -27,7 +27,7 @@ from detime import DecompositionConfig, decompose
 
 
 class DeTimeFeatureError(RuntimeError):
-    """Raised when De-Time feature extraction cannot complete."""
+    """Raised when DeTime feature extraction cannot complete."""
 
 
 @dataclass(frozen=True)
@@ -125,7 +125,7 @@ def estimate_dominant_period(
 
 
 def default_decomposition_params(method: str, period: int) -> dict[str, Any]:
-    """Default De-Time parameters used by the quant tutorial examples."""
+    """Default DeTime parameters used by the quant tutorial examples."""
 
     method = method.upper()
     period = int(period)

@@ -25,7 +25,7 @@ as `tsdecomp.methods.*`, `tsdecomp.leaderboard`, and `tsdecomp.bench_config`.
 
 ## External benchmark bridge
 
-De-Time includes a bridge command for the public Hugging Face bundle
+DeTime includes a bridge command for the public Hugging Face bundle
 [`Zipeng365/TSDecompose-Benchmark`](https://huggingface.co/datasets/Zipeng365/TSDecompose-Benchmark).
 The command downloads the bundle's `code/TSDecompose` source snapshot into a
 local cache and invokes its published paper benchmark runner.
@@ -52,7 +52,7 @@ print(result.leaderboard_path)
 ```
 
 This bridge keeps the benchmark source and benchmark-derived methods outside
-the installable De-Time package while still giving readers a direct
+the installable DeTime package while still giving readers a direct
 reproduction path for the benchmark claims.
 
 ## Release Checks

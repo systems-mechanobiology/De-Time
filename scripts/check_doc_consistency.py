@@ -28,7 +28,7 @@ BANNED_PATTERNS: dict[str, list[str]] = {
     ],
     "docs/comparisons.md": [
         "not erase them",
-        "What De-Time does not claim",
+        "What DeTime does not claim",
     ],
     "docs/reproducibility.md": [
         "GitHub source install",
@@ -52,14 +52,14 @@ BANNED_PATTERNS: dict[str, list[str]] = {
 
 REQUIRED_PATTERNS: dict[str, list[str]] = {
     "README.md": [
-        'python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"',
+        'python -m pip install "git+https://github.com/systems-mechanobiology/DeTime.git"',
         "examples/notebooks/de_time_method_gallery.ipynb",
         "docs/method-matrix.md",
         "detime schema",
         "detime recommend",
     ],
     "docs/install.md": [
-        'python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"',
+        'python -m pip install "git+https://github.com/systems-mechanobiology/DeTime.git"',
         "Planned PyPI install after the release",
         "tsdecomp` executable",
     ],

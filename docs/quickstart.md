@@ -1,9 +1,9 @@
 # Quickstart
 
-Before you start, install the current repository:
+Before you start, install the released package:
 
 ```bash
-python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"
+python -m pip install de-time
 ```
 
 Contributor checkout:

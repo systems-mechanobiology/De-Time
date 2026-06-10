@@ -1,8 +1,8 @@
-# De-Time: Workflow-Oriented Research Software for Reproducible Time-Series Decomposition
+# DeTime: Workflow-Oriented Research Software for Reproducible Time-Series Decomposition
 
 ## Abstract
 
-De-Time is open-source research software for reproducible time-series
+DeTime is open-source research software for reproducible time-series
 decomposition. The package does not introduce a new decomposition algorithm.
 Instead, it provides a coherent software surface for configuring, running,
 profiling, saving, and machine-serving decomposition workflows across several
@@ -26,7 +26,7 @@ creates unnecessary friction when researchers need to compare methods, preserve
 runtime metadata, serialize outputs, or move an analysis from one user or
 machine to another.
 
-De-Time addresses that software problem. Its contribution is therefore not a
+DeTime addresses that software problem. Its contribution is therefore not a
 new algorithm and not a benchmark paper. The contribution is a workflow layer:
 
 - one configuration contract,
@@ -40,7 +40,7 @@ new algorithm and not a benchmark paper. The contribution is a workflow layer:
 This workflow layer is relevant to machine learning practice. In typical ML
 pipelines, decomposition is used for denoising, feature extraction,
 representation shaping, and preprocessing ahead of downstream estimators.
-De-Time targets that workflow friction directly by standardizing
+DeTime targets that workflow friction directly by standardizing
 configuration, results, profiling, and saved outputs across retained
 decomposition families.
 
@@ -78,7 +78,7 @@ methods. In the `0.1.1` candidate, those components were moved out of the main
 package boundary into the companion repository
 `systems-mechanobiology/de-time-bench`.
 
-The main De-Time package does not ship:
+The main DeTime package does not ship:
 
 - leaderboard orchestration as part of the public surface,
 - benchmark configuration helpers as public package features,
@@ -121,17 +121,17 @@ reached `84.00%`.
 
 ## 5. Relationship to related software
 
-De-Time is designed to complement specialist libraries rather than replace
+DeTime is designed to complement specialist libraries rather than replace
 them.
 
-| Package | Where it is deeper | De-Time position |
+| Package | Where it is deeper | DeTime position |
 |---|---|---|
-| [`statsmodels`](https://www.statsmodels.org/) | mature classical decomposition and modeling | De-Time wraps selected classical methods while standardizing the workflow layer |
-| [`PyEMD`](https://github.com/laszukdawid/PyEMD) | deeper EMD-family tooling | De-Time uses EMD-family methods as one family inside a broader workflow contract |
-| [`PyWavelets`](https://pywavelets.readthedocs.io/en/latest/) | deeper wavelet transforms and transform-specific APIs | De-Time exposes wavelet decomposition for workflow consistency, not wavelet leadership |
-| [`PySDKit`](https://pysdkit.readthedocs.io/en/latest/) | broader signal-decomposition toolkit and optional multivariate backends | De-Time uses `PySDKit` selectively for `MVMD` and `MEMD` while maintaining its own config/result layer |
-| [`SSALib`](https://github.com/ADSCIAN/ssalib) | deeper SSA-only environment | De-Time offers SSA as one flagship path inside a cross-family package |
-| [`sktime`](https://www.sktime.net/en/stable/) | current maintained VMD reality plus a broader time-series transform ecosystem | De-Time treats the maintained `sktime` VMD path as the relevant comparison rather than relying on the older standalone `vmdpy` identity |
+| [`statsmodels`](https://www.statsmodels.org/) | mature classical decomposition and modeling | DeTime wraps selected classical methods while standardizing the workflow layer |
+| [`PyEMD`](https://github.com/laszukdawid/PyEMD) | deeper EMD-family tooling | DeTime uses EMD-family methods as one family inside a broader workflow contract |
+| [`PyWavelets`](https://pywavelets.readthedocs.io/en/latest/) | deeper wavelet transforms and transform-specific APIs | DeTime exposes wavelet decomposition for workflow consistency, not wavelet leadership |
+| [`PySDKit`](https://pysdkit.readthedocs.io/en/latest/) | broader signal-decomposition toolkit and optional multivariate backends | DeTime uses `PySDKit` selectively for `MVMD` and `MEMD` while maintaining its own config/result layer |
+| [`SSALib`](https://github.com/ADSCIAN/ssalib) | deeper SSA-only environment | DeTime offers SSA as one flagship path inside a cross-family package |
+| [`sktime`](https://www.sktime.net/en/stable/) | current maintained VMD reality plus a broader time-series transform ecosystem | DeTime treats the maintained `sktime` VMD path as the relevant comparison rather than relying on the older standalone `vmdpy` identity |
 
 The main software claim is therefore not method-count breadth alone. It is the
 combination of:
@@ -144,7 +144,7 @@ combination of:
 
 ## 5.1 Method literature and upstream packages
 
-The retained methods in De-Time are attached to explicit literature references
+The retained methods in DeTime are attached to explicit literature references
 and, where applicable, to the official upstream packages they wrap or compare
 against:
 
@@ -156,7 +156,7 @@ against:
 - `VMD`: Dragomiretskiy and Zosso (2014) ([DOI](https://doi.org/10.1109/TSP.2013.2288675)); package context: [`vmdpy`](https://github.com/vrcarva/vmdpy) and the maintained [`sktime`](https://www.sktime.net/en/stable/) ecosystem
 - `WAVELET`: Mallat (1989) ([IEEE Xplore](https://ieeexplore.ieee.org/document/192463)); upstream package: [`PyWavelets`](https://pywavelets.readthedocs.io/en/latest/)
 - `MVMD` / `MEMD`: Rehman and Aftab (2019) ([arXiv](https://arxiv.org/abs/1907.04509)) and Rehman and Mandic (2010) ([DOI](https://doi.org/10.1098/rspa.2009.0502)); optional backend package: [`PySDKit`](https://pysdkit.readthedocs.io/en/latest/)
-- `GABOR_CLUSTER`: De-Time-specific experimental path supported by classical Gabor time-frequency ideas ([Gabor 1946 PDF](https://www.rctn.org/w/images/b/b6/Gabor.pdf)) and the [`Faiss`](https://github.com/facebookresearch/faiss) similarity-search library rather than by one canonical decomposition package
+- `GABOR_CLUSTER`: DeTime-specific experimental path supported by classical Gabor time-frequency ideas ([Gabor 1946 PDF](https://www.rctn.org/w/images/b/b6/Gabor.pdf)) and the [`Faiss`](https://github.com/facebookresearch/faiss) similarity-search library rather than by one canonical decomposition package
 
 ## 6. Minimal software evidence
 
@@ -176,7 +176,7 @@ the retained flagship package.
 
 ## 7. Limitations and non-goals
 
-De-Time does not claim:
+DeTime does not claim:
 
 - to replace specialist libraries in their deepest method-specific domains,
 - to make every wrapper as mature as the flagship methods,
@@ -191,7 +191,7 @@ uptake.
 
 ## 8. Conclusion
 
-De-Time contributes workflow-oriented research software for reproducible
+DeTime contributes workflow-oriented research software for reproducible
 time-series decomposition. Version `0.1.1` emphasizes a canonical `detime`
 package identity, a narrower and cleaner public software surface, a separation
 from benchmark artifacts, explicit positioning relative to specialist libraries

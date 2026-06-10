@@ -1,12 +1,12 @@
 # Roadmap
 
-This roadmap describes the intended direction for De-Time as a standalone
+This roadmap describes the intended direction for DeTime as a standalone
 open-source decomposition library. It is a planning document, not a promise
 that every item will land on a fixed date.
 
 ## Current position
 
-De-Time is in a standalone-package transition phase:
+DeTime is in a standalone-package transition phase:
 
 - unified Python API and CLI are in place,
 - selected methods already support native acceleration,
@@ -21,7 +21,7 @@ surface, not as a frozen enterprise platform.
 
 ### 1. Stable standalone identity
 
-- finish the De-Time naming transition across package metadata, docs, and
+- finish the DeTime naming transition across package metadata, docs, and
   public entrypoints,
 - preserve compatibility for legacy `tsdecomp` users during the migration,
 - keep install and import paths explicit so users do not need to guess.

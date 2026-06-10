@@ -129,7 +129,7 @@ def download_tsdecompose_benchmark(
 ) -> Path:
     """Download the TSDecompose benchmark source snapshot from Hugging Face.
 
-    The De-Time package does not vendor the benchmark. This helper only caches
+    The DeTime package does not vendor the benchmark. This helper only caches
     the benchmark source bundle so users can run the published runner locally.
     """
 

@@ -13,7 +13,7 @@ import nbformat
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS_DIR = ROOT / "docs"
-GITHUB_BLOB_ROOT = "https://github.com/systems-mechanobiology/De-Time/blob/main"
+GITHUB_BLOB_ROOT = "https://github.com/systems-mechanobiology/DeTime/blob/main"
 
 COLUMNS = [
     {

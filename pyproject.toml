@@ -9,7 +9,7 @@ build-backend = "scikit_build_core.build"
 [project]
 name = "de-time"
 version = "0.1.1"
-description = "De-Time is workflow-oriented research software for reproducible time-series decomposition."
+description = "DeTime is workflow-oriented research software for reproducible time-series decomposition."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
@@ -55,8 +55,14 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+emd = [
+  "EMD-signal>=1.6",
+]
 multivar = [
   "PySDKit>=0.4.23",
+]
+neural = [
+  "torch>=2.0",
 ]
 docs = [
   "mkdocs>=1.6",
@@ -77,10 +83,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/systems-mechanobiology/De-Time"
-Repository = "https://github.com/systems-mechanobiology/De-Time"
-Issues = "https://github.com/systems-mechanobiology/De-Time/issues"
-Documentation = "https://systems-mechanobiology.github.io/De-Time/"
+Homepage = "https://github.com/systems-mechanobiology/DeTime"
+Repository = "https://github.com/systems-mechanobiology/DeTime"
+Issues = "https://github.com/systems-mechanobiology/DeTime/issues"
+Documentation = "https://systems-mechanobiology.github.io/DeTime/"
 
 [project.scripts]
 detime = "detime.cli:main"
@@ -173,7 +179,7 @@ exclude = [
   "site",
   "submission/**",
   "AGENT_*",
-  "De-Time_*.md",
+  "DeTime_*.md",
   "JMLR_*",
   "docs/tutorials/visual-benchmark.md",
   "docs/assets/generated/tutorials/visual-benchmark/**",

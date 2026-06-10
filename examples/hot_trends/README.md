@@ -1,6 +1,6 @@
 # Hot Trend Lab Utilities
 
-This directory contains the public-data loaders, De-Time decomposition helpers,
+This directory contains the public-data loaders, DeTime decomposition helpers,
 source registry, and publication phrasing tables used by the Hot Trend Lab
 notebooks.
 

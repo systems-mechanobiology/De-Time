@@ -1,6 +1,6 @@
 # Hot Trend Lab Integration
 
-This integration adds an English-language Hot Trend Lab tutorial column to the De-Time repository without changing the existing documentation design or rewriting existing pages.
+This integration adds an English-language Hot Trend Lab tutorial column to the DeTime repository without changing the existing documentation design or rewriting existing pages.
 
 Changed existing file:
 

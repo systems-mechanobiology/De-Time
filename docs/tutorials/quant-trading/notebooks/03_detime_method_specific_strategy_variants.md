@@ -2,7 +2,7 @@
 # Strategy Expansion 03 - Method-specific strategy variants
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/03_detime_method_specific_strategy_variants.ipynb"><code>examples/notebooks/quant_trading/03_detime_method_specific_strategy_variants.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/03_detime_method_specific_strategy_variants.ipynb"><code>examples/notebooks/quant_trading/03_detime_method_specific_strategy_variants.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation

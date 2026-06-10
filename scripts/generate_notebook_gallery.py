@@ -246,10 +246,10 @@ def build_notebook() -> nbformat.NotebookNode:
     cells: list[nbformat.NotebookNode] = [
         _markdown_cell(
             """
-            # De-Time Method Gallery
+            # DeTime Method Gallery
 
             This notebook is a runnable onboarding gallery for the retained
-            De-Time method surface. Each section uses the public
+            DeTime method surface. Each section uses the public
             `DecompositionConfig`, `decompose`, and `MethodRegistry` objects.
             """
         ),
@@ -433,7 +433,7 @@ def write_markdown_gallery() -> Path:
     elapsed = time.perf_counter() - start
 
     lines = [
-        "# De-Time Method Gallery",
+        "# DeTime Method Gallery",
         "",
         '<div class="gallery-note">',
         '  <strong>Note</strong><br>',
@@ -518,7 +518,7 @@ def write_markdown_gallery() -> Path:
             "</div>",
             "",
             "The GitHub-rendered notebook is also available at",
-            "[examples/notebooks/de_time_method_gallery.ipynb](https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/de_time_method_gallery.ipynb).",
+            "[examples/notebooks/de_time_method_gallery.ipynb](https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/de_time_method_gallery.ipynb).",
             "",
         ]
     )
@@ -527,7 +527,7 @@ def write_markdown_gallery() -> Path:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Generate the De-Time notebook method gallery.")
+    parser = argparse.ArgumentParser(description="Generate the DeTime notebook method gallery.")
     parser.add_argument(
         "--output",
         type=Path,

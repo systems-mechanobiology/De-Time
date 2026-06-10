@@ -1,5 +1,10 @@
-import numpy as np
 from typing import Dict, Any, List, Optional
+from time import perf_counter
+
+import numpy as np
+
+from .._native import invoke_native
+from ..backends import finalize_result, resolve_backend, split_runtime_params
 from ..core import DecompResult
 from ..registry import MethodRegistry
 from .utils import dominant_frequency
@@ -30,39 +35,67 @@ def select_seasonal_modes(
             break
     return selected
 
-@MethodRegistry.register("VMD")
-def vmd_decompose(
-    y: np.ndarray,
-    params: Dict[str, Any],
-) -> DecompResult:
-    if not _HAS_VMD:
-        raise ImportError("vmdpy is required for VMD decomposition.") from _VMD_IMPORT_ERROR
 
-    cfg = params.copy()
-    
-    # v1.1.0: Auto-calculate K based on periods if not specified
+def _run_vmd_backend(
+    y: np.ndarray,
+    *,
+    cfg: Dict[str, Any],
+    backend: str,
+    seed: int | None,
+) -> tuple[np.ndarray, np.ndarray, Dict[str, Any]]:
     periods = cfg.get("periods", [])
     primary_period = cfg.get("primary_period")
     if not periods and primary_period:
         periods = [primary_period]
     n_periods = max(1, len(periods)) if periods else 1
-    default_K = max(5, 2 * n_periods + 2)  # At least trend + seasonal modes + buffer
-    
+    default_K = max(5, 2 * n_periods + 2)
+
     K = int(cfg.get("K", default_K))
-    alpha = float(cfg.get("alpha", 300.0))  # v1.1.0: reduced from 2000 to 300
+    alpha = float(cfg.get("alpha", 300.0))
     tau = float(cfg.get("tau", 0.0))
     DC = int(cfg.get("DC", 0))
     init = int(cfg.get("init", 1))
     tol = float(cfg.get("tol", 1e-7))
 
+    if backend == "native":
+        payload = invoke_native(
+            "vmd_decompose",
+            np.asarray(y, dtype=float).ravel(),
+            alpha=alpha,
+            tau=tau,
+            K=K,
+            DC=DC,
+            init=init,
+            tol=tol,
+            max_iter=int(cfg.get("max_iter", 500)),
+            seed=42 if seed is None else int(seed),
+        )
+        modes = np.asarray(payload["modes"], dtype=float)
+        omega = np.asarray(payload["omega"], dtype=float)
+        meta = dict(payload.get("meta", {}) or {})
+        return modes, omega, meta
+
+    if not _HAS_VMD:
+        raise ImportError("vmdpy is required for VMD decomposition.") from _VMD_IMPORT_ERROR
+
     modes, _, omega = VMD(y, alpha, tau, K, DC, init, tol)
+    return np.asarray(modes, dtype=float), np.asarray(omega, dtype=float), {}
+
+
+def _assemble_vmd_result(
+    modes: np.ndarray,
+    omega: np.ndarray,
+    *,
+    cfg: Dict[str, Any],
+    backend_meta: Dict[str, Any],
+) -> DecompResult:
     modes = np.asarray(modes, dtype=float)
     if modes.ndim == 1:
         modes = modes[np.newaxis, :]
     omega = np.asarray(omega, dtype=float)
     if omega.ndim == 2:
         omega = omega[-1]
-    
+
     fs = float(cfg.get("fs", 1.0))
     scale = fs / (2 * np.pi) if fs > 0 else 1.0
     freqs = np.abs(omega) * scale
@@ -107,11 +140,38 @@ def vmd_decompose(
         trend=trend,
         season=season,
         residual=residual,
+        components={"modes": modes},
         meta={
-            "method": "VMD",
             "center_frequencies": freqs.tolist(),
             "dominant_frequencies": dom_freqs.tolist(),
             "trend_index": trend_indices,
             "season_indices": seasonal_indices,
+            **backend_meta,
+            "method": "VMD",
         }
+    )
+
+
+@MethodRegistry.register("VMD")
+def vmd_decompose(
+    y: np.ndarray,
+    params: Dict[str, Any],
+) -> DecompResult:
+    started_at = perf_counter()
+    cfg, runtime = split_runtime_params(params)
+    backend = resolve_backend("VMD", runtime, native_methods=("vmd_decompose",))
+    y_arr = np.asarray(y, dtype=float).ravel()
+    modes, omega, backend_meta = _run_vmd_backend(
+        y_arr,
+        cfg=cfg,
+        backend=backend,
+        seed=runtime.seed,
+    )
+    result = _assemble_vmd_result(modes, omega, cfg=cfg, backend_meta=backend_meta)
+    return finalize_result(
+        result,
+        method="VMD",
+        runtime=runtime,
+        backend_used=backend,
+        started_at=started_at,
     )

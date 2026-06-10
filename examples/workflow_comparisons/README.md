@@ -1,7 +1,7 @@
 # Workflow Comparisons
 
 This example contrasts a multi-package specialist glue workflow with the
-equivalent De-Time workflow. Run the script to materialize the JSON summary
+equivalent DeTime workflow. Run the script to materialize the JSON summary
 used by the docs comparison pages.
 
 ```bash

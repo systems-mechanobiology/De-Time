@@ -3,7 +3,7 @@ from __future__ import annotations
 """Column 06: cross-sectional rotation and portfolio construction.
 
 Classic rotation ranks assets by raw trailing return or moving-average state.
-The De-Time rewrite ranks assets by explicit trend quality, cycle timing,
+The DeTime rewrite ranks assets by explicit trend quality, cycle timing,
 residual pullback/overextension, volume participation and decomposition risk.
 """
 

@@ -2,7 +2,7 @@
 # Strategy Lab 02 - Oscillation / residual-reversion strategy
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/02_detime_oscillation_reversion_strategy_lab.ipynb"><code>examples/notebooks/quant_trading/02_detime_oscillation_reversion_strategy_lab.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/02_detime_oscillation_reversion_strategy_lab.ipynb"><code>examples/notebooks/quant_trading/02_detime_oscillation_reversion_strategy_lab.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation
@@ -632,7 +632,7 @@ bt.trades.tail(12)
 
 ```python
 out = CHART_DIR / "notebook_02_oscillation_reversion.png"
-plot_signal_analysis(ohlcv, signal, bt, asset=symbol, output_path=out, title="De-Time STL oscillation / residual reversion strategy")
+plot_signal_analysis(ohlcv, signal, bt, asset=symbol, output_path=out, title="DeTime STL oscillation / residual reversion strategy")
 display(Image(filename=str(out)))
 out.as_posix()
 ```

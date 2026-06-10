@@ -1,8 +1,8 @@
-# Decomposition-First Quant Trading Tutorials with De-Time
+# Decomposition-First Quant Trading Tutorials with DeTime
 
 This tutorial sequence rebuilds the quant-trading examples around one thesis:
 classic technical strategies are rough, implicit estimates of trend, cycle,
-residual deviation, and market participation. De-Time makes those structures
+residual deviation, and market participation. DeTime makes those structures
 explicit before the strategy layer.
 
 The revised tutorial uses a seven-part path rather than a loose collection of
@@ -12,7 +12,7 @@ indicator notebooks.
 to jump directly between Tutorial 00-07, the strategy lab notebooks, and the
 strategy expansion notebooks.
 
-| Tutorial | Status | Topic | Main De-Time role |
+| Tutorial | Status | Topic | Main DeTime role |
 |---|---|---|---|
 | 00 | implemented | roadmap | strategy design map |
 | 01 | implemented | market data and feature factory | price + volume decomposition |
@@ -62,11 +62,11 @@ and the companion pages in the same notebook directory.
 |---|---|
 | `00_decomposition_first_quant_trading_roadmap.ipynb` | Why the tutorial is organized around decomposition rather than isolated indicators. |
 | `01_market_data_and_decomposition_feature_factory.ipynb` | OHLCV audit, period estimation, and walk-forward price/volume feature construction. |
-| `02_decomposition_aware_moving_average_macd.ipynb` | Classical buy-and-hold, dual MA, MACD, multi-MA and momentum compared with De-Time rewrites. |
+| `02_decomposition_aware_moving_average_macd.ipynb` | Classical buy-and-hold, dual MA, MACD, multi-MA and momentum compared with DeTime rewrites. |
 | `03_residual_mean_reversion_rsi_bollinger.ipynb` | Price z-score, RSI, Bollinger and APO baselines rewritten as residual mean-reversion with cycle timing. |
 | `04_turtle_donchian_breakout_volume_confirmation.ipynb` | Donchian/Turtle breakout rewritten with trend, cycle, residual and volume confirmation. |
 | `05_pairs_spread_decomposition_stat_arb.ipynb` | Pair z-score and rolling-beta spread baselines rewritten as residual spread trading with spread-trend drift control. |
-| `06_cross_sectional_rotation_portfolio.ipynb` | Momentum, multi-MA and inverse-volatility rotation compared with De-Time cross-sectional scoring. |
+| `06_cross_sectional_rotation_portfolio.ipynb` | Momentum, multi-MA and inverse-volatility rotation compared with DeTime cross-sectional scoring. |
 | `07_native_ssa_high_return_low_drawdown_tutorial.ipynb` | Native SSA dual-trend mean-reversion replay for selected high-return FX and crypto strategies under a 20% drawdown constraint. |
 
 ## Core design
@@ -106,7 +106,7 @@ delistings, borrow, funding, FX, and execution assumptions.
 |---|---|
 | `data.py` | OHLCV download, panel extraction, archived market-data loader |
 | `classic_indicators.py` | SMA, EMA, MACD, RSI, Bollinger, momentum, APO |
-| `decomposition_features.py` | walk-forward price and volume De-Time features |
+| `decomposition_features.py` | walk-forward price and volume DeTime features |
 | `strategy_baselines.py` | classical baseline weight recipes |
 | `strategy_detime.py` | decomposition-aware strategy recipes |
 | `strategy_pairs.py` | pair spread decomposition and stat-arb recipes |

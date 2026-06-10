@@ -79,6 +79,9 @@ def native_capabilities() -> Dict[str, bool]:
         for name in (
             "ssa_decompose",
             "std_decompose",
+            "ma_baseline_decompose",
+            "mssa_decompose",
+            "vmd_decompose",
             "gabor_stft_rfft",
             "gabor_istft_rfft",
             "gabor_cluster_decompose",

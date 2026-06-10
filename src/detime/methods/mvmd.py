@@ -160,7 +160,7 @@ def _load_optional_backend(method_name: str):
                 return getattr(module, attr_name)
         except Exception as exc:  # pragma: no cover - import path depends on optional dep
             last_error = exc
-    install_hint = "reinstall De-Time with the `multivar` extra"
+    install_hint = "reinstall DeTime with the `multivar` extra"
     raise ImportError(
         f"{method_name} requires an optional multivariate backend. "
         f"To use it, {install_hint}."

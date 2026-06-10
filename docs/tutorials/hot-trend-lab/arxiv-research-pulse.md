@@ -6,7 +6,7 @@ stream changed enough to deserve a closer read.
 
 ## Research questions
 
-| Question | De-Time component | Reader action |
+| Question | DeTime component | Reader action |
 |---|---|---|
 | Which categories are structurally growing? | `trend` | prioritize a monthly field scan |
 | Which categories are deadline-driven? | `season` | compare against conference calendars before writing |

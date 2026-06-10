@@ -55,7 +55,7 @@ Current package version target: `0.1.1`.
 
 ```json
 {
-  "backend": "python",
+  "backend": "auto",
   "channel_names": [
     "channel_a",
     "channel_b",
@@ -72,6 +72,60 @@ Current package version target: `0.1.1`.
 ```
 
 ## Method-specific parameters
+
+### `AMD_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Dominant period hint used by neural block heuristics. |
+| `fit_scope` | str | no | `"full"` | Whether to fit templates on the full series or a prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `multiscale_windows` | list[int] \| None | no | `None` | Smoothing windows averaged into the multiscale trend. |
+
+Example config:
+
+```json
+{
+  "method": "AMD_BLOCK",
+  "params": {
+    "fit_scope": "full",
+    "multiscale_windows": [
+      13,
+      25,
+      49
+    ],
+    "primary_period": 12
+  }
+}
+```
+
+### `AUTOFORMER_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.moving_mean`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `moving_avg` | int \| None | no | `None` | Moving-average window used by the extracted forecasting block. |
+| `window` | int \| None | no | `None` | Alias for moving_avg. |
+| `primary_period` | int \| None | no | `None` | Period hint used to derive the moving-average window. |
+
+Example config:
+
+```json
+{
+  "method": "AUTOFORMER_BLOCK",
+  "params": {
+    "moving_avg": 25,
+    "primary_period": 12
+  }
+}
+```
 
 ### `CEEMDAN`
 
@@ -95,6 +149,58 @@ Example config:
     "noise_width": 0.05,
     "primary_period": 12,
     "trials": 20
+  }
+}
+```
+
+### `DELELSTM_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Dominant period hint used by neural block heuristics. |
+| `fit_scope` | str | no | `"full"` | Whether to fit templates on the full series or a prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `alpha` | float | no | `0.4` | Holt level smoothing coefficient. |
+| `beta` | float | no | `0.2` | Holt slope smoothing coefficient. |
+
+Example config:
+
+```json
+{
+  "method": "DELELSTM_BLOCK",
+  "params": {
+    "alpha": 0.2,
+    "beta": 0.1,
+    "fit_scope": "full",
+    "primary_period": 12
+  }
+}
+```
+
+### `DLINEAR_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.moving_mean`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `moving_avg` | int \| None | no | `None` | Moving-average window used by the extracted forecasting block. |
+| `window` | int \| None | no | `None` | Alias for moving_avg. |
+| `primary_period` | int \| None | no | `None` | Period hint used to derive the moving-average window. |
+
+Example config:
+
+```json
+{
+  "method": "DLINEAR_BLOCK",
+  "params": {
+    "moving_avg": 25,
+    "primary_period": 12
   }
 }
 ```
@@ -125,6 +231,35 @@ Example config:
 }
 ```
 
+### `FREQMOE_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Dominant period hint used by neural block heuristics. |
+| `fit_scope` | str | no | `"full"` | Whether to fit templates on the full series or a prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `trend_window` | int \| None | no | `None` | Moving-average trend window. |
+| `num_bands` | int | no | `4` | Number of frequency bands in the mixture. |
+| `expert_width` | int | no | `64` | Frequency expert width used by the scaffold. |
+
+Example config:
+
+```json
+{
+  "method": "FREQMOE_BLOCK",
+  "params": {
+    "expert_width": 64,
+    "fit_scope": "full",
+    "num_bands": 4,
+    "primary_period": 12
+  }
+}
+```
+
 ### `GABOR_CLUSTER`
 
 - Input mode: `univariate`
@@ -145,6 +280,55 @@ Example config:
   "method": "GABOR_CLUSTER",
   "params": {
     "model_path": "path/to/trained-gabor-model.pkl"
+  }
+}
+```
+
+### `INPARFORMER_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Dominant period hint used by neural block heuristics. |
+| `fit_scope` | str | no | `"full"` | Whether to fit templates on the full series or a prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `trend_window` | int \| None | no | `None` | Moving-average trend window. |
+
+Example config:
+
+```json
+{
+  "method": "INPARFORMER_BLOCK",
+  "params": {
+    "fit_scope": "full",
+    "primary_period": 12,
+    "trend_window": 25
+  }
+}
+```
+
+### `LEDDAM_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.ld_trend`, `components.kernel`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `kernel_size` | int | no | `25` | Odd Gaussian smoothing kernel size. |
+| `sigma` | float | no | `1.0` | Gaussian smoothing kernel sigma. |
+
+Example config:
+
+```json
+{
+  "method": "LEDDAM_BLOCK",
+  "params": {
+    "kernel_size": 25,
+    "sigma": 1.0
   }
 }
 ```
@@ -196,6 +380,30 @@ Example config:
 }
 ```
 
+### `MOVING_AVERAGE_DECOMPOSITION_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.moving_mean`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `moving_avg` | int \| None | no | `None` | Moving-average window used by the extracted forecasting block. |
+| `window` | int \| None | no | `None` | Alias for moving_avg. |
+| `primary_period` | int \| None | no | `None` | Period hint used to derive the moving-average window. |
+
+Example config:
+
+```json
+{
+  "method": "MOVING_AVERAGE_DECOMPOSITION_BLOCK",
+  "params": {
+    "moving_avg": 25,
+    "primary_period": 12
+  }
+}
+```
+
 ### `MSSA`
 
 - Input mode: `multivariate`
@@ -215,7 +423,7 @@ Example config:
 
 ```json
 {
-  "backend": "python",
+  "backend": "auto",
   "channel_names": [
     "channel_a",
     "channel_b",
@@ -279,6 +487,72 @@ Example config:
     "K": 4,
     "alpha": 2000.0,
     "primary_period": 12
+  }
+}
+```
+
+### `NBEATS_INTERPRETABLE`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `degree_of_polynomial` | int | no | `3` | Polynomial trend basis degree. |
+| `num_harmonics` | int | no | `8` | Number of Fourier harmonics in the seasonality stack. |
+| `trend_blocks` | int | no | `2` | Number of interpretable trend blocks. |
+| `seasonality_blocks` | int | no | `2` | Number of interpretable seasonality blocks. |
+| `layers` | int | no | `6` | Fully connected layers per block. |
+| `layer_size` | int | no | `128` | Hidden width for each block. |
+| `fit_scope` | str | no | `"full"` | Whether to fit on the full series or prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `n_epochs` | int | no | `200` | Maximum torch optimization epochs. |
+| `patience` | int | no | `40` | Early-stopping patience. |
+| `restarts` | int | no | `2` | Number of random restarts. |
+| `learning_rate` | float | no | `0.001` | Adam learning rate. |
+| `weight_decay` | float | no | `0.0001` | Adam weight decay. |
+| `device` | str | no | `"auto"` | Torch device: auto, cpu, cuda, or gpu. |
+| `seed` | int | no | `0` | Base random seed for torch restarts. |
+
+Example config:
+
+```json
+{
+  "method": "NBEATS_INTERPRETABLE",
+  "params": {
+    "fit_scope": "full",
+    "n_epochs": 200,
+    "num_harmonics": 8,
+    "restarts": 2
+  }
+}
+```
+
+### `PARSIMONY_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Dominant period hint used by neural block heuristics. |
+| `fit_scope` | str | no | `"full"` | Whether to fit templates on the full series or a prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `trend_window` | int \| None | no | `None` | Moving-average trend window. |
+| `num_harmonics` | int | no | `2` | Number of harmonic seasonal terms. |
+
+Example config:
+
+```json
+{
+  "method": "PARSIMONY_BLOCK",
+  "params": {
+    "fit_scope": "full",
+    "num_harmonics": 2,
+    "primary_period": 12,
+    "trend_window": 13
   }
 }
 ```
@@ -412,6 +686,92 @@ Example config:
 }
 ```
 
+### `ST_MTM_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Dominant period hint used by neural block heuristics. |
+| `fit_scope` | str | no | `"full"` | Whether to fit templates on the full series or a prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `trend_window` | int \| None | no | `None` | Moving-average trend window. |
+| `season_smooth_window` | int \| None | no | `None` | Smoother applied to the periodic seasonal template. |
+
+Example config:
+
+```json
+{
+  "method": "ST_MTM_BLOCK",
+  "params": {
+    "fit_scope": "full",
+    "primary_period": 12,
+    "season_smooth_window": 7,
+    "trend_window": 13
+  }
+}
+```
+
+### `TIMEKAN_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Dominant period hint used by neural block heuristics. |
+| `fit_scope` | str | no | `"full"` | Whether to fit templates on the full series or a prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `trend_window` | int \| None | no | `None` | Moving-average trend window. |
+| `num_bands` | int | no | `2` | Number of dominant periods/templates to blend. |
+| `kan_width` | int | no | `32` | KAN-inspired width used to choose harmonic capacity. |
+
+Example config:
+
+```json
+{
+  "method": "TIMEKAN_BLOCK",
+  "params": {
+    "fit_scope": "full",
+    "kan_width": 32,
+    "num_bands": 2,
+    "primary_period": 12
+  }
+}
+```
+
+### `TIMES2D_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `primary_period` | int \| None | no | `None` | Dominant period hint used by neural block heuristics. |
+| `fit_scope` | str | no | `"full"` | Whether to fit templates on the full series or a prefix window. |
+| `train_fraction` | float | no | `0.6` | Prefix fraction used when fit_scope='prefix'. |
+| `top_k_periods` | int | no | `2` | Number of dominant FFT periods to retain. |
+| `num_harmonics` | int | no | `1` | Number of harmonics per selected period. |
+| `trend_window` | int \| None | no | `None` | Moving-average trend window. |
+
+Example config:
+
+```json
+{
+  "method": "TIMES2D_BLOCK",
+  "params": {
+    "fit_scope": "full",
+    "num_harmonics": 1,
+    "primary_period": 12,
+    "top_k_periods": 2
+  }
+}
+```
+
 ### `VMD`
 
 - Input mode: `univariate`
@@ -441,6 +801,34 @@ Example config:
 }
 ```
 
+### `WAVEFORM_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `wavelet` | str | no | `"db4"` | PyWavelets wavelet family name. |
+| `level` | int | no | `3` | Wavelet decomposition depth. |
+| `season_levels` | list[int] | no | `[1, 2]` | Detail coefficient levels assigned to the seasonal component. |
+
+Example config:
+
+```json
+{
+  "method": "WAVEFORM_BLOCK",
+  "params": {
+    "level": 3,
+    "season_levels": [
+      1,
+      2
+    ],
+    "wavelet": "sym4"
+  }
+}
+```
+
 ### `WAVELET`
 
 - Input mode: `univariate`
@@ -462,6 +850,61 @@ Example config:
   "params": {
     "level": 3,
     "wavelet": "db4"
+  }
+}
+```
+
+### `WAVELETMIXER_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `wavelet` | str | no | `"sym4"` | PyWavelets wavelet family name. |
+| `level` | int | no | `4` | Wavelet decomposition depth. |
+| `season_levels` | list[int] | no | `[1, 2, 3]` | Detail coefficient levels assigned to the seasonal component. |
+
+Example config:
+
+```json
+{
+  "method": "WAVELETMIXER_BLOCK",
+  "params": {
+    "level": 3,
+    "season_levels": [
+      1,
+      2,
+      3
+    ],
+    "wavelet": "coif1"
+  }
+}
+```
+
+### `XPATCH_BLOCK`
+
+- Input mode: `univariate`
+- Maturity: `experimental`
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+
+| Parameter | Type | Required | Default | Description |
+|---|---|---:|---|---|
+| `ma_type` | str | no | `"ema"` | Smoothing type, either 'ema' or 'dema'. |
+| `trend_window` | int \| None | no | `None` | Window used to derive the EMA alpha. |
+| `season_smooth` | int \| None | no | `None` | Optional moving-average smoother for the seasonal residual. |
+| `alpha` | float \| None | no | `None` | EMA or DEMA level smoothing coefficient. |
+| `beta` | float \| None | no | `None` | DEMA slope smoothing coefficient. |
+
+Example config:
+
+```json
+{
+  "method": "XPATCH_BLOCK",
+  "params": {
+    "season_smooth": 7,
+    "trend_window": 25
   }
 }
 ```

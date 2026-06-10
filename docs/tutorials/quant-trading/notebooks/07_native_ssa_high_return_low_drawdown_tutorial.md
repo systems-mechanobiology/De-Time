@@ -2,7 +2,7 @@
 # Native SSA high-return / low-drawdown strategy tutorial
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/07_native_ssa_high_return_low_drawdown_tutorial.ipynb"><code>examples/notebooks/quant_trading/07_native_ssa_high_return_low_drawdown_tutorial.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/07_native_ssa_high_return_low_drawdown_tutorial.ipynb"><code>examples/notebooks/quant_trading/07_native_ssa_high_return_low_drawdown_tutorial.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation
@@ -27,7 +27,7 @@
 - `GBPJPY`: FX, 2x notional cap, long/short, 8.41% total return, 92.86% trade win rate, -0.95% maximum drawdown in the search replay.
 - `SOLUSDT`: crypto spot, long-only, 38.87% total return, 54.37% trade win rate, -4.42% maximum drawdown in the search replay.
 
-The strategy is named **SSA strategy** throughout the plots. It uses De-Time's SSA decomposition as the fast and slow trend estimator; it does not use a separate oscillator-baseline signal here.
+The strategy is named **SSA strategy** throughout the plots. It uses DeTime's SSA decomposition as the fast and slow trend estimator; it does not use a separate oscillator-baseline signal here.
 
 ## Strategy logic
 
@@ -52,7 +52,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from io import BytesIO
 from pathlib import Path
-import sys
 from typing import Any
 
 import numpy as np
@@ -75,15 +74,7 @@ def display_png_figure(fig, *, dpi: int = 160) -> None:
     else:
         print(fig)
 
-ROOT = Path.cwd().resolve()
-for candidate in [ROOT, *ROOT.parents]:
-    if (candidate / "src" / "detime").exists():
-        ROOT = candidate
-        break
-
-for candidate in (ROOT / "src", ROOT / "examples", ROOT):
-    if str(candidate) not in sys.path:
-        sys.path.insert(0, str(candidate))
+PROJECT_DIR = Path.cwd().resolve()
 
 from detime import DecompositionConfig, decompose, native_capabilities, native_extension_available
 
@@ -91,7 +82,7 @@ pd.set_option("display.max_columns", 80)
 pd.set_option("display.width", 160)
 plt.style.use("seaborn-v0_8-whitegrid")
 
-print("repository root:", ROOT)
+print("working directory:", PROJECT_DIR)
 print("native SSA available:", native_extension_available())
 print("native capabilities:", native_capabilities() if native_extension_available() else {})
 ```
@@ -99,7 +90,7 @@ print("native capabilities:", native_capabilities() if native_extension_availabl
 <div class="gallery-out notebook-output">
 <div class="notebook-output-label">stdout</div>
 ```text
-repository root: /rds/projects/s/spillf-systems-mechanobiology-health-disease/Zipeng/Detime/De-Time-main
+repository root: /rds/projects/s/spillf-systems-mechanobiology-health-disease/Zipeng/Detime/DeTime-main
 native SSA available: True
 native capabilities: {'ssa_decompose': True, 'std_decompose': True, 'gabor_stft_rfft': False, 'gabor_istft_rfft': False, 'gabor_cluster_decompose': False}
 ```
@@ -407,16 +398,16 @@ pd.DataFrame(
 <div class="notebook-input-label">In [4]</div>
 
 ```python
-DATA_ROOT = ROOT / "examples" / "quant_trading" / "data" / "intraday_crypto_fx"
+DATA_ROOT = PROJECT_DIR / "examples" / "quant_trading" / "data" / "intraday_crypto_fx"
 MANIFEST_PATHS = [
-    ROOT / "examples" / "quant_trading" / "reports" / "intraday_fx_3m_data" / "intraday_download_manifest.csv",
-    ROOT / "examples" / "quant_trading" / "reports" / "intraday_crypto_3m_data" / "intraday_download_manifest.csv",
+    PROJECT_DIR / "examples" / "quant_trading" / "reports" / "intraday_fx_3m_data" / "intraday_download_manifest.csv",
+    PROJECT_DIR / "examples" / "quant_trading" / "reports" / "intraday_crypto_3m_data" / "intraday_download_manifest.csv",
 ]
 
 
 def _as_repo_path(path: str | Path) -> Path:
     p = Path(path)
-    return p if p.is_absolute() else ROOT / p
+    return p if p.is_absolute() else PROJECT_DIR / p
 
 
 def find_symbol_csv(symbol: str, *, bar_size: str = "3m") -> Path:
@@ -1340,7 +1331,7 @@ for symbol, result in results.items():
 - The drawdown panel is the running percentage drawdown from each curve's own high-water mark. The dashed line marks the 20% drawdown constraint.
 - The monthly table is separate from the chart panels so it does not cover the equity curve.
 - `round_trips` counts completed trades: one entry plus one exit is one round trip.
-- The search table at the top records the full BlueBEAR replay. Re-running this notebook should be close, but exact values can differ if the data file, De-Time native backend, or dependency versions differ.
+- The search table at the top records the full BlueBEAR replay. Re-running this notebook should be close, but exact values can differ if the data file, DeTime native backend, or dependency versions differ.
 
 ## Extending the search
 

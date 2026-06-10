@@ -528,7 +528,7 @@ def main():
     p_profile.add_argument("--output", help="Optional output file for the profile report")
     p_profile.set_defaults(func=cmd_profile)
 
-    p_version = subparsers.add_parser("version", help="Print the installed De-Time version")
+    p_version = subparsers.add_parser("version", help="Print the installed DeTime version")
     p_version.set_defaults(func=cmd_version)
 
     p_schema = subparsers.add_parser("schema", help="Print or save packaged JSON schemas")
@@ -567,7 +567,7 @@ def main():
     )
     p_benchmark.add_argument(
         "--benchmark-dir",
-        help="Existing local code/TSDecompose benchmark directory. If omitted, De-Time downloads the HF source snapshot.",
+        help="Existing local code/TSDecompose benchmark directory. If omitted, DeTime downloads the HF source snapshot.",
     )
     p_benchmark.add_argument(
         "--cache-dir",

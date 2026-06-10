@@ -1,8 +1,8 @@
 # Changelog
 
-All notable changes to De-Time are documented in this file.
+All notable changes to DeTime are documented in this file.
 
-The project brand is **De-Time**, the PyPI distribution is `de-time`, the
+The project brand is **DeTime**, the PyPI distribution is `de-time`, the
 preferred Python import path is `detime`, and the legacy `tsdecomp` import/CLI
 aliases remain available for compatibility.
 

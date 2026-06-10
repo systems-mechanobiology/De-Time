@@ -14,7 +14,7 @@ OUTPUT_DIR = ROOT / "docs" / "assets" / "generated" / "evidence"
 
 CAPABILITY_MATRIX = [
     {
-        "package": "De-Time",
+        "package": "DeTime",
         "primary_scope": "workflow-oriented decomposition layer",
         "unified_config_object": "yes",
         "unified_result_object": "yes",
@@ -108,7 +108,7 @@ CAPABILITY_MATRIX = [
 
 INSTALL_MATRIX = [
     {
-        "package": "De-Time",
+        "package": "DeTime",
         "public_release_story": f"0.1.1 target from main",
         "pypi_path": "tag-driven publish workflow",
         "github_release": "de-time-v0.1.1",
@@ -235,7 +235,7 @@ FAMILY_FAIRNESS = [
 
 AGENT_MATRIX = [
     {
-        "package": "De-Time",
+        "package": "DeTime",
         "json_schema_assets": "yes",
         "compact_result_modes": "full/summary/meta",
         "recommend_interface": "yes",
@@ -358,7 +358,7 @@ def main() -> int:
     markdown_lines = [
         "# Comparison Evidence",
         "",
-        f"Generated for De-Time `{__version__}` on {payload['generated_at']}.",
+        f"Generated for DeTime `{__version__}` on {payload['generated_at']}.",
         "",
         "## Capability matrix",
         "",

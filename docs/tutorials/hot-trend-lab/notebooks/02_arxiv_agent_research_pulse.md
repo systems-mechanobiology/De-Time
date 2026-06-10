@@ -2,7 +2,7 @@
 # arXiv Agent and Coding-Agent Research Pulse
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/02_arxiv_agent_research_pulse.ipynb"><code>examples/notebooks/hot_trends/02_arxiv_agent_research_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/hot_trends/02_arxiv_agent_research_pulse.ipynb"><code>examples/notebooks/hot_trends/02_arxiv_agent_research_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Executed Notebook
@@ -1132,7 +1132,7 @@ plt.show()
 outline = pd.DataFrame([
     {"section": "Question", "content": "Which agent-related research topic is accelerating?"},
     {"section": "Source", "content": "arXiv API counts by query and submitted month."},
-    {"section": "De-Time table", "content": "trend slope, cycle strength, residual shock rank."},
+    {"section": "DeTime table", "content": "trend slope, cycle strength, residual shock rank."},
     {"section": "Interpretation scope", "content": "arXiv counts measure preprint volume; quality and adoption require separate evidence."},
 ])
 outline
@@ -1176,7 +1176,7 @@ outline
     </tr>
     <tr>
       <th>2</th>
-      <td>De-Time table</td>
+      <td>DeTime table</td>
       <td>trend slope, cycle strength, residual shock rank.</td>
     </tr>
     <tr>

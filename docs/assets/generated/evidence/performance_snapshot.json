@@ -1,11 +1,14 @@
 {
-  "generated_at": "2026-04-14T22:07:09.238739+00:00",
+  "generated_at": "2026-06-09T16:33:29.534367+00:00",
   "native_capabilities": {
-    "gabor_cluster_decompose": false,
-    "gabor_istft_rfft": false,
-    "gabor_stft_rfft": false,
+    "gabor_cluster_decompose": true,
+    "gabor_istft_rfft": true,
+    "gabor_stft_rfft": true,
+    "ma_baseline_decompose": true,
+    "mssa_decompose": true,
     "ssa_decompose": true,
-    "std_decompose": true
+    "std_decompose": true,
+    "vmd_decompose": true
   },
   "package_version": "0.1.1",
   "platform": {
@@ -17,134 +20,366 @@
     {
       "backend_requested": "python",
       "backend_used": "python",
-      "max_ms": 14.6175,
-      "mean_ms": 14.239325,
+      "max_ms": 14.132,
+      "mean_ms": 13.667625,
       "method": "SSA",
-      "min_ms": 13.8793,
+      "min_ms": 13.3702,
       "params": {
         "primary_period": 12,
         "rank": 8,
         "window": 36
       },
       "samples_ms": [
-        14.391,
-        14.6175,
-        14.0695,
-        13.8793
+        14.132,
+        13.3702,
+        13.5981,
+        13.5702
       ],
-      "series_length": 240
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
     },
     {
       "backend_requested": "native",
       "backend_used": "native",
-      "max_ms": 1.9205,
-      "mean_ms": 1.832575,
+      "max_ms": 1.9527,
+      "mean_ms": 1.9056,
       "method": "SSA",
-      "min_ms": 1.7302,
+      "min_ms": 1.8617,
       "params": {
         "primary_period": 12,
         "rank": 8,
         "window": 36
       },
       "samples_ms": [
-        1.9205,
-        1.7302,
-        1.8886,
-        1.791
+        1.9527,
+        1.8902,
+        1.9178,
+        1.8617
       ],
-      "series_length": 240
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
     },
     {
       "backend_requested": "python",
       "backend_used": "python",
-      "max_ms": 0.2941,
-      "mean_ms": 0.1813,
+      "max_ms": 0.2027,
+      "mean_ms": 0.152525,
       "method": "STD",
-      "min_ms": 0.131,
+      "min_ms": 0.1283,
       "params": {
         "period": 12
       },
       "samples_ms": [
-        0.2941,
-        0.1684,
+        0.2027,
+        0.1474,
         0.1317,
-        0.131
+        0.1283
       ],
-      "series_length": 240
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
     },
     {
       "backend_requested": "native",
       "backend_used": "native",
-      "max_ms": 0.0547,
-      "mean_ms": 0.031125,
+      "max_ms": 0.0376,
+      "mean_ms": 0.023525,
       "method": "STD",
-      "min_ms": 0.0193,
+      "min_ms": 0.0158,
       "params": {
         "period": 12
       },
       "samples_ms": [
-        0.0547,
-        0.0253,
-        0.0193,
-        0.0252
+        0.0376,
+        0.0197,
+        0.0158,
+        0.021
       ],
-      "series_length": 240
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
     },
     {
       "backend_requested": "python",
       "backend_used": "python",
-      "max_ms": 0.211,
-      "mean_ms": 0.1915,
+      "max_ms": 0.1912,
+      "mean_ms": 0.17625,
       "method": "STDR",
-      "min_ms": 0.1818,
+      "min_ms": 0.1708,
       "params": {
         "period": 12
       },
       "samples_ms": [
-        0.211,
-        0.1903,
-        0.1829,
-        0.1818
+        0.1912,
+        0.1717,
+        0.1713,
+        0.1708
       ],
-      "series_length": 240
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
     },
     {
       "backend_requested": "native",
       "backend_used": "native",
-      "max_ms": 0.0267,
-      "mean_ms": 0.02055,
+      "max_ms": 0.0213,
+      "mean_ms": 0.017775,
       "method": "STDR",
-      "min_ms": 0.0176,
+      "min_ms": 0.0154,
       "params": {
         "period": 12
       },
       "samples_ms": [
-        0.0267,
-        0.0201,
-        0.0178,
-        0.0176
+        0.0213,
+        0.0182,
+        0.0162,
+        0.0154
       ],
-      "series_length": 240
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
+    },
+    {
+      "backend_requested": "python",
+      "backend_used": "python",
+      "max_ms": 0.0948,
+      "mean_ms": 0.070725,
+      "method": "MA_BASELINE",
+      "min_ms": 0.0596,
+      "params": {
+        "season_period": 12,
+        "trend_window": 7
+      },
+      "samples_ms": [
+        0.0948,
+        0.0657,
+        0.0628,
+        0.0596
+      ],
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
+    },
+    {
+      "backend_requested": "native",
+      "backend_used": "native",
+      "max_ms": 0.0197,
+      "mean_ms": 0.014825,
+      "method": "MA_BASELINE",
+      "min_ms": 0.0121,
+      "params": {
+        "season_period": 12,
+        "trend_window": 7
+      },
+      "samples_ms": [
+        0.0197,
+        0.0135,
+        0.0121,
+        0.014
+      ],
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
+    },
+    {
+      "backend_requested": "python",
+      "backend_used": "python",
+      "max_ms": 93.8425,
+      "mean_ms": 70.039125,
+      "method": "MSSA",
+      "min_ms": 59.3998,
+      "params": {
+        "primary_period": 12,
+        "rank": 8,
+        "window": 36
+      },
+      "samples_ms": [
+        59.3998,
+        59.7036,
+        67.2106,
+        93.8425
+      ],
+      "series_length": 240,
+      "series_shape": [
+        240,
+        3
+      ]
+    },
+    {
+      "backend_requested": "native",
+      "backend_used": "native",
+      "max_ms": 30.6718,
+      "mean_ms": 25.727025,
+      "method": "MSSA",
+      "min_ms": 23.3225,
+      "params": {
+        "primary_period": 12,
+        "rank": 8,
+        "window": 36
+      },
+      "samples_ms": [
+        30.6718,
+        25.2816,
+        23.6322,
+        23.3225
+      ],
+      "series_length": 240,
+      "series_shape": [
+        240,
+        3
+      ]
+    },
+    {
+      "backend_requested": "python",
+      "backend_used": "python",
+      "max_ms": 50.7097,
+      "mean_ms": 50.13955,
+      "method": "VMD",
+      "min_ms": 49.6465,
+      "params": {
+        "K": 5,
+        "alpha": 300.0,
+        "primary_period": 12
+      },
+      "samples_ms": [
+        50.7097,
+        50.1903,
+        50.0117,
+        49.6465
+      ],
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
+    },
+    {
+      "backend_requested": "native",
+      "backend_used": "native",
+      "max_ms": 15.2003,
+      "mean_ms": 14.48235,
+      "method": "VMD",
+      "min_ms": 14.138,
+      "params": {
+        "K": 5,
+        "alpha": 300.0,
+        "primary_period": 12
+      },
+      "samples_ms": [
+        15.2003,
+        14.445,
+        14.138,
+        14.1461
+      ],
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
+    },
+    {
+      "backend_requested": "python",
+      "backend_used": "python",
+      "max_ms": 6.0536,
+      "mean_ms": 2.694275,
+      "method": "GABOR_CLUSTER",
+      "min_ms": 1.5366,
+      "params": {
+        "hop": 16,
+        "model": "synthetic_gabor_centroids",
+        "n_clusters": 6,
+        "n_fft": 64,
+        "trend_freq_thr": 0.15,
+        "win_len": 32
+      },
+      "samples_ms": [
+        6.0536,
+        1.6285,
+        1.5366,
+        1.5584
+      ],
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
+    },
+    {
+      "backend_requested": "native",
+      "backend_used": "native",
+      "max_ms": 0.2305,
+      "mean_ms": 0.19515,
+      "method": "GABOR_CLUSTER",
+      "min_ms": 0.1764,
+      "params": {
+        "hop": 16,
+        "model": "synthetic_gabor_centroids",
+        "n_clusters": 6,
+        "n_fft": 64,
+        "trend_freq_thr": 0.15,
+        "win_len": 32
+      },
+      "samples_ms": [
+        0.2305,
+        0.19,
+        0.1837,
+        0.1764
+      ],
+      "series_length": 240,
+      "series_shape": [
+        240
+      ]
     }
   ],
   "summary": [
     {
       "method": "SSA",
-      "native_mean_ms": 1.832575,
-      "python_mean_ms": 14.239325,
-      "speedup": 7.770119
+      "native_mean_ms": 1.9056,
+      "python_mean_ms": 13.667625,
+      "speedup": 7.172347
     },
     {
       "method": "STD",
-      "native_mean_ms": 0.031125,
-      "python_mean_ms": 0.1813,
-      "speedup": 5.8249
+      "native_mean_ms": 0.023525,
+      "python_mean_ms": 0.152525,
+      "speedup": 6.483528
     },
     {
       "method": "STDR",
-      "native_mean_ms": 0.02055,
-      "python_mean_ms": 0.1915,
-      "speedup": 9.318735
+      "native_mean_ms": 0.017775,
+      "python_mean_ms": 0.17625,
+      "speedup": 9.915612
+    },
+    {
+      "method": "MA_BASELINE",
+      "native_mean_ms": 0.014825,
+      "python_mean_ms": 0.070725,
+      "speedup": 4.770658
+    },
+    {
+      "method": "MSSA",
+      "native_mean_ms": 25.727025,
+      "python_mean_ms": 70.039125,
+      "speedup": 2.722395
+    },
+    {
+      "method": "VMD",
+      "native_mean_ms": 14.48235,
+      "python_mean_ms": 50.13955,
+      "speedup": 3.462114
+    },
+    {
+      "method": "GABOR_CLUSTER",
+      "native_mean_ms": 0.19515,
+      "python_mean_ms": 2.694275,
+      "speedup": 13.806175
     }
   ]
 }

@@ -2,7 +2,7 @@
 # Tutorial 03 - Residual mean reversion: RSI, Bollinger and residual bands
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/03_residual_mean_reversion_rsi_bollinger.ipynb"><code>examples/notebooks/quant_trading/03_residual_mean_reversion_rsi_bollinger.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/03_residual_mean_reversion_rsi_bollinger.ipynb"><code>examples/notebooks/quant_trading/03_residual_mean_reversion_rsi_bollinger.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation
@@ -24,7 +24,7 @@
 
 ## Executed Notebook
 
-Classical mean reversion asks whether raw price is far from a rolling reference. The De-Time version asks a narrower question: after the current trend and cycle are removed, is the residual unusually cheap or expensive?
+Classical mean reversion asks whether raw price is far from a rolling reference. The DeTime version asks a narrower question: after the current trend and cycle are removed, is the residual unusually cheap or expensive?
 
 The examples keep the classical baselines visible: RSI, Bollinger, raw price z-score and APO. The decomposition-aware versions trade residual pressure and use cycle, trend and volume state as gates.
 
@@ -256,7 +256,7 @@ plt.show()
 </div>
 </div>
 
-## 3. De-Time residual, cycle, trend and volume features
+## 3. DeTime residual, cycle, trend and volume features
 
 The feature factory uses walk-forward decomposition. The latest feature at each step is carried forward until the next training window closes, avoiding full-sample decomposition leakage.
 
@@ -616,7 +616,7 @@ plt.show()
 
 ## 4. Residual reversion strategies
 
-The De-Time variants do not directly buy a lower band break. They require a negative residual, a non-broken trend state, a turning cycle and non-weak volume participation.
+The DeTime variants do not directly buy a lower band break. They require a negative residual, a non-broken trend state, a turning cycle and non-weak volume participation.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [7]</div>

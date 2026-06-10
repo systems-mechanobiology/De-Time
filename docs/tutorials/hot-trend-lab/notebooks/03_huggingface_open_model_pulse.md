@@ -2,7 +2,7 @@
 # Hugging Face Open-Model Pulse
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/03_huggingface_open_model_pulse.ipynb"><code>examples/notebooks/hot_trends/03_huggingface_open_model_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/hot_trends/03_huggingface_open_model_pulse.ipynb"><code>examples/notebooks/hot_trends/03_huggingface_open_model_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Executed Notebook

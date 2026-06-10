@@ -53,7 +53,7 @@ def ceemdan_decompose(
 ) -> DecompResult:
     if not _HAS_CEEMDAN:
         raise ImportError(
-            "PyEMD>=1.0 is required for CEEMDAN decomposition."
+            "PyEMD>=1.0 is required for CEEMDAN decomposition. Install 'de-time[emd]' or 'EMD-signal'."
         ) from _CEEMDAN_IMPORT_ERROR
 
     cfg = params.copy()

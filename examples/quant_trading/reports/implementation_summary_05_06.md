@@ -6,8 +6,8 @@ This batch modifies a method/platform/tutorial repository with benchmark-style e
 
 ## Added modules
 
-- `strategy_pairs.py`: pair spread construction, rolling hedge beta, classical pair baselines, spread decomposition bundles, De-Time residual spread trading, volume/news filters and pair diagnostics.
-- `strategy_rotation.py`: classical momentum/MA/inverse-vol rotation, De-Time cross-sectional factor scoring, top-N and long-short portfolios, rebalance logic, volatility targeting and rotation diagnostics.
+- `strategy_pairs.py`: pair spread construction, rolling hedge beta, classical pair baselines, spread decomposition bundles, DeTime residual spread trading, volume/news filters and pair diagnostics.
+- `strategy_rotation.py`: classical momentum/MA/inverse-vol rotation, DeTime cross-sectional factor scoring, top-N and long-short portfolios, rebalance logic, volatility targeting and rotation diagnostics.
 - `data.py`: bundled real OHLCV panel loader for offline multi-asset examples.
 
 ## Added scripts
@@ -51,4 +51,4 @@ Notebook code cells executed directly with a Python cell runner:
 
 ## Boundary
 
-The new outputs prove that the tutorial pipeline, baseline comparisons, De-Time rewrites and audit artifacts execute on real historical sample data. They do not prove production alpha or live-trading suitability.
+The new outputs prove that the tutorial pipeline, baseline comparisons, DeTime rewrites and audit artifacts execute on real historical sample data. They do not prove production alpha or live-trading suitability.

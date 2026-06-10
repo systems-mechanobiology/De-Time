@@ -266,6 +266,7 @@ def test_mssa_fast_mode_with_explicit_grouping() -> None:
                 "trend_components": [0],
                 "season_components": [1, 2],
             },
+            backend="python",
             speed_mode="fast",
         ),
     )
@@ -281,11 +282,6 @@ def test_mssa_runtime_and_shape_error_paths() -> None:
     single = np.ones((12, 1), dtype=float)
     panel = _shared_multichannel_signal(length=48)
 
-    with pytest.raises(RuntimeError, match="native backend"):
-        decompose(
-            panel,
-            DecompositionConfig(method="MSSA", params={"window": 12, "rank": 4}, backend="native"),
-        )
     with pytest.raises(ValueError, match="GPU backend"):
         decompose(
             panel,

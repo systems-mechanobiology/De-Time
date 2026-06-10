@@ -5,7 +5,7 @@ from __future__ import annotations
 These functions intentionally use vectorized pandas rather than copying the
 loop-heavy examples from older tutorials. The objective is not to invent new
 indicator formulas; it is to provide clean baselines before replacing their
-implicit filters with explicit De-Time components.
+implicit filters with explicit DeTime components.
 """
 
 import numpy as np

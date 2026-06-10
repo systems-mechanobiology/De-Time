@@ -1,5 +1,5 @@
 package,json_schema_assets,compact_result_modes,recommend_interface,machine_readable_catalog,mcp_surface,artifact_contract,token_benchmark,tool_evals
-De-Time,yes,full/summary/meta,yes,yes,local-first,yes,yes,yes
+DeTime,yes,full/summary/meta,yes,yes,local-first,yes,yes,yes
 statsmodels,no,no,no,no,no,no,no,no
 PyEMD,no,no,no,no,no,no,no,no
 PyWavelets,no,no,no,no,no,no,no,no

@@ -3,7 +3,7 @@
 The revised tutorial does not only improve Bollinger bands. It rewrites several
 classic strategy families by asking what each indicator was trying to estimate.
 
-| Strategy family | Classical version | De-Time rewrite | Status |
+| Strategy family | Classical version | DeTime rewrite | Status |
 |---|---|---|---|
 | Feature layer | raw close and raw volume | walk-forward price + volume decomposition | implemented in Tutorial 01 |
 | Dual moving average | fast SMA > slow SMA on price | fast/slow average on extracted trend, gated by residual and volume | implemented in Tutorial 02 |

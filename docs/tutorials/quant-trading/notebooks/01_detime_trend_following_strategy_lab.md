@@ -2,7 +2,7 @@
 # Strategy Lab 01 - Trend-following strategy
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/01_detime_trend_following_strategy_lab.ipynb"><code>examples/notebooks/quant_trading/01_detime_trend_following_strategy_lab.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/01_detime_trend_following_strategy_lab.ipynb"><code>examples/notebooks/quant_trading/01_detime_trend_following_strategy_lab.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation
@@ -24,7 +24,7 @@
 
 ## Executed Notebook
 
-这篇只做一件事：用 De-Time 分解出来的 `trend` 直接产生交易信号。
+这篇只做一件事：用 DeTime 分解出来的 `trend` 直接产生交易信号。
 
 策略逻辑：
 
@@ -534,7 +534,7 @@ bt.trades.tail(10)
 
 ```python
 out = CHART_DIR / "notebook_01_trend_following.png"
-plot_signal_analysis(ohlcv, signal, bt, asset=symbol, output_path=out, title="De-Time STL trend-following strategy")
+plot_signal_analysis(ohlcv, signal, bt, asset=symbol, output_path=out, title="DeTime STL trend-following strategy")
 display(Image(filename=str(out)))
 out.as_posix()
 ```

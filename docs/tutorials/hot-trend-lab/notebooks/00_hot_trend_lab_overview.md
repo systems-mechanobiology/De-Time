@@ -2,12 +2,12 @@
 # Hot Trend Lab Overview
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/00_hot_trend_lab_overview.ipynb"><code>examples/notebooks/hot_trends/00_hot_trend_lab_overview.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/hot_trends/00_hot_trend_lab_overview.ipynb"><code>examples/notebooks/hot_trends/00_hot_trend_lab_overview.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Executed Notebook
 
-This notebook is the executable entry point for the Hot Trend Lab column. It reviews the source registry, the De-Time component contract, and the publication scoring logic.
+This notebook is the executable entry point for the Hot Trend Lab column. It reviews the source registry, the DeTime component contract, and the publication scoring logic.
 
 Each case notebook fetches real public data at runtime and records the source, coverage window, and measurement limits.
 
@@ -305,7 +305,7 @@ plt.show()
 </div>
 </div>
 
-## 3. De-Time output contract
+## 3. DeTime output contract
 
 Each notebook exports the same table types: source audit, component summary, residual events, and publication phrasing.
 

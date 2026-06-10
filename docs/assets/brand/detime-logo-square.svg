@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">De-Time square logo</title>
-  <desc id="desc">A square De-Time mark with a time-series line.</desc>
+  <title id="title">DeTime square logo</title>
+  <desc id="desc">A square DeTime mark with a time-series line.</desc>
   <defs>
     <linearGradient id="markGradient" x1="10" x2="118" y1="118" y2="10" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0f766e"/>

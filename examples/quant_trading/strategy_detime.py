@@ -345,7 +345,7 @@ def detime_donchian_breakout_weights(
     max_overextension_z: float = 2.25,
     max_gross: float = 1.0,
 ) -> pd.DataFrame:
-    """Donchian breakout confirmed by De-Time trend, cycle and volume state."""
+    """Donchian breakout confirmed by DeTime trend, cycle and volume state."""
 
     h = high.reindex_like(prices).ffill().bfill() if high is not None else prices
     l = low.reindex_like(prices).ffill().bfill() if low is not None else prices

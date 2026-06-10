@@ -2,7 +2,7 @@
 # arXiv Category Pulse
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/01_arxiv_category_pulse.ipynb"><code>examples/notebooks/hot_trends/01_arxiv_category_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/hot_trends/01_arxiv_category_pulse.ipynb"><code>examples/notebooks/hot_trends/01_arxiv_category_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Executed Notebook
@@ -504,9 +504,9 @@ audit
 </div>
 </div>
 
-## 4. Decompose counts with De-Time
+## 4. Decompose counts with DeTime
 
-For monthly counts, period 12 is the first cycle to test. The method is `MA_BASELINE` by default because it is built into De-Time and keeps the tutorial dependency-light.
+For monthly counts, period 12 is the first cycle to test. The method is `MA_BASELINE` by default because it is built into DeTime and keeps the tutorial dependency-light.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [5]</div>

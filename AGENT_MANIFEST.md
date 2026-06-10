@@ -1,6 +1,6 @@
 # Agent manifest
 
-De-Time is a time-series decomposition package for humans and agents.
+DeTime is a time-series decomposition package for humans and agents.
 
 The preferred Python and CLI entrypoints are exposed through `detime`. Legacy
 `tsdecomp` imports and CLI aliases still work for compatibility through

@@ -124,7 +124,7 @@ def main() -> int:
     plt.bar(positions + width, meta_vals, width=width, label="meta")
     plt.xticks(positions, labels, rotation=20, ha="right")
     plt.ylabel(f"Approximate tokens ({ENCODING_NAME})")
-    plt.title("De-Time payload token budget by scenario and serialization mode")
+    plt.title("DeTime payload token budget by scenario and serialization mode")
     plt.legend()
     plt.tight_layout()
     plt.savefig(figure_path)

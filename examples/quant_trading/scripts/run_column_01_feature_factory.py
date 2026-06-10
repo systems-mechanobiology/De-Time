@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Run only Column 01: real OHLCV audit and De-Time price/volume features."""
+"""Run only Column 01: real OHLCV audit and DeTime price/volume features."""
 
 import argparse
 from pathlib import Path

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 The functions in this module are deliberately small and auditable.  They keep
 classic RSI/Bollinger/APO baselines visible, then rewrite the same trading idea
-around De-Time residual, cycle, trend and volume components.
+around DeTime residual, cycle, trend and volume components.
 """
 
 import numpy as np

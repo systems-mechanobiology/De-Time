@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from __future__ import annotations
 
-"""Run the concrete De-Time strategy lab on real OHLCV data.
+"""Run the concrete DeTime strategy lab on real OHLCV data.
 
 The script intentionally produces trading artifacts, not just feature tables:
 strategy signals, next-bar backtest metrics, order ledger, round-trip trades,
@@ -105,7 +105,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-auto-adjust", action="store_true")
     parser.add_argument("--cache-dir", default=None)
     parser.add_argument("--min-observations", type=int, default=180)
-    parser.add_argument("--methods", nargs="+", default=["STL"], help="De-Time methods to run, e.g. STL SSA WAVELET STD.")
+    parser.add_argument("--methods", nargs="+", default=["STL"], help="DeTime methods to run, e.g. STL SSA WAVELET STD.")
     parser.add_argument("--period", default="42", help="Integer period or 'auto'.")
     parser.add_argument("--train-window", type=int, default=180)
     parser.add_argument("--step", type=int, default=21)
@@ -137,7 +137,7 @@ def main() -> None:
     ohlcv_audit_report(ohlcv, ticker=symbol).to_csv(report_dir / "strategy_lab_data_audit.csv", index=False)
     market_data_manifest(tickers=[symbol], start=args.start, end=args.end, interval=args.interval, source=source).to_csv(report_dir / "strategy_lab_market_data_manifest.csv", index=False)
 
-    # Baselines use the same next-bar execution model as De-Time strategies.
+    # Baselines use the same next-bar execution model as DeTime strategies.
     results = {}
     for name, weights in _baseline_weights(close, high, low, allow_short_reversion=args.allow_short_reversion).items():
         results[name] = backtest_target_weights_next_bar(

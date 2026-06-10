@@ -2,10 +2,10 @@
 
 Dear Editors,
 
-We submit **De-Time** for consideration in the *Journal of Machine Learning
+We submit **DeTime** for consideration in the *Journal of Machine Learning
 Research* Machine Learning Open Source Software track.
 
-De-Time is workflow-oriented research software for reproducible time-series
+DeTime is workflow-oriented research software for reproducible time-series
 decomposition. Its contribution is not a new algorithm. Instead, it provides a
 clean software surface for configuring, running, profiling, saving, and now
 machine-serving decomposition workflows that would otherwise be spread across
@@ -51,7 +51,7 @@ native speedups of `7.77x` for `SSA`, `5.82x` for `STD`, and `9.32x` for
 installation. Those reviewer-facing details are summarized in
 `submission/software_evidence.md`.
 
-We do not position De-Time as a replacement for specialist libraries such as
+We do not position DeTime as a replacement for specialist libraries such as
 `statsmodels`, `PyEMD`, `PyWavelets`, `PySDKit`, `SSALib`, or the maintained
 `sktime` VMD path. Instead, we position it as a reproducible workflow layer
 that standardizes configuration, result objects, package-level ergonomics, and

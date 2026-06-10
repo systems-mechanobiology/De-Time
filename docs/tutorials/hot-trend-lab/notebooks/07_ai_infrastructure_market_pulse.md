@@ -2,7 +2,7 @@
 # AI Infrastructure Market Pulse
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/hot_trends/07_ai_infrastructure_market_pulse.ipynb"><code>examples/notebooks/hot_trends/07_ai_infrastructure_market_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/hot_trends/07_ai_infrastructure_market_pulse.ipynb"><code>examples/notebooks/hot_trends/07_ai_infrastructure_market_pulse.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Executed Notebook
@@ -842,7 +842,7 @@ returns.sort_values("total_return_proxy", ascending=False)
 
 ## Visualization: return versus trend slope
 
-The x-axis is simple total return over the sampled window. The y-axis is De-Time trend slope; marker size reflects residual shock magnitude. Read the scatter as a basket diagnostic, not as a recommendation.
+The x-axis is simple total return over the sampled window. The y-axis is DeTime trend slope; marker size reflects residual shock magnitude. Read the scatter as a basket diagnostic, not as a recommendation.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [7]</div>
@@ -863,7 +863,7 @@ ax.axvline(0, color="0.45", linewidth=0.8)
 ax.axhline(0, color="0.45", linewidth=0.8)
 ax.set_xlabel("total return proxy")
 ax.set_ylabel("trend slope per step")
-ax.set_title("AI infrastructure return versus De-Time trend slope")
+ax.set_title("AI infrastructure return versus DeTime trend slope")
 fig.colorbar(sc, ax=ax, label="editorial priority score")
 plt.tight_layout()
 plt.show()

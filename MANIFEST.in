@@ -20,9 +20,9 @@ global-exclude .DS_Store
 prune .pytest_cache
 prune site
 prune submission
-exclude De-Time_Codex_task_list.md
-exclude De-Time_final_checklist.md
-exclude De-Time_JMLR_revision_plan.md
+exclude DeTime_Codex_task_list.md
+exclude DeTime_final_checklist.md
+exclude DeTime_JMLR_revision_plan.md
 exclude AGENT_INPUT_CONTRACT.md
 exclude AGENT_MANIFEST.json
 exclude AGENT_MANIFEST.md

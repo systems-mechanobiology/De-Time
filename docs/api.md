@@ -96,8 +96,7 @@ which should match the original input up to the documented method tolerance.
 
 Backend resolution is method-specific:
 
-- `SSA`, `STD`, and `STDR` can use native kernels.
-- `MSSA` is Python-only.
+- `SSA`, `STD`, `STDR`, `MA_BASELINE`, `MSSA`, `VMD`, and `GABOR_CLUSTER` can use native kernels.
 - `MVMD` and `MEMD` are optional-backend wrappers and require the `multivar`
   extra.
 
@@ -148,7 +147,7 @@ Every method entry exposes at least:
 
 ## Serialization and machine-facing APIs
 
-De-Time publishes three result views for bounded-context workflows:
+DeTime publishes three result views for bounded-context workflows:
 
 - `full`
   Full arrays plus metadata and diagnostics.

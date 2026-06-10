@@ -1,4 +1,4 @@
-"""De-Time public import surface."""
+"""DeTime public import surface."""
 
 from ._native import native_capabilities, native_extension_available
 from ._metadata import installed_version

@@ -2,7 +2,7 @@
 
 ## Scope
 
-De-Time is a standalone open-source research software library for time-series
+DeTime is a standalone open-source research software library for time-series
 decomposition. It is primarily a Python package and CLI, not a hosted service.
 Security reports are still important when they affect:
 
@@ -77,7 +77,7 @@ The project prefers coordinated disclosure:
 
 ## Dependency and supply-chain notes
 
-De-Time depends on the scientific Python ecosystem and some optional
+DeTime depends on the scientific Python ecosystem and some optional
 third-party backends. Security hardening therefore includes:
 
 - keeping packaging metadata explicit,

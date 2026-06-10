@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 180" role="img" aria-labelledby="title desc">
-  <title id="title">De-Time logo</title>
-  <desc id="desc">A compact scientific-toolkit logo with a time-series line and De-Time wordmark.</desc>
+  <title id="title">DeTime logo</title>
+  <desc id="desc">A compact scientific-toolkit logo with a time-series line and DeTime wordmark.</desc>
   <defs>
     <linearGradient id="markGradient" x1="18" x2="148" y1="150" y2="20" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#0f766e"/>
@@ -18,7 +18,7 @@
     <path d="M28 36h26M28 36v26M100 96h26M126 70v26" fill="none" stroke="#dbeafe" stroke-width="7" stroke-linecap="round"/>
   </g>
   <g fill="#0f172a" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-    <text x="190" y="83" font-size="52" font-weight="800" letter-spacing="-1">De-Time</text>
+    <text x="190" y="83" font-size="52" font-weight="800" letter-spacing="-1">DeTime</text>
     <text x="193" y="122" font-size="22" font-weight="600" fill="#334155">workflow-oriented time-series decomposition</text>
   </g>
 </svg>

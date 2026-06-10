@@ -1,4 +1,4 @@
-# De-Time Quant Trading Column
+# DeTime Quant Trading Column
 
 This directory contains the decomposition-first quant trading tutorial code. The previous indicator-first sequence has been replaced by a smaller, clearer six-part curriculum. Tutorials 01-06 are implemented.
 
@@ -8,29 +8,29 @@ This directory contains the decomposition-first quant trading tutorial code. The
    Real OHLCV data, dataset audit, period estimation, walk-forward price and volume decomposition, and feature coverage reporting.
 
 2. `02_decomposition_aware_moving_average_macd.ipynb`
-   Classical buy-and-hold, moving-average, MACD, multi-MA and momentum baselines, then De-Time rewrites that use explicit trend, cycle, residual, and volume features.
+   Classical buy-and-hold, moving-average, MACD, multi-MA and momentum baselines, then DeTime rewrites that use explicit trend, cycle, residual, and volume features.
 
 3. `03_residual_mean_reversion_rsi_bollinger.ipynb`
-   Price z-score, RSI, Bollinger and APO mean-reversion baselines, then De-Time residual mean-reversion variants using residual z-score, residual RSI, residual Bollinger bands, cycle timing and volume filters.
+   Price z-score, RSI, Bollinger and APO mean-reversion baselines, then DeTime residual mean-reversion variants using residual z-score, residual RSI, residual Bollinger bands, cycle timing and volume filters.
 
 4. `04_turtle_donchian_breakout_volume_confirmation.ipynb`
-   Donchian/Turtle breakout baselines, then De-Time breakout rewrites using trend direction, cycle state, residual overextension caps and volume confirmation.
+   Donchian/Turtle breakout baselines, then DeTime breakout rewrites using trend direction, cycle state, residual overextension caps and volume confirmation.
 
 5. `05_pairs_spread_decomposition_stat_arb.ipynb`
-   Pair ratio/spread z-score baselines, then De-Time spread-residual trading with spread trend-drift control and optional pair volume/news filters.
+   Pair ratio/spread z-score baselines, then DeTime spread-residual trading with spread trend-drift control and optional pair volume/news filters.
 
 6. `06_cross_sectional_rotation_portfolio.ipynb`
-   Momentum, multi-MA and inverse-volatility allocation baselines, then De-Time trend/cycle/residual/volume factor scoring and portfolio construction.
+   Momentum, multi-MA and inverse-volatility allocation baselines, then DeTime trend/cycle/residual/volume factor scoring and portfolio construction.
 
 ## Core modules
 
 - `data.py`: yfinance downloaders, OHLCV panel helpers, and offline real-data GOOG and FX sample loaders for smoke tests.
 - `classic_indicators.py`: SMA, EMA, MACD, RSI, Bollinger, Donchian, momentum, APO.
-- `decomposition_features.py`: walk-forward De-Time feature factory for price and volume.
+- `decomposition_features.py`: walk-forward DeTime feature factory for price and volume.
 - `strategy_baselines.py`: classical strategy weights for trend, mean-reversion and breakout families.
 - `strategy_detime.py`: decomposition-aware trend, residual mean-reversion and breakout recipes.
 - `strategy_pairs.py`: pair spread decomposition, residual-stat-arb and pair diagnostics.
-- `strategy_rotation.py`: cross-sectional rotation, De-Time factor scores and portfolio construction.
+- `strategy_rotation.py`: cross-sectional rotation, DeTime factor scores and portfolio construction.
 - `validation.py`: common backtest comparison, turnover reporting, and run manifest helpers.
 - `backtest.py`: transparent vectorized research backtester.
 

@@ -2,7 +2,7 @@
 
 Generated for release target `0.1.1`.
 
-| Axis | De-Time |
+| Axis | DeTime |
 | --- | --- |
 | Primary scope | workflow-oriented decomposition layer |
 | Common config object | yes |

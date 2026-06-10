@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Column 04: Donchian/Turtle breakout recipes with De-Time confirmation."""
+"""Column 04: Donchian/Turtle breakout recipes with DeTime confirmation."""
 
 from typing import Mapping
 
@@ -212,7 +212,7 @@ def detime_breakout_without_cycle_weights(
 
 
 def breakout_diagnostic_table(ohlcv: OHLCVLike, features: dict[str, pd.DataFrame], *, entry_window: int = 55, exit_window: int = 20) -> pd.DataFrame:
-    """Return the latest channel and De-Time breakout context for notebook display."""
+    """Return the latest channel and DeTime breakout context for notebook display."""
 
     close, high, low = _field(ohlcv, "Close"), _field(ohlcv, "High"), _field(ohlcv, "Low")
     ch = donchian_channels(high, low, entry_window=entry_window, exit_window=exit_window)

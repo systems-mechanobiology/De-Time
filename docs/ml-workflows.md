@@ -1,6 +1,6 @@
 # ML Workflows
 
-De-Time provides a workflow layer around decomposition for machine-learning
+DeTime provides a workflow layer around decomposition for machine-learning
 pipelines. It wraps decomposition methods with a shared configuration contract,
 result object, and CLI/Python surface.
 
@@ -25,7 +25,7 @@ method-specific wrappers, and one-off scripts.
       <span>sensor, experimental, or panel data</span>
     </div>
     <div class="pipeline-step">
-      <strong>De-Time</strong>
+      <strong>DeTime</strong>
       <span>trend / season / residual / components</span>
     </div>
     <div class="pipeline-step">
@@ -65,7 +65,7 @@ model = LinearRegression().fit(X, y)
 print(model.score(X, y))
 ```
 
-This example is intentionally small. The point is not that De-Time replaces
+This example is intentionally small. The point is not that DeTime replaces
 scikit-learn, but that decomposition outputs can feed a downstream estimator
 through a stable package-level workflow.
 

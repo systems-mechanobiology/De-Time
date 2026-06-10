@@ -50,7 +50,7 @@ to read:
 |---|---|---|
 | Basket definition | selected tickers and date window | basket choice shapes the result |
 | Trend index | normalized price and trend levels | price proxy, not fundamentals |
-| Return versus trend slope | relation between simple return and De-Time trend slope | add benchmark before performance claims |
+| Return versus trend slope | relation between simple return and DeTime trend slope | add benchmark before performance claims |
 | Residual heatmap | dates where deviations cluster across names | event screen, not valuation analysis |
 
 Revenue, capex, margins, guidance, and valuation require official financial

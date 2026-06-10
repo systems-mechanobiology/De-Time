@@ -1,6 +1,6 @@
 # Decomposition-first quant column rewrite: Columns 01-02
 
-## Column 01 — Market data and De-Time feature factory
+## Column 01 — Market data and DeTime feature factory
 
 Purpose: build the reusable data and feature layer before any strategy result.
 
@@ -23,12 +23,12 @@ Main files:
 
 ## Column 02 — Moving averages and MACD rewritten with decomposition
 
-Purpose: show that SMA, EMA, multi-MA and MACD are trend estimators, then replace the raw-price estimator with De-Time trend states.
+Purpose: show that SMA, EMA, multi-MA and MACD are trend estimators, then replace the raw-price estimator with DeTime trend states.
 
 Flow:
 
 1. Reproduce classical baselines: buy-and-hold, SMA 20/100 crossover, MACD, multi-MA stack, 63-day momentum.
-2. Run decomposition-aware versions: trend-following, trend + cycle + volume confirmation, MACD on De-Time trend, multi-MA on De-Time trend, trend pullback.
+2. Run decomposition-aware versions: trend-following, trend + cycle + volume confirmation, MACD on DeTime trend, multi-MA on DeTime trend, trend pullback.
 3. Use the same data, same costs and same shifted-position backtester for both groups.
 4. Export the comparison table for audit.
 

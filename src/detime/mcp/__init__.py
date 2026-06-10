@@ -1,2 +1,2 @@
-"""Minimal MCP server surface for De-Time."""
+"""Minimal MCP server surface for DeTime."""
 

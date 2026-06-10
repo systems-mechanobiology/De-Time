@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 96" role="img" aria-labelledby="title desc">
-  <title id="title">De-Time wordmark</title>
-  <desc id="desc">De-Time logo and wordmark without a white background.</desc>
+  <title id="title">DeTime wordmark</title>
+  <desc id="desc">DeTime logo and wordmark without a white background.</desc>
   <defs>
     <linearGradient id="blue" x1="12" x2="78" y1="80" y2="12" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#1F4FFF"/>
@@ -18,5 +18,5 @@
   </g>
   <circle cx="50" cy="56" r="4.8" fill="#FFFFFF"/>
   <circle cx="72" cy="62" r="3.4" fill="#1F4FFF"/>
-  <text x="100" y="62" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="800" letter-spacing="-2">De-Time</text>
+  <text x="100" y="62" fill="#FFFFFF" font-family="Inter, Arial, sans-serif" font-size="48" font-weight="800" letter-spacing="-2">DeTime</text>
 </svg>

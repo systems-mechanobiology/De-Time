@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from __future__ import annotations
 
-"""Run the extended De-Time strategy tutorials.
+"""Run the extended DeTime strategy tutorials.
 
 This script produces two executable tutorial blocks:
 

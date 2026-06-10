@@ -8,18 +8,18 @@ Implementation objects:
 
 - rolling hedge-ratio spread construction;
 - classical pair baselines: ratio z-score, rolling-beta spread z-score, correlation-filtered spread;
-- De-Time spread strategies: residual-z reversion, cycle-timed residual reversion, trend-drift blocker;
+- DeTime spread strategies: residual-z reversion, cycle-timed residual reversion, trend-drift blocker;
 - pair diagnostics: rolling beta, spread z-score, rolling correlation, trend drift, residual state;
 - report outputs: spread panel, beta panel, pair diagnostics, feature snapshot, strategy comparison, turnover report and run manifest.
 
 ## Column 06: cross-sectional rotation and portfolio construction
 
-Goal: turn De-Time features into a cross-sectional allocation score rather than treating decomposition as a single-asset indicator.
+Goal: turn DeTime features into a cross-sectional allocation score rather than treating decomposition as a single-asset indicator.
 
 Implementation objects:
 
 - classical rotation baselines: equal weight, momentum rank, multi-MA trend rank, inverse-volatility allocation;
-- De-Time rotation score: trend strength, trend slope, cycle slope, residual pullback/overextension, volume participation and component stability;
+- DeTime rotation score: trend strength, trend slope, cycle slope, residual pullback/overextension, volume participation and component stability;
 - portfolio recipes: top-N long-only, low-turnover monthly variant, no-vol-target ablation and long-short rotation;
 - diagnostics: factor snapshot, feature coverage, input-volume availability, turnover and run manifest.
 

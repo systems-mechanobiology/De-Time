@@ -8,7 +8,7 @@ different decomposition methods + different window/period choices => different
 trading strategies.
 
 A moving average strategy changes when the fast/slow windows change.  A
-De-Time strategy changes when the decomposition front-end changes (STL, SSA,
+DeTime strategy changes when the decomposition front-end changes (STL, SSA,
 STD, Wavelet, etc.) or when the decomposition horizon changes (short-cycle,
 medium-cycle, long-cycle windows).  The trading rule can be identical, but the
 trend, cycle, and residual fed into the rule are method-specific.  The result is

@@ -1,6 +1,6 @@
 # Token Benchmarks
 
-De-Time's compact result modes are meant to lower context cost for machine
+DeTime's compact result modes are meant to lower context cost for machine
 consumers. This page tracks that claim with a reproducible tokenizer-specific
 benchmark rather than anecdotal wording.
 

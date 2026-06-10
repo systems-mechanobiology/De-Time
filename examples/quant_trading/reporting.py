@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Reporting helpers for the De-Time quant trading tutorials."""
+"""Reporting helpers for the DeTime quant trading tutorials."""
 
 from pathlib import Path
 from typing import Mapping
@@ -28,7 +28,7 @@ def save_backtest_artifacts(result, output_dir: str | Path, *, prefix: str = "st
     return paths
 
 
-def markdown_metric_report(stats: Mapping[str, float], *, title: str = "De-Time Quant Strategy Report") -> str:
+def markdown_metric_report(stats: Mapping[str, float], *, title: str = "DeTime Quant Strategy Report") -> str:
     lines = [f"# {title}", "", "This report is generated from the tutorial research pipeline.", "", "## Metrics", ""]
     for key, value in stats.items():
         try:

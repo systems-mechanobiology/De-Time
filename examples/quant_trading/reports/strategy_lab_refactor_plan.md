@@ -9,7 +9,7 @@ real backtests and buy/sell analysis.
 
 ### 1. Trend following
 
-Purpose: trade when De-Time says the trend is strong.
+Purpose: trade when DeTime says the trend is strong.
 
 Signal source:
 

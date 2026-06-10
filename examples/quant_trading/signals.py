@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Signal recipes built from De-Time decomposition features."""
+"""Signal recipes built from DeTime decomposition features."""
 
 import numpy as np
 import pandas as pd

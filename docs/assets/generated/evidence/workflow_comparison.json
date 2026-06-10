@@ -8,7 +8,7 @@
   },
   "narrative": [
     "The specialist workflow mixes multiple imports, result objects, and package-specific APIs.",
-    "The De-Time workflow keeps the same result contract and method switch path under one import surface."
+    "The DeTime workflow keeps the same result contract and method switch path under one import surface."
   ],
   "specialist_glue": {
     "packages": [

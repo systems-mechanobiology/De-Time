@@ -180,7 +180,7 @@ def _render_references(catalog: list[dict[str, object]]) -> str:
         f"Current package version target: `{__version__}`.",
         "",
         "These links cover the method families and upstream packages used or compared",
-        "in the public De-Time workflow surface. `MA_BASELINE` is an in-package smoke",
+        "in the public DeTime workflow surface. `MA_BASELINE` is an in-package smoke",
         "baseline and therefore has no separate upstream citation.",
         "",
     ]

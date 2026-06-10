@@ -5,7 +5,9 @@ from typing import Any, Dict, List
 
 import numpy as np
 
+from .._native import invoke_native
 from ..backends import finalize_result, split_runtime_params
+from ..backends import resolve_backend, result_from_native_payload
 from ..core import DecompResult
 from ..registry import MethodRegistry
 from .utils import dominant_frequency
@@ -149,8 +151,6 @@ def mssa_decompose(
 ) -> DecompResult:
     started_at = perf_counter()
     cfg, runtime = split_runtime_params(params)
-    if runtime.backend == "native":
-        raise RuntimeError("MSSA does not provide a native backend.")
     if runtime.backend == "gpu":
         raise ValueError("MSSA does not provide a GPU backend.")
 
@@ -172,6 +172,31 @@ def mssa_decompose(
     fs = float(cfg.get("fs", 1.0))
     primary_period = cfg.get("primary_period")
     primary_period = float(primary_period) if primary_period not in (None, 0) else None
+    backend = resolve_backend("MSSA", runtime, native_methods=("mssa_decompose",))
+
+    if backend == "native":
+        payload = invoke_native(
+            "mssa_decompose",
+            y_arr,
+            window=window,
+            rank=rank,
+            fs=fs,
+            primary_period=primary_period,
+            trend_components=list(cfg.get("trend_components", [])),
+            season_components=list(cfg.get("season_components", [])),
+            season_freq_tol_ratio=float(cfg.get("season_freq_tol_ratio", 0.25)),
+            trend_freq_threshold=cfg.get("trend_freq_threshold"),
+            speed_mode=runtime.speed_mode,
+            power_iterations=int(cfg.get("power_iterations", 12)),
+            seed=42 if runtime.seed is None else int(runtime.seed),
+        )
+        return finalize_result(
+            result_from_native_payload(payload, method="MSSA"),
+            method="MSSA",
+            runtime=runtime,
+            backend_used="native",
+            started_at=started_at,
+        )
 
     trajectory = _build_mssa_trajectory(y_arr, window=window)
     U, s, Vt = _fit_svd(trajectory, rank=rank, speed_mode=runtime.speed_mode, seed=runtime.seed)
@@ -221,6 +246,6 @@ def mssa_decompose(
         result,
         method="MSSA",
         runtime=runtime,
-        backend_used="python",
+        backend_used=backend,
         started_at=started_at,
     )

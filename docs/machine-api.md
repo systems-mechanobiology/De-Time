@@ -1,6 +1,6 @@
 # Machine API
 
-De-Time exposes a local-first machine-facing surface for agents, scripts, and
+DeTime exposes a local-first machine-facing surface for agents, scripts, and
 workflow tooling that need something more structured than the human-facing
 README.
 
@@ -78,7 +78,7 @@ payloads.
 
 ## Serialization modes
 
-De-Time intentionally separates artifact size from decomposition execution.
+DeTime intentionally separates artifact size from decomposition execution.
 Machine consumers can request:
 
 - `full`

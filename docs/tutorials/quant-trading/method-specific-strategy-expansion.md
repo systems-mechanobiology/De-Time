@@ -1,4 +1,4 @@
-# De-Time Method-Specific Strategy Expansion
+# DeTime Method-Specific Strategy Expansion
 
 This tutorial layer extends the two core strategy families already implemented in the strategy lab:
 
@@ -42,7 +42,7 @@ but if STL and SSA extract different trends and cycles, then the entry dates, ex
 
 The tutorial avoids blind optimization first. It uses interpretable grids:
 
-| Market idea | De-Time parameter | Example |
+| Market idea | DeTime parameter | Example |
 |---|---|---|
 | short trading rhythm | period | 21 bars |
 | medium swing rhythm | period | 42 or 63 bars |

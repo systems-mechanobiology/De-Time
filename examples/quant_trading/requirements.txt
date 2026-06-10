@@ -1,5 +1,5 @@
-# Optional dependencies for the De-Time quant trading tutorial column.
-# Install these in addition to the De-Time editable or GitHub install.
+# Optional dependencies for the DeTime quant trading tutorial column.
+# Install these in addition to the DeTime editable or GitHub install.
 yfinance>=0.2.54
 jupyterlab>=4
 ipykernel>=6

@@ -13,7 +13,7 @@ makes the relationship explicit:
   stationary enough to justify spread trading.
 
 This module does not copy private notebook code.  It implements the same trading
-logic from scratch using De-Time features and a transparent next-bar backtester.
+logic from scratch using DeTime features and a transparent next-bar backtester.
 """
 
 from dataclasses import dataclass, asdict
@@ -154,7 +154,7 @@ def build_component_pair_features(
     volumes: pd.DataFrame | None = None,
     config: ComponentPairConfig | None = None,
 ) -> dict[str, pd.DataFrame]:
-    """Build asset-level De-Time features for all assets used by pairs."""
+    """Build asset-level DeTime features for all assets used by pairs."""
 
     cfg = config or ComponentPairConfig()
     assets = sorted({asset for pair in pairs for asset in pair})

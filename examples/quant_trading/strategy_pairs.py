@@ -4,7 +4,7 @@ from __future__ import annotations
 
 The functions in this module deliberately keep the classical pair-trading
 scaffold visible.  A baseline pair strategy trades a rolling z-score of the raw
-spread.  The De-Time rewrite decomposes the spread itself:
+spread.  The DeTime rewrite decomposes the spread itself:
 
     spread_t = trend_t + cycle_t + residual_t
 
@@ -132,7 +132,7 @@ def build_pair_spread_bundle(
     step: int = 21,
     z_window: int = 63,
 ) -> PairSpreadBundle:
-    """Build spread, rolling beta and walk-forward De-Time spread features."""
+    """Build spread, rolling beta and walk-forward DeTime spread features."""
 
     spread, beta_s = pair_spread(prices, pair, beta=beta, lookback=lookback)
     spread_panel = spread.to_frame("spread")
@@ -438,7 +438,7 @@ def run_pair_suite(
     fee_bps: float = 1.0,
     slippage_bps: float = 2.0,
 ) -> tuple[pd.DataFrame, dict[str, BacktestResult], PairSpreadBundle]:
-    """Run classical and De-Time pair strategies for one pair."""
+    """Run classical and DeTime pair strategies for one pair."""
 
     pair_prices = _clean_prices(prices, pair)
     bundle = build_pair_spread_bundle(pair_prices, pair, method=method, period=period, train_window=train_window, step=step)
@@ -632,7 +632,7 @@ def make_detime_pair_weight_grid(
     allow_short: bool = True,
     volumes: pd.DataFrame | None = None,
 ) -> dict[str, pd.DataFrame]:
-    """De-Time pair or multi-pair spread strategies.
+    """DeTime pair or multi-pair spread strategies.
 
     Supports both the notebook-style single-pair call
     ``make_detime_pair_weight_grid(prices, pair, features, beta=...)`` and the

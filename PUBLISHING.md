@@ -1,4 +1,4 @@
-# Publishing De-Time
+# Publishing DeTime
 
 This file describes the standalone release flow for the `de-time`
 distribution, the `detime` import path, and the legacy `tsdecomp`
@@ -12,7 +12,7 @@ exact candidate commit. The intended public tag is `de-time-v0.1.1`.
 
 Release contract:
 
-- product brand: `De-Time`
+- product brand: `DeTime`
 - PyPI distribution: `de-time`
 - preferred import path: `detime`
 - legacy import path: `tsdecomp`

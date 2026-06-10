@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title desc">
-  <title id="title">De-Time mark</title>
-  <desc id="desc">De-Time orbit mark for workflow-oriented time-series decomposition.</desc>
+  <title id="title">DeTime mark</title>
+  <desc id="desc">DeTime orbit mark for workflow-oriented time-series decomposition.</desc>
   <defs>
     <linearGradient id="blue" x1="18" x2="105" y1="108" y2="18" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#1F4FFF"/>

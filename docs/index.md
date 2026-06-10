@@ -1,23 +1,23 @@
-# De-Time
+# DeTime
 
-De-Time gives one Python and CLI interface for trend, oscillation, residual,
+DeTime gives one Python and CLI interface for trend, oscillation, residual,
 method-specific components, and metadata across univariate and aligned
 multichannel decomposition workflows.
 
 <div class="hero-panel hero-split linear-theme">
   <div class="hero-copy">
-    <img class="hero-logo-floating" alt="De-Time logo" src="assets/brand/logo_pure_white_transparent.png">
+    <img class="hero-logo-floating" alt="DeTime logo" src="assets/brand/logo_pure_white_transparent.png">
     <p class="hero-label">Scientific toolkit / workflow system</p>
     <h2>Decompose time series without redesigning the workflow.</h2>
     <p class="hero-kicker">One interface for trend, oscillation, residual, and metadata.</p>
-    <p>Give De-Time one series or aligned multichannel data. It returns trend, seasonal or oscillatory structure, residuals, method-specific components, and metadata through the same Python and CLI interface.</p>
+    <p>Give DeTime one series or aligned multichannel data. It returns trend, seasonal or oscillatory structure, residuals, method-specific components, and metadata through the same Python and CLI interface.</p>
     <div class="hero-actions">
       <a href="quickstart/">Run First Example</a>
       <a class="secondary" href="install/">Install from GitHub</a>
     </div>
   </div>
   <div class="hero-visual">
-    <div class="product-window" aria-label="De-Time decomposition interface preview">
+    <div class="product-window" aria-label="DeTime decomposition interface preview">
       <div class="window-topbar">
         <div class="traffic-lights"><span></span><span></span><span></span></div>
         <div class="window-title"><img alt="" src="assets/brand/detime-logo-color.png"></div>
@@ -25,7 +25,7 @@ multichannel decomposition workflows.
       </div>
       <div class="app-shell">
         <div class="app-sidebar">
-          <span class="sidebar-brand"><img alt="" src="assets/brand/detime-mark.svg"> De-Time</span>
+          <span class="sidebar-brand"><img alt="" src="assets/brand/detime-mark.svg"> DeTime</span>
           <span class="active">Overview</span>
           <span>Decompose</span>
           <span>Components</span>
@@ -97,7 +97,7 @@ multichannel decomposition workflows.
   <div class="quant-home-copy">
     <span class="section-kicker">New tutorial column</span>
     <h3>Turn market series into audited decomposition features.</h3>
-    <p>The quant trading column keeps De-Time in its proper role: a decomposition layer that routes real market inputs into trend, cycle, residual, signal, and backtest research steps.</p>
+    <p>The quant trading column keeps DeTime in its proper role: a decomposition layer that routes real market inputs into trend, cycle, residual, signal, and backtest research steps.</p>
     <div class="feature-bullets quant-home-bullets">
       <span>10 notebooks for data loading, timing, pairs, factor selection, rotation, adapters, and audit</span>
       <span>Real runtime market data policy for US, Korea, ETF, and crypto examples</span>
@@ -110,7 +110,7 @@ multichannel decomposition workflows.
   </div>
   <div class="quant-workbench" aria-label="Quant trading tutorial research workbench preview">
     <div class="quant-workbench-top">
-      <span>De-Time Research</span>
+      <span>DeTime Research</span>
       <b>STL / Walk-forward</b>
       <i>audit ready</i>
     </div>
@@ -140,13 +140,13 @@ multichannel decomposition workflows.
   </div>
 </div>
 
-## Why De-Time exists
+## Why DeTime exists
 
 <div class="why-module">
   <div class="why-copy">
     <span class="section-kicker">Reason for the tool</span>
     <h3>A stable workflow layer for time-series decomposition.</h3>
-    <p>De-Time exists because decomposition work often moves between notebooks, method-specific wrappers, CLI scripts, and machine-facing automation. The package keeps the method choice flexible while preserving one Python/CLI surface and one result contract.</p>
+    <p>DeTime exists because decomposition work often moves between notebooks, method-specific wrappers, CLI scripts, and machine-facing automation. The package keeps the method choice flexible while preserving one Python/CLI surface and one result contract.</p>
   </div>
   <div class="why-table">
     <div class="why-row">
@@ -174,7 +174,7 @@ multichannel decomposition workflows.
   <div class="feature-copy">
     <span class="section-kicker">Workflow</span>
     <h3>Data in, components out</h3>
-    <p>De-Time keeps the user-facing contract stable while the method underneath can change. The same shape of result comes back whether you start with a single series or an aligned multichannel panel.</p>
+    <p>DeTime keeps the user-facing contract stable while the method underneath can change. The same shape of result comes back whether you start with a single series or an aligned multichannel panel.</p>
     <div class="feature-bullets">
       <span>1D series or aligned 2D panel</span>
       <span><code>DecompositionConfig(method, params)</code></span>
@@ -219,7 +219,7 @@ multichannel decomposition workflows.
   <a class="info-card" href="quickstart/">
     <span class="card-icon icon-quickstart"></span>
     <h3>Quickstart</h3>
-    <p>First successful Python and CLI runs with the retained De-Time surface.</p>
+    <p>First successful Python and CLI runs with the retained DeTime surface.</p>
   </a>
   <a class="info-card" href="methods/">
     <span class="card-icon icon-methods"></span>
@@ -298,7 +298,7 @@ multichannel decomposition workflows.
   <a class="info-card" href="comparisons/">
     <span class="card-icon icon-compare"></span>
     <h3>Compare Alternatives</h3>
-    <p>When to use De-Time and when to use specialist packages directly.</p>
+    <p>When to use DeTime and when to use specialist packages directly.</p>
   </a>
   <a class="info-card" href="reproducibility/">
     <span class="card-icon icon-repro"></span>

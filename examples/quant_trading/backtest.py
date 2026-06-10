@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Small vectorized research backtester for the De-Time quant column."""
+"""Small vectorized research backtester for the DeTime quant column."""
 
 from dataclasses import dataclass
 

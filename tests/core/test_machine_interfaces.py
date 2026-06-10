@@ -151,4 +151,5 @@ def test_recommend_methods_surface_reason_codes_and_rejections() -> None:
     top_item = native_speed.recommendations[0]
     assert "speed_native_bonus" in top_item.reason_codes
     assert "speed_shortlist" in top_item.reason_codes
-    assert native_speed.rejected_methods["MA_BASELINE"] == "native_required"
+    assert "MA_BASELINE" not in native_speed.rejected_methods
+    assert any(item.method == "MA_BASELINE" for item in native_speed.recommendations)

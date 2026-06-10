@@ -1,4 +1,4 @@
-# De-Time Quant Strategy Lab: Two Concrete Strategy Families
+# DeTime Quant Strategy Lab: Two Concrete Strategy Families
 
 This page replaces the loose indicator-first reading of the quant notebooks with
 two complete trading systems. Each system has signal generation, position

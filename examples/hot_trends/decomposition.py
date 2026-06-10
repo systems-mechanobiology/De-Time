@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""De-Time component tables for real-data Hot Trend Lab notebooks."""
+"""DeTime component tables for real-data Hot Trend Lab notebooks."""
 
 from typing import Any, Mapping
 import numpy as np
@@ -77,7 +77,7 @@ def decompose_table(
         try:
             result = decompose(y.to_numpy(dtype=float), cfg)
         except Exception as exc:
-            raise HotTrendDecompositionError(f"De-Time decomposition failed for {entity}: {exc}") from exc
+            raise HotTrendDecompositionError(f"DeTime decomposition failed for {entity}: {exc}") from exc
         out = pd.DataFrame(
             {
                 time_col: aligned[time_col].values,

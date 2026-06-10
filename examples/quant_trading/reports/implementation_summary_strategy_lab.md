@@ -1,6 +1,6 @@
 # Strategy-lab implementation summary
 
-This refactor adds a concrete De-Time trading tutorial layer focused on two
+This refactor adds a concrete DeTime trading tutorial layer focused on two
 strategy families: trend following and oscillation/residual reversion.
 
 ## Implemented modules

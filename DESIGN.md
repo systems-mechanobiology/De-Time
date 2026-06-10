@@ -1,6 +1,6 @@
 # Design Notes
 
-De-Time docs should feel like a scientific toolkit, not a review dossier.
+DeTime docs should feel like a scientific toolkit, not a review dossier.
 
 ## Voice
 
@@ -21,7 +21,7 @@ De-Time docs should feel like a scientific toolkit, not a review dossier.
 
 ## Visual System
 
-- Use De-Time's blue/teal scientific-toolkit palette.
+- Use DeTime's blue/teal scientific-toolkit palette.
 - Use cards for choice and comparison, not long uninterrupted bullet lists.
 - Use compact pipeline diagrams for input-output workflows.
 - Use collapsible FAQ blocks for troubleshooting and release-check detail.

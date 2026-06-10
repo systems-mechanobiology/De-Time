@@ -1,7 +1,7 @@
 # Hot Trend Lab: Real Data Trend and Cycle Decomposition
 
 Hot topics usually have three time structures: a durable trend, a repeating
-cadence, and a residual shock that breaks the normal pattern. De-Time is useful
+cadence, and a residual shock that breaks the normal pattern. DeTime is useful
 here because it makes those structures explicit before the column turns them
 into a story.
 
@@ -20,7 +20,7 @@ what still needs outside evidence.
       <span>arXiv, Hugging Face, GitHub, Wikimedia, DeFiLlama, market data</span>
     </div>
     <div class="pipeline-step">
-      <strong>De-Time</strong>
+      <strong>DeTime</strong>
       <span><code>trend</code>, <code>season</code>, <code>residual</code>, <code>meta</code></span>
     </div>
     <div class="pipeline-step">

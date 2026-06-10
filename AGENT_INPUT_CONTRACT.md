@@ -1,7 +1,7 @@
 # Agent input contract
 
 This page explains the minimum useful contract for agent-driven decomposition
-tasks in De-Time.
+tasks in DeTime.
 
 ## Accepted input families
 

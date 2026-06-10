@@ -23,7 +23,7 @@ not the canonical surface for any method listed below.
 - Use when: multivariate component recovery; shared seasonal structure across channels
 - Avoid when: single-series workflows where a univariate flagship method is sufficient; very short series that cannot support a sensible window length
 - Key params: `window` (required), `rank` (null), `primary_period` (null)
-- Input/backend: `multivariate` input, `python` implementation, maturity `flagship`
+- Input/backend: `multivariate` input, `native-backed` implementation, maturity `flagship`
 - Optional dependencies: none
 - Output components: `trend`, `season`, `residual`, `components.elementary`
 - References: [Method References](method-references.md#mssa)
@@ -86,7 +86,7 @@ See [Config Reference](config-reference.md#ceemdan) for the full parameter table
 
 ### `EMD`
 
-- Summary: Empirical mode decomposition under the De-Time result contract.
+- Summary: Empirical mode decomposition under the DeTime result contract.
 - Use when: adaptive decomposition of nonlinear signals; IMF-oriented exploratory analysis
 - Avoid when: shared-model multivariate decomposition problems
 - Key params: `n_imfs` (null), `primary_period` (null)
@@ -103,7 +103,7 @@ See [Config Reference](config-reference.md#emd) for the full parameter table.
 - Use when: sanity checks; lightweight baseline decomposition
 - Avoid when: shared-model multivariate decomposition problems
 - Key params: `trend_window` (7), `season_period` (null)
-- Input/backend: `univariate` input, `python` implementation, maturity `stable`
+- Input/backend: `univariate` input, `native-backed` implementation, maturity `stable`
 - Optional dependencies: none
 - Output components: `trend`, `season`, `residual`
 - References: [Method References](method-references.md#ma_baseline)
@@ -112,7 +112,7 @@ See [Config Reference](config-reference.md#ma_baseline) for the full parameter t
 
 ### `MSTL`
 
-- Summary: Statsmodels MSTL wrapped into the De-Time workflow surface.
+- Summary: Statsmodels MSTL wrapped into the DeTime workflow surface.
 - Use when: multiple seasonalities in univariate data; classical decomposition baselines
 - Avoid when: shared-model multivariate decomposition problems; series where the dominant period is unknown and cannot be inferred reliably
 - Key params: `periods` (required)
@@ -138,7 +138,7 @@ See [Config Reference](config-reference.md#robust_stl) for the full parameter ta
 
 ### `STL`
 
-- Summary: Classical STL wrapped into the De-Time workflow contract.
+- Summary: Classical STL wrapped into the DeTime workflow contract.
 - Use when: classical seasonal-trend baselines; statsmodels-compatible workflows
 - Avoid when: shared-model multivariate decomposition problems; series where the dominant period is unknown and cannot be inferred reliably
 - Key params: `period` (required)
@@ -155,7 +155,7 @@ See [Config Reference](config-reference.md#stl) for the full parameter table.
 - Use when: band-limited mode separation; frequency-structured univariate workflows
 - Avoid when: shared-model multivariate decomposition problems
 - Key params: `K` (4), `alpha` (2000.0), `primary_period` (null)
-- Input/backend: `univariate` input, `python` implementation, maturity `stable`
+- Input/backend: `univariate` input, `native-backed` implementation, maturity `stable`
 - Optional dependencies: vmdpy, sktime
 - Output components: `trend`, `season`, `residual`, `components.modes`
 - References: [Method References](method-references.md#vmd)
@@ -205,15 +205,223 @@ See [Config Reference](config-reference.md#mvmd) for the full parameter table.
 
 ## Experimental methods
 
+### `AMD_BLOCK`
+
+- Summary: AMD-inspired multiscale smoothing head with periodic-template seasonal reconstruction.
+- Use when: multiscale neural decomposition comparisons; seasonal signals where multiple smoothing scales are informative
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `primary_period` (null), `fit_scope` ("full"), `multiscale_windows` (null)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#amd_block)
+
+See [Config Reference](config-reference.md#amd_block) for the full parameter table.
+
+### `AUTOFORMER_BLOCK`
+
+- Summary: Standalone moving-average decomposition head extracted from the Autoformer architecture.
+- Use when: neural-architecture-inspired seasonal-trend baselines; Autoformer-style decomposition ablations
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `moving_avg` (null), `primary_period` (null)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.moving_mean`
+- References: [Method References](method-references.md#autoformer_block)
+
+See [Config Reference](config-reference.md#autoformer_block) for the full parameter table.
+
+### `DELELSTM_BLOCK`
+
+- Summary: DeLELSTM-inspired Holt trend plus periodic-template seasonal decomposition head.
+- Use when: LSTM decomposition-head ablations; signals with smooth level and slope structure
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `primary_period` (null), `fit_scope` ("full"), `alpha` (0.4), `beta` (0.2)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#delelstm_block)
+
+See [Config Reference](config-reference.md#delelstm_block) for the full parameter table.
+
+### `DLINEAR_BLOCK`
+
+- Summary: Standalone moving-average decomposition head extracted from DLinear-style forecasting blocks.
+- Use when: DLinear-style trend/season split baselines; fast neural decomposition head comparisons
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `moving_avg` (null), `primary_period` (null)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.moving_mean`
+- References: [Method References](method-references.md#dlinear_block)
+
+See [Config Reference](config-reference.md#dlinear_block) for the full parameter table.
+
+### `FREQMOE_BLOCK`
+
+- Summary: FreqMoE-inspired frequency mixture head for trend plus multi-band seasonal reconstruction.
+- Use when: frequency-mixture neural head ablations; multi-band seasonal decomposition experiments
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `primary_period` (null), `fit_scope` ("full"), `trend_window` (null), `num_bands` (4)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#freqmoe_block)
+
+See [Config Reference](config-reference.md#freqmoe_block) for the full parameter table.
+
 ### `GABOR_CLUSTER`
 
 - Summary: Experimental clustering-based decomposition path.
 - Use when: research prototypes; exploratory clustering-style decomposition
 - Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
 - Key params: `model` (null), `model_path` (null)
-- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Input/backend: `univariate` input, `native-backed` implementation, maturity `experimental`
 - Optional dependencies: faiss
 - Output components: `trend`, `season`, `residual`, `components.clusters`
 - References: [Method References](method-references.md#gabor_cluster)
 
 See [Config Reference](config-reference.md#gabor_cluster) for the full parameter table.
+
+### `INPARFORMER_BLOCK`
+
+- Summary: InParformer-inspired moving-average trend plus periodic-template seasonal decomposition head.
+- Use when: periodic-template neural decomposition baselines; prefix/full-scope ablation experiments
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `primary_period` (null), `fit_scope` ("full"), `trend_window` (null)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#inparformer_block)
+
+See [Config Reference](config-reference.md#inparformer_block) for the full parameter table.
+
+### `LEDDAM_BLOCK`
+
+- Summary: LEDDAM LD smoothing block exposed as a Gaussian-kernel decomposition operator.
+- Use when: LEDDAM-style decomposition ablations; kernel smoothing neural head comparisons
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `kernel_size` (25), `sigma` (1.0)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.ld_trend`, `components.kernel`
+- References: [Method References](method-references.md#leddam_block)
+
+See [Config Reference](config-reference.md#leddam_block) for the full parameter table.
+
+### `MOVING_AVERAGE_DECOMPOSITION_BLOCK`
+
+- Summary: Generic neural forecasting moving-average decomposition block exposed as a DeTime method.
+- Use when: generic decomposition-block smoke tests; fast moving-average neural head baselines
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `moving_avg` (null), `primary_period` (null)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.moving_mean`
+- References: [Method References](method-references.md#moving_average_decomposition_block)
+
+See [Config Reference](config-reference.md#moving_average_decomposition_block) for the full parameter table.
+
+### `NBEATS_INTERPRETABLE`
+
+- Summary: Torch-backed interpretable N-BEATS trend and seasonality stacks used as a learned decomposition prior.
+- Use when: learned-basis decomposition experiments; N-BEATS interpretable-stack ablations
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `degree_of_polynomial` (3), `num_harmonics` (8), `fit_scope` ("full"), `n_epochs` (200)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: torch
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#nbeats_interpretable)
+
+See [Config Reference](config-reference.md#nbeats_interpretable) for the full parameter table.
+
+### `PARSIMONY_BLOCK`
+
+- Summary: Parsimony-inspired trend head with compact harmonic seasonal projection.
+- Use when: compact harmonic decomposition baselines; low-parameter neural head comparisons
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `primary_period` (null), `fit_scope` ("full"), `trend_window` (null), `num_harmonics` (2)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#parsimony_block)
+
+See [Config Reference](config-reference.md#parsimony_block) for the full parameter table.
+
+### `ST_MTM_BLOCK`
+
+- Summary: ST-MTM-inspired smoothing head combining trend smoothing and smoothed periodic seasonality.
+- Use when: seasonal-trend pretraining block ablations; smooth periodic decomposition baselines
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `primary_period` (null), `fit_scope` ("full"), `trend_window` (null), `season_smooth_window` (null)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#st_mtm_block)
+
+See [Config Reference](config-reference.md#st_mtm_block) for the full parameter table.
+
+### `TIMEKAN_BLOCK`
+
+- Summary: TimeKAN-inspired decomposition head blending template and harmonic seasonal estimates.
+- Use when: KAN-inspired neural decomposition ablations; frequency-template hybrid seasonal baselines
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `primary_period` (null), `fit_scope` ("full"), `trend_window` (null), `num_bands` (2)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#timekan_block)
+
+See [Config Reference](config-reference.md#timekan_block) for the full parameter table.
+
+### `TIMES2D_BLOCK`
+
+- Summary: Times2D-inspired multi-period harmonic decomposition head.
+- Use when: multi-period neural decomposition baselines; FFT-selected seasonal period comparisons
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `primary_period` (null), `fit_scope` ("full"), `top_k_periods` (2), `num_harmonics` (1), `trend_window` (null)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#times2d_block)
+
+See [Config Reference](config-reference.md#times2d_block) for the full parameter table.
+
+### `WAVEFORM_BLOCK`
+
+- Summary: WaveForM-inspired wavelet multiresolution decomposition head.
+- Use when: wavelet neural-head ablations; multiresolution trend/detail comparisons
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `wavelet` ("db4"), `level` (3), `season_levels` ([1, 2])
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: PyWavelets
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#waveform_block)
+
+See [Config Reference](config-reference.md#waveform_block) for the full parameter table.
+
+### `WAVELETMIXER_BLOCK`
+
+- Summary: WaveletMixer-inspired multiresolution decomposition head using mixed wavelet detail levels.
+- Use when: wavelet-mixer neural decomposition baselines; multi-level detail seasonal reconstruction
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `wavelet` ("sym4"), `level` (4), `season_levels` ([1, 2, 3])
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: PyWavelets
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#waveletmixer_block)
+
+See [Config Reference](config-reference.md#waveletmixer_block) for the full parameter table.
+
+### `XPATCH_BLOCK`
+
+- Summary: xPatch-inspired exponential smoothing head for standalone trend and local-season decomposition.
+- Use when: exponential smoothing neural head comparisons; fast local seasonal-trend decomposition
+- Avoid when: shared-model multivariate decomposition problems; first-pass baselines or high-trust production workflows
+- Key params: `ma_type` ("ema"), `trend_window` (null), `season_smooth` (null)
+- Input/backend: `univariate` input, `python` implementation, maturity `experimental`
+- Optional dependencies: none
+- Output components: `trend`, `season`, `residual`, `components.trend`, `components.season`
+- References: [Method References](method-references.md#xpatch_block)
+
+See [Config Reference](config-reference.md#xpatch_block) for the full parameter table.

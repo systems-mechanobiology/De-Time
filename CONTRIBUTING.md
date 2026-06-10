@@ -1,6 +1,6 @@
-# Contributing to De-Time
+# Contributing to DeTime
 
-Thanks for contributing to `De-Time` (`de-time` / `detime`).
+Thanks for contributing to `DeTime` (`de-time` / `detime`).
 
 ## Scope
 

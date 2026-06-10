@@ -1,4 +1,4 @@
-# De-Time Software Evidence Snapshot
+# DeTime Software Evidence Snapshot
 
 This note records the reviewer-facing software evidence for the current
 `0.1.1` submission target.
@@ -51,14 +51,14 @@ This note records the reviewer-facing software evidence for the current
 
 ## Related software matrix
 
-| Package | Deeper strength | De-Time distinction |
+| Package | Deeper strength | DeTime distinction |
 |---|---|---|
-| [`statsmodels`](https://www.statsmodels.org/) | mature classical decomposition and modeling | De-Time standardizes a cross-family workflow layer |
-| [`PyEMD`](https://github.com/laszukdawid/PyEMD) | deeper EMD-family tooling | De-Time places EMD-family methods inside the same config/result/CLI contract as other families |
-| [`PyWavelets`](https://pywavelets.readthedocs.io/en/latest/) | deeper wavelet transforms and wavelet-specific APIs | De-Time treats wavelets as one workflow option rather than a wavelet-first toolkit |
-| [`PySDKit`](https://pysdkit.readthedocs.io/en/latest/) | broader signal-decomposition toolkit, including optional multivariate methods | De-Time uses `PySDKit` selectively while keeping a time-series-centered package interface |
-| [`SSALib`](https://github.com/ADSCIAN/ssalib) | deeper SSA-only environment | De-Time offers SSA inside a broader decomposition workflow package |
-| [`sktime`](https://www.sktime.net/en/stable/) | current maintained VMD path and broader time-series transformation ecosystem | De-Time compares its VMD path against `sktime`, not only against the old standalone `vmdpy` identity |
+| [`statsmodels`](https://www.statsmodels.org/) | mature classical decomposition and modeling | DeTime standardizes a cross-family workflow layer |
+| [`PyEMD`](https://github.com/laszukdawid/PyEMD) | deeper EMD-family tooling | DeTime places EMD-family methods inside the same config/result/CLI contract as other families |
+| [`PyWavelets`](https://pywavelets.readthedocs.io/en/latest/) | deeper wavelet transforms and wavelet-specific APIs | DeTime treats wavelets as one workflow option rather than a wavelet-first toolkit |
+| [`PySDKit`](https://pysdkit.readthedocs.io/en/latest/) | broader signal-decomposition toolkit, including optional multivariate methods | DeTime uses `PySDKit` selectively while keeping a time-series-centered package interface |
+| [`SSALib`](https://github.com/ADSCIAN/ssalib) | deeper SSA-only environment | DeTime offers SSA inside a broader decomposition workflow package |
+| [`sktime`](https://www.sktime.net/en/stable/) | current maintained VMD path and broader time-series transformation ecosystem | DeTime compares its VMD path against `sktime`, not only against the old standalone `vmdpy` identity |
 
 ## Method and upstream references
 

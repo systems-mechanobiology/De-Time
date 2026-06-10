@@ -7,13 +7,13 @@ These pages render the executed Quant Trading tutorial notebooks, including mark
 |---|---|
 | [Tutorial 00 - Decomposition-first quant trading roadmap](00_decomposition_first_quant_trading_roadmap.md) | `00_decomposition_first_quant_trading_roadmap.ipynb` |
 | [Strategy Lab 01 - Trend-following strategy](01_detime_trend_following_strategy_lab.md) | `01_detime_trend_following_strategy_lab.ipynb` |
-| [Tutorial 01 - Real market data and the De-Time feature factory](01_market_data_and_decomposition_feature_factory.md) | `01_market_data_and_decomposition_feature_factory.ipynb` |
+| [Tutorial 01 - Real market data and the DeTime feature factory](01_market_data_and_decomposition_feature_factory.md) | `01_market_data_and_decomposition_feature_factory.ipynb` |
 | [Tutorial 02 - Moving averages and MACD through decomposition](02_decomposition_aware_moving_average_macd.md) | `02_decomposition_aware_moving_average_macd.ipynb` |
 | [Strategy Lab 02 - Oscillation / residual-reversion strategy](02_detime_oscillation_reversion_strategy_lab.md) | `02_detime_oscillation_reversion_strategy_lab.ipynb` |
 | [Strategy Expansion 03 - Method-specific strategy variants](03_detime_method_specific_strategy_variants.md) | `03_detime_method_specific_strategy_variants.ipynb` |
 | [Tutorial 03 - Residual mean reversion: RSI, Bollinger and residual bands](03_residual_mean_reversion_rsi_bollinger.md) | `03_residual_mean_reversion_rsi_bollinger.ipynb` |
 | [Strategy Expansion 04 - Component pair trading and cointegration](04_detime_component_pair_trading_cointegration.md) | `04_detime_component_pair_trading_cointegration.ipynb` |
-| [Tutorial 04 - Donchian and Turtle breakout with De-Time volume confirmation](04_turtle_donchian_breakout_volume_confirmation.md) | `04_turtle_donchian_breakout_volume_confirmation.ipynb` |
+| [Tutorial 04 - Donchian and Turtle breakout with DeTime volume confirmation](04_turtle_donchian_breakout_volume_confirmation.md) | `04_turtle_donchian_breakout_volume_confirmation.ipynb` |
 | [Tutorial 05 - Pair spread decomposition and stat-arb](05_pairs_spread_decomposition_stat_arb.md) | `05_pairs_spread_decomposition_stat_arb.ipynb` |
 | [Tutorial 06 - Cross-sectional rotation and portfolio construction](06_cross_sectional_rotation_portfolio.md) | `06_cross_sectional_rotation_portfolio.ipynb` |
 | [Native SSA high-return / low-drawdown strategy tutorial](07_native_ssa_high_return_low_drawdown_tutorial.md) | `07_native_ssa_high_return_low_drawdown_tutorial.ipynb` |

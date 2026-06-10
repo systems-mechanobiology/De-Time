@@ -2,45 +2,58 @@
 
 ## Current install path
 
-PyPI publication is planned after the reviewed `0.1.1` release is cut. Until
-then, install the current public repository directly from GitHub:
+Install the latest released package from PyPI:
 
 ```bash
-python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"
+python -m pip install de-time
 ```
 
-Optional multivariate backends for `MVMD` and `MEMD` install from GitHub with:
+Optional multivariate backends for `MVMD` and `MEMD` install with:
 
 ```bash
-python -m pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
+python -m pip install "de-time[multivar]"
+```
+
+Optional EMD-family wrappers for `EMD` and `CEEMDAN` install with:
+
+```bash
+python -m pip install "de-time[emd]"
+```
+
+Optional torch-backed neural block support for `NBEATS_INTERPRETABLE` installs with:
+
+```bash
+python -m pip install "de-time[neural]"
 ```
 
 Notebook tooling for the method gallery installs with:
 
 ```bash
-python -m pip install "de-time[notebook] @ git+https://github.com/systems-mechanobiology/De-Time.git"
+python -m pip install "de-time[notebook]"
 ```
 
 Names used by this project:
 
 | Context | Name |
 |---|---|
-| Project/product | `De-Time` |
-| Planned Python distribution | `de-time` |
+| Project/product | `DeTime` |
+| Python distribution | `de-time` |
 | Python import | `detime` |
 | Deprecated compatibility alias | `tsdecomp` |
 
-Do not install the unrelated `detime` package from PyPI when you want this
-project. Planned PyPI install after the release is:
+Do not install the unrelated [`detime`](https://pypi.org/project/detime/)
+package from PyPI when you want this project; that package is not DeTime.
+
+To install the unreleased `main` branch directly from GitHub:
 
 ```bash
-pip install de-time
+python -m pip install "git+https://github.com/systems-mechanobiology/DeTime.git"
 ```
 
 ## Editable install
 
 Use an editable install for local development, release preparation, or when
-you need the unreleased `0.1.1` review target directly from the repository.
+you need the unreleased `main` branch directly from the repository.
 
 ```bash
 python -m pip install --upgrade pip
@@ -51,6 +64,12 @@ For optional multivariate wrappers during development:
 
 ```bash
 python -m pip install -e .[dev,docs,multivar]
+```
+
+For the EMD and torch-backed neural extras during development:
+
+```bash
+python -m pip install -e .[dev,docs,emd,neural]
 ```
 
 ## Platform Prerequisites
@@ -73,7 +92,7 @@ Typical source-build prerequisites by platform:
 
 ## Native extension behavior
 
-De-Time ships native kernels for selected flagship methods:
+DeTime ships native kernels for selected flagship methods:
 
 - `SSA`
 - `STD`
@@ -116,6 +135,17 @@ environment, run:
 python examples/optional_multivariate_backends.py
 ```
 
+## Optional EMD and neural backends
+
+`EMD` and `CEEMDAN` require the `emd` extra because they import PyEMD from the
+`EMD-signal` distribution at runtime. `WAVELET`, `WAVEFORM_BLOCK`, and
+`WAVELETMIXER_BLOCK` use PyWavelets, which is part of the default DeTime
+dependency set.
+
+Most neural block methods are lightweight NumPy implementations. The exception
+is `NBEATS_INTERPRETABLE`, which requires torch and is installed through the
+`neural` extra.
+
 ## Compatibility alias
 
 The preferred import is `detime`. The compatibility scope retained through
@@ -138,12 +168,11 @@ from install artifacts.
 
 Symptom: `import detime` imports an unrelated package.
 
-Fix: uninstall the unrelated `detime` package, then install this repository
-from GitHub.
+Fix: uninstall the unrelated `detime` package, then install `de-time`.
 
 ```bash
 python -m pip uninstall -y detime
-python -m pip install "git+https://github.com/systems-mechanobiology/De-Time.git"
+python -m pip install de-time
 ```
 
 </details>
@@ -158,7 +187,7 @@ install.
 
 ```bash
 python -m pip install --upgrade pip
-python -m pip install --no-cache-dir "git+https://github.com/systems-mechanobiology/De-Time.git"
+python -m pip install --no-cache-dir de-time
 ```
 
 </details>
@@ -178,12 +207,15 @@ native path is present.
 <details>
 <summary>Optional backend import error</summary>
 
-Symptom: `MVMD` or `MEMD` raises an `ImportError`.
+Symptom: `MVMD`, `MEMD`, `EMD`, `CEEMDAN`, or `NBEATS_INTERPRETABLE` raises an
+`ImportError`.
 
-Fix: install the multivariate extra.
+Fix: install the matching extra.
 
 ```bash
-python -m pip install "de-time[multivar] @ git+https://github.com/systems-mechanobiology/De-Time.git"
+python -m pip install "de-time[multivar]"
+python -m pip install "de-time[emd]"
+python -m pip install "de-time[neural]"
 ```
 
 </details>

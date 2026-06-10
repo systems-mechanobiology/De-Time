@@ -4,7 +4,7 @@ from time import perf_counter
 from dataclasses import dataclass, field
 from typing import Dict, Any, List, Optional, Sequence, Tuple
 from .._native import has_native_method, invoke_native
-from ..backends import finalize_result, resolve_backend, split_runtime_params
+from ..backends import finalize_result, resolve_backend, result_from_native_payload, split_runtime_params
 from ..core import DecompResult
 from ..registry import MethodRegistry
 
@@ -176,9 +176,6 @@ def _assign_clusters_faiss(feats: np.ndarray, model: GaborClusterModel) -> np.nd
 @MethodRegistry.register("GABOR_CLUSTER")
 def gabor_cluster_decompose(y: np.ndarray, params: Dict[str, Any]) -> DecompResult:
     started_at = perf_counter()
-    if not _HAS_FAISS:
-        raise ImportError("faiss is required for GABOR_CLUSTER.") from _FAISS_IMPORT_ERROR
-
     cfg_dict, runtime = split_runtime_params(params)
     model_path = cfg_dict.get("model_path")
     model = cfg_dict.get("model")
@@ -198,12 +195,39 @@ def gabor_cluster_decompose(y: np.ndarray, params: Dict[str, Any]) -> DecompResu
     n_fft = cfg.n_fft or (1 << int(np.ceil(np.log2(L))))
     window = _make_window(L, cfg.window_type, cfg.gaussian_sigma)
 
-    native_methods = ("gabor_stft_rfft", "gabor_istft_rfft")
+    full_native_available = has_native_method("gabor_cluster_decompose")
+    native_methods = ("gabor_cluster_decompose",) if full_native_available else ("gabor_stft_rfft", "gabor_istft_rfft")
     if runtime.backend == "native" and not all(has_native_method(name) for name in native_methods):
         raise RuntimeError(
-            "GABOR_CLUSTER requested backend='native' but the native STFT helpers are unavailable."
+            "GABOR_CLUSTER requested backend='native' but the native implementation is unavailable."
         )
     backend = resolve_backend("GABOR_CLUSTER", runtime, native_methods=native_methods)
+
+    if backend == "native" and full_native_available:
+        payload = invoke_native(
+            "gabor_cluster_decompose",
+            x,
+            np.asarray(model.centroids, dtype=np.float32),
+            np.asarray(model.mu, dtype=np.float32),
+            np.asarray(model.sigma, dtype=np.float32),
+            win_len=int(L),
+            hop=int(hop),
+            n_fft=int(n_fft),
+            window=np.asarray(window, dtype=float),
+            use_log_amp=bool(cfg.use_log_amp),
+            max_clusters=-1 if max_clusters is None else int(max_clusters),
+            trend_freq_thr=float(cfg_dict.get("trend_freq_thr", 0.08)),
+        )
+        return finalize_result(
+            result_from_native_payload(payload, method="GABOR_CLUSTER"),
+            method="GABOR_CLUSTER",
+            runtime=runtime,
+            backend_used="native",
+            started_at=started_at,
+        )
+
+    if not _HAS_FAISS:
+        raise ImportError("faiss is required for GABOR_CLUSTER.") from _FAISS_IMPORT_ERROR
 
     feats, Z = _extract_gabor_features_backend(x, cfg, window, backend=backend)
     labels = _assign_clusters_faiss(feats, model)

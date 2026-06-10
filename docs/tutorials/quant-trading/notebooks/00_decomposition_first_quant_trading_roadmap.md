@@ -2,7 +2,7 @@
 # Tutorial 00 - Decomposition-first quant trading roadmap
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/00_decomposition_first_quant_trading_roadmap.ipynb"><code>examples/notebooks/quant_trading/00_decomposition_first_quant_trading_roadmap.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/00_decomposition_first_quant_trading_roadmap.ipynb"><code>examples/notebooks/quant_trading/00_decomposition_first_quant_trading_roadmap.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation
@@ -24,7 +24,7 @@
 
 ## Executed Notebook
 
-The revised tutorial is built around one idea: classic technical strategies are mostly rough filters for trend, cycle, residual deviation, and participation. De-Time makes those pieces explicit before the strategy layer.
+The revised tutorial is built around one idea: classic technical strategies are mostly rough filters for trend, cycle, residual deviation, and participation. DeTime makes those pieces explicit before the strategy layer.
 
 Implemented in this update:
 

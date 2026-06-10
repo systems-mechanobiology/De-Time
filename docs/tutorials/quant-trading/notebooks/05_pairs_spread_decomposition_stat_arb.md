@@ -2,7 +2,7 @@
 # Tutorial 05 - Pair spread decomposition and stat-arb
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/05_pairs_spread_decomposition_stat_arb.ipynb"><code>examples/notebooks/quant_trading/05_pairs_spread_decomposition_stat_arb.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/05_pairs_spread_decomposition_stat_arb.ipynb"><code>examples/notebooks/quant_trading/05_pairs_spread_decomposition_stat_arb.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation
@@ -454,7 +454,7 @@ snapshot.query("feature in ['trend_slope', 'cycle_slope', 'residual_z', 'residua
 </div>
 </div>
 
-## 3. Backtest classical baselines and De-Time rewrites
+## 3. Backtest classical baselines and DeTime rewrites
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [6]</div>

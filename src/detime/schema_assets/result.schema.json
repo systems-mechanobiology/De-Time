@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Serialized De-Time decomposition result in full or summary mode.",
+  "description": "Serialized DeTime decomposition result in full or summary mode.",
   "oneOf": [
     {
       "$defs": {

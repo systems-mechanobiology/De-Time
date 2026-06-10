@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from importlib.metadata import PackageNotFoundError, version
 
-PRODUCT_NAME = "De-Time"
+PRODUCT_NAME = "DeTime"
 DISTRIBUTION_NAME = "de-time"
 CANONICAL_IMPORT = "detime"
 LEGACY_IMPORT = "tsdecomp"

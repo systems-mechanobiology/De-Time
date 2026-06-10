@@ -9,7 +9,7 @@ Classical baselines:
 - RSI oversold recovery;
 - Average Price Oscillator reversion.
 
-De-Time rewrites:
+DeTime rewrites:
 
 - residual z-score reversion with trend, cycle and volume filters;
 - RSI computed on the residual channel;
@@ -26,7 +26,7 @@ Classical baselines:
 - Donchian 55/20;
 - simplified long-only Turtle 55/20.
 
-De-Time rewrites:
+DeTime rewrites:
 
 - prior-channel breakout must pass `trend_slope`, `trend_strength`, `cycle_slope`, `residual_abs_z`, `volume_trend_slope` and `volume_residual_z` filters;
 - exits combine channel failure and decomposition-state deterioration.

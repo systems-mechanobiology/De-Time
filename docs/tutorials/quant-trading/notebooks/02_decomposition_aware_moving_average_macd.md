@@ -2,7 +2,7 @@
 # Tutorial 02 - Moving averages and MACD through decomposition
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/02_decomposition_aware_moving_average_macd.ipynb"><code>examples/notebooks/quant_trading/02_decomposition_aware_moving_average_macd.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/02_decomposition_aware_moving_average_macd.ipynb"><code>examples/notebooks/quant_trading/02_decomposition_aware_moving_average_macd.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation
@@ -24,7 +24,7 @@
 
 ## Executed Notebook
 
-This tutorial starts from familiar timing strategies-buy and hold, dual moving averages, multi-moving-average alignment, MACD and momentum-then rewrites the signal inputs through De-Time components.
+This tutorial starts from familiar timing strategies-buy and hold, dual moving averages, multi-moving-average alignment, MACD and momentum-then rewrites the signal inputs through DeTime components.
 
 The point is to make the hidden structure explicit: moving averages estimate trend, MACD measures trend acceleration, residual features measure structural overextension, and volume decomposition checks participation.
 
@@ -282,9 +282,9 @@ plt.show()
 </div>
 </div>
 
-## 3. De-Time rewrites
+## 3. DeTime rewrites
 
-The De-Time strategy layer keeps the same trading vocabulary but changes the input object. Dual MA and MACD are calculated on the decomposed trend. Cycle and residual features filter entries that are late in the oscillation or structurally overextended. Volume trend and volume residual confirm participation.
+The DeTime strategy layer keeps the same trading vocabulary but changes the input object. Dual MA and MACD are calculated on the decomposed trend. Cycle and residual features filter entries that are late in the oscillation or structurally overextended. Volume trend and volume residual confirm participation.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [6]</div>
@@ -386,7 +386,7 @@ display(detime_table[["total_return", "cagr", "sharpe", "max_drawdown", "average
 trend_price = np.exp(features["trend"])
 fig, ax = plt.subplots(figsize=(10, 4))
 prices[ticker].plot(ax=ax, linewidth=0.9, label="close")
-trend_price[ticker].plot(ax=ax, linewidth=1.6, label="De-Time trend")
+trend_price[ticker].plot(ax=ax, linewidth=1.6, label="DeTime trend")
 sma(trend_price, 20)[ticker].plot(ax=ax, linewidth=1.0, label="trend SMA 20")
 sma(trend_price, 100)[ticker].plot(ax=ax, linewidth=1.0, label="trend SMA 100")
 ax.set_title("Moving averages on the decomposed trend")

@@ -1,4 +1,4 @@
-"""Quant trading tutorial utilities for the De-Time documentation column.
+"""Quant trading tutorial utilities for the DeTime documentation column.
 
 The utilities are example-scoped. They are not part of the core ``detime``
 public package surface and should not be interpreted as production trading

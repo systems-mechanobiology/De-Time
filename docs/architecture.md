@@ -19,7 +19,7 @@ The canonical implementation lives under `src/detime`.
 ## Compatibility layer
 
 `src/tsdecomp` is now a thin compatibility package. It re-exports the package-
-level De-Time surface and emits deprecation warnings for imports and CLI usage.
+level DeTime surface and emits deprecation warnings for imports and CLI usage.
 Only the top-level import path and CLI alias remain packaged; transition-era
 submodules are intentionally not shipped in install artifacts. The compatibility
 window is the `0.1.x` series, with earliest removal planned for `0.2.0`.
@@ -36,6 +36,6 @@ Machine-oriented workflows use:
 
 ## Native boundary
 
-Native kernels are built and loaded under the De-Time naming path first. The
+Native kernels are built and loaded under the DeTime naming path first. The
 main package exposes native support only for the retained flagship methods.
 Benchmark-derived native code is no longer part of the main package boundary.

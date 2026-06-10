@@ -1160,7 +1160,7 @@ L 853.2 26.88
 " style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_16">
-    <!-- De-Time payload token budget by scenario and serialization mode -->
+    <!-- DeTime payload token budget by scenario and serialization mode -->
     <g transform="translate(262.415312 20.88) scale(0.12 -0.12)">
      <defs>
       <path id="DejaVuSans-44" d="M 1259 4147 

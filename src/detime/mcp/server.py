@@ -30,7 +30,7 @@ def _tool_definitions() -> list[dict[str, Any]]:
         {
             "name": "list_methods",
             "description": (
-                "List registered De-Time methods and their machine-readable metadata. "
+                "List registered DeTime methods and their machine-readable metadata. "
                 "Use this first when the agent needs a stable method catalog."
             ),
             "inputSchema": {
@@ -274,7 +274,7 @@ def serve_stdio() -> int:
                     "serverInfo": {"name": "detime-mcp", "version": installed_version()},
                     "capabilities": {"tools": {}},
                     "instructions": (
-                        "This is the local-first De-Time MCP server. Tool names are stable within "
+                        "This is the local-first DeTime MCP server. Tool names are stable within "
                         f"the {MACHINE_CONTRACT_VERSION} machine-contract series."
                     ),
                 }

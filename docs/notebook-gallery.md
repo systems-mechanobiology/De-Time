@@ -1,7 +1,7 @@
-# De-Time Method Gallery
+# DeTime Method Gallery
 
 <div class="gallery-intro">
-  <p>Explore De-Time's decomposition methods. Each card links to a dedicated page with executable code, output, and a decomposition plot. All examples use compact synthetic data and run quickly.</p>
+  <p>Explore DeTime's decomposition methods. Each card links to a dedicated page with executable code, output, and a decomposition plot. All examples use compact synthetic data and run quickly.</p>
 </div>
 
 <div class="gallery-note">
@@ -319,4 +319,4 @@ Methods run: 14; skipped with explicit reason: 1.
 </div>
 
 The GitHub-rendered notebook is also available at
-[examples/notebooks/de_time_method_gallery.ipynb](https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/de_time_method_gallery.ipynb).
+[examples/notebooks/de_time_method_gallery.ipynb](https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/de_time_method_gallery.ipynb).

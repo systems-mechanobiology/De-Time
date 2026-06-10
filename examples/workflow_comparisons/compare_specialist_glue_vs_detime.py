@@ -63,7 +63,7 @@ def main() -> int:
         },
         "narrative": [
             "The specialist workflow mixes multiple imports, result objects, and package-specific APIs.",
-            "The De-Time workflow keeps the same result contract and method switch path under one import surface.",
+            "The DeTime workflow keeps the same result contract and method switch path under one import surface.",
         ],
     }
     (OUTPUT_DIR / "workflow_comparison.json").write_text(
@@ -76,7 +76,7 @@ def main() -> int:
                 "# Workflow Comparisons",
                 "",
                 "This example contrasts a multi-package specialist glue workflow with the",
-                "equivalent De-Time workflow. Run the script to materialize the JSON summary",
+                "equivalent DeTime workflow. Run the script to materialize the JSON summary",
                 "used by the docs comparison pages.",
                 "",
                 "```bash",

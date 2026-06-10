@@ -154,7 +154,7 @@ def build_schema_bundle() -> Dict[SchemaName, Dict[str, Any]]:
         "result": {
             "$schema": "https://json-schema.org/draft/2020-12/schema",
             "title": "DeTimeResultPayload",
-            "description": "Serialized De-Time decomposition result in full or summary mode.",
+            "description": "Serialized DeTime decomposition result in full or summary mode.",
             "oneOf": result_variants,
         },
         "meta": MetaPayloadModel.model_json_schema(),

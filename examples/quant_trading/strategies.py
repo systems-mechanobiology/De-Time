@@ -30,16 +30,16 @@ STRATEGY_SPECS: dict[str, StrategySpec] = {
     ),
     "classic_macd": StrategySpec("classic_macd", "trend_following", "Classic MACD crossover on raw price.", False),
     "detime_trend_gate": StrategySpec(
-        "detime_trend_gate", "trend_following", "Trend signal from explicit De-Time trend slope and reliability filters.", True
+        "detime_trend_gate", "trend_following", "Trend signal from explicit DeTime trend slope and reliability filters.", True
     ),
     "detime_dual_ma": StrategySpec(
         "detime_dual_ma", "trend_following", "Dual moving-average logic gated by trend, cycle, and residual state.", True
     ),
     "detime_macd": StrategySpec(
-        "detime_macd", "trend_following", "MACD computed on De-Time trend instead of raw noisy price.", True
+        "detime_macd", "trend_following", "MACD computed on DeTime trend instead of raw noisy price.", True
     ),
     "detime_volume_confirmed_trend": StrategySpec(
-        "detime_volume_confirmed_trend", "trend_following", "De-Time trend signal confirmed by decomposed volume participation.", True, True
+        "detime_volume_confirmed_trend", "trend_following", "DeTime trend signal confirmed by decomposed volume participation.", True, True
     ),
 }
 
@@ -108,7 +108,7 @@ def detime_dual_ma_weights(
     max_abs_residual_z: float = 2.5,
     equal_weight: bool = True,
 ) -> pd.DataFrame:
-    """Classic dual-MA entries gated by De-Time trend/cycle/residual context."""
+    """Classic dual-MA entries gated by DeTime trend/cycle/residual context."""
 
     ma_entries, ma_exits = dual_moving_average_signal(prices, fast=fast, slow=slow)
     trend = _align(features["trend_slope"], prices)
@@ -129,7 +129,7 @@ def detime_macd_weights(
     max_abs_residual_z: float = 2.5,
     equal_weight: bool = True,
 ) -> pd.DataFrame:
-    """Compute MACD on the explicit De-Time trend component."""
+    """Compute MACD on the explicit DeTime trend component."""
 
     trend = _align(features["trend"], prices)
     macd_line, signal_line, hist = macd(trend, fast=fast, slow=slow, signal=signal)

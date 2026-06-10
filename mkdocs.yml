@@ -1,9 +1,9 @@
-site_name: De-Time
-site_description: De-Time is workflow-oriented research software for reproducible time-series decomposition.
+site_name: DeTime
+site_description: DeTime is workflow-oriented research software for reproducible time-series decomposition.
 site_author: Zipeng Wu
-site_url: https://systems-mechanobiology.github.io/De-Time/
-repo_name: systems-mechanobiology/De-Time
-repo_url: https://github.com/systems-mechanobiology/De-Time
+site_url: https://systems-mechanobiology.github.io/DeTime/
+repo_name: systems-mechanobiology/DeTime
+repo_url: https://github.com/systems-mechanobiology/DeTime
 edit_uri: ""
 docs_dir: docs
 theme:

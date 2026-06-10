@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Run only Column 02: classical MA/MACD baselines vs De-Time rewrites."""
+"""Run only Column 02: classical MA/MACD baselines vs DeTime rewrites."""
 
 import argparse
 from pathlib import Path

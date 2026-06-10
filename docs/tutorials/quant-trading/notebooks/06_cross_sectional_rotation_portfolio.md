@@ -2,7 +2,7 @@
 # Tutorial 06 - Cross-sectional rotation and portfolio construction
 
 <div class="gallery-note notebook-transcript-note">
-  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/De-Time/blob/main/examples/notebooks/quant_trading/06_cross_sectional_rotation_portfolio.ipynb"><code>examples/notebooks/quant_trading/06_cross_sectional_rotation_portfolio.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
+  <strong>Executed tutorial notebook.</strong> This page is generated from <a href="https://github.com/systems-mechanobiology/DeTime/blob/main/examples/notebooks/quant_trading/06_cross_sectional_rotation_portfolio.ipynb"><code>examples/notebooks/quant_trading/06_cross_sectional_rotation_portfolio.ipynb</code></a> and includes markdown cells, code cells, stdout, tables, and captured figures from the committed notebook.
 </div>
 
 ## Tutorial Navigation
@@ -24,7 +24,7 @@
 
 ## Executed Notebook
 
-This notebook turns De-Time features into a portfolio ranking language: trend decides direction, cycle adjusts timing, residual controls overextension and volume/reconstruction features control reliability.
+This notebook turns DeTime features into a portfolio ranking language: trend decides direction, cycle adjusts timing, residual controls overextension and volume/reconstruction features control reliability.
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [1]</div>
@@ -508,7 +508,7 @@ build_feature_table(prices, features).tail(3).iloc[:, :12].round(4)
 </div>
 </div>
 
-## 3. Inspect the De-Time rotation score
+## 3. Inspect the DeTime rotation score
 
 <div class="notebook-cell">
 <div class="notebook-input-label">In [5]</div>
@@ -602,7 +602,7 @@ score.tail(5).round(3)
 fig, ax = plt.subplots(figsize=(10, 4))
 score.tail(120).plot(ax=ax, linewidth=1.1)
 ax.axhline(0, color="black", linewidth=0.8)
-ax.set_title("De-Time cross-sectional score on real FX samples")
+ax.set_title("DeTime cross-sectional score on real FX samples")
 ax.set_ylabel("Score")
 ax.grid(True, alpha=0.25)
 plt.tight_layout()

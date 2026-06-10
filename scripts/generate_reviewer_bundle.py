@@ -27,7 +27,7 @@ def main() -> int:
             "",
             f"Generated for release target `{__version__}`.",
             "",
-            "| Axis | De-Time |",
+            "| Axis | DeTime |",
             "| --- | --- |",
             "| Primary scope | workflow-oriented decomposition layer |",
             "| Common config object | yes |",
@@ -50,7 +50,7 @@ def main() -> int:
             "# Install Verification",
             "",
             f"- Release target: `{__version__}`",
-            "- Current source install path: `python -m pip install \"git+https://github.com/systems-mechanobiology/De-Time.git\"`",
+            "- Current source install path: `python -m pip install \"git+https://github.com/systems-mechanobiology/DeTime.git\"`",
             "- Planned PyPI install path after release: `pip install de-time`",
             "- Release state: publish from `main` via the release workflow, then run post-publish smoke verification.",
             "- Release smoke script: `scripts/release_smoke_matrix.py`",
@@ -80,8 +80,8 @@ def main() -> int:
             "- Main package scope: installable decomposition library under `src/detime/`.",
             "- Compatibility scope: top-level `tsdecomp` import and CLI alias only.",
             "- Companion benchmark repository: `systems-mechanobiology/de-time-bench`.",
-            "- Benchmark-derived methods are intentionally absent from the installable De-Time package.",
-            "- De-Time should be reviewed as software infrastructure, not as a benchmark artifact bundle.",
+            "- Benchmark-derived methods are intentionally absent from the installable DeTime package.",
+            "- DeTime should be reviewed as software infrastructure, not as a benchmark artifact bundle.",
             "",
         ]
     )

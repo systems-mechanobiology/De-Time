@@ -95,7 +95,7 @@ def arxiv_count(search_query: str, *, start_date: str, end_date: str, sleep_seco
     url = ARXIV_API + "?" + urllib.parse.urlencode(params)
     raw = _read_url(
         url,
-        headers={"User-Agent": "De-Time-Hot-Trend-Lab/0.1"},
+        headers={"User-Agent": "DeTime-Hot-Trend-Lab/0.1"},
         timeout=45,
         retries=5,
         retry_sleep=max(30.0, float(sleep_seconds)),
@@ -257,7 +257,7 @@ def fetch_wikipedia_pageviews(
         "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/"
         f"{project}/{access}/{agent}/{article_quoted}/{granularity}/{start_s}/{end_s}"
     )
-    data = _read_json(url, headers={"User-Agent": "De-Time-Hot-Trend-Lab/0.1"})
+    data = _read_json(url, headers={"User-Agent": "DeTime-Hot-Trend-Lab/0.1"})
     items = data.get("items") if isinstance(data, dict) else None
     if not items:
         raise HotTrendDataError(f"No Wikimedia pageviews returned for {article}")

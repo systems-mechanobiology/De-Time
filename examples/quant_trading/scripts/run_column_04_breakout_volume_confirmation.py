@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-"""Run Column 04: Donchian/Turtle breakout with De-Time volume confirmation."""
+"""Run Column 04: Donchian/Turtle breakout with DeTime volume confirmation."""
 
 import argparse
 from pathlib import Path
